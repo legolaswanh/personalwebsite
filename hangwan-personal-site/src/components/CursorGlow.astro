@@ -1,0 +1,275 @@
+<div class="cursor-glow-idle" aria-hidden="true" hidden></div>
+<div class="cursor-glow-trail" aria-hidden="true" hidden>
+  <div class="cursor-glow cursor-glow--streak"></div>
+  <div class="cursor-glow cursor-glow--tail-3"></div>
+  <div class="cursor-glow cursor-glow--tail-2"></div>
+  <div class="cursor-glow cursor-glow--tail-1"></div>
+  <div class="cursor-glow cursor-glow--head"></div>
+</div>
+
+<script>
+  function initCursorGlow() {
+    if (document.documentElement.dataset.cursorGlowInit === 'true') return;
+    document.documentElement.dataset.cursorGlowInit = 'true';
+
+    const trail = document.querySelector('.cursor-glow-trail');
+    const idleGlow = document.querySelector('.cursor-glow-idle');
+
+    if (!trail || !idleGlow) return;
+
+    const head = trail.querySelector('.cursor-glow--head');
+    const tail1 = trail.querySelector('.cursor-glow--tail-1');
+    const tail2 = trail.querySelector('.cursor-glow--tail-2');
+    const tail3 = trail.querySelector('.cursor-glow--tail-3');
+    const streak = trail.querySelector('.cursor-glow--streak');
+
+    if (!head || !tail1 || !tail2 || !tail3 || !streak) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const mouseLerp = 0.32;
+    const layers = [
+      { el: head, followLerp: mouseLerp, x: 0, y: 0 },
+      { el: tail1, followLerp: 0.46, x: 0, y: 0 },
+      { el: tail2, followLerp: 0.42, x: 0, y: 0 },
+      { el: tail3, followLerp: 0.38, x: 0, y: 0 },
+    ];
+    let targetX = 0;
+    let targetY = 0;
+    let lastPointerX = -1;
+    let lastPointerY = -1;
+    let isPointerInViewport = false;
+    let rafId = 0;
+
+    function isPointerInsideViewport() {
+      return (
+        lastPointerX >= 0 &&
+        lastPointerY >= 0 &&
+        lastPointerX <= window.innerWidth &&
+        lastPointerY <= window.innerHeight
+      );
+    }
+
+    function isAnchorInViewport(anchor) {
+      const margin = 80;
+      return (
+        anchor.x >= -margin &&
+        anchor.x <= window.innerWidth + margin &&
+        anchor.y >= -margin &&
+        anchor.y <= window.innerHeight + margin
+      );
+    }
+
+    function rememberPointer(event) {
+      lastPointerX = event.clientX;
+      lastPointerY = event.clientY;
+    }
+
+    function getIdleAnchor() {
+      const illustration = document.querySelector('.home-illustration');
+      if (!illustration) return null;
+
+      const illustrationRect = illustration.getBoundingClientRect();
+
+      return {
+        x: illustrationRect.left + illustrationRect.width * 0.5,
+        y: illustrationRect.bottom - illustrationRect.height * 0.28,
+      };
+    }
+
+    function getPointerPosition(event) {
+      return {
+        x: event.clientX,
+        y: event.clientY,
+      };
+    }
+
+    function applyLayerPosition(layer, x, y) {
+      layer.el.style.left = `${x}px`;
+      layer.el.style.top = `${y}px`;
+      layer.x = x;
+      layer.y = y;
+    }
+
+    function setTrailToPosition(x, y) {
+      for (const layer of layers) {
+        applyLayerPosition(layer, x, y);
+      }
+      streak.style.opacity = '0';
+    }
+
+    function updateIdlePosition() {
+      const anchor = getIdleAnchor();
+      if (!anchor) {
+        idleGlow.hidden = true;
+        return;
+      }
+
+      idleGlow.style.left = `${anchor.x}px`;
+      idleGlow.style.top = `${anchor.y}px`;
+      idleGlow.hidden = false;
+    }
+
+    function showIdleGlow() {
+      isPointerInViewport = false;
+      window.cancelAnimationFrame(rafId);
+      rafId = 0;
+      trail.hidden = true;
+
+      const anchor = getIdleAnchor();
+      if (anchor && isAnchorInViewport(anchor)) {
+        idleGlow.style.left = `${anchor.x}px`;
+        idleGlow.style.top = `${anchor.y}px`;
+        idleGlow.hidden = false;
+      } else {
+        idleGlow.hidden = true;
+      }
+    }
+
+    function syncGlowState() {
+      if (isPointerInViewport) return;
+
+      if (isPointerInsideViewport()) {
+        showActiveGlow(lastPointerX, lastPointerY);
+        return;
+      }
+
+      showIdleGlow();
+    }
+
+    function showActiveGlow(x, y) {
+      isPointerInViewport = true;
+      idleGlow.hidden = true;
+      trail.hidden = false;
+
+      targetX = x;
+      targetY = y;
+      setTrailToPosition(x, y);
+
+      if (!rafId) {
+        rafId = window.requestAnimationFrame(animateGlow);
+      }
+    }
+
+    function updateStreak(headLayer, tailLayer) {
+      const vx = headLayer.x - tailLayer.x;
+      const vy = headLayer.y - tailLayer.y;
+      const distance = Math.hypot(vx, vy);
+
+      if (distance < 1.5) {
+        streak.style.opacity = '0';
+        return;
+      }
+
+      const angle = Math.atan2(vy, vx);
+      const stretch = Math.min(0.9 + distance / 28, 1.65);
+      const midX = headLayer.x - vx * 0.22;
+      const midY = headLayer.y - vy * 0.22;
+
+      streak.style.left = `${midX}px`;
+      streak.style.top = `${midY}px`;
+      streak.style.opacity = String(Math.min(distance / 42, 0.2));
+      streak.style.transform = `translate(-50%, -50%) rotate(${angle}rad) scaleX(${stretch})`;
+    }
+
+    function animateGlow() {
+      if (!isPointerInViewport) {
+        rafId = 0;
+        return;
+      }
+
+      layers[0].x += (targetX - layers[0].x) * layers[0].followLerp;
+      layers[0].y += (targetY - layers[0].y) * layers[0].followLerp;
+
+      for (let i = 1; i < layers.length; i++) {
+        const prev = layers[i - 1];
+        const layer = layers[i];
+        layer.x += (prev.x - layer.x) * layer.followLerp;
+        layer.y += (prev.y - layer.y) * layer.followLerp;
+      }
+
+      for (const layer of layers) {
+        layer.el.style.left = `${layer.x}px`;
+        layer.el.style.top = `${layer.y}px`;
+      }
+
+      updateStreak(layers[0], layers[2]);
+      rafId = window.requestAnimationFrame(animateGlow);
+    }
+
+    function handlePointerMove(event) {
+      rememberPointer(event);
+
+      if (!isPointerInViewport) {
+        const position = getPointerPosition(event);
+        showActiveGlow(position.x, position.y);
+        return;
+      }
+
+      const position = getPointerPosition(event);
+      targetX = position.x;
+      targetY = position.y;
+    }
+
+    function handlePointerEnter(event) {
+      if (event.pointerType && event.pointerType !== 'mouse') return;
+
+      rememberPointer(event);
+      const position = getPointerPosition(event);
+      showActiveGlow(position.x, position.y);
+    }
+
+    function handlePointerLeave(event) {
+      if (event.pointerType && event.pointerType !== 'mouse') return;
+
+      showIdleGlow();
+    }
+
+    function handleResize() {
+      syncGlowState();
+    }
+
+    function handleScroll() {
+      syncGlowState();
+    }
+
+    function handleWheel(event) {
+      if (typeof event.clientX !== 'number' || typeof event.clientY !== 'number') return;
+
+      lastPointerX = event.clientX;
+      lastPointerY = event.clientY;
+      syncGlowState();
+    }
+
+    function cleanup() {
+      window.cancelAnimationFrame(rafId);
+      document.documentElement.removeEventListener('pointerenter', handlePointerEnter);
+      document.documentElement.removeEventListener('pointerleave', handlePointerLeave);
+      document.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', handleScroll, true);
+      document.removeEventListener('wheel', handleWheel);
+      delete document.documentElement.dataset.cursorGlowInit;
+    }
+
+    if (reducedMotion) {
+      trail.hidden = true;
+      updateIdlePosition();
+      return;
+    }
+
+    document.documentElement.addEventListener('pointerenter', handlePointerEnter);
+    document.documentElement.addEventListener('pointerleave', handlePointerLeave);
+    document.addEventListener('pointermove', handlePointerMove);
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', handleScroll, true);
+    document.addEventListener('wheel', handleWheel, { passive: true });
+    document.addEventListener('astro:before-swap', cleanup, { once: true });
+
+    requestAnimationFrame(() => {
+      syncGlowState();
+    });
+  }
+
+  initCursorGlow();
+  document.addEventListener('astro:page-load', initCursorGlow);
+</script>

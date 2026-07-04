@@ -1,0 +1,58 @@
+---
+interface Experiment {
+  name: string;
+  type: string;
+  category: string;
+  imageSrc: string;
+}
+
+interface Props {
+  heading: string;
+  items: Experiment[];
+  seeMoreLabel?: string;
+  seeMoreHref?: string;
+}
+
+const {
+  heading,
+  items,
+  seeMoreLabel = 'See more games',
+  seeMoreHref = '/projects',
+} = Astro.props;
+---
+
+<section class="games-experiments" aria-label={heading}>
+  <h3 class="games-subsection__heading">{heading}</h3>
+
+  <div class="games-experiments__track-wrap">
+    <ul class="games-experiments__track">
+      {items.map((item) => (
+        <li class="games-experiments__item">
+          <div class="games-experiment-card">
+            <div class="games-experiment-card__media" data-asset-wrap>
+              <img
+                class="games-experiment-card__img"
+                src={item.imageSrc}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                data-asset-image
+              />
+            </div>
+            <div class="games-experiment-card__text">
+              <span class="games-experiment-card__name">{item.name}</span>
+              <span class="games-experiment-card__type">{item.type}</span>
+              <span class="games-experiment-card__category">{item.category}</span>
+            </div>
+          </div>
+        </li>
+      ))}
+      <li class="games-experiments__item games-experiments__item--more">
+        <a class="games-experiments__more" href={seeMoreHref}>
+          {seeMoreLabel}
+          <span class="games-experiments__more-arrow" aria-hidden="true">→</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>

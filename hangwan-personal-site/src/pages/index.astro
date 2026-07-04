@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HomeIdentity from '../components/HomeIdentity.astro';
+import HomeHero from '../components/HomeHero.astro';
+import HomeChapterNav from '../components/HomeChapterNav.astro';
+import HomeIllustration from '../components/HomeIllustration.astro';
+import ScrollCue from '../components/ScrollCue.astro';
+import ChapterSection from '../components/ChapterSection.astro';
+import GamesSection from '../components/sections/GamesSection.astro';
+---
+
+<BaseLayout isHome={true}>
+  <main class="one-page-site page-reveal-ready">
+    <section id="home" class="page-section home-section">
+      <div class="section-inner home-section-inner">
+        <div class="home-page container">
+          <HomeIdentity />
+          <HomeHero />
+          <HomeChapterNav />
+          <HomeIllustration />
+          <span class="home-page__rule-v" aria-hidden="true"></span>
+        </div>
+        <ScrollCue />
+      </div>
+    </section>
+
+    <GamesSection />
+
+    <ChapterSection
+      id="chapter-2"
+      chapterNumber={2}
+      title="Public Interaction"
+      subtitle="Participatory installations and public media experiences"
+      description="Placeholder section for public installations, participatory design, and social interaction."
+    />
+
+    <ChapterSection
+      id="chapter-3"
+      chapterNumber={3}
+      title="Tangible Prototypes"
+      subtitle="Physical interfaces, XR, Arduino, and 3D-printed objects"
+      description="Placeholder section for tangible prototypes, physical computing, and embodied interaction."
+    />
+  </main>
+</BaseLayout>
+
+<script>
+  import { initSectionWheelScroll } from '../scripts/sectionWheelScroll';
+  import { syncHomeLayout } from '../scripts/homeLayout';
+
+  let homeLayoutRaf = 0;
+
+  function scheduleHomeLayout() {
+    if (homeLayoutRaf) {
+      cancelAnimationFrame(homeLayoutRaf);
+    }
+
+    homeLayoutRaf = requestAnimationFrame(() => {
+      homeLayoutRaf = 0;
+      syncHomeLayout();
+    });
+  }
+
+  function initHomeEnterAnimation() {
+    const section = document.querySelector('.home-section');
+    if (!section || section.classList.contains('is-entered')) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      section.classList.add('is-entered');
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        section.classList.add('is-entered');
+      });
+    });
+  }
+
+  function initHomePage() {
+    initSectionWheelScroll();
+    initHomeEnterAnimation();
+    scheduleHomeLayout();
+
+    const page = document.querySelector('.home-page');
+    const frame = document.querySelector('.identity-frame');
+    const hero = document.querySelector('.home-page__hero');
+    const index = document.querySelector('.home-page__index');
+    const subtitle = document.querySelector('.slogan-line-sub');
+
+    if (page && 'ResizeObserver' in window) {
+      const observer = new ResizeObserver(scheduleHomeLayout);
+      observer.observe(page);
+      if (frame) observer.observe(frame);
+      if (hero) observer.observe(hero);
+      if (index) observer.observe(index);
+      if (subtitle) observer.observe(subtitle);
+    }
+
+    document.fonts?.ready.then(scheduleHomeLayout);
+    window.addEventListener('resize', scheduleHomeLayout);
+    window.addEventListener('home:layout-request', scheduleHomeLayout);
+  }
+
+  initHomePage();
+  document.addEventListener('astro:page-load', initHomePage);
+</script>

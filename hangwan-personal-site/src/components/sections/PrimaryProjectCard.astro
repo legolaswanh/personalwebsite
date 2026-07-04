@@ -1,0 +1,60 @@
+---
+interface Props {
+  title: string;
+  type: string;
+  description: string;
+  role: string;
+  tags: string[];
+  href: string;
+  imageSrc: string;
+  imageLabel: string;
+}
+
+const {
+  title,
+  type,
+  description,
+  role,
+  tags,
+  href,
+  imageSrc,
+  imageLabel,
+} = Astro.props;
+---
+
+<article class="primary-project-card">
+  <a class="primary-project-card__link" href={href}>
+    <div class="primary-project-card__media" data-asset-wrap>
+      <img
+        class="primary-project-card__img"
+        src={imageSrc}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        data-asset-image
+      />
+      <span class="primary-project-card__placeholder">{imageLabel}</span>
+    </div>
+
+    <div class="primary-project-card__panel">
+      <span class="primary-project-card__eyebrow">Featured Project</span>
+      <h3 class="primary-project-card__title">{title}</h3>
+      <p class="primary-project-card__type">{type}</p>
+      <p class="primary-project-card__description">{description}</p>
+      <p class="primary-project-card__role">{role}</p>
+
+      <ul class="primary-project-card__tags" aria-label="Project tags">
+        {tags.map((tag) => (
+          <li>
+            <span class="primary-project-card__tag">{tag}</span>
+          </li>
+        ))}
+      </ul>
+
+      <span class="primary-project-card__cta">
+        View Project
+        <span class="primary-project-card__cta-arrow" aria-hidden="true">→</span>
+      </span>
+    </div>
+  </a>
+</article>

@@ -1,0 +1,25 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  imageLabel: string;
+}
+
+const { title, description, href, imageLabel } = Astro.props;
+---
+
+<article class="chapter-card">
+  <div class="chapter-card__image" aria-hidden="true">
+    {/* Replace with <img> when ready */}
+    <span>{imageLabel}</span>
+  </div>
+
+  <div class="chapter-card__body">
+    <h2 class="chapter-card__title">{title}</h2>
+    <p class="chapter-card__description">{description}</p>
+    <a class="chapter-card__link" href={href}>
+      Open chapter
+    </a>
+  </div>
+</article>

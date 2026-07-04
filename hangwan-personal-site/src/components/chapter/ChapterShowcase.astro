@@ -1,0 +1,123 @@
+---
+import type { ChapterProject } from '../../types/chapterProject';
+
+interface Props {
+  project: ChapterProject;
+}
+
+const { project } = Astro.props;
+
+const galleryImages = [
+  { key: 'cover', src: project.images.coverImage, label: 'Cover' },
+  { key: 'gameplay-1', src: project.images.gameplayImage1, label: 'Gameplay 1' },
+  { key: 'gameplay-2', src: project.images.gameplayImage2, label: 'Gameplay 2' },
+  { key: 'gameplay-3', src: project.images.gameplayImage3, label: 'Gameplay 3' },
+  { key: 'gameplay-4', src: project.images.gameplayImage4, label: 'Gameplay 4' },
+];
+---
+
+<div class="chapter-showcase" data-chapter-showcase>
+  <div class="chapter-gallery">
+    <div class="chapter-gallery__stage" data-gallery-stage data-asset-wrap>
+      <img
+        class="chapter-gallery__img"
+        src={project.images.coverImage}
+        alt=""
+        loading="eager"
+        decoding="async"
+        data-gallery-main
+        data-asset-image
+      />
+      <span class="chapter-gallery__placeholder" data-gallery-placeholder>
+        {project.title} — Cover
+      </span>
+      <button
+        type="button"
+        class="chapter-gallery__nav chapter-gallery__nav--prev"
+        data-gallery-prev
+        aria-label="Previous image"
+      >
+        <span aria-hidden="true">←</span>
+      </button>
+      <button
+        type="button"
+        class="chapter-gallery__nav chapter-gallery__nav--next"
+        data-gallery-next
+        aria-label="Next image"
+      >
+        <span aria-hidden="true">→</span>
+      </button>
+
+      <div
+        class="chapter-gallery__dots"
+        role="tablist"
+        aria-label="Project images"
+        data-gallery-dots
+      >
+        {galleryImages.map((image, index) => (
+          <button
+            type="button"
+            class:list={['chapter-gallery__dot', index === 0 && 'is-active']}
+            role="tab"
+            aria-selected={index === 0 ? 'true' : 'false'}
+            aria-label={`${project.title} — ${image.label}`}
+            data-gallery-dot
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <aside class="chapter-info">
+    <div class="chapter-info__intro">
+      <span class="chapter-info__label" data-info-label>{project.label}</span>
+      <h3 class="chapter-info__title" data-info-title>{project.title}</h3>
+      <p class="chapter-info__category" data-info-category>{project.category}</p>
+      <span class="chapter-info__rule" aria-hidden="true"></span>
+    </div>
+
+    <div class="chapter-info__body">
+      <dl class="chapter-info__meta">
+        <div class="chapter-info__meta-row">
+          <dt>Role</dt>
+          <dd data-info-role>{project.role}</dd>
+        </div>
+        <div class="chapter-info__meta-row">
+          <dt>Work</dt>
+          <dd data-info-focus>{project.focus}</dd>
+        </div>
+      </dl>
+
+      <p class="chapter-info__summary" data-info-summary>{project.summary}</p>
+
+      <ul class="chapter-info__tags" aria-label="Project capabilities" data-info-tags>
+        {project.tags.map((tag, index) => (
+          <li>
+            <span
+              class:list={[
+                'chapter-info__tag',
+                index === 0 && 'chapter-info__tag--featured',
+              ]}
+            >
+              {tag}
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <a
+        class:list={[
+          'chapter-info__cta',
+          !project.href && 'chapter-info__cta--disabled',
+        ]}
+        href={project.href}
+        data-info-cta
+        aria-disabled={project.href ? undefined : 'true'}
+        tabindex={project.href ? undefined : -1}
+      >
+        View Project
+        <span class="chapter-info__cta-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </aside>
+</div>

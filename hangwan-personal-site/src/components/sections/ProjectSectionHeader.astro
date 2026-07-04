@@ -1,0 +1,63 @@
+---
+import ToolIcon from './ToolIcon.astro';
+
+interface Tool {
+  src: string;
+  label: string;
+}
+
+interface Props {
+  sectionNumber?: string;
+  title: string;
+  subtitle: string;
+  focusHeading?: string;
+  focusText: string;
+  focusTags?: string[];
+  toolsHeading?: string;
+  tools: Tool[];
+}
+
+const {
+  sectionNumber,
+  title,
+  subtitle,
+  focusHeading = 'What I focus on',
+  focusText,
+  focusTags = [],
+  toolsHeading = 'Skills & Tools',
+  tools,
+} = Astro.props;
+---
+
+<header class="project-section-header">
+  <div class="project-section-header__col project-section-header__col--title">
+    {sectionNumber && (
+      <span class="project-section-header__number" aria-hidden="true">{sectionNumber}</span>
+    )}
+    <h2 class="project-section-header__title">{title}</h2>
+    <p class="project-section-header__subtitle">{subtitle}</p>
+  </div>
+
+  <div class="project-section-header__col project-section-header__col--focus">
+    <h3 class="project-section-header__heading">{focusHeading}</h3>
+    <p class="project-section-header__text">{focusText}</p>
+    {focusTags.length > 0 && (
+      <ul class="project-section-header__tags" aria-label="Focus areas">
+        {focusTags.map((tag) => (
+          <li>
+            <span class="project-tag">{tag}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+
+  <div class="project-section-header__col project-section-header__col--tools">
+    <h3 class="project-section-header__heading">{toolsHeading}</h3>
+    <div class="project-section-header__tools">
+      {tools.map((tool) => (
+        <ToolIcon src={tool.src} label={tool.label} />
+      ))}
+    </div>
+  </div>
+</header>

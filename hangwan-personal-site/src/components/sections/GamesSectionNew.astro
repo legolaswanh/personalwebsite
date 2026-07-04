@@ -1,0 +1,66 @@
+---
+import ChapterHeader from '../chapter/ChapterHeader.astro';
+import ChapterShowcase from '../chapter/ChapterShowcase.astro';
+import ChapterProjectRailNew from '../chapter/ChapterProjectRailNew.astro';
+import {
+  gamesNewChapterConfig,
+  gamesNewProjects,
+  gamesNewDefaultProject,
+} from '../../data/gamesProjectsNew';
+---
+
+<section
+  id="games-new"
+  class="page-section chapter-page games-section games-section-new"
+  data-chapter-page
+  data-default-project={gamesNewDefaultProject.id}
+>
+  <div class="section-inner chapter-page-section-inner">
+    <div class="chapter-page__frame container">
+      <ChapterHeader chapter={gamesNewChapterConfig} />
+
+      <div class="chapter-page__body">
+        <div class="chapter-page__stage">
+          <ChapterShowcase project={gamesNewDefaultProject} />
+        </div>
+        <ChapterProjectRailNew
+          projects={gamesNewProjects}
+          activeId={gamesNewDefaultProject.id}
+        />
+      </div>
+    </div>
+  </div>
+
+  <script
+    type="application/json"
+    data-chapter-projects
+    set:html={JSON.stringify(gamesNewProjects)}
+  />
+</section>
+
+<script>
+  import { initChapterShowcase } from '../../scripts/chapterShowcase';
+  import { syncPageContainer } from '../../scripts/homeLayout';
+
+  let containerSyncRaf = 0;
+
+  function schedulePageContainerSync() {
+    if (containerSyncRaf) {
+      cancelAnimationFrame(containerSyncRaf);
+    }
+
+    containerSyncRaf = requestAnimationFrame(() => {
+      containerSyncRaf = 0;
+      syncPageContainer(document.body);
+    });
+  }
+
+  function initGamesNewPage() {
+    initChapterShowcase();
+    schedulePageContainerSync();
+  }
+
+  initGamesNewPage();
+  window.addEventListener('resize', schedulePageContainerSync);
+  document.addEventListener('astro:page-load', initGamesNewPage);
+</script>

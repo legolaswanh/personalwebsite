@@ -1,0 +1,296 @@
+---
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const isHomePage = currentPath === '/';
+const isAbout = currentPath === '/about';
+
+const logoSrc = '/images/home/home.png';
+const linkIconSrc = '/images/home/Icon-link.svg';
+const resumeUrl =
+  'https://drive.google.com/file/d/1yYNvvnpq2QIb2F3S9P9OkD5jCeE-0CQJ/view?usp=drive_link';
+
+const projectLinks = [
+  { label: 'Games', target: '#chapter-1' },
+  { label: 'Public Interaction', target: '#chapter-2' },
+  { label: 'Tangible Prototypes', target: '#chapter-3' },
+];
+---
+
+<header class="site-navbar">
+  <div class="site-navbar__inner">
+    <a
+      href="/#home"
+      class="site-navbar__logo"
+      aria-label="Hang Wan — Home"
+      data-scroll-to="#home"
+    >
+      <img src={logoSrc} alt="HW" width="32" height="32" />
+    </a>
+
+    <button
+      type="button"
+      class="site-navbar__toggle"
+      aria-expanded="false"
+      aria-controls="site-navbar-menu"
+      aria-label="Open navigation menu"
+    >
+      <span class="site-navbar__toggle-line" aria-hidden="true"></span>
+      <span class="site-navbar__toggle-line" aria-hidden="true"></span>
+    </button>
+
+    <nav class="site-navbar__nav" id="site-navbar-menu" aria-label="Main navigation">
+      <ul class="site-navbar__list">
+        <li class="site-navbar__item" data-nav-item="home">
+          <a
+            class:list={['site-navbar__link', isHomePage && 'is-active']}
+            href="/#home"
+            data-scroll-to="#home"
+            data-nav-link
+            aria-current={isHomePage ? 'page' : undefined}
+          >
+            Home
+          </a>
+        </li>
+
+        <li class="site-navbar__item site-navbar__item--dropdown" data-nav-item="projects">
+          <span class="site-navbar__dropdown-trigger">
+            <button
+              type="button"
+              class="site-navbar__link site-navbar__dropdown-toggle"
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
+              Projects
+            </button>
+          </span>
+          <ul class="site-navbar__dropdown" aria-label="Project categories">
+            {
+              projectLinks.map((item) => (
+                <li class="site-navbar__dropdown-item">
+                  <a
+                    class="site-navbar__dropdown-link"
+                    href={`/${item.target}`}
+                    data-scroll-to={item.target}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </li>
+
+        <li class="site-navbar__item" data-nav-item="about">
+          {
+            isAbout ? (
+              <span class="site-navbar__link is-active" aria-current="page">
+                About Me
+              </span>
+            ) : (
+              <a class="site-navbar__link" href="/about" data-nav-link>
+                About Me
+              </a>
+            )
+          }
+        </li>
+
+        <li class="site-navbar__item">
+          <a
+            class="site-navbar__link site-navbar__resume"
+            href={resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>Get Resume</span>
+            <img
+              class="site-navbar__resume-icon"
+              src={linkIconSrc}
+              alt=""
+              width="16"
+              height="16"
+            />
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  function closeMobileMenu(header: Element, toggle: Element) {
+    header.classList.remove('is-menu-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Open navigation menu');
+  }
+
+  function scrollToSection(targetId: string) {
+    const target = document.querySelector(targetId);
+    if (!target) return false;
+    target.scrollIntoView({ behavior: 'smooth' });
+    const nextUrl = targetId === '#home' ? '/' : targetId;
+    history.replaceState(null, '', nextUrl);
+    return true;
+  }
+
+  function getActiveChapterId() {
+    const chapters = ['#chapter-1', '#chapter-2', '#chapter-3'];
+    let activeId = '#chapter-1';
+    const scrollMid = window.scrollY + window.innerHeight * 0.35;
+
+    chapters.forEach((id) => {
+      const section = document.querySelector(id);
+      if (section instanceof HTMLElement && scrollMid >= section.offsetTop) {
+        activeId = id;
+      }
+    });
+
+    return activeId;
+  }
+
+  function setDropdownOpen(projectsItem: Element | null, isOpen: boolean) {
+    if (!projectsItem) return;
+    const toggle = projectsItem.querySelector('.site-navbar__dropdown-toggle');
+    projectsItem.classList.toggle('is-dropdown-open', isOpen);
+    if (toggle instanceof HTMLElement) {
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    }
+  }
+
+  function updateHomeNavActiveState() {
+    if (!document.body.classList.contains('is-home')) return;
+
+    const homeSection = document.querySelector('#home');
+    const homeLink = document.querySelector('[data-nav-item="home"] [data-nav-link]');
+    const projectsToggle = document.querySelector('.site-navbar__dropdown-toggle');
+    const dropdownLinks = document.querySelectorAll('.site-navbar__dropdown-link');
+    if (!(homeSection instanceof HTMLElement) || !(homeLink instanceof HTMLElement)) return;
+
+    const threshold = homeSection.offsetTop + homeSection.offsetHeight * 0.55;
+    const inProjects = window.scrollY >= threshold;
+    const activeChapterId = inProjects ? getActiveChapterId() : null;
+
+    homeLink.classList.toggle('is-active', !inProjects);
+    homeLink.setAttribute('aria-current', !inProjects ? 'page' : 'false');
+
+    if (projectsToggle instanceof HTMLElement) {
+      projectsToggle.classList.toggle('is-active', inProjects);
+      projectsToggle.setAttribute('aria-current', inProjects ? 'true' : 'false');
+    }
+
+    dropdownLinks.forEach((link) => {
+      if (!(link instanceof HTMLElement)) return;
+      const targetId = link.getAttribute('data-scroll-to');
+      const isActive = Boolean(activeChapterId && targetId === activeChapterId);
+      link.classList.toggle('is-active', isActive);
+      link.setAttribute('aria-current', isActive ? 'page' : 'false');
+    });
+  }
+
+  function initSiteNav() {
+    const header = document.querySelector('.site-navbar');
+    const toggle = document.querySelector('.site-navbar__toggle');
+    const nav = document.querySelector('.site-navbar__nav');
+    if (!header || !toggle || !nav) return;
+
+    if (!header.dataset.navReady) {
+      header.dataset.navReady = 'true';
+
+      toggle.addEventListener('click', () => {
+        const isOpen = header.classList.toggle('is-menu-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+        toggle.setAttribute(
+          'aria-label',
+          isOpen ? 'Close navigation menu' : 'Open navigation menu'
+        );
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && header.classList.contains('is-menu-open')) {
+          closeMobileMenu(header, toggle);
+        }
+        if (event.key === 'Escape') {
+          setDropdownOpen(document.querySelector('[data-nav-item="projects"]'), false);
+        }
+      });
+
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (!document.body.classList.contains('is-home')) return;
+          requestAnimationFrame(updateHomeNavActiveState);
+        },
+        { passive: true }
+      );
+
+      document.addEventListener('click', (event) => {
+        const projectsItem = document.querySelector('[data-nav-item="projects"]');
+        const target = event.target;
+        if (
+          projectsItem &&
+          target instanceof Node &&
+          !projectsItem.contains(target)
+        ) {
+          setDropdownOpen(projectsItem, false);
+        }
+      });
+    }
+
+    const projectsItem = document.querySelector('[data-nav-item="projects"]');
+    const projectsToggle = document.querySelector('.site-navbar__dropdown-toggle');
+    if (projectsToggle && projectsItem && projectsToggle.dataset.toggleBound !== 'true') {
+      projectsToggle.dataset.toggleBound = 'true';
+      projectsToggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const isOpen = !projectsItem.classList.contains('is-dropdown-open');
+        setDropdownOpen(projectsItem, isOpen);
+      });
+    }
+
+    document.querySelectorAll('[data-scroll-to]').forEach((link) => {
+      if (link.dataset.scrollBound === 'true') return;
+      link.dataset.scrollBound = 'true';
+
+      link.addEventListener('click', (event) => {
+        if (link.classList.contains('is-active')) {
+          event.preventDefault();
+          return;
+        }
+
+        const targetId = link.getAttribute('data-scroll-to');
+        if (!targetId || !document.body.classList.contains('is-home')) return;
+
+        if (scrollToSection(targetId)) {
+          event.preventDefault();
+          updateHomeNavActiveState();
+          setDropdownOpen(
+            document.querySelector('[data-nav-item="projects"]'),
+            false
+          );
+          closeMobileMenu(header, toggle);
+        }
+      });
+    });
+
+    nav.querySelectorAll('a:not([data-scroll-to])').forEach((link) => {
+      link.addEventListener('click', () => {
+        closeMobileMenu(header, toggle);
+      });
+    });
+
+    if (document.body.classList.contains('is-home')) {
+      updateHomeNavActiveState();
+
+      const initialHash = window.location.hash;
+      if (initialHash) {
+        requestAnimationFrame(() => {
+          scrollToSection(initialHash);
+          updateHomeNavActiveState();
+        });
+      }
+    }
+  }
+
+  initSiteNav();
+  document.addEventListener('astro:page-load', initSiteNav);
+</script>

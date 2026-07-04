@@ -1,0 +1,36 @@
+---
+interface MosaicItem {
+  label: string;
+  aspectClass: 'square' | 'wide' | 'tall' | '';
+}
+
+const items: MosaicItem[] = [
+  { label: 'Image 01', aspectClass: 'square' },
+  { label: 'Image 02', aspectClass: 'wide' },
+  { label: 'Image 03', aspectClass: '' },
+  { label: 'Image 04', aspectClass: 'tall' },
+  { label: 'Image 05', aspectClass: '' },
+  { label: 'Image 06', aspectClass: 'wide' },
+  { label: 'Image 07', aspectClass: 'square' },
+  { label: 'Image 08', aspectClass: '' },
+];
+---
+
+<section class="mosaic" aria-label="Visual introduction">
+  <div class="container">
+    <div class="mosaic__grid">
+      {items.map((item) => (
+        <div
+          class:list={[
+            'mosaic__item',
+            item.aspectClass && `mosaic__item--${item.aspectClass}`,
+          ]}
+          aria-hidden="true"
+        >
+          {/* Replace with <img> when ready */}
+          <span>{item.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

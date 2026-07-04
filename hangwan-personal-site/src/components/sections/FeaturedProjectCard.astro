@@ -1,0 +1,82 @@
+---
+export type FeaturedProjectTag = {
+  label: string;
+  variant: 'important' | 'normal';
+};
+
+interface Props {
+  title: string;
+  description: string;
+  type: string;
+  role: string;
+  tags: FeaturedProjectTag[];
+  href: string;
+  imageSrc: string;
+  imageLabel: string;
+  imageVariant?: 'dark-pixel' | 'tabletop';
+}
+
+const {
+  title,
+  description,
+  type,
+  role,
+  tags,
+  href,
+  imageSrc,
+  imageLabel,
+  imageVariant = 'dark-pixel',
+} = Astro.props;
+---
+
+<article class="featured-project-card">
+  <a class="featured-project-card__link" href={href}>
+    <div
+      class:list={[
+        'featured-project-card__image',
+        `featured-project-card__image--${imageVariant}`,
+      ]}
+      data-asset-wrap
+    >
+      <img
+        class="featured-project-card__img"
+        src={imageSrc}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        data-asset-image
+      />
+      <span class="featured-project-card__image-label">{imageLabel}</span>
+    </div>
+
+    <div class="featured-project-card__body">
+      <div class="featured-project-card__header">
+        <h3 class="featured-project-card__title">{title}</h3>
+        <p class="featured-project-card__type">{type}</p>
+      </div>
+
+      <p class="featured-project-card__description">{description}</p>
+      <p class="featured-project-card__role">{role}</p>
+
+      <ul class="featured-project-card__tags" aria-label="Project tags">
+        {tags.map((tag) => (
+          <li>
+            <span
+              class:list={[
+                'featured-project-tag',
+                tag.variant === 'important' && 'featured-project-tag--important',
+              ]}
+            >
+              {tag.label}
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <span class="featured-project-card__cta">
+        View Project
+        <span class="featured-project-card__cta-arrow" aria-hidden="true">→</span>
+      </span>
+    </div>
+  </a>
+</article>

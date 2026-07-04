@@ -1,0 +1,46 @@
+---
+import ChapterCard from './ChapterCard.astro';
+
+const chapters = [
+  {
+    title: 'Chapter 1',
+    description: 'Long-form project story and design process.',
+    href: '/chapters/chapter-1',
+    imageLabel: 'Chapter 1 Image',
+  },
+  {
+    title: 'Chapter 2',
+    description: 'Interaction design, research, and prototyping archive.',
+    href: '/chapters/chapter-2',
+    imageLabel: 'Chapter 2 Image',
+  },
+  {
+    title: 'Chapter 3',
+    description: 'Game design, systems, and playful experience projects.',
+    href: '/chapters/chapter-3',
+    imageLabel: 'Chapter 3 Image',
+  },
+  {
+    title: 'About Me',
+    description: 'Background, interests, skills, and contact.',
+    href: '/about',
+    imageLabel: 'About Image',
+  },
+];
+---
+
+<section class="chapters" aria-labelledby="chapters-heading">
+  <div class="container">
+    <h2 id="chapters-heading" class="chapters__heading">Explore</h2>
+    <div class="chapters__grid">
+      {chapters.map((chapter) => (
+        <ChapterCard
+          title={chapter.title}
+          description={chapter.description}
+          href={chapter.href}
+          imageLabel={chapter.imageLabel}
+        />
+      ))}
+    </div>
+  </div>
+</section>

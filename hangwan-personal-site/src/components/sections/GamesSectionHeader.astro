@@ -1,0 +1,39 @@
+---
+import ToolIcon from './ToolIcon.astro';
+
+interface Tool {
+  src: string;
+  label: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  focusText: string;
+  tools: Tool[];
+}
+
+const {
+  title,
+  subtitle,
+  focusText,
+  tools,
+} = Astro.props;
+---
+
+<header class="games-header">
+  <div class="games-header__text">
+    <h2 class="games-header__title">{title}</h2>
+    <p class="games-header__subtitle">{subtitle}</p>
+    <p class="games-header__focus">{focusText}</p>
+  </div>
+
+  <div class="games-header__tools">
+    <h3 class="games-header__tools-heading">Skills &amp; Tools</h3>
+    <div class="games-header__tools-row">
+      {tools.map((tool) => (
+        <ToolIcon src={tool.src} label={tool.label} />
+      ))}
+    </div>
+  </div>
+</header>

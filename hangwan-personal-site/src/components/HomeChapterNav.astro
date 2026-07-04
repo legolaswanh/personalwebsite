@@ -1,0 +1,122 @@
+---
+const arrowDefault = '/images/home/arrow.png';
+const arrowHover = '/images/home/arrow-hover.png';
+
+const items = [
+  {
+    marker: '01',
+    markerType: 'number',
+    title: 'Games',
+    description: 'Game systems, narrative loops, and emotional play.',
+    href: '#chapter-1',
+    accent: 'games',
+  },
+  {
+    marker: '02',
+    markerType: 'number',
+    title: 'Public Interaction',
+    description: 'Participatory installations and public media experiences.',
+    href: '#chapter-2',
+    accent: 'public',
+  },
+  {
+    marker: '03',
+    markerType: 'number',
+    title: 'Tangible Prototypes',
+    description: 'Physical interfaces, XR, Arduino, and 3D-printed objects.',
+    href: '#chapter-3',
+    accent: 'tangible',
+  },
+  {
+    marker: '•',
+    markerType: 'dot',
+    title: 'About Me',
+    description: 'Background, skills, tools, and design values.',
+    href: '/about',
+    accent: 'about',
+  },
+];
+---
+
+<nav class="project-index home-page__index" aria-label="Portfolio index">
+  <div class="project-index__heading">
+    <span class="project-index__label home-enter-content">Contents</span>
+    <span class="project-index__heading-rule home-editorial-rule" aria-hidden="true"></span>
+  </div>
+  <ol class="project-index__list home-enter-content">
+    {items.map((item) => (
+      <li class="project-index__item">
+        <a
+          class="project-index__link"
+          href={item.href}
+          data-accent={item.accent}
+        >
+          <span
+            class:list={[
+              'project-index__marker',
+              item.markerType === 'dot' && 'project-index__marker--dot',
+            ]}
+            aria-hidden="true"
+          >
+            {item.marker}
+          </span>
+          <span class="project-index__title">{item.title}</span>
+          <span class="project-index__arrow" aria-hidden="true">
+            <img
+              class="project-index__arrow-img project-index__arrow-img--default"
+              src={arrowDefault}
+              alt=""
+              width="20"
+              height="20"
+            />
+            <img
+              class="project-index__arrow-img project-index__arrow-img--hover"
+              src={arrowHover}
+              alt=""
+              width="20"
+              height="20"
+            />
+          </span>
+          <span class="project-index__description">{item.description}</span>
+        </a>
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<script>
+  function initProjectIndex() {
+    const nav = document.querySelector('.project-index');
+    const links = document.querySelectorAll('.project-index__link');
+    const icons = document.querySelectorAll('.accent-icon');
+    if (!nav || links.length === 0) return;
+
+    function setActiveAccent(accent: string | null) {
+      icons.forEach((icon) => {
+        const match = accent && icon.getAttribute('data-icon') === accent;
+        icon.classList.toggle('is-visible', Boolean(match));
+      });
+    }
+
+    links.forEach((link) => {
+      link.addEventListener('mouseenter', () => {
+        setActiveAccent(link.getAttribute('data-accent'));
+      });
+      link.addEventListener('focus', () => {
+        setActiveAccent(link.getAttribute('data-accent'));
+      });
+    });
+
+    nav.addEventListener('mouseleave', () => setActiveAccent(null));
+
+    nav.addEventListener('focusout', (event) => {
+      const next = event.relatedTarget;
+      if (!(next instanceof Node) || !nav.contains(next)) {
+        setActiveAccent(null);
+      }
+    });
+  }
+
+  initProjectIndex();
+  document.addEventListener('astro:page-load', initProjectIndex);
+</script>

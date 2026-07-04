@@ -1,0 +1,24 @@
+<button
+  type="button"
+  class="scroll-cue"
+  aria-label="Scroll to Chapter 1"
+  data-target="#chapter-1"
+>
+  <span class="scroll-cue__label">View Projects</span>
+  <span class="scroll-cue__chevron" aria-hidden="true"></span>
+</button>
+
+<script>
+  function initScrollCue() {
+    const button = document.querySelector('.scroll-cue');
+    if (!(button instanceof HTMLButtonElement)) return;
+
+    button.addEventListener('click', () => {
+      const target = document.querySelector('#chapter-1');
+      target?.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  initScrollCue();
+  document.addEventListener('astro:page-load', initScrollCue);
+</script>

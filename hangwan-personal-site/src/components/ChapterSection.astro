@@ -1,0 +1,42 @@
+---
+interface Props {
+  id: string;
+  chapterNumber: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  accent?: string;
+}
+
+const {
+  id,
+  chapterNumber,
+  title,
+  subtitle,
+  description,
+  accent = '#A99DF8',
+} = Astro.props;
+
+const indexMarker = String(chapterNumber).padStart(2, '0');
+---
+
+<section
+  id={id}
+  class:list={[
+    'page-section',
+    'chapter-section',
+    `chapter-${chapterNumber}-section`,
+  ]}
+  style={`--chapter-accent: ${accent}`}
+>
+  <div class="section-inner chapter-section-inner">
+    <span class="chapter-section__index" aria-hidden="true">{indexMarker}</span>
+    <h2 class="chapter-section__title">{title}</h2>
+    <p class="chapter-section__subtitle">{subtitle}</p>
+    <hr class="chapter-section__divider" />
+    <p class="chapter-section__description">{description}</p>
+    <div class="chapter-section__projects-placeholder" aria-hidden="true">
+      <span class="chapter-section__projects-label">Projects coming soon</span>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+---
+interface Props {
+  src: string;
+  label: string;
+}
+
+const { src, label } = Astro.props;
+---
+
+<span class="tool-icon" data-asset-wrap>
+  <span class="tool-icon__graphic">
+    <img
+      class="tool-icon__img"
+      src={src}
+      alt=""
+      width="36"
+      height="36"
+      loading="lazy"
+      decoding="async"
+      data-asset-image
+    />
+    <span class="tool-icon__fallback" aria-hidden="true">{label.charAt(0)}</span>
+  </span>
+  <span class="tool-icon__label">{label}</span>
+</span>

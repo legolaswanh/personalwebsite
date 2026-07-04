@@ -1,0 +1,285 @@
+---
+
+const portraitPhoto = '/images/home/polaroid-portrait.jpg';
+
+const catPhoto = '/images/home/polaroid-cat.jpg';
+
+---
+
+
+
+<figure class="home-illustration home-page__illustration" aria-label="Personal photo composition">
+
+  <div class="illustration-accent-icons" aria-hidden="true">
+
+    <span class="accent-icon accent-icon--games" data-icon="games">
+
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+        <rect x="2" y="2" width="4" height="4" fill="currentColor" opacity="0.9"/>
+
+        <rect x="8" y="2" width="4" height="4" fill="currentColor" opacity="0.6"/>
+
+        <rect x="5" y="8" width="4" height="4" fill="currentColor" opacity="0.75"/>
+
+      </svg>
+
+    </span>
+
+    <span class="accent-icon accent-icon--public" data-icon="public">
+
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+        <rect x="2" y="3" width="10" height="7" rx="0.5" stroke="currentColor" stroke-width="1.2"/>
+
+        <line x1="2" y1="6" x2="12" y2="6" stroke="currentColor" stroke-width="1"/>
+
+        <circle cx="10.5" cy="4.5" r="0.8" fill="currentColor"/>
+
+      </svg>
+
+    </span>
+
+    <span class="accent-icon accent-icon--tangible" data-icon="tangible">
+
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+        <rect x="3" y="5" width="8" height="6" rx="1" stroke="currentColor" stroke-width="1.2"/>
+
+        <circle cx="5.5" cy="8" r="0.8" fill="currentColor"/>
+
+        <line x1="7" y1="5" x2="7" y2="3" stroke="currentColor" stroke-width="1.2"/>
+
+        <circle cx="7" cy="2.5" r="0.8" fill="currentColor"/>
+
+      </svg>
+
+    </span>
+
+    <span class="accent-icon accent-icon--about" data-icon="about">
+
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+        <path d="M7 2.5L8.2 5.5L11.3 5.8L9 8L9.6 11L7 9.5L4.4 11L5 8L2.7 5.8L5.8 5.5L7 2.5Z" stroke="currentColor" stroke-width="1" fill="currentColor" fill-opacity="0.25"/>
+
+      </svg>
+
+    </span>
+
+  </div>
+
+
+
+  <div class="home-illustration__composition home-enter-content">
+
+    <div class="home-illustration__polaroid home-illustration__polaroid--portrait">
+
+      <div class="home-illustration__photo">
+
+        <img
+
+          src={portraitPhoto}
+
+          alt="Hang Wan"
+
+          width="800"
+
+          height="800"
+
+          loading="eager"
+
+          decoding="async"
+
+        />
+
+      </div>
+
+      <div class="home-illustration__caption">
+        <span class="home-illustration__caption-text">Gothenburg, Sweden</span>
+      </div>
+
+    </div>
+
+
+
+    <div class="home-illustration__polaroid home-illustration__polaroid--cat">
+
+      <div class="home-illustration__photo">
+
+        <img
+
+          src={catPhoto}
+
+          alt="Hang Wan's cat"
+
+          width="640"
+
+          height="640"
+
+          loading="eager"
+
+          decoding="async"
+
+        />
+
+      </div>
+
+      <div class="home-illustration__caption">
+        <span class="home-illustration__caption-text">Open to relocate</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</figure>
+
+
+
+<script>
+  function replayHomeEnter() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const section = document.querySelector('.home-section');
+    if (!section) return;
+
+    section.classList.remove('is-entered');
+    void section.getBoundingClientRect();
+    requestAnimationFrame(() => {
+      section.classList.add('is-entered');
+    });
+  }
+
+  function initPolaroidRevealOnReturn() {
+    if (document.documentElement.dataset.polaroidRevealInit === 'true') return;
+    document.documentElement.dataset.polaroidRevealInit = 'true';
+
+    const homeSection = document.getElementById('home');
+    if (!homeSection) return;
+
+    function getCurrentSectionIndex() {
+      const sections = document.querySelectorAll('.page-section');
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const probe = scrollY + viewportHeight * 0.32;
+
+      for (let index = sections.length - 1; index >= 0; index -= 1) {
+        if (probe >= sections[index].offsetTop) return index;
+      }
+
+      return 0;
+    }
+
+    let activeSectionIndex = getCurrentSectionIndex();
+    let hasEnteredHome = activeSectionIndex === 0;
+
+    function handleSectionChange() {
+      const nextSectionIndex = getCurrentSectionIndex();
+
+      if (nextSectionIndex === 0 && activeSectionIndex !== 0 && hasEnteredHome) {
+        replayHomeEnter();
+      }
+
+      if (nextSectionIndex === 0) {
+        hasEnteredHome = true;
+      }
+
+      activeSectionIndex = nextSectionIndex;
+    }
+
+    function cleanup() {
+      window.removeEventListener('scroll', handleSectionChange);
+      delete document.documentElement.dataset.polaroidRevealInit;
+    }
+
+    window.addEventListener('scroll', handleSectionChange, { passive: true });
+    document.addEventListener('astro:before-swap', cleanup, { once: true });
+  }
+
+  function initPolaroidTilt() {
+    if (document.documentElement.dataset.polaroidTiltInit === 'true') return;
+    document.documentElement.dataset.polaroidTiltInit = 'true';
+
+    const composition = document.querySelector('.home-illustration__composition');
+    const polaroids = document.querySelectorAll('.home-illustration__polaroid');
+    if (!composition || !polaroids.length) return;
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion || window.matchMedia('(max-width: 900px)').matches) return;
+
+    const depthFactors = [0.85, 1.05];
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let rafId = 0;
+
+    function applyTilt() {
+      currentX += (targetX - currentX) * 0.1;
+      currentY += (targetY - currentY) * 0.1;
+
+      polaroids.forEach((polaroid, index) => {
+        const depth = depthFactors[index] ?? 1;
+        polaroid.style.setProperty('--tilt-x', `${currentX * depth}deg`);
+        polaroid.style.setProperty('--tilt-y', `${currentY * depth}deg`);
+      });
+
+      if (Math.abs(targetX - currentX) > 0.02 || Math.abs(targetY - currentY) > 0.02) {
+        rafId = window.requestAnimationFrame(applyTilt);
+      } else {
+        rafId = 0;
+      }
+    }
+
+    function handlePointerMove(event) {
+      const rect = composition.getBoundingClientRect();
+      const centerX = rect.left + rect.width * 0.5;
+      const centerY = rect.top + rect.height * 0.5;
+      const normX = Math.max(-1, Math.min(1, (event.clientX - centerX) / (rect.width * 0.5)));
+      const normY = Math.max(-1, Math.min(1, (event.clientY - centerY) / (rect.height * 0.5)));
+
+      targetY = normX * 1.6;
+      targetX = -normY * 1.3;
+
+      if (!rafId) {
+        rafId = window.requestAnimationFrame(applyTilt);
+      }
+    }
+
+    function resetTilt() {
+      targetX = 0;
+      targetY = 0;
+      if (!rafId) {
+        rafId = window.requestAnimationFrame(applyTilt);
+      }
+    }
+
+    function cleanup() {
+      window.cancelAnimationFrame(rafId);
+      document.removeEventListener('pointermove', handlePointerMove);
+      document.removeEventListener('pointerleave', resetTilt);
+      delete document.documentElement.dataset.polaroidTiltInit;
+    }
+
+    document.addEventListener('pointermove', handlePointerMove);
+    document.addEventListener('pointerleave', resetTilt);
+    document.addEventListener('astro:before-swap', cleanup, { once: true });
+  }
+
+  function initIllustrationInteractions() {
+    initPolaroidTilt();
+    initPolaroidRevealOnReturn();
+
+    const composition = document.querySelector('.home-illustration__composition');
+    if (composition && 'ResizeObserver' in window) {
+      const observer = new ResizeObserver(() => {
+        window.dispatchEvent(new CustomEvent('home:layout-request'));
+      });
+      observer.observe(composition);
+    }
+  }
+
+  initIllustrationInteractions();
+  document.addEventListener('astro:page-load', initIllustrationInteractions);
+</script>
+

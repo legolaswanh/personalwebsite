@@ -1,0 +1,26 @@
+---
+import ToolIcon from '../sections/ToolIcon.astro';
+import type { ChapterConfig } from '../../types/chapterProject';
+
+interface Props {
+  chapter: ChapterConfig;
+}
+
+const { chapter } = Astro.props;
+---
+
+<header class="chapter-header">
+  <div class="chapter-header__main">
+    <h2 class="chapter-header__title">{chapter.title}</h2>
+    <p class="chapter-header__subtitle">{chapter.subtitle}</p>
+  </div>
+
+  <div class="chapter-header__tools">
+    <span class="chapter-header__tools-label">Skills &amp; Tools</span>
+    <div class="chapter-header__tools-row">
+      {chapter.tools.map((tool) => (
+        <ToolIcon src={tool.src} label={tool.label} />
+      ))}
+    </div>
+  </div>
+</header>

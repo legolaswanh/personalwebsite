@@ -1,0 +1,46 @@
+---
+import ChapterHeader from '../chapter/ChapterHeader.astro';
+import ChapterShowcase from '../chapter/ChapterShowcase.astro';
+import ChapterProjectRail from '../chapter/ChapterProjectRail.astro';
+import {
+  gamesChapterConfig,
+  gamesProjects,
+  gamesDefaultProject,
+} from '../../data/gamesProjects';
+---
+
+<section
+  id="chapter-1"
+  class="page-section chapter-page games-section"
+  data-chapter-page
+  data-default-project={gamesDefaultProject.id}
+>
+  <div class="section-inner chapter-page-section-inner">
+    <div class="chapter-page__frame container">
+      <ChapterHeader chapter={gamesChapterConfig} />
+
+      <div class="chapter-page__body">
+        <div class="chapter-page__stage">
+          <ChapterShowcase project={gamesDefaultProject} />
+        </div>
+        <ChapterProjectRail
+          projects={gamesProjects}
+          activeId={gamesDefaultProject.id}
+        />
+      </div>
+    </div>
+  </div>
+
+  <script
+    type="application/json"
+    data-chapter-projects
+    set:html={JSON.stringify(gamesProjects)}
+  />
+</section>
+
+<script>
+  import { initChapterShowcase } from '../../scripts/chapterShowcase';
+
+  initChapterShowcase();
+  document.addEventListener('astro:page-load', () => initChapterShowcase());
+</script>
