@@ -1,0 +1,57 @@
+---
+import ChapterHeader from '../chapter/ChapterHeader.astro';
+import ChapterShowcase from '../chapter/ChapterShowcase.astro';
+import ChapterProjectRail from '../chapter/ChapterProjectRail.astro';
+import {
+  ixdChapterConfig,
+  ixdProjects,
+  ixdDefaultProject,
+} from '../../data/ixdProjects';
+---
+
+<section
+  id="chapter-2"
+  class="page-section chapter-page ixd-section"
+  data-chapter-page
+  data-default-project={ixdDefaultProject.id}
+>
+  <div class="section-inner chapter-page-section-inner">
+    <div class="chapter-page__frame container">
+      <ChapterHeader chapter={ixdChapterConfig} />
+
+      <div class="chapter-page__body">
+        <div class="chapter-page__stage">
+          <ChapterShowcase
+            project={ixdDefaultProject}
+            ctaLabel={ixdChapterConfig.ctaLabel}
+          />
+        </div>
+        <ChapterProjectRail
+          projects={ixdProjects}
+          activeId={ixdDefaultProject.id}
+        />
+      </div>
+    </div>
+  </div>
+
+  <script
+    type="application/json"
+    data-chapter-projects
+    set:html={JSON.stringify(ixdProjects)}
+  />
+</section>
+
+<script>
+  import { initChapterShowcase } from '../../scripts/chapterShowcase';
+  import { initGamesChapterGallery } from '../../scripts/gamesChapterGallery';
+  import { initIxdToolsAlign } from '../../scripts/alignIxdTools';
+
+  function initInteractionDesignSection() {
+    initChapterShowcase();
+    initGamesChapterGallery();
+    initIxdToolsAlign();
+  }
+
+  initInteractionDesignSection();
+  document.addEventListener('astro:page-load', initInteractionDesignSection);
+</script>

@@ -40,7 +40,13 @@ import {
 
 <script>
   import { initChapterShowcase } from '../../scripts/chapterShowcase';
+  import { initGamesChapterGallery } from '../../scripts/gamesChapterGallery';
 
-  initChapterShowcase();
-  document.addEventListener('astro:page-load', () => initChapterShowcase());
+  function initGamesSection() {
+    initChapterShowcase();
+    initGamesChapterGallery();
+  }
+
+  initGamesSection();
+  document.addEventListener('astro:page-load', initGamesSection);
 </script>

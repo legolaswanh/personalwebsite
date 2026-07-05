@@ -5,8 +5,9 @@ import HomeHero from '../components/HomeHero.astro';
 import HomeChapterNav from '../components/HomeChapterNav.astro';
 import HomeIllustration from '../components/HomeIllustration.astro';
 import ScrollCue from '../components/ScrollCue.astro';
-import ChapterSection from '../components/ChapterSection.astro';
 import GamesSection from '../components/sections/GamesSection.astro';
+import InteractionDesignSection from '../components/sections/InteractionDesignSection.astro';
+import DesignResearchSection from '../components/sections/DesignResearchSection.astro';
 ---
 
 <BaseLayout isHome={true}>
@@ -26,21 +27,9 @@ import GamesSection from '../components/sections/GamesSection.astro';
 
     <GamesSection />
 
-    <ChapterSection
-      id="chapter-2"
-      chapterNumber={2}
-      title="Public Interaction"
-      subtitle="Participatory installations and public media experiences"
-      description="Placeholder section for public installations, participatory design, and social interaction."
-    />
+    <InteractionDesignSection />
 
-    <ChapterSection
-      id="chapter-3"
-      chapterNumber={3}
-      title="Tangible Prototypes"
-      subtitle="Physical interfaces, XR, Arduino, and 3D-printed objects"
-      description="Placeholder section for tangible prototypes, physical computing, and embodied interaction."
-    />
+    <DesignResearchSection />
   </main>
 </BaseLayout>
 

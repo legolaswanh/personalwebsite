@@ -1,7 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,500;0,600;0,700;1,600;1,700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap");
-
 /* CSS Variables */
 :root {
   --bg: #ffffff;
@@ -75,7 +71,7 @@ body.is-home {
   background-color: var(--home-bg);
 }
 
-/* Editorial surface — warm paper fiber + fine grain (4%–6% opacity) */
+/* Editorial surface ??warm paper fiber + fine grain (4%??% opacity) */
 body.is-home::before,
 body.is-home::after {
   content: "";
@@ -898,7 +894,7 @@ body.is-home[data-home-tier="mobile"] {
   border-top: 1px solid var(--line);
 }
 
-/* Chapter page — shared layout (Games, future chapters) */
+/* Chapter page ??shared layout (Games, future chapters) */
 .chapter-page {
   min-height: 100svh;
   height: 100svh;
@@ -1121,6 +1117,28 @@ body.is-home[data-home-density="laptop"] .chapter-page__frame.container {
   display: none;
 }
 
+.chapter-gallery__img.is-gallery-media-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.chapter-gallery__youtube {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.chapter-gallery__youtube-iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #000;
+}
+
 .chapter-gallery__placeholder {
   position: absolute;
   inset: 0;
@@ -1166,8 +1184,14 @@ body.is-home[data-home-density="laptop"] .chapter-page__frame.container {
     background-color var(--transition);
 }
 
-.chapter-gallery__stage:hover .chapter-gallery__nav,
-.chapter-gallery__stage:focus-within .chapter-gallery__nav {
+.chapter-gallery__stage[data-gallery-count]:not([data-gallery-count='0']):not(
+    [data-gallery-count='1']
+  ):hover
+  .chapter-gallery__nav,
+.chapter-gallery__stage[data-gallery-count]:not([data-gallery-count='0']):not(
+    [data-gallery-count='1']
+  ):focus-within
+  .chapter-gallery__nav {
   opacity: 1;
 }
 
@@ -1201,10 +1225,19 @@ body.is-home[data-home-density="laptop"] .chapter-page__frame.container {
   transition: opacity 220ms ease;
 }
 
-.chapter-gallery__stage:hover .chapter-gallery__dots,
-.chapter-gallery__stage:focus-within .chapter-gallery__dots {
+.chapter-gallery__stage[data-gallery-count]:not([data-gallery-count='0']):not(
+    [data-gallery-count='1']
+  )
+  .chapter-gallery__dots {
   opacity: 1;
   pointer-events: auto;
+}
+
+.chapter-gallery__stage[data-gallery-count='0'] .chapter-gallery__dots,
+.chapter-gallery__stage[data-gallery-count='1'] .chapter-gallery__dots,
+.chapter-gallery__stage[data-gallery-count='0'] .chapter-gallery__nav,
+.chapter-gallery__stage[data-gallery-count='1'] .chapter-gallery__nav {
+  display: none;
 }
 
 .chapter-gallery__dot {
@@ -1314,8 +1347,8 @@ body.is-home[data-home-density="laptop"] .chapter-page__frame.container {
 
 .chapter-info__meta-row {
   display: grid;
-  grid-template-columns: minmax(5.5rem, 6.5rem) minmax(0, 1fr);
-  gap: 0.65rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.3rem;
   align-items: start;
 }
 
@@ -1326,7 +1359,7 @@ body.is-home[data-home-density="laptop"] .chapter-page__frame.container {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(107, 107, 107, 0.85);
-  padding-top: 0.15rem;
+  padding-top: 0;
 }
 
 .chapter-info__body .chapter-info__meta-row dt {
@@ -1342,19 +1375,22 @@ body.is-home[data-home-density="laptop"] .chapter-page__frame.container {
 }
 
 .chapter-info__body .chapter-info__meta-row {
-  grid-template-columns: minmax(4.25rem, 5rem) minmax(0, 1fr);
-  gap: 0.4rem;
+  gap: 0.35rem;
 }
 
 .chapter-info__body .chapter-info__meta-row dd {
   font-family: var(--font-display);
   font-size: clamp(0.875rem, 1.15vw, 1rem);
   color: var(--text);
-  margin-left: -0.2rem;
+  margin-left: 0;
+}
+
+.chapter-info__body .chapter-info__meta {
+  margin-top: 0.85rem;
 }
 
 .chapter-info__summary {
-  margin-top: 0.75rem;
+  margin-top: 0;
   font-size: clamp(0.8125rem, 1.05vw, 0.875rem);
   font-weight: 300;
   line-height: 1.6;
@@ -1653,6 +1689,38 @@ body.is-home[data-home-density="laptop"] .chapter-page__frame.container {
   background: rgba(169, 157, 248, 0.65);
 }
 
+.chapter-rail__focus--static {
+  user-select: none;
+}
+
+.chapter-rail__item--disabled {
+  pointer-events: none;
+  cursor: default;
+  user-select: none;
+}
+
+.chapter-rail__item--disabled .chapter-rail__focus {
+  color: var(--muted);
+}
+
+.chapter-rail__item--disabled .chapter-rail__focus::after {
+  content: none;
+  display: none;
+}
+
+.chapter-rail__item.is-active .chapter-rail__focus--static,
+.chapter-rail__item:hover .chapter-rail__focus--static,
+.chapter-rail__item:focus-visible .chapter-rail__focus--static {
+  color: var(--muted);
+}
+
+.chapter-rail__item.is-active .chapter-rail__focus--static::after,
+.chapter-rail__item:hover .chapter-rail__focus--static::after,
+.chapter-rail__item:focus-visible .chapter-rail__focus--static::after {
+  content: none;
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .chapter-page {
     height: auto;
@@ -1769,7 +1837,7 @@ body.is-home[data-home-density="laptop"] .chapter-page__frame.container {
   }
 }
 
-/* Games section — legacy card layout (deprecated, kept for reference) */
+/* Games section ??legacy card layout (deprecated, kept for reference) */
 .games-section:not(.chapter-page) {
   height: 100svh;
   max-height: 100svh;
@@ -1922,7 +1990,7 @@ body.is-home[data-home-density="laptop"] .chapter-page__frame.container {
   font-size: 0.75rem;
 }
 
-/* Primary project — Zompanion */
+/* Primary project ??Zompanion */
 .primary-project-card {
   height: 500px;
   max-height: 500px;
@@ -2102,7 +2170,7 @@ body.is-home[data-home-density="laptop"] .chapter-page__frame.container {
   transform: translateX(4px);
 }
 
-/* Secondary project — Scarlett */
+/* Secondary project ??Scarlett */
 .secondary-project-card {
   height: 250px;
   max-height: 250px;
@@ -2281,7 +2349,7 @@ body.is-home[data-home-density="laptop"] .chapter-page__frame.container {
   transform: translateX(3px);
 }
 
-/* Other games — image + text row */
+/* Other games ??image + text row */
 .games-experiments {
   flex-shrink: 0;
   margin-top: 0.15rem;
@@ -2504,7 +2572,7 @@ body.is-home[data-home-density="laptop"] .chapter-page__frame.container {
   }
 }
 
-/* Section header — three columns */
+/* Section header ??three columns */
 .project-section-header {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(0, 0.85fr);
@@ -3162,7 +3230,7 @@ a:focus-visible .project-tag,
   }
 }
 
-/* Homepage — editorial index layout */
+/* Homepage ??editorial index layout */
 .home-section .home-page {
   position: relative;
   z-index: 1;
@@ -3373,7 +3441,7 @@ a:focus-visible .project-tag,
 }
 
 .home-section[data-tier="desktop"] .project-index {
-  overflow: hidden;
+  overflow: visible;
   box-sizing: border-box;
 }
 
@@ -3387,6 +3455,7 @@ a:focus-visible .project-tag,
   margin-top: 0;
   padding-inline-start: 0;
   padding-bottom: calc(clamp(1.5rem, 3vh, 2.75rem) * var(--home-hero-scale, 1));
+  overflow: visible;
   z-index: 4;
 }
 
@@ -3764,7 +3833,7 @@ a:focus-visible .project-tag,
 
 .project-index__link {
   display: grid;
-  grid-template-columns: 2.75ch 1fr auto;
+  grid-template-columns: 3.25ch 1fr auto;
   grid-template-rows: auto auto;
   column-gap: clamp(0.75rem, 1.5vw, 1.125rem);
   row-gap: 0.3rem;
@@ -3812,16 +3881,16 @@ a:focus-visible .project-tag,
   grid-row: 1;
   grid-column: 1;
   align-self: center;
-  justify-self: center;
-  width: 2.75ch;
-  min-width: 2.75ch;
+  justify-self: start;
+  width: 3.25ch;
+  min-width: 3.25ch;
   font-family: var(--font-display);
   font-size: clamp(1.575rem, 2.16vw, 1.8rem);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.01em;
   line-height: 1.2;
-  text-align: center;
+  text-align: left;
   color: var(--accent);
   transition: color var(--transition);
 }
@@ -4393,19 +4462,33 @@ a:focus-visible .project-tag,
   }
 }
 
-/* Games_new — experimental layout overrides */
-body.games-new-page {
-  --container: 1680px;
-  --home-bg: #f7f6f2;
-  background-color: var(--home-bg);
+/* Game Design & Interaction Design chapters ??layout overrides */
+.games-section.chapter-page .chapter-header__title, .ixd-section.chapter-page .chapter-header__title, .research-section.chapter-page .chapter-header__title {
+  font-size: clamp(3.35rem, 6.47vw, 5.11rem);
 }
 
-body.games-new-page[data-home-density='laptop'] .chapter-page__frame.container {
-  padding-top: calc(var(--site-navbar-height) + 0.65rem * var(--layout-scale, 1));
-  padding-bottom: 0;
+.games-section.chapter-page .chapter-header__subtitle, .ixd-section.chapter-page .chapter-header__subtitle, .research-section.chapter-page .chapter-header__subtitle {
+  margin-top: 0.1rem;
+  font-size: clamp(1.75rem, 2.75vw, 2rem);
 }
 
-.games-section-new .chapter-showcase {
+.games-section.chapter-page .chapter-header__tools-row {
+  grid-template-rows: auto;
+  row-gap: 0;
+}
+
+.ixd-section.chapter-page .chapter-header__tools-row, .research-section.chapter-page .chapter-header__tools-row {
+  grid-template-columns: repeat(4, var(--chapter-tool-icon-size));
+  grid-template-rows: repeat(2, auto);
+  row-gap: 0.75rem;
+}
+
+.games-section.chapter-page, .ixd-section.chapter-page, .research-section.chapter-page {
+  --games-new-image-share: calc(16 / 22);
+  --games-new-mask-share: calc(6 / 22);
+}
+
+.games-section.chapter-page .chapter-showcase, .ixd-section.chapter-page .chapter-showcase, .research-section.chapter-page .chapter-showcase {
   --chapter-gallery-scale: 1;
   --chapter-gallery-col: 1;
   position: relative;
@@ -4413,234 +4496,520 @@ body.games-new-page[data-home-density='laptop'] .chapter-page__frame.container {
   width: 100%;
 }
 
-.games-section-new .chapter-gallery {
+.games-section.chapter-page .chapter-gallery, .ixd-section.chapter-page .chapter-gallery, .research-section.chapter-page .chapter-gallery {
   width: 100%;
 }
 
-.games-section-new .chapter-gallery__stage {
+.games-section.chapter-page .chapter-gallery__stage, .ixd-section.chapter-page .chapter-gallery__stage, .research-section.chapter-page .chapter-gallery__stage {
   width: 100%;
-  aspect-ratio: 20 / 9;
+  aspect-ratio: 22 / 9;
+  overflow: hidden;
+  background: rgb(var(--games-new-mask-r, 212), var(--games-new-mask-g, 210), var(--games-new-mask-b, 204));
 }
 
-.games-section-new .chapter-gallery__stage::before {
+.games-section.chapter-page .chapter-gallery__img, .ixd-section.chapter-page .chapter-gallery__img, .research-section.chapter-page .chapter-gallery__img {
+  left: 0;
+  width: calc(100% * var(--games-new-image-share));
+  height: 100%;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 68%,
+    rgb(0 0 0 / 0.98) 80%,
+    rgb(0 0 0 / 0.82) 88%,
+    rgb(0 0 0 / 0.52) 94%,
+    rgb(0 0 0 / 0.22) 98%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    #000 0%,
+    #000 68%,
+    rgb(0 0 0 / 0.98) 80%,
+    rgb(0 0 0 / 0.82) 88%,
+    rgb(0 0 0 / 0.52) 94%,
+    rgb(0 0 0 / 0.22) 98%,
+    transparent 100%
+  );
+}
+
+.games-section.chapter-page .chapter-gallery__youtube, .ixd-section.chapter-page .chapter-gallery__youtube, .research-section.chapter-page .chapter-gallery__youtube {
+  left: 0;
+  width: calc(100% * var(--games-new-image-share));
+  height: 100%;
+}
+
+.games-section.chapter-page .chapter-gallery__stage::before, .ixd-section.chapter-page .chapter-gallery__stage::before, .research-section.chapter-page .chapter-gallery__stage::before {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: calc(100% * var(--games-new-image-share) - 8%);
+  z-index: 2;
+  width: 20%;
+  pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(var(--games-new-mask-r, 212), var(--games-new-mask-g, 210), var(--games-new-mask-b, 204), 0) 0%,
+    rgba(var(--games-new-mask-r, 212), var(--games-new-mask-g, 210), var(--games-new-mask-b, 204), 0.06) 24%,
+    rgba(var(--games-new-mask-r, 212), var(--games-new-mask-g, 210), var(--games-new-mask-b, 204), 0.18) 48%,
+    rgba(var(--games-new-mask-r, 212), var(--games-new-mask-g, 210), var(--games-new-mask-b, 204), 0.36) 72%,
+    rgba(var(--games-new-mask-r, 212), var(--games-new-mask-g, 210), var(--games-new-mask-b, 204), 0.52) 100%
+  );
+  -webkit-backdrop-filter: blur(28px) saturate(1.08);
+  backdrop-filter: blur(28px) saturate(1.08);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(0 0 0 / 0.4) 16%,
+    rgb(0 0 0 / 0.92) 38%,
+    rgb(0 0 0 / 0.92) 72%,
+    rgb(0 0 0 / 0.4) 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgb(0 0 0 / 0.4) 16%,
+    rgb(0 0 0 / 0.92) 38%,
+    rgb(0 0 0 / 0.92) 72%,
+    rgb(0 0 0 / 0.4) 90%,
+    transparent 100%
+  );
+}
+
+.games-section.chapter-page .chapter-gallery__stage::after, .ixd-section.chapter-page .chapter-gallery__stage::after, .research-section.chapter-page .chapter-gallery__stage::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: calc(100% * var(--games-new-image-share));
   z-index: 1;
   pointer-events: none;
   background: linear-gradient(
     to right,
-    rgba(18, 17, 16, 0.78) 0%,
-    rgba(18, 17, 16, 0.58) 38%,
-    rgba(18, 17, 16, 0.18) 62%,
-    rgba(18, 17, 16, 0.08) 100%
+    rgba(var(--games-new-mask-r, 212), var(--games-new-mask-g, 210), var(--games-new-mask-b, 204), 0.42) 0%,
+    rgba(var(--games-new-mask-r, 212), var(--games-new-mask-g, 210), var(--games-new-mask-b, 204), 0.58) 22%,
+    rgba(var(--games-new-mask-r, 212), var(--games-new-mask-g, 210), var(--games-new-mask-b, 204), 0.58) 100%
   );
+  -webkit-backdrop-filter: blur(22px) saturate(1.12);
+  backdrop-filter: blur(22px) saturate(1.12);
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.12);
 }
 
-.games-section-new .chapter-gallery__nav,
-.games-section-new .chapter-gallery__dots {
-  z-index: 3;
+.games-section.chapter-page .chapter-gallery__nav, .ixd-section.chapter-page .chapter-gallery__nav, .research-section.chapter-page .chapter-gallery__nav,
+.games-section.chapter-page .chapter-gallery__dots, .ixd-section.chapter-page .chapter-gallery__dots, .research-section.chapter-page .chapter-gallery__dots {
+  z-index: 4;
 }
 
-.games-section-new .chapter-gallery__nav {
+.games-section.chapter-page .chapter-gallery__nav, .ixd-section.chapter-page .chapter-gallery__nav, .research-section.chapter-page .chapter-gallery__nav {
   background: rgba(18, 17, 16, 0.42);
   border-color: rgba(255, 255, 255, 0.28);
   color: rgba(255, 255, 255, 0.92);
 }
 
-.games-section-new .chapter-gallery__nav:hover,
-.games-section-new .chapter-gallery__nav:focus-visible {
+.games-section.chapter-page .chapter-gallery__nav:hover, .ixd-section.chapter-page .chapter-gallery__nav:hover, .research-section.chapter-page .chapter-gallery__nav:hover,
+.games-section.chapter-page .chapter-gallery__nav:focus-visible, .ixd-section.chapter-page .chapter-gallery__nav:focus-visible, .research-section.chapter-page .chapter-gallery__nav:focus-visible {
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.5);
   background: rgba(18, 17, 16, 0.62);
 }
 
-.games-section-new .chapter-gallery__dot {
+.games-section.chapter-page .chapter-gallery__nav--next, .ixd-section.chapter-page .chapter-gallery__nav--next, .research-section.chapter-page .chapter-gallery__nav--next {
+  right: calc(100% * var(--games-new-mask-share) + 0.65rem);
+}
+
+.games-section.chapter-page .chapter-gallery__dots, .ixd-section.chapter-page .chapter-gallery__dots, .research-section.chapter-page .chapter-gallery__dots {
+  left: calc((100% * var(--games-new-image-share)) / 2);
+  transform: translateX(-50%);
+}
+
+.games-section.chapter-page .chapter-gallery__dot, .ixd-section.chapter-page .chapter-gallery__dot, .research-section.chapter-page .chapter-gallery__dot {
   background: rgba(255, 255, 255, 0.42);
 }
 
-.games-section-new .chapter-gallery__dot.is-active {
+.games-section.chapter-page .chapter-gallery__dot.is-active, .ixd-section.chapter-page .chapter-gallery__dot.is-active, .research-section.chapter-page .chapter-gallery__dot.is-active {
   background: #ffffff;
 }
 
-.games-section-new .chapter-showcase .chapter-info {
+.games-section.chapter-page .chapter-showcase .chapter-info, .ixd-section.chapter-page .chapter-showcase .chapter-info, .research-section.chapter-page .chapter-showcase .chapter-info {
   position: absolute;
   top: 0;
-  left: 0;
-  right: auto;
+  right: 0;
   bottom: 0;
-  z-index: 2;
+  left: calc(100% * var(--games-new-image-share));
+  z-index: 3;
   display: flex;
   flex-direction: column;
-  width: min(42%, 34rem);
+  width: auto;
   height: 100%;
   margin-left: 0;
-  padding: clamp(1rem, 2.2vh, 1.45rem) clamp(1rem, 2vw, 1.5rem)
-    clamp(2.4rem, 4vh, 2.85rem);
+  padding: clamp(0.85rem, 1.8vh, 1.25rem) clamp(0.85rem, 1.5vw, 1.2rem)
+    clamp(2.2rem, 3.8vh, 2.6rem);
   overflow: hidden;
   border: none;
 }
 
-.games-section-new .chapter-info__label {
-  color: rgba(228, 222, 255, 0.95);
-  font-size: 1.125rem;
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__label, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__label , .research-section.chapter-page[data-mask-tone='light'] .chapter-info__label {
+  color: var(--accent);
 }
 
-.games-section-new .chapter-info__title {
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__title, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__title , .research-section.chapter-page[data-mask-tone='light'] .chapter-info__title {
+  color: var(--text);
+  text-shadow: none;
+}
+
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__category, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__category , .research-section.chapter-page[data-mask-tone='light'] .chapter-info__category {
+  color: var(--muted);
+}
+
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__rule, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__rule , .research-section.chapter-page[data-mask-tone='light'] .chapter-info__rule {
+  background: var(--text);
+}
+
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__meta-row dt, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__meta-row dt , .research-section.chapter-page[data-mask-tone='light'] .chapter-info__meta-row dt {
+  color: rgba(107, 107, 107, 0.85);
+}
+
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__meta-row dd, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__meta-row dd, .research-section.chapter-page[data-mask-tone='light'] .chapter-info__meta-row dd,
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__meta-row dd, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__meta-row dd, .research-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__meta-row dd,
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__summary, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__summary, .research-section.chapter-page[data-mask-tone='light'] .chapter-info__summary,
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__summary, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__summary , .research-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__summary {
+  color: var(--text);
+}
+
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__tag, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__tag , .research-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__tag {
+  color: var(--accent);
+  background: rgba(169, 157, 248, 0.06);
+  border-color: rgba(169, 157, 248, 0.14);
+}
+
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__tag--featured, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__tag--featured , .research-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__tag--featured {
+  color: #ffffff;
+  background: var(--accent);
+  border-color: rgba(216, 214, 208, 0.9);
+}
+
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__cta, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__cta, .research-section.chapter-page[data-mask-tone='light'] .chapter-info__cta,
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__cta, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__cta , .research-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__cta {
+  color: var(--text);
+}
+
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__cta:hover, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__cta:hover, .research-section.chapter-page[data-mask-tone='light'] .chapter-info__cta:hover,
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__cta:focus-visible, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__cta:focus-visible, .research-section.chapter-page[data-mask-tone='light'] .chapter-info__cta:focus-visible,
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__cta:hover, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__cta:hover, .research-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__cta:hover,
+.games-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__cta:focus-visible, .ixd-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__cta:focus-visible , .research-section.chapter-page[data-mask-tone='light'] .chapter-info__body .chapter-info__cta:focus-visible {
+  color: var(--accent);
+}
+
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__label, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__label , .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__label {
+  color: rgba(228, 222, 255, 0.95);
+}
+
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__title, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__title , .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__title {
   color: #ffffff;
   text-shadow: 0 1px 18px rgba(0, 0, 0, 0.28);
-  font-size: clamp(3.2rem, 4.9vw, 4rem);
 }
 
-.games-section-new .chapter-info__category {
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__category, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__category , .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__category {
   color: rgba(255, 255, 255, 0.78);
-  font-size: 1.375rem;
 }
 
-.games-section-new .chapter-info__rule {
-  background: rgba(255, 255, 255, 0.24);
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__rule, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__rule , .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__rule {
+  background: #ffffff;
 }
 
-.games-section-new .chapter-info__meta-row dt {
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__meta-row dt, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__meta-row dt , .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__meta-row dt {
   color: rgba(255, 255, 255, 0.62);
 }
 
-.games-section-new .chapter-info__body .chapter-info__meta-row dt {
-  font-size: 1.0625rem;
-}
-
-.games-section-new .chapter-info__meta-row dd,
-.games-section-new .chapter-info__body .chapter-info__meta-row dd,
-.games-section-new .chapter-info__summary,
-.games-section-new .chapter-info__body .chapter-info__summary {
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__meta-row dd, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__meta-row dd, .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__meta-row dd,
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__meta-row dd, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__meta-row dd, .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__meta-row dd,
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__summary, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__summary, .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__summary,
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__summary, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__summary , .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__summary {
   color: rgba(255, 255, 255, 0.9);
 }
 
-.games-section-new .chapter-info__body .chapter-info__meta-row dd {
-  font-size: clamp(1.125rem, 1.4vw, 1.25rem);
-}
-
-.games-section-new .chapter-info__body .chapter-info__summary {
-  font-size: clamp(1.1875rem, 1.45vw, 1.3125rem);
-}
-
-.games-section-new .chapter-info__body .chapter-info__tag {
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__tag, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__tag , .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__tag {
   color: rgba(255, 255, 255, 0.92);
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.22);
 }
 
-.games-section-new .chapter-info__body .chapter-info__tag--featured {
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__tag--featured, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__tag--featured , .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__tag--featured {
   color: #ffffff;
   background: var(--accent);
   border-color: rgba(255, 255, 255, 0.28);
 }
 
-.games-section-new .chapter-info__cta,
-.games-section-new .chapter-info__body .chapter-info__cta {
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__cta, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__cta, .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__cta,
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__cta, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__cta , .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__cta {
   color: #ffffff;
 }
 
-.games-section-new .chapter-info__cta:hover,
-.games-section-new .chapter-info__cta:focus-visible,
-.games-section-new .chapter-info__body .chapter-info__cta:hover,
-.games-section-new .chapter-info__body .chapter-info__cta:focus-visible {
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__cta:hover, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__cta:hover, .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__cta:hover,
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__cta:focus-visible, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__cta:focus-visible, .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__cta:focus-visible,
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__cta:hover, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__cta:hover, .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__cta:hover,
+.games-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__cta:focus-visible, .ixd-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__cta:focus-visible , .research-section.chapter-page[data-mask-tone='dark'] .chapter-info__body .chapter-info__cta:focus-visible {
   color: rgba(228, 222, 255, 1);
 }
 
-.games-section-new .chapter-rail-wrap {
+.games-section.chapter-page .chapter-info__label, .ixd-section.chapter-page .chapter-info__label, .research-section.chapter-page .chapter-info__label {
+  font-size: 1.125rem;
+}
+
+.games-section.chapter-page .chapter-info__title, .ixd-section.chapter-page .chapter-info__title, .research-section.chapter-page .chapter-info__title {
+  font-size: clamp(3.2rem, 4.9vw, 4rem);
+}
+
+.games-section.chapter-page .chapter-info__category, .ixd-section.chapter-page .chapter-info__category, .research-section.chapter-page .chapter-info__category {
+  font-size: 1.375rem;
+}
+
+.games-section.chapter-page .chapter-info__body .chapter-info__meta-row, .ixd-section.chapter-page .chapter-info__body .chapter-info__meta-row, .research-section.chapter-page .chapter-info__body .chapter-info__meta-row {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.4rem;
+}
+
+.games-section.chapter-page .chapter-info__body .chapter-info__meta, .ixd-section.chapter-page .chapter-info__body .chapter-info__meta, .research-section.chapter-page .chapter-info__body .chapter-info__meta {
+  margin-top: 1rem;
+}
+
+.games-section.chapter-page .chapter-info__body .chapter-info__meta-row dt, .ixd-section.chapter-page .chapter-info__body .chapter-info__meta-row dt, .research-section.chapter-page .chapter-info__body .chapter-info__meta-row dt {
+  font-size: 1.0625rem;
+}
+
+.games-section.chapter-page .chapter-info__body .chapter-info__meta-row dd, .ixd-section.chapter-page .chapter-info__body .chapter-info__meta-row dd, .research-section.chapter-page .chapter-info__body .chapter-info__meta-row dd {
+  font-size: clamp(1.125rem, 1.4vw, 1.25rem);
+  margin-left: 0;
+}
+
+.games-section.chapter-page .chapter-info__body .chapter-info__summary, .ixd-section.chapter-page .chapter-info__body .chapter-info__summary, .research-section.chapter-page .chapter-info__body .chapter-info__summary {
+  margin-top: 0;
+  font-size: clamp(1.1875rem, 1.45vw, 1.3125rem);
+}
+
+.games-section.chapter-page .chapter-rail-wrap, .ixd-section.chapter-page .chapter-rail-wrap, .research-section.chapter-page .chapter-rail-wrap {
   width: 100%;
   padding-bottom: 6.5svh;
 }
 
-.games-section-new .chapter-rail__header {
+.games-section.chapter-page .chapter-rail__header, .ixd-section.chapter-page .chapter-rail__header, .research-section.chapter-page .chapter-rail__header {
   margin-bottom: 0.55rem;
 }
 
-.games-section-new .chapter-rail--text-only {
+.games-section.chapter-page .chapter-rail--cards {
+  --rail-columns: 9;
+  --rail-dot-width: 0.25rem;
+  --rail-dot-gap: calc(var(--rail-dot-width) * (var(--rail-columns) - 1));
+  --rail-item-width: calc((100% - var(--rail-dot-gap)) / var(--rail-columns));
+  --rail-thumb-share: 0.68;
+  --rail-thumb-height: calc(
+    ((100cqw - var(--rail-dot-gap)) / var(--rail-columns)) * var(--rail-thumb-share) * 9 / 16
+  );
+}
+
+.ixd-section.chapter-page .chapter-rail--cards, .research-section.chapter-page .chapter-rail--cards {
+  --rail-columns: 8;
+  --rail-dot-width: 0.3125rem;
+  --rail-dot-gap: calc(var(--rail-dot-width) * (var(--rail-columns) - 1));
+  --rail-item-width: calc((100% - var(--rail-dot-gap)) / var(--rail-columns));
+  --rail-thumb-share: 0.72;
+  --rail-thumb-height: calc(
+    ((100cqw - var(--rail-dot-gap)) / var(--rail-columns)) * var(--rail-thumb-share) * 9 / 16
+  );
+}
+
+.games-section.chapter-page .chapter-rail--cards, .ixd-section.chapter-page .chapter-rail--cards, .research-section.chapter-page .chapter-rail--cards {
+  container-type: inline-size;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
   overflow: visible;
   cursor: default;
 }
 
-.games-section-new .chapter-rail--text-only .chapter-rail__item {
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__item, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item {
   position: relative;
-  flex: 1 1 0;
-  width: auto;
+  flex: 0 0 var(--rail-item-width);
+  width: var(--rail-item-width);
+  max-width: var(--rail-item-width);
   min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.2rem;
+  justify-content: flex-start;
+  gap: 0.32rem;
   padding: 0.15rem 0;
   border: none;
   background: transparent;
   text-align: center;
 }
 
-.games-section-new .chapter-rail--text-only .chapter-rail__divider {
-  flex: 0 0 0.3125rem;
-  width: 0.3125rem;
-  min-width: 0.3125rem;
-  height: 0.3125rem;
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__thumb, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__thumb, .research-section.chapter-page .chapter-rail--cards .chapter-rail__thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  width: calc(var(--rail-thumb-share) * 100%);
+  max-width: 100%;
+  flex-shrink: 0;
+  margin-inline: auto;
+  border: 1px solid rgba(216, 214, 208, 0.8);
+  border-radius: 3px;
+  overflow: hidden;
+  background: #eae8e3;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__spacer, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__spacer, .research-section.chapter-page .chapter-rail--cards .chapter-rail__spacer {
+  flex: 0 0 var(--rail-dot-width);
+  width: var(--rail-dot-width);
+  min-width: var(--rail-dot-width);
+  max-width: var(--rail-dot-width);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  height: var(--rail-thumb-height);
+  pointer-events: none;
+}
+
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__divider, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__divider, .research-section.chapter-page .chapter-rail--cards .chapter-rail__divider {
+  display: block;
+  flex: none;
+  flex-shrink: 0;
+  width: var(--rail-dot-width);
+  min-width: var(--rail-dot-width);
+  max-width: var(--rail-dot-width);
+  height: var(--rail-dot-width);
   margin: 0;
   padding: 0;
   border: none;
   border-radius: 50%;
   background: rgba(138, 138, 138, 0.55);
-  align-self: center;
+  aspect-ratio: 1;
   pointer-events: none;
 }
 
-.games-section-new .chapter-rail--text-only .chapter-rail__divider::before {
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__divider::before, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__divider::before, .research-section.chapter-page .chapter-rail--cards .chapter-rail__divider::before {
   content: none;
 }
 
-.games-section-new .chapter-rail--text-only .chapter-rail__text {
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__text, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__text, .research-section.chapter-page .chapter-rail--cards .chapter-rail__text {
   align-items: center;
   width: 100%;
   text-align: center;
 }
 
-.games-section-new .chapter-rail--text-only .chapter-rail__title,
-.games-section-new .chapter-rail--text-only .chapter-rail__focus {
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__thumb-img, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__thumb-img, .research-section.chapter-page .chapter-rail--cards .chapter-rail__thumb-img {
+  filter: grayscale(1) saturate(0);
+  transition:
+    filter 240ms ease,
+    opacity 240ms ease;
+}
+
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__item.is-active .chapter-rail__thumb, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item.is-active .chapter-rail__thumb, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item.is-active .chapter-rail__thumb {
+  border-color: rgba(169, 157, 248, 0.8);
+  box-shadow: 0 0 0 1px rgba(169, 157, 248, 0.22);
+}
+
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__item.is-active .chapter-rail__thumb-img, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item.is-active .chapter-rail__thumb-img, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item.is-active .chapter-rail__thumb-img {
+  filter: none;
+}
+
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__item:hover .chapter-rail__thumb, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item:hover .chapter-rail__thumb, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item:hover .chapter-rail__thumb,
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__item:focus-visible .chapter-rail__thumb, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item:focus-visible .chapter-rail__thumb, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item:focus-visible .chapter-rail__thumb {
+  border-color: rgba(169, 157, 248, 0.55);
+}
+
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__title, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__title, .research-section.chapter-page .chapter-rail--cards .chapter-rail__title {
   width: 100%;
   text-align: center;
   white-space: normal;
   overflow: visible;
   text-overflow: unset;
-}
-
-.games-section-new .chapter-rail--text-only .chapter-rail__title {
   font-size: 1.25rem;
   line-height: 1.2;
 }
 
-.games-section-new .chapter-rail--text-only .chapter-rail__focus {
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__focus, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__focus, .research-section.chapter-page .chapter-rail--cards .chapter-rail__focus {
+  display: block;
+  width: calc(var(--rail-thumb-share) * 100%);
+  max-width: 100%;
+  margin-inline: auto;
+  text-align: center;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
   font-size: 0.8125rem;
   line-height: 1.35;
 }
 
-.games-section-new .chapter-rail--text-only .chapter-rail__item.is-active .chapter-rail__focus::after {
-  width: min(100%, 4.5rem);
-  margin-inline: auto;
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__focus::after, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__focus::after, .research-section.chapter-page .chapter-rail--cards .chapter-rail__focus::after {
+  content: none;
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: 0.2rem;
+  background: transparent;
+}
+
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__item.is-active .chapter-rail__focus::after, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item.is-active .chapter-rail__focus::after, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item.is-active .chapter-rail__focus::after {
+  content: '';
+  background: rgba(169, 157, 248, 0.65);
+}
+
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__item:hover:not(.is-active) .chapter-rail__focus::after, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item:hover:not(.is-active) .chapter-rail__focus::after, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item:hover:not(.is-active) .chapter-rail__focus::after,
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__item:focus-visible:not(.is-active) .chapter-rail__focus::after, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item:focus-visible:not(.is-active) .chapter-rail__focus::after, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item:focus-visible:not(.is-active) .chapter-rail__focus::after {
+  content: '';
+  background: var(--text);
+}
+
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__item.is-active .chapter-rail__focus--static::after, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item.is-active .chapter-rail__focus--static::after, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item.is-active .chapter-rail__focus--static::after,
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__item:hover:not(.is-active) .chapter-rail__focus--static::after, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item:hover:not(.is-active) .chapter-rail__focus--static::after, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item:hover:not(.is-active) .chapter-rail__focus--static::after,
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__item:focus-visible:not(.is-active) .chapter-rail__focus--static::after, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item:focus-visible:not(.is-active) .chapter-rail__focus--static::after, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item:focus-visible:not(.is-active) .chapter-rail__focus--static::after {
+  content: none;
+  display: none;
+}
+
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__item.is-active .chapter-rail__focus--static, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item.is-active .chapter-rail__focus--static, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item.is-active .chapter-rail__focus--static,
+.games-section.chapter-page .chapter-rail--cards .chapter-rail__item:hover .chapter-rail__focus--static, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item:hover .chapter-rail__focus--static, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item:hover .chapter-rail__focus--static {
+  color: var(--muted);
 }
 
 @media (max-width: 1024px) {
-  .games-section-new .chapter-showcase {
+  .games-section.chapter-page .chapter-showcase, .ixd-section.chapter-page .chapter-showcase, .research-section.chapter-page .chapter-showcase {
     display: flex;
     flex-direction: column;
     gap: 0;
   }
 
-  .games-section-new .chapter-gallery__stage::before {
+  .games-section.chapter-page .chapter-gallery__stage::before, .ixd-section.chapter-page .chapter-gallery__stage::before, .research-section.chapter-page .chapter-gallery__stage::before,
+  .games-section.chapter-page .chapter-gallery__stage::after, .ixd-section.chapter-page .chapter-gallery__stage::after, .research-section.chapter-page .chapter-gallery__stage::after {
     display: none;
   }
 
-  .games-section-new .chapter-showcase .chapter-info {
+  .games-section.chapter-page .chapter-gallery__img, .ixd-section.chapter-page .chapter-gallery__img, .research-section.chapter-page .chapter-gallery__img {
+    width: 100%;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .games-section.chapter-page .chapter-gallery__youtube, .ixd-section.chapter-page .chapter-gallery__youtube, .research-section.chapter-page .chapter-gallery__youtube {
+    width: 100%;
+  }
+
+  .games-section.chapter-page .chapter-gallery__nav--next, .ixd-section.chapter-page .chapter-gallery__nav--next, .research-section.chapter-page .chapter-gallery__nav--next {
+    right: 0.65rem;
+  }
+
+  .games-section.chapter-page .chapter-gallery__dots, .ixd-section.chapter-page .chapter-gallery__dots, .research-section.chapter-page .chapter-gallery__dots {
+    left: 50%;
+  }
+
+  .games-section.chapter-page .chapter-showcase .chapter-info, .ixd-section.chapter-page .chapter-showcase .chapter-info, .research-section.chapter-page .chapter-showcase .chapter-info {
     position: static;
     width: 100%;
     height: auto;
@@ -4650,80 +5019,88 @@ body.games-new-page[data-home-density='laptop'] .chapter-page__frame.container {
     border-top: 1px solid rgba(216, 214, 208, 0.65);
   }
 
-  .games-section-new .chapter-info__label {
+  .games-section.chapter-page .chapter-info__label, .ixd-section.chapter-page .chapter-info__label, .research-section.chapter-page .chapter-info__label {
     color: var(--accent);
   }
 
-  .games-section-new .chapter-info__title {
+  .games-section.chapter-page .chapter-info__title, .ixd-section.chapter-page .chapter-info__title, .research-section.chapter-page .chapter-info__title {
     color: var(--text);
     text-shadow: none;
   }
 
-  .games-section-new .chapter-info__category {
+  .games-section.chapter-page .chapter-info__category, .ixd-section.chapter-page .chapter-info__category, .research-section.chapter-page .chapter-info__category {
     color: var(--muted);
   }
 
-  .games-section-new .chapter-info__rule {
+  .games-section.chapter-page .chapter-info__rule, .ixd-section.chapter-page .chapter-info__rule, .research-section.chapter-page .chapter-info__rule {
     background: rgba(216, 214, 208, 0.75);
   }
 
-  .games-section-new .chapter-info__meta-row dt {
+  .games-section.chapter-page .chapter-info__meta-row dt, .ixd-section.chapter-page .chapter-info__meta-row dt, .research-section.chapter-page .chapter-info__meta-row dt {
     color: rgba(107, 107, 107, 0.85);
   }
 
-  .games-section-new .chapter-info__meta-row dd,
-  .games-section-new .chapter-info__body .chapter-info__meta-row dd,
-  .games-section-new .chapter-info__summary,
-  .games-section-new .chapter-info__body .chapter-info__summary {
+  .games-section.chapter-page .chapter-info__meta-row dd, .ixd-section.chapter-page .chapter-info__meta-row dd, .research-section.chapter-page .chapter-info__meta-row dd,
+  .games-section.chapter-page .chapter-info__body .chapter-info__meta-row dd, .ixd-section.chapter-page .chapter-info__body .chapter-info__meta-row dd, .research-section.chapter-page .chapter-info__body .chapter-info__meta-row dd,
+  .games-section.chapter-page .chapter-info__summary, .ixd-section.chapter-page .chapter-info__summary, .research-section.chapter-page .chapter-info__summary,
+  .games-section.chapter-page .chapter-info__body .chapter-info__summary, .ixd-section.chapter-page .chapter-info__body .chapter-info__summary, .research-section.chapter-page .chapter-info__body .chapter-info__summary {
     color: var(--text);
   }
 
-  .games-section-new .chapter-info__body .chapter-info__tag {
+  .games-section.chapter-page .chapter-info__body .chapter-info__tag, .ixd-section.chapter-page .chapter-info__body .chapter-info__tag, .research-section.chapter-page .chapter-info__body .chapter-info__tag {
     color: var(--accent);
     background: rgba(169, 157, 248, 0.06);
     border-color: rgba(169, 157, 248, 0.14);
   }
 
-  .games-section-new .chapter-info__body .chapter-info__tag--featured {
+  .games-section.chapter-page .chapter-info__body .chapter-info__tag--featured, .ixd-section.chapter-page .chapter-info__body .chapter-info__tag--featured, .research-section.chapter-page .chapter-info__body .chapter-info__tag--featured {
     color: #ffffff;
     background: var(--accent);
     border-color: rgba(216, 214, 208, 0.9);
   }
 
-  .games-section-new .chapter-info__cta,
-  .games-section-new .chapter-info__body .chapter-info__cta {
+  .games-section.chapter-page .chapter-info__cta, .ixd-section.chapter-page .chapter-info__cta, .research-section.chapter-page .chapter-info__cta,
+  .games-section.chapter-page .chapter-info__body .chapter-info__cta, .ixd-section.chapter-page .chapter-info__body .chapter-info__cta, .research-section.chapter-page .chapter-info__body .chapter-info__cta {
     color: var(--text);
   }
 
-  .games-section-new .chapter-info__cta:hover,
-  .games-section-new .chapter-info__cta:focus-visible,
-  .games-section-new .chapter-info__body .chapter-info__cta:hover,
-  .games-section-new .chapter-info__body .chapter-info__cta:focus-visible {
+  .games-section.chapter-page .chapter-info__cta:hover, .ixd-section.chapter-page .chapter-info__cta:hover, .research-section.chapter-page .chapter-info__cta:hover,
+  .games-section.chapter-page .chapter-info__cta:focus-visible, .ixd-section.chapter-page .chapter-info__cta:focus-visible, .research-section.chapter-page .chapter-info__cta:focus-visible,
+  .games-section.chapter-page .chapter-info__body .chapter-info__cta:hover, .ixd-section.chapter-page .chapter-info__body .chapter-info__cta:hover, .research-section.chapter-page .chapter-info__body .chapter-info__cta:hover,
+  .games-section.chapter-page .chapter-info__body .chapter-info__cta:focus-visible, .ixd-section.chapter-page .chapter-info__body .chapter-info__cta:focus-visible, .research-section.chapter-page .chapter-info__body .chapter-info__cta:focus-visible {
     color: var(--accent);
   }
 
-  .games-section-new .chapter-gallery__nav {
+  .games-section.chapter-page .chapter-gallery__nav, .ixd-section.chapter-page .chapter-gallery__nav, .research-section.chapter-page .chapter-gallery__nav {
     background: rgba(247, 246, 242, 0.88);
     border-color: rgba(216, 214, 208, 0.9);
     color: var(--muted);
   }
 
-  .games-section-new .chapter-rail--text-only {
+  .games-section.chapter-page .chapter-rail--cards, .ixd-section.chapter-page .chapter-rail--cards, .research-section.chapter-page .chapter-rail--cards {
     display: flex;
     overflow-x: auto;
     scrollbar-width: thin;
     scrollbar-color: rgba(169, 157, 248, 0.35) transparent;
   }
 
-  .games-section-new .chapter-rail--text-only .chapter-rail__item {
+  .games-section.chapter-page .chapter-rail--cards .chapter-rail__item, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item {
     flex: 0 0 clamp(6.5rem, 14vw, 8.5rem);
     width: clamp(6.5rem, 14vw, 8.5rem);
+  }
+
+  .games-section.chapter-page .chapter-rail--cards .chapter-rail__spacer, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__spacer, .research-section.chapter-page .chapter-rail--cards .chapter-rail__spacer {
+    height: calc(clamp(6.5rem, 14vw, 8.5rem) * 0.72 * 9 / 16);
   }
 }
 
 @media (max-width: 768px) {
-  .games-section-new .chapter-rail--text-only .chapter-rail__item {
+  .games-section.chapter-page .chapter-rail--cards .chapter-rail__item, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item {
     flex: 0 0 clamp(5.5rem, 24vw, 7rem);
     width: clamp(5.5rem, 24vw, 7rem);
+  }
+
+  .games-section.chapter-page .chapter-rail--cards .chapter-rail__spacer, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__spacer, .research-section.chapter-page .chapter-rail--cards .chapter-rail__spacer {
+    height: calc(clamp(5.5rem, 24vw, 7rem) * 0.72 * 9 / 16);
   }
 }

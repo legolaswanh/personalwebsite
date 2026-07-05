@@ -1,35 +1,44 @@
 ---
 import type { ChapterProject } from '../../types/chapterProject';
+import { CHAPTER_DEFAULT_CTA_LABEL, CHAPTER_DEFAULT_ROLE_LABEL } from '../../types/chapterProject';
+import { galleryItemPoster } from '../../utils/chapterGallery';
 
 interface Props {
   project: ChapterProject;
+  ctaLabel?: string;
 }
 
-const { project } = Astro.props;
+const { project, ctaLabel = CHAPTER_DEFAULT_CTA_LABEL } = Astro.props;
 
-const galleryImages = [
-  { key: 'cover', src: project.images.coverImage, label: 'Cover' },
-  { key: 'gameplay-1', src: project.images.gameplayImage1, label: 'Gameplay 1' },
-  { key: 'gameplay-2', src: project.images.gameplayImage2, label: 'Gameplay 2' },
-  { key: 'gameplay-3', src: project.images.gameplayImage3, label: 'Gameplay 3' },
-  { key: 'gameplay-4', src: project.images.gameplayImage4, label: 'Gameplay 4' },
-];
+const galleryImages = project.images;
+const initialItem = galleryImages[0];
+const initialPoster = initialItem ? galleryItemPoster(initialItem) : '';
+const initialRoleLabel = project.roleLabel ?? CHAPTER_DEFAULT_ROLE_LABEL;
+const initialLabel = initialItem
+  ? `${project.title} — ${initialItem.label}`
+  : project.title;
 ---
 
 <div class="chapter-showcase" data-chapter-showcase>
   <div class="chapter-gallery">
-    <div class="chapter-gallery__stage" data-gallery-stage data-asset-wrap>
+    <div
+      class="chapter-gallery__stage"
+      data-gallery-stage
+      data-asset-wrap
+      data-gallery-count={galleryImages.length}
+    >
       <img
         class="chapter-gallery__img"
-        src={project.images.coverImage}
+        src={initialPoster}
         alt=""
         loading="eager"
         decoding="async"
         data-gallery-main
         data-asset-image
       />
+      <div class="chapter-gallery__youtube" data-gallery-youtube hidden></div>
       <span class="chapter-gallery__placeholder" data-gallery-placeholder>
-        {project.title} — Cover
+        {initialLabel}
       </span>
       <button
         type="button"
@@ -77,18 +86,14 @@ const galleryImages = [
     </div>
 
     <div class="chapter-info__body">
+      <p class="chapter-info__summary" data-info-summary>{project.summary}</p>
+
       <dl class="chapter-info__meta">
         <div class="chapter-info__meta-row">
-          <dt>Role</dt>
+          <dt data-info-role-label>{initialRoleLabel}</dt>
           <dd data-info-role>{project.role}</dd>
         </div>
-        <div class="chapter-info__meta-row">
-          <dt>Work</dt>
-          <dd data-info-focus>{project.focus}</dd>
-        </div>
       </dl>
-
-      <p class="chapter-info__summary" data-info-summary>{project.summary}</p>
 
       <ul class="chapter-info__tags" aria-label="Project capabilities" data-info-tags>
         {project.tags.map((tag, index) => (
@@ -115,7 +120,7 @@ const galleryImages = [
         aria-disabled={project.href ? undefined : 'true'}
         tabindex={project.href ? undefined : -1}
       >
-        View Project
+        {ctaLabel}
         <span class="chapter-info__cta-arrow" aria-hidden="true">→</span>
       </a>
     </div>

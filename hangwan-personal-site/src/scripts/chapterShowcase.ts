@@ -1,22 +1,12 @@
 import type { ChapterProject } from '../types/chapterProject';
-
-type GalleryImageKey = keyof ChapterProject['images'];
-
-const GALLERY_KEYS: GalleryImageKey[] = [
-  'coverImage',
-  'gameplayImage1',
-  'gameplayImage2',
-  'gameplayImage3',
-  'gameplayImage4',
-];
-
-const GALLERY_LABELS = [
-  'Cover',
-  'Gameplay 1',
-  'Gameplay 2',
-  'Gameplay 3',
-  'Gameplay 4',
-];
+import { CHAPTER_DEFAULT_ROLE_LABEL } from '../types/chapterProject';
+import type {
+  ChapterGalleryImageItem,
+  ChapterGalleryYoutubeItem,
+} from '../utils/chapterGallery';
+import { galleryItemPoster } from '../utils/chapterGallery';
+import { youtubeEmbedUrl } from '../utils/parseYoutubeId';
+import { alignIxdSectionTools } from './alignIxdTools';
 
 function getProjects(section: HTMLElement): ChapterProject[] {
   const dataEl = section.querySelector<HTMLScriptElement>('[data-chapter-projects]');
@@ -56,27 +46,30 @@ function initAssetImages(root: ParentNode) {
   });
 }
 
-function setGalleryIndex(section: HTMLElement, index: number) {
-  const projectId = section.dataset.activeProject;
-  if (!projectId) return;
+function clearYoutubeEmbed(section: HTMLElement) {
+  const container = section.querySelector<HTMLElement>('[data-gallery-youtube]');
+  if (!container) return;
 
-  const project = getProjects(section).find((item) => item.id === projectId);
-  if (!project) return;
+  container.replaceChildren();
+  container.hidden = true;
+  section.querySelector('[data-gallery-stage]')?.classList.remove('is-youtube-active');
+}
 
-  const normalized =
-    ((index % GALLERY_KEYS.length) + GALLERY_KEYS.length) % GALLERY_KEYS.length;
-  section.dataset.galleryIndex = String(normalized);
-
-  const key = GALLERY_KEYS[normalized];
-  const src = project.images[key];
-  const label = `${project.title} — ${GALLERY_LABELS[normalized]}`;
+function showImageItem(
+  section: HTMLElement,
+  item: ChapterGalleryImageItem,
+  label: string,
+) {
+  clearYoutubeEmbed(section);
 
   const main = section.querySelector<HTMLImageElement>('[data-gallery-main]');
   const placeholder = section.querySelector<HTMLElement>('[data-gallery-placeholder]');
   const stage = section.querySelector<HTMLElement>('[data-gallery-stage]');
 
   if (main) {
-    main.src = src;
+    main.removeAttribute('crossorigin');
+    main.classList.remove('is-gallery-media-hidden');
+    main.src = item.src;
     main.alt = label;
     main.classList.remove('is-missing');
     delete main.dataset.assetReady;
@@ -88,6 +81,76 @@ function setGalleryIndex(section: HTMLElement, index: number) {
   }
 
   stage?.classList.remove('has-image');
+}
+
+function showYoutubeItem(
+  section: HTMLElement,
+  item: ChapterGalleryYoutubeItem,
+  label: string,
+) {
+  const main = section.querySelector<HTMLImageElement>('[data-gallery-main]');
+  const container = section.querySelector<HTMLElement>('[data-gallery-youtube]');
+  const placeholder = section.querySelector<HTMLElement>('[data-gallery-placeholder]');
+  const stage = section.querySelector<HTMLElement>('[data-gallery-stage]');
+
+  clearYoutubeEmbed(section);
+
+  const poster = galleryItemPoster(item);
+
+  if (main) {
+    main.crossOrigin = 'anonymous';
+    main.classList.add('is-gallery-media-hidden');
+    main.src = poster;
+    main.alt = label;
+    main.classList.remove('is-missing');
+    delete main.dataset.assetReady;
+    initAssetImages(section);
+  }
+
+  if (placeholder) {
+    placeholder.textContent = label;
+  }
+
+  stage?.classList.remove('has-image');
+
+  if (container) {
+    container.hidden = false;
+    stage?.classList.add('is-youtube-active');
+
+    const iframe = document.createElement('iframe');
+    iframe.className = 'chapter-gallery__youtube-iframe';
+    iframe.src = youtubeEmbedUrl(item.videoId);
+    iframe.title = label;
+    iframe.setAttribute(
+      'allow',
+      'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share',
+    );
+    iframe.allowFullscreen = true;
+    iframe.loading = 'lazy';
+    container.appendChild(iframe);
+  }
+}
+
+function setGalleryIndex(section: HTMLElement, index: number) {
+  const projectId = section.dataset.activeProject;
+  if (!projectId) return;
+
+  const project = getProjects(section).find((item) => item.id === projectId);
+  if (!project || project.images.length === 0) return;
+
+  const normalized =
+    ((index % project.images.length) + project.images.length) %
+    project.images.length;
+  section.dataset.galleryIndex = String(normalized);
+
+  const galleryItem = project.images[normalized];
+  const label = `${project.title} — ${galleryItem.label}`;
+
+  if (galleryItem.type === 'youtube') {
+    showYoutubeItem(section, galleryItem, label);
+  } else {
+    showImageItem(section, galleryItem, label);
+  }
 
   section.querySelectorAll('[data-gallery-dot]').forEach((dot, dotIndex) => {
     const isActive = dotIndex === normalized;
@@ -109,13 +172,20 @@ function renderTags(container: HTMLElement, tags: string[]) {
   );
 }
 
+function syncGalleryControls(section: HTMLElement, imageCount: number) {
+  const stage = section.querySelector<HTMLElement>('[data-gallery-stage]');
+  if (!stage) return;
+
+  stage.dataset.galleryCount = String(imageCount);
+}
+
 function renderGalleryDots(section: HTMLElement, project: ChapterProject) {
   const dots = section.querySelector<HTMLElement>('[data-gallery-dots]');
   if (!dots) return;
 
   dots.replaceChildren(
-    ...GALLERY_KEYS.map((_, index) => {
-      const label = `${project.title} — ${GALLERY_LABELS[index]}`;
+    ...project.images.map((item, index) => {
+      const label = `${project.title} — ${item.label}`;
 
       const button = document.createElement('button');
       button.type = 'button';
@@ -142,8 +212,8 @@ function updateShowcase(section: HTMLElement, project: ChapterProject) {
   setText('[data-info-label]', project.label);
   setText('[data-info-title]', project.title);
   setText('[data-info-category]', project.category);
+  setText('[data-info-role-label]', project.roleLabel ?? CHAPTER_DEFAULT_ROLE_LABEL);
   setText('[data-info-role]', project.role);
-  setText('[data-info-focus]', project.focus);
   setText('[data-info-summary]', project.summary);
 
   const tags = section.querySelector<HTMLElement>('[data-info-tags]');
@@ -165,7 +235,12 @@ function updateShowcase(section: HTMLElement, project: ChapterProject) {
   }
 
   renderGalleryDots(section, project);
+  syncGalleryControls(section, project.images.length);
   setGalleryIndex(section, 0);
+
+  if (section.classList.contains('ixd-section') || section.classList.contains('research-section')) {
+    requestAnimationFrame(() => alignIxdSectionTools(section));
+  }
 }
 
 function setActiveRailItem(section: HTMLElement, projectId: string) {
@@ -219,7 +294,7 @@ function bindRailControls(section: HTMLElement) {
     if (!projectId) return;
 
     const project = getProjects(section).find((entry) => entry.id === projectId);
-    if (!project) return;
+    if (!project || project.railDisabled) return;
 
     updateShowcase(section, project);
     setActiveRailItem(section, project.id);
@@ -305,6 +380,12 @@ export function initChapterShowcase(root: ParentNode = document) {
     if (defaultId) {
       section.dataset.activeProject = defaultId;
       section.dataset.galleryIndex = '0';
+
+      const defaultProject = getProjects(section).find((p) => p.id === defaultId);
+      if (defaultProject) {
+        syncGalleryControls(section, defaultProject.images.length);
+        setGalleryIndex(section, 0);
+      }
     }
 
     initAssetImages(section);

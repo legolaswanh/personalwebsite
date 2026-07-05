@@ -241,22 +241,44 @@ function syncEditorialAlign() {
   index.style.marginLeft = `${refLeft - contents.getBoundingClientRect().left}px`;
 }
 
+function measureProjectIndexLinkWidth(link: HTMLElement) {
+  const marker = link.querySelector<HTMLElement>('.project-index__marker');
+  const title = link.querySelector<HTMLElement>('.project-index__title');
+  const arrow = link.querySelector<HTMLElement>('.project-index__arrow');
+  const linkStyle = getComputedStyle(link);
+  const columnGap = parseFloat(linkStyle.columnGap) || 0;
+
+  const markerWidth = marker?.scrollWidth ?? 0;
+  const titleWidth = title?.scrollWidth ?? 0;
+  const arrowWidth = arrow?.offsetWidth ?? 0;
+
+  return markerWidth + titleWidth + arrowWidth + columnGap * 2;
+}
+
 function syncContentsWidth(tier: LayoutTier) {
   const subtitle = document.querySelector('.slogan-line-sub');
   const projectIndex = document.querySelector<HTMLElement>('.home-section .project-index');
   const page = document.querySelector<HTMLElement>('.home-page');
   if (!subtitle || !projectIndex || !page) return;
 
+  projectIndex.style.removeProperty('width');
+  projectIndex.style.removeProperty('max-width');
+  void projectIndex.offsetWidth;
+
   const indexRect = projectIndex.getBoundingClientRect();
   const subtitleRect = subtitle.getBoundingClientRect();
-  const subtitleWidth = subtitleRect.right - indexRect.left;
+  let width = subtitleRect.right - indexRect.left;
 
-  let width = subtitleWidth;
+  let maxRowWidth = 0;
+  projectIndex.querySelectorAll<HTMLElement>('.project-index__link').forEach((link) => {
+    maxRowWidth = Math.max(maxRowWidth, measureProjectIndexLinkWidth(link));
+  });
+  width = Math.max(width, maxRowWidth);
 
   if (tier === 'desktop') {
     const dividerX = getEditorialDividerX(page);
     const editorialWidth = dividerX - 14 - indexRect.left;
-    width = Math.min(subtitleWidth, editorialWidth);
+    width = Math.min(width, editorialWidth);
   }
 
   width = Math.ceil(Math.max(0, width));
