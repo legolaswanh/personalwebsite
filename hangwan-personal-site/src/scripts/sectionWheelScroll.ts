@@ -1,3 +1,9 @@
+import {
+  applySectionUrl,
+  hashForSectionElement,
+  syncHomeSectionHash,
+} from './homeSectionHash';
+
 const COMMIT_THRESHOLD = 165;
 const ACCUMULATOR_RESET_MS = 220;
 const TRANSITION_LOCK_MS = 900;
@@ -153,15 +159,23 @@ function commitToSection(target: HTMLElement) {
   resetAccumulator();
   resetEdgeState();
 
+  document.documentElement.dataset.sectionScrollLock = 'true';
+
   target.scrollIntoView({ behavior: 'smooth' });
+  applySectionUrl(hashForSectionElement(target));
 
   window.setTimeout(() => {
     if (state) state.isLocked = false;
+    delete document.documentElement.dataset.sectionScrollLock;
   }, TRANSITION_LOCK_MS);
 }
 
 function handleScroll() {
-  if (!state || state.isLocked) return;
+  if (!state) return;
+
+  syncHomeSectionHash();
+
+  if (state.isLocked) return;
   if (!document.body.classList.contains('is-home')) return;
 
   const sections = getSections();

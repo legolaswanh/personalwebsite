@@ -9,13 +9,14 @@
 </button>
 
 <script>
+  import { scrollToHomeSection } from '../scripts/homeSectionHash';
+
   function initScrollCue() {
     const button = document.querySelector('.scroll-cue');
     if (!(button instanceof HTMLButtonElement)) return;
 
     button.addEventListener('click', () => {
-      const target = document.querySelector('#chapter-1');
-      target?.scrollIntoView({ behavior: 'smooth' });
+      scrollToHomeSection('#chapter-1');
     });
   }
 

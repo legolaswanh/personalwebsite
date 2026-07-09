@@ -1,15 +1,62 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import AboutIntro from '../../components/about/AboutIntro.astro';
+import AboutPath from '../../components/about/AboutPath.astro';
+import AboutShapes from '../../components/about/AboutShapes.astro';
+import AboutContact from '../../components/about/AboutContact.astro';
 ---
 
-<BaseLayout title="About Me — Hang Wan" isHome={false}>
-  <section class="placeholder-page">
-    <div class="placeholder-page__inner">
-      <p class="placeholder-page__eyebrow">About Me</p>
-      <h1 class="placeholder-page__title">About page coming soon</h1>
-      <p class="placeholder-page__text">
-        Background, skills, tools, and design values will live here.
-      </p>
+<BaseLayout
+  title="About Me — Hang Wan"
+  description="Background, design identity, and personal perspective of Hang Wan — game and interaction designer."
+  bodyClass="is-about"
+  isHome={false}
+>
+  <div class="about-page">
+    <div class="about-hero-grid" data-about-hero-grid aria-hidden="true">
+      <div class="about-hero-grid__cells" data-about-hero-grid-cells></div>
+      <div class="about-hero-grid__fade"></div>
     </div>
-  </section>
+
+    <div class="about-page__inner">
+      <AboutIntro />
+      <hr class="about-page__rule" aria-hidden="true" />
+      <AboutPath />
+      <hr class="about-page__rule" aria-hidden="true" />
+      <AboutShapes />
+      <hr class="about-page__rule" aria-hidden="true" />
+      <AboutContact />
+    </div>
+  </div>
 </BaseLayout>
+
+<script>
+  function initAboutImages() {
+    document.querySelectorAll('[data-about-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.imgBound === 'true') return;
+      img.dataset.imgBound = 'true';
+
+      const hideMissing = () => {
+        const figure = img.closest('figure');
+        if (figure) {
+          figure.classList.add('is-missing');
+          return;
+        }
+        img.classList.add('is-missing');
+      };
+
+      img.addEventListener('error', hideMissing);
+      if (img.complete && img.naturalWidth === 0) hideMissing();
+    });
+  }
+
+  initAboutImages();
+  document.addEventListener('astro:page-load', initAboutImages);
+</script>
+
+<script>
+  import { initAboutIntroGrid } from '../../scripts/aboutIntroGrid';
+
+  initAboutIntroGrid();
+  document.addEventListener('astro:page-load', initAboutIntroGrid);
+</script>

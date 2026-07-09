@@ -13,8 +13,11 @@ export interface ChapterProject {
   role: string;
   focus: string;
   summary: string;
+  /** Highlighted capability tags in the project detail panel (accent pill style) */
+  highlightTags: string[];
+  /** Regular capability tags in the project detail panel */
   tags: string[];
-  /** Short capability label shown in the project rail */
+  /** Subtitle under the project title in the left project rail */
   focusLabel: string;
   /** Rail placeholder: shows label but cannot be selected or switched to */
   railDisabled?: boolean;
@@ -27,7 +30,7 @@ export interface ChapterConfig {
   number: number;
   title: string;
   subtitle: string;
-  tools: { src: string; label: string }[];
+  tools?: { src: string; label: string }[];
   /** Label for the project detail link button */
   ctaLabel?: string;
 }

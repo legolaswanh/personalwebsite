@@ -15,12 +15,14 @@ const { chapter } = Astro.props;
     <p class="chapter-header__subtitle">{chapter.subtitle}</p>
   </div>
 
-  <div class="chapter-header__tools">
-    <span class="chapter-header__tools-label">Skills &amp; Tools</span>
-    <div class="chapter-header__tools-row">
-      {chapter.tools.map((tool) => (
-        <ToolIcon src={tool.src} label={tool.label} />
-      ))}
+  {chapter.tools && chapter.tools.length > 0 && (
+    <div class="chapter-header__tools">
+      <span class="chapter-header__tools-label">Skills &amp; Tools</span>
+      <div class="chapter-header__tools-row">
+        {chapter.tools.map((tool) => (
+          <ToolIcon src={tool.src} label={tool.label} />
+        ))}
+      </div>
     </div>
-  </div>
+  )}
 </header>

@@ -82,7 +82,7 @@ function bindIxdToolsAlign(section: HTMLElement) {
 export function initIxdToolsAlign(root: ParentNode = document) {
   root
     .querySelectorAll<HTMLElement>(
-      '.ixd-section.chapter-page, .research-section.chapter-page',
+      '.ixd-section.chapter-page',
     )
     .forEach((section) => {
       bindIxdToolsAlign(section);

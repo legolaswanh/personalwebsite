@@ -1,0 +1,61 @@
+---
+import { pathMilestones } from '../../data/aboutContent';
+---
+
+<section class="about-section about-path" aria-labelledby="about-path-title">
+  <div class="about-section__header">
+    <p class="about-section__eyebrow">Background</p>
+    <h2 id="about-path-title" class="about-section__title">The Path I Came By</h2>
+    <p class="about-section__lede">
+      How my background gradually led me here — from engineering to games, and into
+      interaction design.
+    </p>
+  </div>
+
+  <div class="about-path__track">
+    <div class="about-path__lines" aria-hidden="true">
+      <span class="about-path__line about-path__line--solid"></span>
+      <span class="about-path__line about-path__line--dashed"></span>
+    </div>
+
+    <ol class="about-path__list">
+      {
+        pathMilestones.map((milestone) => (
+          <li
+            class:list={[
+              'about-path__item',
+              milestone.highlight && 'about-path__item--highlight',
+            ]}
+          >
+            <div class="about-path__marker">
+              <span class="about-path__dot" />
+            </div>
+
+            <div class="about-path__intro">
+              <figure class="about-path__figure">
+                <img
+                  class="about-path__image"
+                  src={milestone.image}
+                  alt=""
+                  width="62"
+                  height="62"
+                  loading="lazy"
+                  data-about-img
+                />
+              </figure>
+              <div class="about-path__meta">
+                <span class="about-path__era">{milestone.era}</span>
+                <p class="about-path__subtitle">{milestone.subtitle}</p>
+              </div>
+            </div>
+
+            <div class="about-path__content">
+              <h3 class="about-path__milestone-title">{milestone.title}</h3>
+              <p class="about-path__description">{milestone.description}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

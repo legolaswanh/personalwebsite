@@ -1,0 +1,53 @@
+---
+import { lifeShapes } from '../../data/aboutContent';
+
+const shapeColumns = ([1, 2, 3] as const).map((column) => ({
+  column,
+  items: lifeShapes.filter((item) => item.column === column),
+}));
+---
+
+<section class="about-section about-shapes" aria-labelledby="about-shapes-title">
+  <div class="about-section__header">
+    <p class="about-section__eyebrow">Personal lens</p>
+    <h2 id="about-shapes-title" class="about-section__title">What Shapes Me in Life</h2>
+    <p class="about-section__lede">
+      The interests and experiences outside of work that quietly shape how I design.
+    </p>
+  </div>
+
+  <ul class="about-shapes__grid">
+    {
+      shapeColumns.map(({ column, items }) => (
+        <li class="about-shapes__column">
+          <ul class="about-shapes__stack" data-column={column}>
+            {
+              items.map((item) => (
+                <li class="about-shapes__item" data-shape={item.id}>
+                  <div class="about-shapes__card" tabindex="0">
+                    <div class="about-shapes__card-inner">
+                      <div class="about-shapes__face about-shapes__face--front">
+                        <img
+                          class="about-shapes__image"
+                          src={item.image}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                          data-about-img
+                        />
+                      </div>
+                      <div class="about-shapes__face about-shapes__face--back">
+                        <h3 class="about-shapes__name">{item.name}</h3>
+                        <p class="about-shapes__description">{item.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </li>
+      ))
+    }
+  </ul>
+</section>

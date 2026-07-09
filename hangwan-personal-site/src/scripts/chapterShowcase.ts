@@ -66,6 +66,8 @@ function showImageItem(
   const placeholder = section.querySelector<HTMLElement>('[data-gallery-placeholder]');
   const stage = section.querySelector<HTMLElement>('[data-gallery-stage]');
 
+  stage?.classList.remove('has-image');
+
   if (main) {
     main.removeAttribute('crossorigin');
     main.classList.remove('is-gallery-media-hidden');
@@ -79,8 +81,6 @@ function showImageItem(
   if (placeholder) {
     placeholder.textContent = label;
   }
-
-  stage?.classList.remove('has-image');
 }
 
 function showYoutubeItem(
@@ -94,6 +94,8 @@ function showYoutubeItem(
   const stage = section.querySelector<HTMLElement>('[data-gallery-stage]');
 
   clearYoutubeEmbed(section);
+
+  stage?.classList.remove('has-image');
 
   const poster = galleryItemPoster(item);
 
@@ -111,11 +113,10 @@ function showYoutubeItem(
     placeholder.textContent = label;
   }
 
-  stage?.classList.remove('has-image');
-
   if (container) {
     container.hidden = false;
     stage?.classList.add('is-youtube-active');
+    stage?.classList.add('has-image');
 
     const iframe = document.createElement('iframe');
     iframe.className = 'chapter-gallery__youtube-iframe';
@@ -159,16 +160,23 @@ function setGalleryIndex(section: HTMLElement, index: number) {
   });
 }
 
-function renderTags(container: HTMLElement, tags: string[]) {
+function renderTags(
+  container: HTMLElement,
+  highlightTags: string[],
+  tags: string[],
+) {
+  const createTag = (tag: string, featured: boolean) => {
+    const li = document.createElement('li');
+    const span = document.createElement('span');
+    span.className = `chapter-info__tag${featured ? ' chapter-info__tag--featured' : ''}`;
+    span.textContent = tag;
+    li.appendChild(span);
+    return li;
+  };
+
   container.replaceChildren(
-    ...tags.map((tag, index) => {
-      const li = document.createElement('li');
-      const span = document.createElement('span');
-      span.className = `chapter-info__tag${index === 0 ? ' chapter-info__tag--featured' : ''}`;
-      span.textContent = tag;
-      li.appendChild(span);
-      return li;
-    }),
+    ...highlightTags.map((tag) => createTag(tag, true)),
+    ...tags.map((tag) => createTag(tag, false)),
   );
 }
 
@@ -217,7 +225,7 @@ function updateShowcase(section: HTMLElement, project: ChapterProject) {
   setText('[data-info-summary]', project.summary);
 
   const tags = section.querySelector<HTMLElement>('[data-info-tags]');
-  if (tags) renderTags(tags, project.tags);
+  if (tags) renderTags(tags, project.highlightTags, project.tags);
 
   const cta = section.querySelector<HTMLAnchorElement>('[data-info-cta]');
   if (cta) {
@@ -238,7 +246,7 @@ function updateShowcase(section: HTMLElement, project: ChapterProject) {
   syncGalleryControls(section, project.images.length);
   setGalleryIndex(section, 0);
 
-  if (section.classList.contains('ixd-section') || section.classList.contains('research-section')) {
+  if (section.classList.contains('ixd-section')) {
     requestAnimationFrame(() => alignIxdSectionTools(section));
   }
 }

@@ -1,0 +1,54 @@
+---
+import { positioningSentence } from '../../data/aboutContent';
+import AboutSkillNetwork from './AboutSkillNetwork.astro';
+---
+
+<section class="about-section about-intro" aria-labelledby="about-intro-title">
+  <div class="about-intro__header" data-intro-header>
+    <h1 id="about-intro-title" class="about-intro__statement" data-intro-statement>
+      {positioningSentence.before}
+      <em>{positioningSentence.emphasis}</em>
+      {positioningSentence.after}
+    </h1>
+  </div>
+
+  <div class="about-intro__network">
+    <AboutSkillNetwork />
+  </div>
+</section>
+
+<script>
+  function getLineCount(element: HTMLElement) {
+    const lineHeight = Number.parseFloat(getComputedStyle(element).lineHeight);
+    if (!Number.isFinite(lineHeight) || lineHeight <= 0) return 1;
+    return element.getBoundingClientRect().height / lineHeight;
+  }
+
+  function fitIntroStatementWidth() {
+    const header = document.querySelector<HTMLElement>('[data-intro-header]');
+    const statement = document.querySelector<HTMLElement>('[data-intro-statement]');
+    if (!header || !statement) return;
+
+    let widthPercent = 80;
+    header.style.width = `${widthPercent}%`;
+
+    while (widthPercent < 100 && getLineCount(statement) > 2.05) {
+      widthPercent += 2;
+      header.style.width = `${widthPercent}%`;
+    }
+  }
+
+  function initIntroStatementWidth() {
+    const run = () => fitIntroStatementWidth();
+
+    run();
+    if (document.documentElement.dataset.introStatementWidthReady !== 'true') {
+      document.documentElement.dataset.introStatementWidthReady = 'true';
+      window.addEventListener('resize', run);
+      document.fonts?.ready.then(run).catch(() => undefined);
+    }
+  }
+
+  initIntroStatementWidth();
+  document.addEventListener('astro:page-load', initIntroStatementWidth);
+</script>

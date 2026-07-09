@@ -117,6 +117,8 @@ const projectLinks = [
 </header>
 
 <script>
+  import { scrollToHomeSection, syncHomeSectionHash } from '../scripts/homeSectionHash';
+
   function closeMobileMenu(header: Element, toggle: Element) {
     header.classList.remove('is-menu-open');
     toggle.setAttribute('aria-expanded', 'false');
@@ -124,12 +126,7 @@ const projectLinks = [
   }
 
   function scrollToSection(targetId: string) {
-    const target = document.querySelector(targetId);
-    if (!target) return false;
-    target.scrollIntoView({ behavior: 'smooth' });
-    const nextUrl = targetId === '#home' ? '/' : targetId;
-    history.replaceState(null, '', nextUrl);
-    return true;
+    return scrollToHomeSection(targetId);
   }
 
   function getActiveChapterId() {
@@ -217,7 +214,10 @@ const projectLinks = [
         'scroll',
         () => {
           if (!document.body.classList.contains('is-home')) return;
-          requestAnimationFrame(updateHomeNavActiveState);
+          requestAnimationFrame(() => {
+            updateHomeNavActiveState();
+            syncHomeSectionHash();
+          });
         },
         { passive: true }
       );

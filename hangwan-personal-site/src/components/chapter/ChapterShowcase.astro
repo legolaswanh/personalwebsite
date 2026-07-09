@@ -22,7 +22,10 @@ const initialLabel = initialItem
 <div class="chapter-showcase" data-chapter-showcase>
   <div class="chapter-gallery">
     <div
-      class="chapter-gallery__stage"
+      class:list={[
+        'chapter-gallery__stage',
+        initialPoster && 'has-image',
+      ]}
       data-gallery-stage
       data-asset-wrap
       data-gallery-count={galleryImages.length}
@@ -37,7 +40,7 @@ const initialLabel = initialItem
         data-asset-image
       />
       <div class="chapter-gallery__youtube" data-gallery-youtube hidden></div>
-      <span class="chapter-gallery__placeholder" data-gallery-placeholder>
+      <span class="chapter-gallery__placeholder" data-gallery-placeholder aria-hidden="true">
         {initialLabel}
       </span>
       <button
@@ -96,16 +99,14 @@ const initialLabel = initialItem
       </dl>
 
       <ul class="chapter-info__tags" aria-label="Project capabilities" data-info-tags>
-        {project.tags.map((tag, index) => (
+        {project.highlightTags.map((tag) => (
           <li>
-            <span
-              class:list={[
-                'chapter-info__tag',
-                index === 0 && 'chapter-info__tag--featured',
-              ]}
-            >
-              {tag}
-            </span>
+            <span class="chapter-info__tag chapter-info__tag--featured">{tag}</span>
+          </li>
+        ))}
+        {project.tags.map((tag) => (
+          <li>
+            <span class="chapter-info__tag">{tag}</span>
           </li>
         ))}
       </ul>

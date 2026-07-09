@@ -36,6 +36,7 @@ import DesignResearchSection from '../components/sections/DesignResearchSection.
 <script>
   import { initSectionWheelScroll } from '../scripts/sectionWheelScroll';
   import { syncHomeLayout } from '../scripts/homeLayout';
+  import { syncHomeSectionHash } from '../scripts/homeSectionHash';
 
   let homeLayoutRaf = 0;
 
@@ -70,6 +71,7 @@ import DesignResearchSection from '../components/sections/DesignResearchSection.
     initSectionWheelScroll();
     initHomeEnterAnimation();
     scheduleHomeLayout();
+    syncHomeSectionHash();
 
     const page = document.querySelector('.home-page');
     const frame = document.querySelector('.identity-frame');

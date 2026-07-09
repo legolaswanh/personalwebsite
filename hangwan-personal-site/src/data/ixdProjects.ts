@@ -30,7 +30,8 @@ export const ixdProjects: ChapterProject[] = [
       'Editorial workflows · reader journeys · content structure · collaborative publishing tools',
     summary:
       'An editorial interaction concept exploring how newsroom tools and reader-facing experiences can support clearer, more human storytelling.',
-    tags: ['Editorial UX', 'Service Design', 'Content Systems'],
+    highlightTags: ['Editorial UX'],
+    tags: ['Service Design', 'Content Systems'],
     focusLabel: 'Editorial UX',
     images: ixdProjectImages['public-editor'],
     featured: true,
@@ -46,7 +47,8 @@ export const ixdProjects: ChapterProject[] = [
       'Public engagement · spatial interaction · participatory feedback · on-site prototyping',
     summary:
       'A public interaction installation inviting passersby to shape shared narratives through tactile, in-the-moment participation.',
-    tags: ['Public Interaction', 'Participatory Design', 'Spatial UX'],
+    highlightTags: ['Public Interaction'],
+    tags: ['Participatory Design', 'Spatial UX'],
     focusLabel: 'Public Interaction',
     images: [
       ...ixdProjectImages.opalis,
@@ -64,7 +66,8 @@ export const ixdProjects: ChapterProject[] = [
       'Movement guidance · wearable feedback · rehabilitation support · accessible physical training',
     summary:
       'A wearable interaction system helping users understand muscle engagement through responsive feedback during guided movement practice.',
-    tags: ['Wearable UX', 'Movement Design', 'Rehabilitation Support'],
+    highlightTags: ['Wearable UX'],
+    tags: ['Movement Design', 'Rehabilitation Support'],
     focusLabel: 'Wearable UX',
     images: ixdProjectImages['muscle-mate'],
   },
@@ -79,7 +82,8 @@ export const ixdProjects: ChapterProject[] = [
       'Calming rituals · embodied feedback · gentle pacing · everyday emotional regulation',
     summary:
       'A tangible companion object designed to support calm through subtle haptic cues and low-friction daily rituals.',
-    tags: ['Tangible UX', 'Emotional Design', 'Embodied Interaction'],
+    highlightTags: ['Tangible UX'],
+    tags: ['Emotional Design', 'Embodied Interaction'],
     focusLabel: 'Tangible UX',
     images: [
       ...ixdProjectImages.calmpanion,

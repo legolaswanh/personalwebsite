@@ -85,6 +85,8 @@ const items = [
 </nav>
 
 <script>
+  import { scrollToHomeSection } from '../scripts/homeSectionHash';
+
   function initProjectIndex() {
     const nav = document.querySelector('.project-index');
     const links = document.querySelectorAll('.project-index__link');
@@ -99,6 +101,16 @@ const items = [
     }
 
     links.forEach((link) => {
+      if (!(link instanceof HTMLAnchorElement)) return;
+
+      link.addEventListener('click', (event) => {
+        const href = link.getAttribute('href');
+        if (!href?.startsWith('#') || !document.body.classList.contains('is-home')) return;
+
+        event.preventDefault();
+        scrollToHomeSection(href);
+      });
+
       link.addEventListener('mouseenter', () => {
         setActiveAccent(link.getAttribute('data-accent'));
       });

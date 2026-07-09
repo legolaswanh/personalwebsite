@@ -35,23 +35,25 @@ const {
             role="listitem"
             aria-disabled="true"
           >
-            <span class="chapter-rail__thumb" data-asset-wrap>
-              <img
-                class="chapter-rail__thumb-img"
-                src={projectCoverImage(project.images)}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                data-asset-image
-              />
-              <span class="chapter-rail__thumb-fallback" aria-hidden="true">
-                {project.title.charAt(0)}
+            <span class="chapter-rail__card">
+              <span class="chapter-rail__thumb" data-asset-wrap>
+                <img
+                  class="chapter-rail__thumb-img"
+                  src={projectCoverImage(project.images)}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  data-asset-image
+                />
+                <span class="chapter-rail__thumb-fallback" aria-hidden="true">
+                  {project.title.charAt(0)}
+                </span>
               </span>
-            </span>
-            <span class="chapter-rail__text">
-              <span class="chapter-rail__title">{project.title}</span>
-              <span class="chapter-rail__focus chapter-rail__focus--static">
-                {project.focusLabel}
+              <span class="chapter-rail__text">
+                <span class="chapter-rail__title">{project.title}</span>
+                <span class="chapter-rail__focus chapter-rail__focus--static">
+                  {project.focusLabel}
+                </span>
               </span>
             </span>
           </div>
@@ -67,22 +69,24 @@ const {
             aria-pressed={project.id === activeId ? 'true' : 'false'}
             aria-label={`Show ${project.title}`}
           >
-            <span class="chapter-rail__thumb" data-asset-wrap>
-              <img
-                class="chapter-rail__thumb-img"
-                src={projectCoverImage(project.images)}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                data-asset-image
-              />
-              <span class="chapter-rail__thumb-fallback" aria-hidden="true">
-                {project.title.charAt(0)}
+            <span class="chapter-rail__card">
+              <span class="chapter-rail__thumb" data-asset-wrap>
+                <img
+                  class="chapter-rail__thumb-img"
+                  src={projectCoverImage(project.images)}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  data-asset-image
+                />
+                <span class="chapter-rail__thumb-fallback" aria-hidden="true">
+                  {project.title.charAt(0)}
+                </span>
               </span>
-            </span>
-            <span class="chapter-rail__text">
-              <span class="chapter-rail__title">{project.title}</span>
-              <span class="chapter-rail__focus">{project.focusLabel}</span>
+              <span class="chapter-rail__text">
+                <span class="chapter-rail__title">{project.title}</span>
+                <span class="chapter-rail__focus">{project.focusLabel}</span>
+              </span>
             </span>
           </button>
         )}

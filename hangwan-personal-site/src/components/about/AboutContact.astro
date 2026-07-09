@@ -1,0 +1,37 @@
+---
+import { contactEmail, resumeUrl } from '../../data/aboutContent';
+
+const linkIconSrc = '/images/home/Icon-link.svg';
+---
+
+<section class="about-section about-contact" aria-labelledby="about-contact-title">
+  <div class="about-contact__inner">
+    <h2 id="about-contact-title" class="about-contact__title">
+      Open to work and thoughtful collaboration.
+    </h2>
+    <p class="about-contact__text">
+      If a project needs playful systems, careful interaction, or a bridge between design
+      and engineering — I would love to hear from you.
+    </p>
+
+    <div class="about-contact__links">
+      <a class="about-contact__link" href={`mailto:${contactEmail}`}>
+        {contactEmail}
+      </a>
+      <a
+        class="about-contact__link about-contact__link--resume"
+        href={resumeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span>Get Resume</span>
+        <img src={linkIconSrc} alt="" width="16" height="16" />
+      </a>
+      <a class="about-contact__link about-contact__link--projects" href="/#chapter-1">
+        View Projects
+      </a>
+    </div>
+
+    <p class="about-contact__signoff">Hang Wan — Design Connector</p>
+  </div>
+</section>
