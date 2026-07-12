@@ -22,7 +22,9 @@ export const gamesToolIcons = {
   unity: `${base}/tools/unity.png`,
   csharp: `${base}/tools/csharp.png`,
   vscode: `${base}/tools/vscode.png`,
+  aseprite: `${base}/tools/aseprite.png`,
   git: `${base}/tools/git.png`,
+  cursor: `${base}/tools/cursor.png`,
 } as const;
 
 export type GamesToolIconKey = keyof typeof gamesToolIcons;

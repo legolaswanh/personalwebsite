@@ -18,7 +18,7 @@ export interface ProjectedPoint {
 }
 
 export const SPHERE_RADIUS = 1;
-export const PERSPECTIVE = 2.8;
+export const PERSPECTIVE = 2.35;
 /** Fixed screen-space ellipse radii — applied only at projection, not in 3D rotation */
 export const PROJECTION_ELLIPSE_X = 1.18;
 export const PROJECTION_ELLIPSE_Y = 0.76;

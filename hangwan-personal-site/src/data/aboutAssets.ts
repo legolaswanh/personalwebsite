@@ -46,6 +46,12 @@ export const aboutNetworkIcons: Partial<Record<string, string>> = {
   python: `${base}/network/python.png`,
 };
 
+/** Custom cursors for the identity sphere — drop PNGs into public/images/about/network/ */
+export const aboutNetworkCursors = {
+  openHand: `${base}/network/cursor-open-hand.png`,
+  closedHand: `${base}/network/cursor-closed-hand.png`,
+} as const;
+
 export type AboutPathImageKey = keyof typeof aboutPathImages;
 export type AboutShapeImageKey = keyof typeof aboutShapeImages;
 export type AboutNetworkIconKey = keyof typeof aboutNetworkIcons;

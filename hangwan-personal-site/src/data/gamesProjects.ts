@@ -22,7 +22,9 @@ export const gamesChapterConfig: ChapterConfig = {
     { src: gamesToolIcons.unity, label: 'Unity' },
     { src: gamesToolIcons.csharp, label: 'C#' },
     { src: gamesToolIcons.vscode, label: 'VS Code' },
+    { src: gamesToolIcons.aseprite, label: 'Aseprite' },
     { src: gamesToolIcons.git, label: 'Git' },
+    { src: gamesToolIcons.cursor, label: 'Cursor' },
   ],
 };
 

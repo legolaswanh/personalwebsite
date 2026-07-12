@@ -1,42 +1,41 @@
-function getPremiereLabel(tools: HTMLElement) {
-  const labels = [...tools.querySelectorAll<HTMLElement>('.tool-icon__label')];
-  return (
-    labels.find((label) => label.textContent?.trim() === 'Premiere Pro') ??
-    labels[3] ??
-    null
-  );
+function getFirstRowEndLabel(tools: HTMLElement) {
+  const icons = [...tools.querySelectorAll<HTMLElement>('.tool-icon')];
+  return icons[3]?.querySelector<HTMLElement>('.tool-icon__label') ?? null;
 }
 
-export function alignIxdSectionTools(section: HTMLElement) {
+export function alignChapterSectionTools(section: HTMLElement) {
   const tools = section.querySelector<HTMLElement>('.chapter-header__tools');
   const stage = section.querySelector<HTMLElement>('[data-gallery-stage]');
-  const premiere = tools ? getPremiereLabel(tools) : null;
+  const anchor = tools ? getFirstRowEndLabel(tools) : null;
 
-  if (!tools || !stage || !premiere) return;
+  if (!tools || !stage || !anchor) return;
 
   const stageRect = stage.getBoundingClientRect();
   if (!stageRect.width) return;
 
   tools.style.transform = '';
 
-  const premiereRight = premiere.getBoundingClientRect().right;
-  const shift = stageRect.right - premiereRight;
+  const anchorRight = anchor.getBoundingClientRect().right;
+  const shift = stageRect.right - anchorRight;
 
   tools.style.transform = Math.abs(shift) < 0.5 ? '' : `translateX(${shift}px)`;
 }
 
-function bindIxdToolsAlign(section: HTMLElement) {
-  if (section.dataset.ixdToolsAlignBound === 'true') return;
-  section.dataset.ixdToolsAlignBound = 'true';
+/** @deprecated Use alignChapterSectionTools */
+export const alignIxdSectionTools = alignChapterSectionTools;
+
+function bindChapterToolsAlign(section: HTMLElement) {
+  if (section.dataset.chapterToolsAlignBound === 'true') return;
+  section.dataset.chapterToolsAlignBound = 'true';
 
   const tools = section.querySelector<HTMLElement>('.chapter-header__tools');
   const stage = section.querySelector<HTMLElement>('[data-gallery-stage]');
   const image = section.querySelector<HTMLImageElement>('[data-gallery-main]');
-  const premiere = tools ? getPremiereLabel(tools) : null;
+  const anchor = tools ? getFirstRowEndLabel(tools) : null;
 
   const scheduleAlign = () => {
     requestAnimationFrame(() => {
-      requestAnimationFrame(() => alignIxdSectionTools(section));
+      requestAnimationFrame(() => alignChapterSectionTools(section));
     });
   };
 
@@ -61,7 +60,7 @@ function bindIxdToolsAlign(section: HTMLElement) {
     const observer = new ResizeObserver(scheduleAlign);
     if (tools) observer.observe(tools);
     if (stage) observer.observe(stage);
-    if (premiere) observer.observe(premiere);
+    if (anchor) observer.observe(anchor);
     const frame = section.querySelector('.chapter-page__frame');
     if (frame) observer.observe(frame);
   }
@@ -79,12 +78,15 @@ function bindIxdToolsAlign(section: HTMLElement) {
   });
 }
 
-export function initIxdToolsAlign(root: ParentNode = document) {
+export function initChapterToolsAlign(root: ParentNode = document) {
   root
     .querySelectorAll<HTMLElement>(
-      '.ixd-section.chapter-page',
+      '.games-section.chapter-page, .ixd-section.chapter-page',
     )
     .forEach((section) => {
-      bindIxdToolsAlign(section);
+      bindChapterToolsAlign(section);
     });
 }
+
+/** @deprecated Use initChapterToolsAlign */
+export const initIxdToolsAlign = initChapterToolsAlign;

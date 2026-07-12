@@ -13,7 +13,7 @@ import {
   skillNodes,
   type SkillNode,
 } from '../../data/skillNetwork';
-import { aboutCenterIcons } from '../../data/aboutAssets';
+import { aboutCenterIcons, aboutNetworkCursors } from '../../data/aboutAssets';
 import {
   depthFactor,
   lerp,
@@ -35,6 +35,23 @@ const NETWORK_SCALE = 1.4;
 const CENTER_IMAGE_DRAG_THRESHOLD = 0.15;
 /** Sort center slightly behind the ellipsoid mid-plane so front nodes can pass over it */
 const CENTER_DEPTH_BIAS = 0.15;
+
+type DepthStyle = {
+  opacity: number;
+  scale: number;
+  blur: number;
+  brightness: number;
+  zIndex: number;
+};
+
+function buildNodeFilter(depthStyle: DepthStyle) {
+  const filters: string[] = [];
+  if (depthStyle.blur > 0) filters.push(`blur(${depthStyle.blur}px)`);
+  if (Math.abs(depthStyle.brightness - 1) > 0.01) {
+    filters.push(`brightness(${depthStyle.brightness})`);
+  }
+  return filters.length > 0 ? filters.join(' ') : undefined;
+}
 
 function pickRandomCenterIndex(current: number) {
   if (aboutCenterIcons.length <= 1) return 1;
@@ -72,23 +89,25 @@ function projectAllNodes(
   );
 }
 
-function getNodeDepthStyle(node: SkillNode, projected: ProjectedPoint) {
+function getNodeDepthStyle(node: SkillNode, projected: ProjectedPoint): DepthStyle {
   const sortDepth = getSortDepth(node, projected);
+  const depth = depthFactor(sortDepth);
 
   if (node.type === 'center') {
     return {
-      opacity: 1,
-      scale: 1.5 * NETWORK_SCALE,
+      opacity: lerp(0.92, 1, depth),
+      scale: lerp(1.38, 1.52, depth) * NETWORK_SCALE,
       blur: 0,
+      brightness: lerp(0.94, 1.03, depth),
       zIndex: getDepthZIndex(sortDepth),
     };
   }
 
-  const depth = depthFactor(sortDepth);
   return {
-    opacity: lerp(0.3, 1, depth),
-    scale: lerp(0.74, 1.1, depth) * NETWORK_SCALE,
-    blur: depth < 0.38 ? lerp(1.4, 0, depth / 0.38) : 0,
+    opacity: lerp(0.2, 1, depth),
+    scale: lerp(0.62, 1.18, depth) * NETWORK_SCALE,
+    blur: depth < 0.5 ? lerp(2.2, 0, depth / 0.5) : 0,
+    brightness: lerp(0.72, 1.05, depth),
     zIndex: getDepthZIndex(sortDepth),
   };
 }
@@ -129,6 +148,17 @@ export default function IdentitySphereNetwork() {
   const projected = useMemo(
     () => (size.width > 0 && size.height > 0 ? projectAllNodes(rotation, size.width, size.height) : {}),
     [rotation, size.height, size.width],
+  );
+
+  const sortedNodes = useMemo(
+    () =>
+      [...skillNodes].sort((nodeA, nodeB) => {
+        const pointA = projected[nodeA.id];
+        const pointB = projected[nodeB.id];
+        if (!pointA || !pointB) return 0;
+        return getSortDepth(nodeA, pointA) - getSortDepth(nodeB, pointB);
+      }),
+    [projected],
   );
 
   useEffect(() => {
@@ -324,7 +354,6 @@ export default function IdentitySphereNetwork() {
     const depthStyle = getNodeDepthStyle(node, point);
     const isActive = hoveredId === node.id;
     const isConnected = Boolean(hoveredId && connectedIds.has(node.id) && !isActive);
-    const dimMultiplier = isHighlighting && !isActive && !isConnected ? 0.55 : 1;
 
     return (
       <button
@@ -342,9 +371,9 @@ export default function IdentitySphereNetwork() {
         style={{
           left: `${point.x}px`,
           top: `${point.y}px`,
-          opacity: depthStyle.opacity * dimMultiplier,
+          opacity: depthStyle.opacity,
           zIndex: depthStyle.zIndex,
-          filter: depthStyle.blur > 0 ? `blur(${depthStyle.blur}px)` : undefined,
+          filter: buildNodeFilter(depthStyle),
           transform: `translate(-50%, -50%) scale(${depthStyle.scale})`,
         }}
         onMouseEnter={() => setHoveredId(node.id)}
@@ -367,6 +396,10 @@ export default function IdentitySphereNetwork() {
       ]
         .filter(Boolean)
         .join(' ')}
+      style={{
+        ['--identity-sphere-cursor-open' as string]: `url('${aboutNetworkCursors.openHand}') 16 16, grab`,
+        ['--identity-sphere-cursor-grab' as string]: `url('${aboutNetworkCursors.closedHand}') 16 16, grabbing`,
+      }}
     >
       {!isMobile ? (
         <>
@@ -384,7 +417,7 @@ export default function IdentitySphereNetwork() {
             }}
           >
             <div className="identity-sphere__nodes" aria-label="Design identity network">
-              {skillNodes.map(renderDesktopNode)}
+              {sortedNodes.map(renderDesktopNode)}
             </div>
           </div>
         </>

@@ -58,7 +58,11 @@ const surfaceNodeDefs: Array<{ id: string; label: string; type: Exclude<SkillNod
   { id: 'player-exp', label: 'Player Experience', type: 'cross' },
 ];
 
-const surfaceNodeIds = surfaceNodeDefs.map((node) => node.id);
+const surfaceSkillNodes = surfaceNodeDefs.map((node, index) => ({
+  ...node,
+  position: fibonacciSphere(index, surfaceNodeDefs.length),
+  icon: resolveNodeIcon(node.id),
+}));
 
 export const skillNodes: SkillNode[] = [
   {
@@ -69,38 +73,42 @@ export const skillNodes: SkillNode[] = [
     position: { x: 0, y: 0, z: 0 },
     icon: aboutCenterIcons[0],
   },
-  ...surfaceNodeDefs.map((node, index) => ({
-    ...node,
-    position: fibonacciSphere(index, surfaceNodeDefs.length),
-    icon: resolveNodeIcon(node.id),
-  })),
+  ...surfaceSkillNodes,
 ];
 
-export const skillConnections: SkillConnection[] = [
-  ...surfaceNodeIds.map((nodeId) => ({ from: 'center', to: nodeId })),
+function sphericalAngleBetween(a: Vec3, b: Vec3) {
+  const dot = Math.min(1, Math.max(-1, a.x * b.x + a.y * b.y + a.z * b.z));
+  return Math.acos(dot);
+}
 
-  { from: 'systems', to: 'mechanics' },
-  { from: 'narrative', to: 'player-exp' },
-  { from: 'reflection', to: 'player-exp' },
-  { from: 'ux', to: 'public' },
-  { from: 'unity', to: 'csharp' },
-  { from: 'python', to: 'computational' },
-  { from: 'emotional-play', to: 'ux' },
-  { from: 'computational', to: 'mechanics' },
-  { from: 'spatial', to: 'systems' },
-  { from: 'physical', to: 'tangible' },
+/** Connect each surface node to its nearest neighbors on the sphere. */
+function buildSphereNeighborConnections(nodes: SkillNode[], neighborCount = 3): SkillConnection[] {
+  const surfaceNodes = nodes.filter((node) => node.type !== 'center');
+  const edgeKeys = new Set<string>();
+  const connections: SkillConnection[] = [];
 
-  { from: 'arduino', to: 'physical' },
-  { from: 'arduino', to: 'python' },
-  { from: 'blender', to: 'tangible' },
-  { from: 'blender', to: 'unity' },
-  { from: 'figma', to: 'ux' },
-  { from: 'figma', to: 'framer' },
-  { from: 'framer', to: 'web-proto' },
-  { from: 'photoshop', to: 'visual-analysis' },
-  { from: 'premierpro', to: 'narrative' },
-  { from: 'premierpro', to: 'photoshop' },
-];
+  surfaceNodes.forEach((node) => {
+    const nearest = surfaceNodes
+      .filter((other) => other.id !== node.id)
+      .map((other) => ({
+        id: other.id,
+        angle: sphericalAngleBetween(node.position, other.position),
+      }))
+      .sort((left, right) => left.angle - right.angle)
+      .slice(0, neighborCount);
+
+    nearest.forEach((neighbor) => {
+      const key = [node.id, neighbor.id].sort().join('|');
+      if (edgeKeys.has(key)) return;
+      edgeKeys.add(key);
+      connections.push({ from: node.id, to: neighbor.id });
+    });
+  });
+
+  return connections;
+}
+
+export const skillConnections: SkillConnection[] = buildSphereNeighborConnections(skillNodes);
 
 export const mobileSkillGroups: MobileSkillGroup[] = [
   {

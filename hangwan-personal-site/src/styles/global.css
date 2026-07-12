@@ -4476,12 +4476,7 @@ a:focus-visible .project-tag,
   font-size: clamp(1.75rem, 2.75vw, 2rem);
 }
 
-.games-section.chapter-page .chapter-header__tools-row {
-  grid-template-rows: auto;
-  row-gap: 0;
-}
-
-.ixd-section.chapter-page .chapter-header__tools-row, .research-section.chapter-page .chapter-header__tools-row {
+.games-section.chapter-page .chapter-header__tools-row, .ixd-section.chapter-page .chapter-header__tools-row, .research-section.chapter-page .chapter-header__tools-row {
   grid-template-columns: repeat(4, var(--chapter-tool-icon-size));
   grid-template-rows: repeat(2, auto);
   row-gap: 0.75rem;
@@ -5201,7 +5196,23 @@ body.is-about .site-navbar__toggle {
   width: 100%;
   overflow: visible;
   pointer-events: none;
-  background: #ffffff;
+  background: transparent;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 48%,
+    rgba(0, 0, 0, 0.88) 68%,
+    rgba(0, 0, 0, 0.45) 84%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0%,
+    #000 48%,
+    rgba(0, 0, 0, 0.88) 68%,
+    rgba(0, 0, 0, 0.45) 84%,
+    transparent 100%
+  );
 }
 
 .about-hero-grid__cells {
@@ -5230,12 +5241,13 @@ body.is-about .site-navbar__toggle {
   position: absolute;
   inset: auto 0 0;
   z-index: 1;
-  height: min(42%, 18rem);
+  height: min(58%, 24rem);
   pointer-events: none;
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0) 0%,
-    rgba(247, 246, 242, 0.55) 52%,
+    rgba(247, 246, 242, 0.18) 38%,
+    rgba(247, 246, 242, 0.62) 72%,
     var(--about-bg) 100%
   );
 }
@@ -5368,13 +5380,13 @@ body.is-about .site-navbar__toggle {
   position: relative;
   width: 100%;
   height: clamp(38rem, 74vh, 48rem);
-  cursor: grab;
+  cursor: var(--identity-sphere-cursor-open, grab);
   touch-action: none;
   user-select: none;
 }
 
 .identity-sphere.is-dragging .identity-sphere__stage {
-  cursor: grabbing;
+  cursor: var(--identity-sphere-cursor-grab, grabbing);
 }
 
 .identity-sphere__edges {
@@ -5384,20 +5396,25 @@ body.is-about .site-navbar__toggle {
   height: 100%;
   pointer-events: none;
   z-index: 1;
+  overflow: visible;
 }
 
 .identity-sphere__edge {
-  stroke: rgba(198, 195, 188, 0.9);
-  stroke-width: 1;
+  stroke: rgba(168, 165, 158, 0.85);
+  fill: none;
   vector-effect: non-scaling-stroke;
   transition:
     stroke 220ms ease,
-    opacity 220ms ease;
+    opacity 220ms ease,
+    stroke-width 220ms ease;
 }
 
 .identity-sphere__edge.is-active {
   stroke: var(--accent);
-  stroke-width: 1.35;
+}
+
+.identity-sphere__edge.is-connected {
+  stroke: rgba(169, 157, 248, 0.72);
 }
 
 .identity-sphere__nodes {
@@ -5420,6 +5437,7 @@ body.is-about .site-navbar__toggle {
   background: transparent;
   pointer-events: auto;
   text-align: center;
+  cursor: inherit;
   transition:
     color 220ms ease,
     border-color 220ms ease,
