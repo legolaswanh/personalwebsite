@@ -90,6 +90,22 @@ export const ixdProjects: ChapterProject[] = [
       { type: 'youtube', videoId: 'IOh7x6-VL0U', label: 'Calmpanion Demo' }
     ],
   },
+  {
+    id: 'portfolio',
+    title: 'Portfolio Redesign',
+    roleLabel: 'Personal project | My Work:',
+    label: 'Selected Work',
+    category: 'Information Architecture / Interface System',
+    role: 'UI/UX Designer',
+    focus:
+      'Calming rituals · embodied feedback · gentle pacing · everyday emotional regulation',
+    summary:
+      'A portfolio redesign focused on clearer information architecture, stronger project hierarchy, and a more coherent visual system for my game and interaction design work.',
+    highlightTags: ['Information Architecture', 'Interface System'],
+    tags: ['Visual System', 'Project Hierarchy'],
+    focusLabel: 'Tangible UX',
+    images: ixdProjectImages['portfolio-redesign'],
+  },
 ];
 
 export const ixdDefaultProject =

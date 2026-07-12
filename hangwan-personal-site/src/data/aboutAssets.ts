@@ -55,3 +55,10 @@ export const aboutNetworkCursors = {
 export type AboutPathImageKey = keyof typeof aboutPathImages;
 export type AboutShapeImageKey = keyof typeof aboutShapeImages;
 export type AboutNetworkIconKey = keyof typeof aboutNetworkIcons;
+
+export const aboutContactIcons = {
+  gmail: `${base}/contact/gmail.png`,
+  linkedin: `${base}/contact/linkedin.png`,
+  instagram: `${base}/contact/instagram.png`,
+  facebook: `${base}/contact/facebook.png`,
+} as const;

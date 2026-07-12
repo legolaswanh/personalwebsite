@@ -29,14 +29,16 @@ function resolveNodeIcon(id: string): string | undefined {
 }
 
 const surfaceNodeDefs: Array<{ id: string; label: string; type: Exclude<SkillNodeType, 'center'> }> = [
-  { id: 'systems', label: 'Systems', type: 'related' },
-  { id: 'mechanics', label: 'Mechanics', type: 'related' },
-  { id: 'narrative', label: 'Narrative', type: 'related' },
+  { id: 'systems', label: 'System Design', type: 'related' },
+  { id: 'mechanics', label: 'Mechanic-driven', type: 'related' },
+  { id: 'narrative', label: 'Narrative-driven', type: 'related' },
+  { id: 'concept', label: 'Concept-driven', type: 'related' },
   { id: 'prototyping-gd', label: 'Prototyping', type: 'related' },
   { id: 'ux', label: 'UX', type: 'related' },
-  { id: 'public', label: 'Public Interaction', type: 'related' },
+  { id: 'empathic', label: 'Deeply Empathic', type: 'related' },
+  { id: 'level', label: 'Level Design', type: 'related' },
   { id: 'tangible', label: 'Tangible Interfaces', type: 'related' },
-  { id: 'service', label: 'Service Thinking', type: 'related' },
+  { id: 'storytelling', label: 'Storytelling', type: 'related' },
   { id: 'user-research', label: 'User Research', type: 'related' },
   { id: 'design-studies', label: 'Design Studies', type: 'related' },
   { id: 'visual-analysis', label: 'Visual Analysis', type: 'related' },
@@ -56,6 +58,12 @@ const surfaceNodeDefs: Array<{ id: string; label: string; type: Exclude<SkillNod
   { id: 'spatial', label: 'Spatial Puzzles', type: 'cross' },
   { id: 'physical', label: 'Physical Prototyping', type: 'cross' },
   { id: 'player-exp', label: 'Player Experience', type: 'cross' },
+  { id: 'playtesting', label: 'Playtesting', type: 'cross' },
+  { id: 'human-centered', label: 'Human-centered Design', type: 'cross' },
+  { id: 'user-journey', label: 'User Journey', type: 'cross' },
+  { id: 'rapid-prototyping', label: 'Rapid Prototyping', type: 'cross' },
+  { id: 'research-backed', label: 'Research-backed', type: 'cross' },
+  { id: 'cross-medium', label: 'Cross-Medium', type: 'cross' },
 ];
 
 const surfaceSkillNodes = surfaceNodeDefs.map((node, index) => ({

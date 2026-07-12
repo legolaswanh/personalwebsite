@@ -10,7 +10,6 @@ export interface PathMilestone {
   subtitle: string;
   description: string;
   image: string;
-  highlight?: boolean;
 }
 
 export interface LifeShape {
@@ -46,7 +45,6 @@ export const pathMilestones: PathMilestone[] = [
     description:
       'From testing mechanics and managing releases to bridging teams and timelines — learning how games are made and shipped.',
     image: aboutPathImages['game-industry'],
-    highlight: true,
   },
   {
     id: 'chalmers',
@@ -56,7 +54,6 @@ export const pathMilestones: PathMilestone[] = [
     description:
       'Studying how people interact with technology, spaces, and each other.',
     image: aboutPathImages.chalmers,
-    highlight: true,
   },
   {
     id: 'current',
@@ -66,7 +63,6 @@ export const pathMilestones: PathMilestone[] = [
     description:
       'Bringing engineering rigour and design empathy into playful, thoughtful experiences.',
     image: aboutPathImages.current,
-    highlight: true,
   },
 ];
 
@@ -126,3 +122,9 @@ export const resumeUrl =
   'https://drive.google.com/file/d/1yYNvvnpq2QIb2F3S9P9OkD5jCeE-0CQJ/view?usp=drive_link';
 
 export const contactEmail = 'legolaswandd@gmail.com';
+
+export const socialLinks = {
+  linkedin: 'https://www.linkedin.com/in/hangwan',
+  instagram: 'https://www.instagram.com/hangwan',
+  facebook: 'https://www.facebook.com/hangwan',
+} as const;

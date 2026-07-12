@@ -1,0 +1,42 @@
+---
+interface Props {
+  src: string;
+  alt?: string;
+  placeholder: string;
+  aspectRatio?: string;
+  fit?: 'cover' | 'contain' | 'fill';
+  class?: string;
+}
+
+const {
+  src,
+  alt = '',
+  placeholder,
+  aspectRatio,
+  fit = 'cover',
+  class: className,
+} = Astro.props;
+---
+
+<figure
+  class:list={[
+    'case-study-media',
+    fit && `case-study-media--${fit}`,
+    className,
+  ]}
+  style={aspectRatio ? `--media-ratio: ${aspectRatio}` : undefined}
+  data-case-study-media
+>
+  <img
+    class="case-study-media__img"
+    src={src}
+    alt={alt}
+    loading="lazy"
+    decoding="async"
+    data-case-study-img
+    data-placeholder={placeholder}
+  />
+  <figcaption class="case-study-media__placeholder" aria-hidden="true">
+    <span>{placeholder}</span>
+  </figcaption>
+</figure>

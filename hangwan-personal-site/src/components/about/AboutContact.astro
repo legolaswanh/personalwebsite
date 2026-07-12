@@ -1,37 +1,80 @@
 ---
-import { contactEmail, resumeUrl } from '../../data/aboutContent';
+import { contactEmail, socialLinks } from '../../data/aboutContent';
+import { aboutContactIcons } from '../../data/aboutAssets';
 
-const linkIconSrc = '/images/home/Icon-link.svg';
+const socialItems = [
+  { id: 'linkedin', label: 'LinkedIn', href: socialLinks.linkedin },
+  { id: 'instagram', label: 'Instagram', href: socialLinks.instagram },
+  { id: 'facebook', label: 'Facebook', href: socialLinks.facebook },
+] as const;
 ---
 
-<section class="about-section about-contact" aria-labelledby="about-contact-title">
+<section class="about-section about-contact" aria-labelledby="about-contact-thanks">
   <div class="about-contact__inner">
-    <h2 id="about-contact-title" class="about-contact__title">
-      Open to work and thoughtful collaboration.
-    </h2>
-    <p class="about-contact__text">
-      If a project needs playful systems, careful interaction, or a bridge between design
-      and engineering — I would love to hear from you.
-    </p>
-
-    <div class="about-contact__links">
-      <a class="about-contact__link" href={`mailto:${contactEmail}`}>
-        {contactEmail}
-      </a>
-      <a
-        class="about-contact__link about-contact__link--resume"
-        href={resumeUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span>Get Resume</span>
-        <img src={linkIconSrc} alt="" width="16" height="16" />
-      </a>
-      <a class="about-contact__link about-contact__link--projects" href="/#chapter-1">
-        View Projects
-      </a>
+    <div class="about-contact__text-block">
+      <div class="about-contact__messages">
+        <p id="about-contact-thanks" class="about-contact__thanks">
+          Thank you for exploring my world!
+        </p>
+        <p class="about-contact__headline">Open to work and thoughtful collaboration.</p>
+      </div>
     </div>
 
-    <p class="about-contact__signoff">Hang Wan — Design Connector</p>
+    <div class="about-contact__links-wrap">
+      <hr class="about-contact__rule" aria-hidden="true" />
+
+      <div class="about-contact__bar">
+        <div class="about-contact__lead-group">
+          <p class="about-contact__label">Contact me!</p>
+          <a class="about-contact__email" href={`mailto:${contactEmail}`}>
+            <img
+              class="about-contact__icon about-contact__icon--email"
+              src={aboutContactIcons.gmail}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+            <span>{contactEmail}</span>
+          </a>
+        </div>
+
+        <span class="about-contact__vrule" aria-hidden="true"></span>
+
+        <div class="about-contact__socials">
+          {
+            socialItems.map((item) => (
+              <a
+                class="about-contact__social"
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={item.label}
+              >
+                <img
+                  class:list={[
+                    'about-contact__icon',
+                    'about-contact__icon--social',
+                    item.id === 'facebook' && 'about-contact__icon--native',
+                  ]}
+                  src={aboutContactIcons[item.id]}
+                  alt=""
+                  width="44"
+                  height="44"
+                  loading="lazy"
+                />
+              </a>
+            ))
+          }
+        </div>
+
+        <span class="about-contact__vrule" aria-hidden="true"></span>
+
+        <div class="about-contact__credit">
+          <span class="about-contact__handle">@Hang Wan</span>
+          <span class="about-contact__year">2026</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

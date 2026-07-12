@@ -11,6 +11,7 @@ export const ixdProjectImages = {
   'public-editor': discoverProjectImages(base, 'public-editor'),
   calmpanion: discoverProjectImages(base, 'calmpanion'),
   'muscle-mate': discoverProjectImages(base, 'muscle-mate'),
+  'portfolio-redesign': discoverProjectImages(base, 'portfolio-redesign'),
 } as const;
 
 export const ixdToolIcons = {

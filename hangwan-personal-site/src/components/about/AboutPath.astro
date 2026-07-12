@@ -4,8 +4,9 @@ import { pathMilestones } from '../../data/aboutContent';
 
 <section class="about-section about-path" aria-labelledby="about-path-title">
   <div class="about-section__header">
-    <p class="about-section__eyebrow">Background</p>
-    <h2 id="about-path-title" class="about-section__title">The Path I Came By</h2>
+    <h2 id="about-path-title" class="about-section__title">
+      The <span class="about-section__title-accent">Path</span> I Came By
+    </h2>
     <p class="about-section__lede">
       How my background gradually led me here — from engineering to games, and into
       interaction design.
@@ -21,12 +22,7 @@ import { pathMilestones } from '../../data/aboutContent';
     <ol class="about-path__list">
       {
         pathMilestones.map((milestone) => (
-          <li
-            class:list={[
-              'about-path__item',
-              milestone.highlight && 'about-path__item--highlight',
-            ]}
-          >
+          <li class="about-path__item">
             <div class="about-path__marker">
               <span class="about-path__dot" />
             </div>
