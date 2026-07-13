@@ -6364,8 +6364,7 @@ body.is-project-case-study main {
 }
 
 .scarlett-case-study__hero-media {
-  width: 75%;
-  margin-inline: auto;
+  align-self: center;
 }
 
 .scarlett-case-study__hero-copy {
@@ -6636,6 +6635,11 @@ body.is-project-case-study main {
 
 .case-study-media--fill .case-study-media__img {
   object-fit: fill;
+}
+
+.case-study-media.scarlett-case-study__hero-media {
+  width: 75%;
+  max-width: 75%;
 }
 
 .case-study-media__placeholder {
