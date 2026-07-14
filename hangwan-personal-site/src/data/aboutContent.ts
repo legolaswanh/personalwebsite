@@ -119,12 +119,12 @@ export const lifeShapes: LifeShape[] = [
 ];
 
 export const resumeUrl =
-  'https://drive.google.com/file/d/1yYNvvnpq2QIb2F3S9P9OkD5jCeE-0CQJ/view?usp=drive_link';
+  'https://drive.google.com/file/d/1tUwnMqmtWf61YQx-GrvJGIB6kvgTHGwa/view?usp=drive_link';
 
 export const contactEmail = 'legolaswandd@gmail.com';
 
 export const socialLinks = {
-  linkedin: 'https://www.linkedin.com/in/hangwan',
-  instagram: 'https://www.instagram.com/hangwan',
-  facebook: 'https://www.facebook.com/hangwan',
+  linkedin: 'https://www.linkedin.com/in/hang-wan-109a93256/',
+  instagram: 'https://www.instagram.com/legolaswandd/',
+  facebook: 'https://www.facebook.com/profile.php?id=61557645064154',
 } as const;

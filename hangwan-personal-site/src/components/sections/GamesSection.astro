@@ -39,14 +39,17 @@ import {
 </section>
 
 <script>
-  import { initChapterShowcase } from '../../scripts/chapterShowcase';
+  import { initChapterShowcase, initChapterHighlightFromUrl } from '../../scripts/chapterShowcase';
   import { initGamesChapterGallery } from '../../scripts/gamesChapterGallery';
   import { initChapterToolsAlign } from '../../scripts/alignIxdTools';
+  import { initChapterLayout } from '../../scripts/chapterLayout';
 
   function initGamesSection() {
     initChapterShowcase();
     initGamesChapterGallery();
     initChapterToolsAlign();
+    initChapterLayout();
+    initChapterHighlightFromUrl();
   }
 
   initGamesSection();

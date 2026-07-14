@@ -7,6 +7,10 @@ import type {
 import { galleryItemPoster } from '../utils/chapterGallery';
 import { youtubeEmbedUrl } from '../utils/parseYoutubeId';
 import { alignIxdSectionTools } from './alignIxdTools';
+import { syncChapterLayout } from './chapterLayout';
+import { scrollToHomeSection } from './homeSectionHash';
+
+let chapterHighlightHandled = '';
 
 function getProjects(section: HTMLElement): ChapterProject[] {
   const dataEl = section.querySelector<HTMLScriptElement>('[data-chapter-projects]');
@@ -249,6 +253,8 @@ function updateShowcase(section: HTMLElement, project: ChapterProject) {
   if (section.classList.contains('ixd-section')) {
     requestAnimationFrame(() => alignIxdSectionTools(section));
   }
+
+  requestAnimationFrame(() => syncChapterLayout());
 }
 
 function setActiveRailItem(section: HTMLElement, projectId: string) {
@@ -372,6 +378,89 @@ function bindRailControls(section: HTMLElement) {
 
   rail.addEventListener('dragstart', (event) => {
     event.preventDefault();
+  });
+}
+
+function scrollActiveRailItemIntoView(section: HTMLElement) {
+  const rail = section.querySelector<HTMLElement>('[data-chapter-rail]');
+  const active = section.querySelector<HTMLElement>('[data-chapter-rail] .chapter-rail__item.is-active');
+  if (!rail || !active) return;
+
+  const railRect = rail.getBoundingClientRect();
+  const itemRect = active.getBoundingClientRect();
+
+  if (itemRect.left < railRect.left || itemRect.right > railRect.right) {
+    active.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }
+}
+
+export function selectChapterProject(projectId: string, root: ParentNode = document): boolean {
+  const sections = root.querySelectorAll<HTMLElement>('[data-chapter-page]');
+
+  for (const section of sections) {
+    const project = getProjects(section).find((item) => item.id === projectId);
+    if (!project) continue;
+
+    updateShowcase(section, project);
+    setActiveRailItem(section, project.id);
+    requestAnimationFrame(() => scrollActiveRailItemIntoView(section));
+
+    if (section.classList.contains('ixd-section')) {
+      requestAnimationFrame(() => alignIxdSectionTools(section));
+    }
+
+    requestAnimationFrame(() => syncChapterLayout());
+    return true;
+  }
+
+  return false;
+}
+
+export function applyChapterHighlightFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const projectId = params.get('highlight');
+  const hash = window.location.hash;
+
+  if (!projectId || !hash) return;
+
+  const key = `${projectId}:${hash}:${window.location.pathname}`;
+  if (chapterHighlightHandled === key) return;
+
+  let attempts = 0;
+
+  const tryApply = () => {
+    attempts += 1;
+
+    if (selectChapterProject(projectId)) {
+      chapterHighlightHandled = key;
+
+      if (document.body.classList.contains('is-home')) {
+        scrollToHomeSection(hash);
+      }
+
+      params.delete('highlight');
+      const nextSearch = params.toString();
+      history.replaceState(
+        null,
+        '',
+        `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ''}${hash}`,
+      );
+      return;
+    }
+
+    if (attempts < 16) {
+      requestAnimationFrame(tryApply);
+    }
+  };
+
+  requestAnimationFrame(tryApply);
+}
+
+export function initChapterHighlightFromUrl() {
+  applyChapterHighlightFromUrl();
+  document.addEventListener('astro:page-load', () => {
+    chapterHighlightHandled = '';
+    applyChapterHighlightFromUrl();
   });
 }
 

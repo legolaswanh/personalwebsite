@@ -1,4 +1,6 @@
 ---
+import { resumeUrl } from '../data/aboutContent';
+
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 const isHomePage = currentPath === '/';
@@ -6,8 +8,6 @@ const isAbout = currentPath === '/about';
 
 const logoSrc = '/images/home/home.png';
 const linkIconSrc = '/images/home/Icon-link.svg';
-const resumeUrl =
-  'https://drive.google.com/file/d/1yYNvvnpq2QIb2F3S9P9OkD5jCeE-0CQJ/view?usp=drive_link';
 
 const projectLinks = [
   { label: 'Game Design', target: '#chapter-1' },

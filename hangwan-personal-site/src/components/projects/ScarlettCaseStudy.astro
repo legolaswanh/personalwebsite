@@ -1,0 +1,294 @@
+---
+import CaseStudyMedia from './CaseStudyMedia.astro';
+import {
+  scarlettCaseStudyImages,
+  scarlettDemoVideoId,
+  scarlettStateMachineGifs,
+  scarlettStateOverviewImages,
+} from '../../data/scarlettCaseStudy';
+import { aboutContactIcons } from '../../data/aboutAssets';
+import { contactEmail, socialLinks } from '../../data/aboutContent';
+
+const images = scarlettCaseStudyImages;
+const embedUrl = `https://www.youtube-nocookie.com/embed/${scarlettDemoVideoId}?rel=0&modestbranding=1&playsinline=1`;
+const backToChapterHref = '/?highlight=scarlet#chapter-1';
+---
+
+<article class="scarlett-case-study">
+  <header class="scarlett-case-study__hero">
+    <p class="scarlett-case-study__project-name">Scarlet</p>
+    <h1 class="scarlett-case-study__hero-title">
+      An emotional third-person cat adventure about memory, absence, and saying goodbye through <strong>playful interactions.</strong>
+    </h1>
+  </header>
+
+  <section class="scarlett-case-study__section" aria-labelledby="scarlett-inspiration">
+    <p id="scarlett-inspiration" class="scarlett-case-study__section-label">INSPIRATION</p>
+
+    <div class="scarlett-case-study__inspiration-row">
+      <div class="scarlett-case-study__copy scarlett-case-study__copy--inspiration">
+        <h2 class="scarlett-case-study__block-title">
+          What Shaped This <strong>Experience</strong>
+        </h2>
+        <p class="scarlett-case-study__body">
+          Since Scarlett left us forever because of cancer, we still feel her presence—imagining
+          her as a little ghost playing tricks. This game was born from those cherished thoughts.
+        </p>
+        <p class="scarlett-case-study__body">
+          In three months, I recreated our home in Unity to visualize Scarlett's presence as a
+          playful ghost. By leveraging complex state machines and narrative design to mimic her
+          behavior, I turned a personal story into a project that significantly advanced my game
+          development fundamentals.
+        </p>
+      </div>
+      <CaseStudyMedia
+        class="scarlett-case-study__inspiration-media"
+        src={images.inspirationShapedPrimary}
+        alt=""
+        placeholder="Inspiration image 1"
+        aspectRatio="516 / 362"
+      />
+      <CaseStudyMedia
+        class="scarlett-case-study__inspiration-media"
+        src={images.inspirationShapedSecondary}
+        alt=""
+        placeholder="Inspiration image 2"
+        aspectRatio="393 / 257"
+      />
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="scarlett-game-design">
+    <p id="scarlett-game-design" class="scarlett-case-study__section-label">GAME DESIGN</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">
+          Exploration as <span class="scarlett-case-study__title-light">Memory</span>
+        </h2>
+        <p class="scarlett-case-study__body">
+          I designed the home as both a navigable space and a container for memory. Everyday objects, routes, and cat-like interactions gradually reveal the bond between Scarlet and her owners.
+        </p>
+      </div>
+
+      <div class="scarlett-case-study__game-design-split">
+        <div class="scarlett-case-study__game-design-copy">
+          <div class="scarlett-case-study__text-block">
+            <h2 class="scarlett-case-study__block-title">Progressive Interaction</h2>
+            <p class="scarlett-case-study__body">
+              New abilities are introduced across six days, encouraging players to revisit familiar spaces and reinterpret earlier details. On the final day, they discover that Scarlet is a spirit returning to say goodbye.
+            </p>
+          </div>
+
+          <div class="scarlett-case-study__text-block">
+            <h2 class="scarlett-case-study__block-title">Farewell Through Space</h2>
+            <p class="scarlett-case-study__body">
+              The final sequence reveals that the collapsing home is not a physical disaster, but the owner’s fading dream. As the world unravels, the environment turns emotional loss into a playable farewell before the dream disappears.
+            </p>
+          </div>
+        </div>
+
+        <CaseStudyMedia
+          class="scarlett-case-study__farewell-media"
+          src={images.gameDesignFarewell}
+          alt=""
+          placeholder="The Farewell gameplay GIF"
+          aspectRatio="16 / 9"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="scarlett-game-development">
+    <p id="scarlett-game-development" class="scarlett-case-study__section-label">
+      GAME DEVELOPMENT
+    </p>
+
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">
+        Actions &amp; Interactions with Player State Machine
+      </h2>
+      <p class="scarlett-case-study__body">
+        I built a player state machine for cat-like movement and contextual actions, including jumping, scratching, burying, and object interaction. These behaviours turn ordinary domestic spaces into playable narrative moments.
+      </p>
+    </div>
+
+    <div class="scarlett-case-study__state-overview">
+      {
+        scarlettStateOverviewImages.map((overview) => (
+          <CaseStudyMedia
+            class="scarlett-case-study__state-overview-media"
+            src={overview.image}
+            alt=""
+            placeholder={overview.placeholder}
+            aspectRatio={overview.aspectRatio}
+          />
+        ))
+      }
+    </div>
+
+    <div class="scarlett-case-study__state-gifs">
+      {
+        scarlettStateMachineGifs.map((gif) => (
+          <CaseStudyMedia
+            src={gif.image}
+            alt=""
+            placeholder={gif.placeholder}
+            aspectRatio="16 / 9"
+          />
+        ))
+      }
+    </div>
+
+    <div class="scarlett-case-study__subsection">
+      <p class="scarlett-case-study__subsection-label">ART</p>
+
+      <h2 class="scarlett-case-study__block-title">Visual & Interface Design</h2>
+
+      <div class="scarlett-case-study__art-layout">
+        <CaseStudyMedia
+          class="scarlett-case-study__art-photo"
+          src={images.devScenePhoto}
+          alt=""
+          placeholder="Real home photo"
+          aspectRatio="980 / 624"
+        />
+
+        <div class="scarlett-case-study__art-center">
+          <p class="scarlett-case-study__body">
+            I recreated our home as the game’s emotional setting and kept the interface minimal, allowing prompts to guide interaction without disrupting its intimate atmosphere.
+          </p>
+
+          <div class="scarlett-case-study__art-ui-row">
+            <CaseStudyMedia
+              class="scarlett-case-study__art-ui"
+              src={images.devUiMain}
+              alt=""
+              placeholder="UI main screen"
+              aspectRatio="822 / 624"
+            />
+            <CaseStudyMedia
+              class="scarlett-case-study__art-ui"
+              src={images.devUiDetail1}
+              alt=""
+              placeholder="UI detail 1"
+              aspectRatio="912 / 546"
+            />
+          </div>
+        </div>
+
+        <CaseStudyMedia
+          class="scarlett-case-study__art-scene"
+          src={images.devSceneGame}
+          alt=""
+          placeholder="In-game scene"
+          aspectRatio="436 / 312"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="scarlett-reflection">
+    <p id="scarlett-reflection" class="scarlett-case-study__section-label">REFLECTION</p>
+
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">Learning From Playertest</h2>
+      <p class="scarlett-case-study__body">
+        Playtesting showed that the emotional premise was clear, but movement and camera control still needed refinement. Jumping, climbing, and navigating tight interiors required smoother feedback and more consistent handling.
+      </p>
+    </div>
+
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">Remember, Grow, and Move Forward.</h2>
+      <p class="scarlett-case-study__body">
+        Scarlet was part of my life for three years, and this project became both a technical challenge and a personal farewell. Recreating our home and learning unfamiliar systems gave me a way to preserve her memory, accept her absence, and move forward.
+      </p>
+    </div>
+
+    <div class="scarlett-case-study__reflection-media">
+      <div class="scarlett-case-study__video">
+        <iframe
+          src={embedUrl}
+          title="Scarlet gameplay demo"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+      <CaseStudyMedia
+        class="scarlett-case-study__reflection-photo"
+        src={images.reflectionPhoto}
+        alt=""
+        placeholder="Reflection image"
+        aspectRatio="976 / 724"
+      />
+    </div>
+  </section>
+
+  <footer class="scarlett-case-study__footer">
+    <a class="scarlett-case-study__back" href={backToChapterHref}>← Back to Chapter</a>
+
+    <div class="scarlett-case-study__closing">
+      <p class="scarlett-case-study__thanks">
+        Thank you for exploring my world! If it resonates, I'd love to hear from you.
+      </p>
+      <div class="scarlett-case-study__credit">
+        <span class="scarlett-case-study__name">Hang Wan</span>
+        <span class="scarlett-case-study__credit-dot" aria-hidden="true">·</span>
+        <span class="scarlett-case-study__role">Design Playful Experience</span>
+        <span class="scarlett-case-study__credit-divider" aria-hidden="true"></span>
+        <div class="scarlett-case-study__credit-links">
+          <a
+            class="scarlett-case-study__credit-link"
+            href={`mailto:${contactEmail}`}
+            aria-label="Email Hang Wan"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.gmail}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+          <a
+            class="scarlett-case-study__credit-link"
+            href={socialLinks.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.linkedin}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</article>
+
+<script>
+  function initCaseStudyMedia() {
+    document.querySelectorAll('[data-case-study-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.mediaBound === 'true') return;
+      img.dataset.mediaBound = 'true';
+
+      const markMissing = () => {
+        const figure = img.closest('[data-case-study-media]');
+        figure?.classList.add('is-missing');
+      };
+
+      img.addEventListener('error', markMissing);
+      if (img.complete && img.naturalWidth === 0) markMissing();
+    });
+  }
+
+  initCaseStudyMedia();
+  document.addEventListener('astro:page-load', initCaseStudyMedia);
+</script>

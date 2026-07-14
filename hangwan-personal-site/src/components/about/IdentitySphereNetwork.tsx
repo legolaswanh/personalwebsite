@@ -165,8 +165,23 @@ export default function IdentitySphereNetwork() {
     const media = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT}px)`);
     const update = () => setIsMobile(media.matches);
     update();
-    media.addEventListener('change', update);
-    return () => media.removeEventListener('change', update);
+    // Safari/older browsers may not support addEventListener on MediaQueryList.
+    const mediaAny = media as MediaQueryList & {
+      addListener?: (listener: (event: MediaQueryListEvent) => void) => void;
+      removeListener?: (listener: (event: MediaQueryListEvent) => void) => void;
+    };
+
+    if (typeof mediaAny.addEventListener === 'function') {
+      mediaAny.addEventListener('change', update);
+      return () => mediaAny.removeEventListener('change', update);
+    }
+
+    if (typeof mediaAny.addListener === 'function') {
+      mediaAny.addListener(update);
+      return () => mediaAny.removeListener?.(update);
+    }
+
+    return;
   }, []);
 
   useEffect(() => {

@@ -144,21 +144,41 @@ button:focus-visible {
   top: 0;
   left: 0;
   right: 0;
+  height: var(--site-navbar-height);
   z-index: 1000;
-  background: transparent;
+  isolation: isolate;
   pointer-events: none;
 }
 
+.site-navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom: none;
+}
+
+body.is-home .site-navbar {
+  --site-navbar-surface: var(--home-bg);
+}
+
+/* Navbar must stay fully transparent across all pages.
+   The "content cut" is handled by layout padding, not by overlays. */
+
 .site-navbar__inner {
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-md);
   width: 100%;
-  min-height: var(--site-navbar-height);
+  height: var(--site-navbar-height);
   box-sizing: border-box;
-  padding: clamp(0.7rem, 1.6vh, 1rem) clamp(1.25rem, 4vw, 2.5rem);
+  padding: 0 clamp(1.25rem, 4vw, 2.5rem);
   pointer-events: auto;
 }
 
@@ -166,6 +186,7 @@ button:focus-visible {
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
+  padding-block: 0.5rem;
   line-height: 0;
   transform-origin: center center;
   transition: transform 220ms ease;
@@ -223,6 +244,7 @@ button:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  padding-block: 0.5rem;
   font-family: var(--font-display);
   font-size: 1.125rem;
   font-weight: 600;
@@ -257,7 +279,7 @@ a.site-navbar__link.is-active {
 button.site-navbar__link {
   border: none;
   background: transparent;
-  padding: 0;
+  padding: 0.5rem 0;
   font-family: var(--font-display);
   font-size: 1.125rem;
   font-weight: 600;
@@ -4464,12 +4486,12 @@ a:focus-visible .project-tag,
 
 /* Game Design & Interaction Design chapters ??layout overrides */
 .games-section.chapter-page .chapter-header__title, .ixd-section.chapter-page .chapter-header__title, .research-section.chapter-page .chapter-header__title {
-  font-size: clamp(3.35rem, 6.47vw, 5.11rem);
+  font-size: calc(clamp(3.35rem, 6.47vw, 5.11rem) * var(--chapter-scale, 1));
 }
 
 .games-section.chapter-page .chapter-header__subtitle, .ixd-section.chapter-page .chapter-header__subtitle, .research-section.chapter-page .chapter-header__subtitle {
-  margin-top: 0.1rem;
-  font-size: clamp(1.75rem, 2.75vw, 2rem);
+  margin-top: calc(0.1rem * var(--chapter-scale, 1));
+  font-size: calc(clamp(1.75rem, 2.75vw, 2rem) * var(--chapter-scale, 1));
 }
 
 .games-section.chapter-page .chapter-header__tools-row, .ixd-section.chapter-page .chapter-header__tools-row, .research-section.chapter-page .chapter-header__tools-row {
@@ -4479,8 +4501,55 @@ a:focus-visible .project-tag,
 }
 
 .games-section.chapter-page, .ixd-section.chapter-page, .research-section.chapter-page {
+  --chapter-scale: 1;
+  --chapter-info-text-scale: 0.93;
   --games-new-image-share: calc(16 / 22);
   --games-new-mask-share: calc(6 / 22);
+}
+
+.games-section.chapter-page[data-chapter-scaled='true'], .ixd-section.chapter-page[data-chapter-scaled='true'], .research-section.chapter-page[data-chapter-scaled='true'] {
+  height: auto;
+  min-height: 100svh;
+  max-height: none;
+  overflow: visible;
+}
+
+.games-section.chapter-page[data-chapter-scaled='true'] .chapter-page-section-inner, .ixd-section.chapter-page[data-chapter-scaled='true'] .chapter-page-section-inner, .research-section.chapter-page[data-chapter-scaled='true'] .chapter-page-section-inner {
+  height: auto;
+}
+
+.games-section.chapter-page[data-chapter-scaled='true'] .chapter-page__frame.container, .ixd-section.chapter-page[data-chapter-scaled='true'] .chapter-page__frame.container, .research-section.chapter-page[data-chapter-scaled='true'] .chapter-page__frame.container {
+  height: auto;
+  gap: calc(clamp(0.35rem, 0.8vh, 0.55rem) * var(--chapter-scale, 1));
+  padding-top: calc(
+    (var(--site-navbar-height) + 1.35rem * var(--layout-scale, 1)) * var(--chapter-scale, 1)
+  );
+  padding-right: calc(1.75rem * var(--layout-scale, 1) * var(--chapter-scale, 1));
+}
+
+.games-section.chapter-page[data-chapter-scaled='true'] .chapter-page__body, .ixd-section.chapter-page[data-chapter-scaled='true'] .chapter-page__body, .research-section.chapter-page[data-chapter-scaled='true'] .chapter-page__body {
+  flex: none;
+  gap: calc(clamp(0.75rem, 1.5vh, 1.15rem) * var(--chapter-scale, 1));
+}
+
+.games-section.chapter-page[data-chapter-scaled='true'] .chapter-page__stage, .ixd-section.chapter-page[data-chapter-scaled='true'] .chapter-page__stage, .research-section.chapter-page[data-chapter-scaled='true'] .chapter-page__stage {
+  flex: none;
+  padding-top: calc(clamp(0.35rem, 1vh, 0.85rem) * var(--chapter-scale, 1));
+}
+
+.games-section.chapter-page[data-chapter-scaled='true'] .chapter-header, .ixd-section.chapter-page[data-chapter-scaled='true'] .chapter-header, .research-section.chapter-page[data-chapter-scaled='true'] .chapter-header {
+  gap: calc(clamp(1rem, 2vw, 2rem) * var(--chapter-scale, 1));
+  margin-bottom: calc(clamp(0.15rem, 0.35vh, 0.3rem) * var(--chapter-scale, 1));
+}
+
+.games-section.chapter-page[data-chapter-scaled='true'] .chapter-header__tools, .ixd-section.chapter-page[data-chapter-scaled='true'] .chapter-header__tools, .research-section.chapter-page[data-chapter-scaled='true'] .chapter-header__tools {
+  --chapter-tool-icon-size: calc(2.035rem * var(--chapter-scale, 1));
+  padding-left: calc(clamp(2.5rem, 3.5vw, 3rem) * var(--chapter-scale, 1));
+}
+
+.games-section.chapter-page[data-chapter-scaled='true'] .chapter-header__tools-row, .ixd-section.chapter-page[data-chapter-scaled='true'] .chapter-header__tools-row, .research-section.chapter-page[data-chapter-scaled='true'] .chapter-header__tools-row {
+  margin-top: calc(0.75rem * var(--chapter-scale, 1));
+  row-gap: calc(0.75rem * var(--chapter-scale, 1));
 }
 
 .games-section.chapter-page .chapter-showcase, .ixd-section.chapter-page .chapter-showcase, .research-section.chapter-page .chapter-showcase {
@@ -4640,8 +4709,9 @@ a:focus-visible .project-tag,
   width: auto;
   height: 100%;
   margin-left: 0;
-  padding: clamp(0.85rem, 1.8vh, 1.25rem) clamp(0.85rem, 1.5vw, 1.2rem)
-    clamp(2.2rem, 3.8vh, 2.6rem);
+  padding: calc(clamp(0.85rem, 1.8vh, 1.25rem) * var(--chapter-scale, 1))
+    calc(clamp(0.85rem, 1.5vw, 1.2rem) * var(--chapter-scale, 1))
+    calc(clamp(2.2rem, 3.8vh, 2.6rem) * var(--chapter-scale, 1));
   overflow: hidden;
   border: none;
 }
@@ -4751,47 +4821,84 @@ a:focus-visible .project-tag,
 }
 
 .games-section.chapter-page .chapter-info__label, .ixd-section.chapter-page .chapter-info__label, .research-section.chapter-page .chapter-info__label {
-  font-size: 1.125rem;
+  font-size: calc(1.125rem * var(--chapter-scale, 1) * var(--chapter-info-text-scale, 1));
 }
 
 .games-section.chapter-page .chapter-info__title, .ixd-section.chapter-page .chapter-info__title, .research-section.chapter-page .chapter-info__title {
-  font-size: clamp(3.2rem, 4.9vw, 4rem);
+  margin-top: calc(0.35rem * var(--chapter-scale, 1));
+  font-size: calc(clamp(3.2rem, 4.9vw, 4rem) * var(--chapter-scale, 1) * var(--chapter-info-text-scale, 1));
 }
 
 .games-section.chapter-page .chapter-info__category, .ixd-section.chapter-page .chapter-info__category, .research-section.chapter-page .chapter-info__category {
-  font-size: 1.375rem;
+  margin-top: calc(0.35rem * var(--chapter-scale, 1));
+  font-size: calc(1.375rem * var(--chapter-scale, 1) * var(--chapter-info-text-scale, 1));
+}
+
+.games-section.chapter-page .chapter-info__rule, .ixd-section.chapter-page .chapter-info__rule, .research-section.chapter-page .chapter-info__rule {
+  margin-top: calc(1em * var(--chapter-scale, 1));
+  margin-bottom: calc(1em * var(--chapter-scale, 1));
+}
+
+.games-section.chapter-page .chapter-header__tools-label, .ixd-section.chapter-page .chapter-header__tools-label, .research-section.chapter-page .chapter-header__tools-label {
+  font-size: calc(0.875rem * var(--chapter-scale, 1));
+}
+
+.games-section.chapter-page .chapter-rail__heading, .ixd-section.chapter-page .chapter-rail__heading, .research-section.chapter-page .chapter-rail__heading {
+  font-size: calc(0.875rem * var(--chapter-scale, 1));
 }
 
 .games-section.chapter-page .chapter-info__body .chapter-info__meta-row, .ixd-section.chapter-page .chapter-info__body .chapter-info__meta-row, .research-section.chapter-page .chapter-info__body .chapter-info__meta-row {
   grid-template-columns: minmax(0, 1fr);
-  gap: 0.4rem;
+  gap: calc(0.4rem * var(--chapter-scale, 1));
 }
 
 .games-section.chapter-page .chapter-info__body .chapter-info__meta, .ixd-section.chapter-page .chapter-info__body .chapter-info__meta, .research-section.chapter-page .chapter-info__body .chapter-info__meta {
-  margin-top: 1rem;
+  margin-top: calc(1rem * var(--chapter-scale, 1));
 }
 
 .games-section.chapter-page .chapter-info__body .chapter-info__meta-row dt, .ixd-section.chapter-page .chapter-info__body .chapter-info__meta-row dt, .research-section.chapter-page .chapter-info__body .chapter-info__meta-row dt {
-  font-size: 1.0625rem;
+  font-size: calc(1.0625rem * var(--chapter-scale, 1) * var(--chapter-info-text-scale, 1));
 }
 
 .games-section.chapter-page .chapter-info__body .chapter-info__meta-row dd, .ixd-section.chapter-page .chapter-info__body .chapter-info__meta-row dd, .research-section.chapter-page .chapter-info__body .chapter-info__meta-row dd {
-  font-size: clamp(1.125rem, 1.4vw, 1.25rem);
+  font-size: calc(clamp(1.125rem, 1.4vw, 1.25rem) * var(--chapter-scale, 1) * var(--chapter-info-text-scale, 1));
   margin-left: 0;
 }
 
 .games-section.chapter-page .chapter-info__body .chapter-info__summary, .ixd-section.chapter-page .chapter-info__body .chapter-info__summary, .research-section.chapter-page .chapter-info__body .chapter-info__summary {
   margin-top: 0;
-  font-size: clamp(1.1875rem, 1.45vw, 1.3125rem);
+  font-size: calc(clamp(1.1875rem, 1.45vw, 1.3125rem) * var(--chapter-scale, 1) * var(--chapter-info-text-scale, 1));
+}
+
+.games-section.chapter-page .chapter-info__body .chapter-info__tags, .ixd-section.chapter-page .chapter-info__body .chapter-info__tags, .research-section.chapter-page .chapter-info__body .chapter-info__tags {
+  margin-top: calc(1.05rem * var(--chapter-scale, 1));
+  gap: calc(0.35rem * var(--chapter-scale, 1));
+}
+
+.games-section.chapter-page .chapter-info__body .chapter-info__tag, .ixd-section.chapter-page .chapter-info__body .chapter-info__tag, .research-section.chapter-page .chapter-info__body .chapter-info__tag {
+  padding: calc(0.26rem * var(--chapter-scale, 1)) calc(0.66rem * var(--chapter-scale, 1));
+  font-size: calc(0.9rem * var(--chapter-scale, 1) * var(--chapter-info-text-scale, 1));
+}
+
+.games-section.chapter-page .chapter-info__body .chapter-info__cta, .ixd-section.chapter-page .chapter-info__body .chapter-info__cta, .research-section.chapter-page .chapter-info__body .chapter-info__cta {
+  margin-top: auto;
+  padding-top: calc(1.25rem * var(--chapter-scale, 1));
+  font-size: calc(1.1875rem * var(--chapter-scale, 1) * var(--chapter-info-text-scale, 1));
+}
+
+.games-section.chapter-page .chapter-info__body .chapter-info__cta:hover, .ixd-section.chapter-page .chapter-info__body .chapter-info__cta:hover, .research-section.chapter-page .chapter-info__body .chapter-info__cta:hover,
+.games-section.chapter-page .chapter-info__body .chapter-info__cta:focus-visible, .ixd-section.chapter-page .chapter-info__body .chapter-info__cta:focus-visible, .research-section.chapter-page .chapter-info__body .chapter-info__cta:focus-visible {
+  font-size: calc(1.1875rem * 1.1 * var(--chapter-scale, 1) * var(--chapter-info-text-scale, 1));
 }
 
 .games-section.chapter-page .chapter-rail-wrap, .ixd-section.chapter-page .chapter-rail-wrap, .research-section.chapter-page .chapter-rail-wrap {
   width: 100%;
-  padding-bottom: 6.5svh;
+  padding-bottom: calc(6.5svh * var(--chapter-scale, 1));
 }
 
 .games-section.chapter-page .chapter-rail__header, .ixd-section.chapter-page .chapter-rail__header, .research-section.chapter-page .chapter-rail__header {
-  margin-bottom: 0.55rem;
+  margin-bottom: calc(0.55rem * var(--chapter-scale, 1));
+  gap: calc(0.75rem * var(--chapter-scale, 1));
 }
 
 .games-section.chapter-page .chapter-rail--cards {
@@ -4935,7 +5042,7 @@ a:focus-visible .project-tag,
   white-space: nowrap;
   overflow: visible;
   text-overflow: unset;
-  font-size: 1.25rem;
+  font-size: calc(1.25rem * var(--chapter-scale, 1));
   line-height: 1.2;
 }
 
@@ -4949,7 +5056,7 @@ a:focus-visible .project-tag,
   white-space: nowrap;
   overflow: visible;
   text-overflow: unset;
-  font-size: 0.8125rem;
+  font-size: calc(0.8125rem * var(--chapter-scale, 1));
   line-height: 1.35;
 }
 
@@ -4987,100 +5094,18 @@ a:focus-visible .project-tag,
 
 @media (max-width: 1024px) {
   .games-section.chapter-page .chapter-showcase, .ixd-section.chapter-page .chapter-showcase, .research-section.chapter-page .chapter-showcase {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .games-section.chapter-page .chapter-gallery__stage::before, .ixd-section.chapter-page .chapter-gallery__stage::before, .research-section.chapter-page .chapter-gallery__stage::before,
-  .games-section.chapter-page .chapter-gallery__stage::after, .ixd-section.chapter-page .chapter-gallery__stage::after, .research-section.chapter-page .chapter-gallery__stage::after {
-    display: none;
-  }
-
-  .games-section.chapter-page .chapter-gallery__img, .ixd-section.chapter-page .chapter-gallery__img, .research-section.chapter-page .chapter-gallery__img {
-    width: 100%;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
-  .games-section.chapter-page .chapter-gallery__youtube, .ixd-section.chapter-page .chapter-gallery__youtube, .research-section.chapter-page .chapter-gallery__youtube {
-    width: 100%;
-  }
-
-  .games-section.chapter-page .chapter-gallery__nav--next, .ixd-section.chapter-page .chapter-gallery__nav--next, .research-section.chapter-page .chapter-gallery__nav--next {
-    right: 0.65rem;
-  }
-
-  .games-section.chapter-page .chapter-gallery__dots, .ixd-section.chapter-page .chapter-gallery__dots, .research-section.chapter-page .chapter-gallery__dots {
-    left: 50%;
+    display: block;
+    position: relative;
   }
 
   .games-section.chapter-page .chapter-showcase .chapter-info, .ixd-section.chapter-page .chapter-showcase .chapter-info, .research-section.chapter-page .chapter-showcase .chapter-info {
-    position: static;
-    width: 100%;
-    height: auto;
+    position: absolute;
+    width: auto;
+    height: 100%;
     max-height: none;
-    padding: clamp(1rem, 2vh, 1.25rem) 0 0;
-    overflow: visible;
-    border-top: 1px solid rgba(216, 214, 208, 0.65);
-  }
-
-  .games-section.chapter-page .chapter-info__label, .ixd-section.chapter-page .chapter-info__label, .research-section.chapter-page .chapter-info__label {
-    color: var(--accent);
-  }
-
-  .games-section.chapter-page .chapter-info__title, .ixd-section.chapter-page .chapter-info__title, .research-section.chapter-page .chapter-info__title {
-    color: var(--text);
-    text-shadow: none;
-  }
-
-  .games-section.chapter-page .chapter-info__category, .ixd-section.chapter-page .chapter-info__category, .research-section.chapter-page .chapter-info__category {
-    color: var(--muted);
-  }
-
-  .games-section.chapter-page .chapter-info__rule, .ixd-section.chapter-page .chapter-info__rule, .research-section.chapter-page .chapter-info__rule {
-    background: rgba(216, 214, 208, 0.75);
-  }
-
-  .games-section.chapter-page .chapter-info__meta-row dt, .ixd-section.chapter-page .chapter-info__meta-row dt, .research-section.chapter-page .chapter-info__meta-row dt {
-    color: rgba(107, 107, 107, 0.85);
-  }
-
-  .games-section.chapter-page .chapter-info__meta-row dd, .ixd-section.chapter-page .chapter-info__meta-row dd, .research-section.chapter-page .chapter-info__meta-row dd,
-  .games-section.chapter-page .chapter-info__body .chapter-info__meta-row dd, .ixd-section.chapter-page .chapter-info__body .chapter-info__meta-row dd, .research-section.chapter-page .chapter-info__body .chapter-info__meta-row dd,
-  .games-section.chapter-page .chapter-info__summary, .ixd-section.chapter-page .chapter-info__summary, .research-section.chapter-page .chapter-info__summary,
-  .games-section.chapter-page .chapter-info__body .chapter-info__summary, .ixd-section.chapter-page .chapter-info__body .chapter-info__summary, .research-section.chapter-page .chapter-info__body .chapter-info__summary {
-    color: var(--text);
-  }
-
-  .games-section.chapter-page .chapter-info__body .chapter-info__tag, .ixd-section.chapter-page .chapter-info__body .chapter-info__tag, .research-section.chapter-page .chapter-info__body .chapter-info__tag {
-    color: var(--accent);
-    background: rgba(169, 157, 248, 0.06);
-    border-color: rgba(169, 157, 248, 0.14);
-  }
-
-  .games-section.chapter-page .chapter-info__body .chapter-info__tag--featured, .ixd-section.chapter-page .chapter-info__body .chapter-info__tag--featured, .research-section.chapter-page .chapter-info__body .chapter-info__tag--featured {
-    color: #ffffff;
-    background: var(--accent);
-    border-color: rgba(216, 214, 208, 0.9);
-  }
-
-  .games-section.chapter-page .chapter-info__cta, .ixd-section.chapter-page .chapter-info__cta, .research-section.chapter-page .chapter-info__cta,
-  .games-section.chapter-page .chapter-info__body .chapter-info__cta, .ixd-section.chapter-page .chapter-info__body .chapter-info__cta, .research-section.chapter-page .chapter-info__body .chapter-info__cta {
-    color: var(--text);
-  }
-
-  .games-section.chapter-page .chapter-info__cta:hover, .ixd-section.chapter-page .chapter-info__cta:hover, .research-section.chapter-page .chapter-info__cta:hover,
-  .games-section.chapter-page .chapter-info__cta:focus-visible, .ixd-section.chapter-page .chapter-info__cta:focus-visible, .research-section.chapter-page .chapter-info__cta:focus-visible,
-  .games-section.chapter-page .chapter-info__body .chapter-info__cta:hover, .ixd-section.chapter-page .chapter-info__body .chapter-info__cta:hover, .research-section.chapter-page .chapter-info__body .chapter-info__cta:hover,
-  .games-section.chapter-page .chapter-info__body .chapter-info__cta:focus-visible, .ixd-section.chapter-page .chapter-info__body .chapter-info__cta:focus-visible, .research-section.chapter-page .chapter-info__body .chapter-info__cta:focus-visible {
-    color: var(--accent);
-  }
-
-  .games-section.chapter-page .chapter-gallery__nav, .ixd-section.chapter-page .chapter-gallery__nav, .research-section.chapter-page .chapter-gallery__nav {
-    background: rgba(247, 246, 242, 0.88);
-    border-color: rgba(216, 214, 208, 0.9);
-    color: var(--muted);
+    margin-left: 0;
+    overflow: hidden;
+    border-top: none;
   }
 
   .games-section.chapter-page .chapter-rail--cards, .ixd-section.chapter-page .chapter-rail--cards, .research-section.chapter-page .chapter-rail--cards {
@@ -5091,37 +5116,37 @@ a:focus-visible .project-tag,
   }
 
   .games-section.chapter-page .chapter-rail--cards .chapter-rail__item, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item {
-    flex: 0 0 clamp(6.5rem, 14vw, 8.5rem);
+    flex: 0 0 calc(clamp(6.5rem, 14vw, 8.5rem) * var(--chapter-scale, 1));
     width: auto;
-    min-width: max(clamp(6.5rem, 14vw, 8.5rem), min-content);
+    min-width: max(calc(clamp(6.5rem, 14vw, 8.5rem) * var(--chapter-scale, 1)), min-content);
   }
 
   .games-section.chapter-page .chapter-rail--cards .chapter-rail__card, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__card, .research-section.chapter-page .chapter-rail--cards .chapter-rail__card {
-    min-width: calc(clamp(6.5rem, 14vw, 8.5rem) * 0.72);
+    min-width: calc(clamp(6.5rem, 14vw, 8.5rem) * 0.72 * var(--chapter-scale, 1));
   }
 
   .games-section.chapter-page .chapter-rail--cards .chapter-rail__spacer, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__spacer, .research-section.chapter-page .chapter-rail--cards .chapter-rail__spacer {
-    height: calc(clamp(6.5rem, 14vw, 8.5rem) * 0.72 * 9 / 16);
+    height: calc(clamp(6.5rem, 14vw, 8.5rem) * 0.72 * 9 / 16 * var(--chapter-scale, 1));
   }
 }
 
 @media (max-width: 768px) {
   .games-section.chapter-page .chapter-rail--cards .chapter-rail__card {
-    min-width: calc(clamp(5.5rem, 24vw, 7rem) * 0.68);
+    min-width: calc(clamp(5.5rem, 24vw, 7rem) * 0.68 * var(--chapter-scale, 1));
   }
 
   .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__card, .research-section.chapter-page .chapter-rail--cards .chapter-rail__card {
-    min-width: calc(clamp(5.5rem, 24vw, 7rem) * 0.72);
+    min-width: calc(clamp(5.5rem, 24vw, 7rem) * 0.72 * var(--chapter-scale, 1));
   }
 
   .games-section.chapter-page .chapter-rail--cards .chapter-rail__item, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__item, .research-section.chapter-page .chapter-rail--cards .chapter-rail__item {
-    flex: 0 0 clamp(5.5rem, 24vw, 7rem);
+    flex: 0 0 calc(clamp(5.5rem, 24vw, 7rem) * var(--chapter-scale, 1));
     width: auto;
-    min-width: max(clamp(5.5rem, 24vw, 7rem), min-content);
+    min-width: max(calc(clamp(5.5rem, 24vw, 7rem) * var(--chapter-scale, 1)), min-content);
   }
 
   .games-section.chapter-page .chapter-rail--cards .chapter-rail__spacer, .ixd-section.chapter-page .chapter-rail--cards .chapter-rail__spacer, .research-section.chapter-page .chapter-rail--cards .chapter-rail__spacer {
-    height: calc(clamp(5.5rem, 24vw, 7rem) * 0.72 * 9 / 16);
+    height: calc(clamp(5.5rem, 24vw, 7rem) * 0.72 * 9 / 16 * var(--chapter-scale, 1));
   }
 }
 
@@ -5135,6 +5160,16 @@ body.is-about {
   font-family: var(--font-sans);
   background-color: var(--about-bg);
   color: var(--text);
+}
+
+body.is-about .site-navbar {
+  --site-navbar-surface: var(--about-bg);
+}
+
+/* For inner pages, keep body content below the nav (prevents weird overlap),
+   while allowing page backgrounds to extend under the transparent nav. */
+body:not(.is-home) main {
+  padding-top: var(--site-navbar-height);
 }
 
 body.is-about::before,
@@ -5164,6 +5199,7 @@ body.is-about::after {
 body.is-about main {
   position: relative;
   z-index: 1;
+  padding-top: 0;
 }
 
 body.is-about .site-navbar__inner {
@@ -5179,8 +5215,7 @@ body.is-about .site-navbar__toggle {
 .about-page {
   position: relative;
   min-height: 100svh;
-  padding: calc(var(--site-navbar-height) + var(--about-hero-top-space)) 0
-    clamp(4rem, 8vh, 6rem);
+  padding: 0 0 clamp(4rem, 8vh, 6rem);
 }
 
 .about-hero-grid {
@@ -5254,6 +5289,7 @@ body.is-about .site-navbar__toggle {
   width: min(100%, var(--container));
   max-width: var(--container);
   margin-inline: auto;
+  padding-top: calc(var(--site-navbar-height) + var(--about-hero-top-space));
   padding-inline: clamp(1rem, 4vw, 2.5rem);
   pointer-events: none;
 }
@@ -6328,10 +6364,21 @@ body.is-about .site-navbar__toggle {
 
 /* Project case study pages */
 body.is-project-case-study {
-  --container: 1680px;
-  --project-case-gutter: clamp(1rem, 4vw, 2.5rem);
+  --container: min(1280px, calc(100vw - 2rem));
   font-family: var(--font-sans);
   background: #ffffff;
+}
+
+@media (min-width: 1681px) and (min-height: 1101px) {
+  body.is-project-case-study {
+    --container: 1680px;
+  }
+}
+
+@media (max-width: 480px) {
+  body.is-project-case-study {
+    --container: calc(100vw - 2rem);
+  }
 }
 
 body.is-project-case-study main {
@@ -6340,37 +6387,71 @@ body.is-project-case-study main {
 }
 
 .project-case-study-page {
-  padding: calc(var(--site-navbar-height) + clamp(2rem, 5vh, 3rem)) 0
-    clamp(3rem, 8vh, 5rem);
+  position: relative;
+  overflow-x: clip;
+  padding: 0 0 clamp(3rem, 8vh, 5rem);
 }
 
-.project-case-study-page__inner {
+.project-case-study-page__hero-bg {
+  position: absolute;
+  top: calc(var(--site-navbar-height) * -1);
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: calc(clamp(520px, 72vh, 820px) + var(--site-navbar-height));
+  transform: none;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--line) 28%, #ffffff);
+}
+
+.project-case-study-page__hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  opacity: 0.5;
+}
+
+.project-case-study-page__hero-bg-fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 70%,
+    #ffffff 100%
+  );
+}
+
+.project-case-study-page__hero-bg.is-missing .project-case-study-page__hero-bg-img {
+  opacity: 0;
+}
+
+.project-case-study-page__inner.container {
+  position: relative;
+  z-index: 1;
   width: min(100%, var(--container));
   max-width: var(--container);
-  margin-inline: auto;
-  padding-inline: var(--project-case-gutter);
+  padding-top: clamp(2rem, 5vh, 3rem);
+  container-type: inline-size;
+  container-name: scarlett;
 }
 
 .scarlett-case-study {
+  --scarlett-fluid: clamp(0.8125rem, 1.5cqi + 0.5rem, 1.4375rem);
+  font-size: var(--scarlett-fluid);
   display: flex;
   flex-direction: column;
-  gap: clamp(3.5rem, 8vh, 6rem);
+  gap: clamp(3.5em, 8vh, 6em);
 }
 
 .scarlett-case-study__hero {
   display: flex;
   flex-direction: column;
-  gap: clamp(1.75rem, 4vh, 2.75rem);
-}
-
-.scarlett-case-study__hero-media {
-  align-self: center;
-}
-
-.scarlett-case-study__hero-copy {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.85rem, 2vh, 1.25rem);
+  gap: clamp(0.85em, 2vh, 1.25em);
   width: 100%;
 }
 
@@ -6384,15 +6465,15 @@ body.is-project-case-study main {
 
 .scarlett-case-study__project-name {
   margin: 0;
-  font-size: clamp(1.35rem, 2.2vw, 2.25rem);
-  font-weight: 600;
+  font-size: 1.9em;
+  font-weight: 700;
   line-height: 1.45;
-  color: #afafaf;
+  color: #707070;
 }
 
 .scarlett-case-study__hero-title {
   margin: 0;
-  font-size: clamp(2rem, 4.2vw, 3rem);
+  font-size: 2.1em;
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -6406,7 +6487,7 @@ body.is-project-case-study main {
 .scarlett-case-study__hero-lede {
   margin: 0;
   width: 100%;
-  font-size: clamp(1.05rem, 2vw, 1.5rem);
+  font-size: 1.2em;
   font-weight: 500;
   line-height: 1.45;
   color: rgba(0, 0, 0, 0.55);
@@ -6415,34 +6496,38 @@ body.is-project-case-study main {
 .scarlett-case-study__section {
   display: flex;
   flex-direction: column;
-  gap: clamp(2rem, 4.5vh, 3.5rem);
+  gap: clamp(1.5em, 3.5vh, 2.5em);
 }
 
 .scarlett-case-study__section-label {
-  margin: 0;
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
-  font-weight: 600;
+  margin: 0 0 clamp(-0.35em, -0.8vh, -0.15em);
+  font-size: 1.05em;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.1;
   color: var(--text);
 }
 
-.scarlett-case-study__split {
+.scarlett-case-study__inspiration-row {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: start;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 0.64fr) minmax(0, 0.64fr);
+  gap: clamp(0.75em, 1.6cqi, 1.25em);
+  align-items: center;
+}
+
+.scarlett-case-study__copy--inspiration {
+  justify-content: flex-start;
 }
 
 .scarlett-case-study__copy {
   display: flex;
   flex-direction: column;
-  gap: clamp(0.85rem, 2vh, 1.35rem);
+  gap: clamp(0.65em, 1.5vh, 1em);
 }
 
 .scarlett-case-study__block-title {
   margin: 0;
-  font-size: clamp(1.75rem, 3.6vw, 3rem);
+  font-size: 2.1em;
   font-weight: 300;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -6459,7 +6544,7 @@ body.is-project-case-study main {
 
 .scarlett-case-study__body {
   margin: 0;
-  font-size: clamp(1rem, 1.8vw, 1.5rem);
+  font-size: 1.05em;
   font-weight: 300;
   line-height: 1.45;
   letter-spacing: -0.02em;
@@ -6469,25 +6554,20 @@ body.is-project-case-study main {
 .scarlett-case-study__stack {
   display: flex;
   flex-direction: column;
-  gap: clamp(2rem, 4vh, 3rem);
+  gap: clamp(2em, 4vh, 3em);
 }
 
 .scarlett-case-study__text-block {
   display: flex;
   flex-direction: column;
-  gap: clamp(0.85rem, 2vh, 1.25rem);
+  gap: clamp(0.65em, 1.5vh, 1em);
   width: 100%;
 }
 
-.scarlett-case-study__media-stack,
 .scarlett-case-study__media-duo,
 .scarlett-case-study__media-row {
   display: grid;
-  gap: clamp(0.85rem, 2vw, 1.25rem);
-}
-
-.scarlett-case-study__media-stack--inspiration {
-  grid-template-rows: auto auto;
+  gap: clamp(0.85em, 2cqi, 1.25em);
 }
 
 .scarlett-case-study__media-duo {
@@ -6499,48 +6579,91 @@ body.is-project-case-study main {
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
 }
 
+.scarlett-case-study__state-overview {
+  display: grid;
+  grid-template-columns: 744fr 590fr 580fr;
+  gap: clamp(0.25em, 0.45vw, 0.5em);
+  align-items: end;
+  width: 100%;
+}
+
 .scarlett-case-study__state-gifs {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1rem, 2.5vw, 1.5rem);
+  gap: clamp(1em, 2.5cqi, 1.5em);
+  align-items: stretch;
 }
 
-.scarlett-case-study__farewell-media {
-  margin-top: 0.5rem;
-  width: 100%;
+.scarlett-case-study__game-design-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1em, 2.5cqi, 1.5em);
+  align-items: start;
+}
+
+.scarlett-case-study__game-design-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(1.5em, 3vh, 2.5em);
 }
 
 .scarlett-case-study__subsection {
   display: flex;
   flex-direction: column;
-  gap: clamp(0.85rem, 2vh, 1.25rem);
+  gap: clamp(1.5em, 3.5vh, 2.5em);
+  margin-top: clamp(2em, 4.5vh, 3.5em);
+}
+
+.scarlett-case-study__art-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.1fr) minmax(0, 0.95fr);
+  gap: clamp(2em, 4.2cqi, 3.25em);
+  align-items: start;
+}
+
+.scarlett-case-study__art-center {
+  container-type: inline-size;
+  container-name: art-center;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: clamp(0.65em, 1.5vh, 1em);
+  align-self: start;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+}
+
+.scarlett-case-study__art-center .scarlett-case-study__body {
+  width: 100%;
+}
+
+.scarlett-case-study__art-ui-row {
+  --art-ui-width-ratio-sum: calc(822 / 624 + 912 / 546);
+  --art-ui-gap: clamp(0.35em, 0.6cqi, 0.5em);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--art-ui-gap);
 }
 
 .scarlett-case-study__subsection-label {
   margin: 0;
-  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  font-size: 1.15em;
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
-.scarlett-case-study__ui-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(180px, 0.85fr);
-  gap: clamp(1rem, 2.5vw, 1.5rem);
-  align-items: start;
-}
-
-.scarlett-case-study__ui-details {
-  display: grid;
-  gap: clamp(0.65rem, 1.5vw, 1rem);
-}
-
 .scarlett-case-study__reflection-media {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(1rem, 2.5vw, 1.5rem);
-  align-items: stretch;
+  gap: clamp(1em, 2.5cqi, 1.5em);
+  align-items: start;
 }
 
 .scarlett-case-study__video {
@@ -6561,15 +6684,17 @@ body.is-project-case-study main {
 .scarlett-case-study__footer {
   display: flex;
   flex-direction: column;
-  gap: clamp(2rem, 5vh, 3.5rem);
-  padding-top: clamp(1rem, 3vh, 2rem);
+  gap: clamp(2em, 5vh, 3.5em);
+  padding-top: clamp(1em, 3vh, 2em);
 }
 
 .scarlett-case-study__back {
   align-self: flex-start;
-  font-size: clamp(1rem, 1.8vw, 1.5rem);
-  font-weight: 700;
+  font-family: var(--font-sans);
+  font-size: 1.05em;
+  font-weight: 300;
   line-height: 1.45;
+  letter-spacing: -0.02em;
   color: var(--text);
   text-decoration: none;
   transition: color var(--transition);
@@ -6581,14 +6706,14 @@ body.is-project-case-study main {
 }
 
 .scarlett-case-study__closing {
-  padding: clamp(1.5rem, 3vw, 2rem);
+  padding: clamp(1.5em, 3vw, 2em);
   border: 1px solid var(--line);
   text-align: center;
 }
 
 .scarlett-case-study__thanks {
   margin: 0;
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-size: 1.125em;
   font-style: italic;
   font-weight: 300;
   line-height: 1.3;
@@ -6597,20 +6722,70 @@ body.is-project-case-study main {
 }
 
 .scarlett-case-study__credit {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  margin-top: 1rem;
-  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  gap: 0.45em;
+  margin-top: 1em;
+  font-size: 1.125em;
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.4;
   color: var(--text);
 }
 
-.scarlett-case-study__role {
+.scarlett-case-study__credit-divider {
+  flex-shrink: 0;
+  align-self: stretch;
+  width: 1px;
+  min-height: 1.35em;
+  margin-inline: 0.35em;
+  background: var(--line);
+}
+
+.scarlett-case-study__credit-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65em;
+}
+
+.scarlett-case-study__credit-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  transition: opacity 220ms ease;
+}
+
+.scarlett-case-study__credit-link:hover,
+.scarlett-case-study__credit-link:focus-visible {
+  opacity: 0.82;
+}
+
+.scarlett-case-study__credit-icon {
+  display: block;
+  width: 1.65em;
+  height: 1.65em;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0.42);
+  transition:
+    filter 220ms ease,
+    transform 220ms ease;
+}
+
+.scarlett-case-study__credit-link:hover .scarlett-case-study__credit-icon,
+.scarlett-case-study__credit-link:focus-visible .scarlett-case-study__credit-icon {
+  filter: none;
+  transform: scale(1.06);
+}
+
+.scarlett-case-study__name {
   font-weight: 600;
+}
+
+.scarlett-case-study__role {
+  font-weight: 300;
 }
 
 .case-study-media {
@@ -6619,7 +6794,19 @@ body.is-project-case-study main {
   margin: 0;
   aspect-ratio: var(--media-ratio, 16 / 9);
   overflow: hidden;
-  background: color-mix(in srgb, var(--line) 28%, #ffffff);
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--accent) 8%, #ffffff) 0%,
+      color-mix(in srgb, var(--line) 35%, #ffffff) 100%
+    );
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.case-study-media:not(.is-missing) {
+  background: #ffffff;
 }
 
 .case-study-media__img {
@@ -6637,9 +6824,47 @@ body.is-project-case-study main {
   object-fit: fill;
 }
 
-.case-study-media.scarlett-case-study__hero-media {
-  width: 75%;
-  max-width: 75%;
+/* Scarlett images: natural aspect ratio, no white borders or forced stretch */
+.scarlett-case-study .case-study-media:not(.is-missing) {
+  aspect-ratio: unset;
+  height: auto;
+  overflow: visible;
+  display: block;
+  background: transparent;
+  box-shadow: none;
+}
+
+.scarlett-case-study .case-study-media:not(.is-missing) .case-study-media__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: unset;
+  object-position: center;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.scarlett-case-study .case-study-media.scarlett-case-study__art-ui:not(.is-missing) {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: none;
+  display: block;
+  overflow: visible;
+  background: transparent;
+}
+
+@container art-center (min-width: 0) {
+  .scarlett-case-study .case-study-media.scarlett-case-study__art-ui:not(.is-missing) .case-study-media__img {
+    display: block;
+    height: calc((100cqi - var(--art-ui-gap)) / var(--art-ui-width-ratio-sum));
+    width: auto;
+    max-width: none;
+    object-fit: unset;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.05),
+      0 8px 24px rgba(0, 0, 0, 0.12);
+  }
 }
 
 .case-study-media__placeholder {
@@ -6674,11 +6899,97 @@ body.is-project-case-study main {
   display: flex;
 }
 
-@media (max-width: 1080px) {
-  .scarlett-case-study__split,
-  .scarlett-case-study__ui-layout,
+/* Desktop: equal-height row modules — cover fill, no white borders */
+@container scarlett (min-width: 721px) {
+  .scarlett-case-study__inspiration-row {
+    align-items: stretch;
+  }
+
+  .scarlett-case-study__copy--inspiration {
+    justify-content: center;
+  }
+
+  .scarlett-case-study__game-design-split {
+    align-items: stretch;
+  }
+
+  .scarlett-case-study__art-layout {
+    align-items: stretch;
+  }
+
+  .scarlett-case-study__art-center {
+    align-self: stretch;
+    justify-content: center;
+  }
+
+  .scarlett-case-study__reflection-media {
+    align-items: stretch;
+  }
+
+  .scarlett-case-study__reflection-media .scarlett-case-study__video {
+    aspect-ratio: unset;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .scarlett-case-study .case-study-media.scarlett-case-study__inspiration-media:not(.is-missing),
+  .scarlett-case-study .case-study-media.scarlett-case-study__farewell-media:not(.is-missing),
+  .scarlett-case-study .case-study-media.scarlett-case-study__art-photo:not(.is-missing),
+  .scarlett-case-study .case-study-media.scarlett-case-study__art-scene:not(.is-missing),
+  .scarlett-case-study .case-study-media.scarlett-case-study__reflection-photo:not(.is-missing),
+  .scarlett-case-study__state-gifs .case-study-media:not(.is-missing) {
+    aspect-ratio: unset;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    display: block;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .scarlett-case-study .case-study-media.scarlett-case-study__inspiration-media:not(.is-missing) .case-study-media__img,
+  .scarlett-case-study .case-study-media.scarlett-case-study__farewell-media:not(.is-missing) .case-study-media__img,
+  .scarlett-case-study .case-study-media.scarlett-case-study__art-photo:not(.is-missing) .case-study-media__img,
+  .scarlett-case-study .case-study-media.scarlett-case-study__art-scene:not(.is-missing) .case-study-media__img,
+  .scarlett-case-study .case-study-media.scarlett-case-study__reflection-photo:not(.is-missing) .case-study-media__img,
+  .scarlett-case-study__state-gifs .case-study-media:not(.is-missing) .case-study-media__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.05),
+      0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+}
+
+@container scarlett (max-width: 720px) {
+  .scarlett-case-study__inspiration-row {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .scarlett-case-study__game-design-split {
+    grid-template-columns: 1fr;
+  }
+
   .scarlett-case-study__reflection-media {
     grid-template-columns: 1fr;
+  }
+
+  .scarlett-case-study__art-layout {
+    grid-template-columns: 1fr;
+    gap: clamp(0.85em, 2cqi, 1.25em);
+  }
+
+  .scarlett-case-study__art-center {
+    order: -1;
+    max-width: 100%;
+  }
+
+  .scarlett-case-study__state-overview {
+    grid-template-columns: 1fr;
+    gap: clamp(0.5em, 1.5cqi, 0.85em);
   }
 
   .scarlett-case-study__state-gifs {
@@ -6686,14 +6997,9 @@ body.is-project-case-study main {
   }
 }
 
-@media (max-width: 640px) {
-  body.is-project-case-study {
-    --project-case-gutter: 1rem;
-  }
-
+@container scarlett (max-width: 480px) {
   .scarlett-case-study__media-duo,
   .scarlett-case-study__media-duo--scene {
     grid-template-columns: 1fr;
   }
-
 }
