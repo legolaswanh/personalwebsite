@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import IonizedCaseStudy from '../../components/projects/IonizedCaseStudy.astro';
+import { ionizedCaseStudyImages } from '../../data/ionizedCaseStudy';
+---
+
+<BaseLayout
+  title="Ionized — Hang Wan"
+  description="A calculation-based card game designed for party play, combining numerical logic, card interactions, and player confrontation."
+  bodyClass="is-project-case-study"
+  isHome={false}
+>
+  <div class="project-case-study-page">
+    <div class="project-case-study-page__hero-bg" aria-hidden="true">
+      <img
+        class="project-case-study-page__hero-bg-img"
+        src={ionizedCaseStudyImages.hero}
+        alt=""
+        loading="eager"
+        decoding="async"
+        data-hero-backdrop-img
+      />
+      <div class="project-case-study-page__hero-bg-fade"></div>
+    </div>
+
+    <div class="project-case-study-page__inner container">
+      <IonizedCaseStudy />
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  function initHeroBackdrop() {
+    document.querySelectorAll('[data-hero-backdrop-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.heroBound === 'true') return;
+      img.dataset.heroBound = 'true';
+
+      const markMissing = () => {
+        img.closest('.project-case-study-page__hero-bg')?.classList.add('is-missing');
+      };
+
+      img.addEventListener('error', markMissing);
+      if (img.complete && img.naturalWidth === 0) markMissing();
+    });
+  }
+
+  initHeroBackdrop();
+  document.addEventListener('astro:page-load', initHeroBackdrop);
+</script>

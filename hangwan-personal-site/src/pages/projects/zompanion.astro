@@ -1,18 +1,49 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ZompanionCaseStudy from '../../components/projects/ZompanionCaseStudy.astro';
+import { zompanionCaseStudyImages } from '../../data/zompanionCaseStudy';
 ---
 
-<BaseLayout title="Zompanion — Hang Wan" isHome={false}>
-  <section class="placeholder-page">
-    <div class="placeholder-page__inner">
-      <p class="placeholder-page__eyebrow">Games</p>
-      <h1 class="placeholder-page__title">Zompanion</h1>
-      <p class="placeholder-page__text">
-        Case study coming soon. Return to
-        <a href="/#chapter-1">Game Design</a>
-        or the
-        <a href="/">homepage</a>.
-      </p>
+<BaseLayout
+  title="Zompanion — Hang Wan"
+  description="A 2D pixel-art management and exploration game about collecting, restoring, and living with zombie companions."
+  bodyClass="is-project-case-study"
+  isHome={false}
+>
+  <div class="project-case-study-page">
+    <div class="project-case-study-page__hero-bg" aria-hidden="true">
+      <img
+        class="project-case-study-page__hero-bg-img"
+        src={zompanionCaseStudyImages.hero}
+        alt=""
+        loading="eager"
+        decoding="async"
+        data-hero-backdrop-img
+      />
+      <div class="project-case-study-page__hero-bg-fade"></div>
     </div>
-  </section>
+
+    <div class="project-case-study-page__inner container">
+      <ZompanionCaseStudy />
+    </div>
+  </div>
 </BaseLayout>
+
+<script>
+  function initHeroBackdrop() {
+    document.querySelectorAll('[data-hero-backdrop-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.heroBound === 'true') return;
+      img.dataset.heroBound = 'true';
+
+      const markMissing = () => {
+        img.closest('.project-case-study-page__hero-bg')?.classList.add('is-missing');
+      };
+
+      img.addEventListener('error', markMissing);
+      if (img.complete && img.naturalWidth === 0) markMissing();
+    });
+  }
+
+  initHeroBackdrop();
+  document.addEventListener('astro:page-load', initHeroBackdrop);
+</script>

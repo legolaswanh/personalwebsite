@@ -6455,6 +6455,38 @@ body.is-project-case-study main {
   width: 100%;
 }
 
+.scarlett-case-study__hero-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 36%);
+  gap: clamp(1em, 2.5cqi, 1.5em);
+  align-items: stretch;
+  width: 100%;
+}
+
+.scarlett-case-study__hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.85em, 2vh, 1.25em);
+  min-width: 0;
+}
+
+.scarlett-case-study__hero-media {
+  margin: 0;
+  align-self: start;
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
+  line-height: 0;
+}
+
+.scarlett-case-study__hero-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 .scarlett-case-study__project-name,
 .scarlett-case-study__hero-title,
 .scarlett-case-study__section-label,
@@ -6515,6 +6547,124 @@ body.is-project-case-study main {
   align-items: center;
 }
 
+.scarlett-case-study__inspiration-row--framed {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  width: 100%;
+  gap: clamp(1em, 2.5cqi, 1.5em);
+}
+
+.scarlett-case-study__inspiration-frame {
+  margin: 0;
+  line-height: 0;
+  overflow: hidden;
+  background: transparent;
+  max-width: 32%;
+}
+
+.scarlett-case-study__inspiration-frame-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 14em;
+  object-fit: contain;
+  object-position: center;
+}
+
+.scarlett-case-study__inspiration-row--framed .scarlett-case-study__copy--inspiration {
+  min-width: 0;
+}
+
+.scarlett-case-study__unself-design-flow {
+  margin: clamp(1em, 2.5vh, 1.5em) 0 0;
+  width: min(100%, 52rem);
+  max-width: 100%;
+  line-height: 0;
+  background: transparent;
+}
+
+.scarlett-case-study__unself-design-flow-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.scarlett-case-study__unself-design-split {
+  display: grid;
+  grid-template-columns: minmax(0, 35%) minmax(0, 1fr);
+  gap: clamp(1em, 2.5cqi, 1.5em);
+  align-items: start;
+  width: 100%;
+}
+
+.scarlett-case-study__unself-design-split--media-end {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 27%);
+}
+
+.scarlett-case-study__unself-design-split-media {
+  margin: 0;
+  width: 100%;
+  line-height: 0;
+  background: transparent;
+}
+
+.scarlett-case-study__unself-design-split-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.scarlett-case-study__unself-design-split-copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65em, 1.5vh, 1em);
+  min-width: 0;
+}
+
+.scarlett-case-study__unself-gameplay-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(1em, 2.5cqi, 1.5em);
+  align-items: start;
+  width: 100%;
+}
+
+.scarlett-case-study__unself-gameplay-main {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65em, 1.5vh, 1em);
+  min-width: 0;
+}
+
+.scarlett-case-study__unself-gameplay-copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65em, 1.5vh, 1em);
+  min-width: 0;
+}
+
+.scarlett-case-study__unself-gameplay-media {
+  margin: 0;
+  line-height: 0;
+  overflow: visible;
+  background: transparent;
+}
+
+.scarlett-case-study__unself-gameplay-img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  object-position: center;
+}
+
 .scarlett-case-study__copy--inspiration {
   justify-content: flex-start;
 }
@@ -6543,6 +6693,57 @@ body.is-project-case-study main {
 }
 
 .scarlett-case-study__body {
+  margin: 0;
+  font-size: 1.05em;
+  font-weight: 300;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.scarlett-case-study__rule-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.85em, 1.8vh, 1.25em);
+}
+
+.scarlett-case-study__rule-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: clamp(1.25em, 3cqi, 2em);
+  align-items: start;
+}
+
+.scarlett-case-study__rule-number {
+  font-family: var(--font-sans);
+  font-size: 2.1em;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  min-width: 1.35em;
+}
+
+.scarlett-case-study__rule-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  min-width: 0;
+}
+
+.scarlett-case-study__rule-title {
+  margin: 0;
+  font-size: 1.05em;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.scarlett-case-study__rule-body {
   margin: 0;
   font-size: 1.05em;
   font-weight: 300;
@@ -6587,7 +6788,145 @@ body.is-project-case-study main {
   width: 100%;
 }
 
-.scarlett-case-study__state-gifs {
+.scarlett-case-study__state-overview--babel {
+  --babel-game-design-height: clamp(140px, 22vw, 333px);
+  grid-template-columns: minmax(0, 257fr) minmax(0, 207fr) minmax(0, 292fr);
+  align-items: end;
+}
+
+.scarlett-case-study__babel-game-power-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 257fr) minmax(0, 207fr) minmax(0, 292fr);
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    'img1 img2 img3'
+    'copy copy img3';
+  column-gap: clamp(0.25em, 0.45vw, 0.5em);
+  row-gap: clamp(0.85em, 2cqi, 1.25em);
+  width: 100%;
+}
+
+.scarlett-case-study__babel-game-design-img--1 {
+  grid-area: img1;
+  align-self: end;
+}
+
+.scarlett-case-study__babel-game-design-img--2 {
+  grid-area: img2;
+  align-self: end;
+}
+
+.scarlett-case-study__babel-game-design-img--3 {
+  grid-area: img3;
+  align-self: start;
+  min-height: 0;
+}
+
+.scarlett-case-study__babel-power-copy {
+  grid-area: copy;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65em, 1.5vh, 1em);
+  min-width: 0;
+}
+
+.scarlett-case-study .case-study-media.scarlett-case-study__babel-game-design-img--1:not(.is-missing) {
+  aspect-ratio: unset;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+.scarlett-case-study .case-study-media.scarlett-case-study__babel-game-design-img--1:not(.is-missing) .case-study-media__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+.scarlett-case-study .case-study-media.scarlett-case-study__babel-game-design-img--2:not(.is-missing) {
+  aspect-ratio: unset;
+  height: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  overflow: visible;
+}
+
+.scarlett-case-study .case-study-media.scarlett-case-study__babel-game-design-img--2:not(.is-missing) .case-study-media__img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+.scarlett-case-study .case-study-media.scarlett-case-study__babel-game-design-img--3:not(.is-missing) {
+  aspect-ratio: unset;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.scarlett-case-study .case-study-media.scarlett-case-study__babel-game-design-img--3:not(.is-missing) .case-study-media__img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: top center;
+}
+
+.scarlett-case-study__state-overview--babel .case-study-media.scarlett-case-study__transparent-media:not(.is-missing) {
+  aspect-ratio: unset;
+  height: var(--babel-game-design-height);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.scarlett-case-study__state-overview--babel .case-study-media.scarlett-case-study__transparent-media:not(.is-missing) .case-study-media__img {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+.scarlett-case-study__babel-gameplay-row {
+  --babel-gameplay-gap: clamp(0.25em, 0.45vw, 0.5em);
+  display: grid;
+  grid-template-columns: minmax(0, 395fr) minmax(0, 375fr) minmax(0, 394fr);
+  gap: var(--babel-gameplay-gap);
+  width: 100%;
+  align-items: stretch;
+}
+
+.scarlett-case-study .case-study-media.scarlett-case-study__babel-gameplay-media:not(.is-missing) {
+  aspect-ratio: unset;
+  height: auto;
+  display: block;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: none;
+}
+
+.scarlett-case-study .case-study-media.scarlett-case-study__babel-gameplay-media:not(.is-missing) .case-study-media__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.scarlett-case-study__state-videos {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(1em, 2.5cqi, 1.5em);
@@ -6599,6 +6938,325 @@ body.is-project-case-study main {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(1em, 2.5cqi, 1.5em);
   align-items: start;
+}
+
+.scarlett-case-study__configuration-split {
+  --configuration-gap: clamp(1em, 2.5cqi, 1.5em);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--configuration-gap);
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+.scarlett-case-study__babel-intro-layout {
+  --configuration-gap: clamp(1em, 2.5cqi, 1.5em);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  gap: var(--configuration-gap);
+  align-items: start;
+}
+
+.scarlett-case-study__babel-intro-lead-label {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0 0 clamp(-0.35em, -0.8vh, -0.15em);
+}
+
+.scarlett-case-study__babel-intro-content {
+  grid-column: 1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2em, 5vh, 3.5em);
+  min-width: 0;
+  min-height: 0;
+  align-self: stretch;
+}
+
+.scarlett-case-study__babel-intro-inspiration {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65em, 1.5vh, 1em);
+}
+
+.scarlett-case-study__babel-intro-configuration {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin: 0;
+}
+
+.scarlett-case-study__babel-intro-configuration.scarlett-case-study__section {
+  gap: clamp(1.5em, 3.5vh, 2.5em);
+}
+
+.scarlett-case-study__configuration-feature--span {
+  grid-column: 2;
+  grid-row: 2;
+  display: block;
+  width: auto;
+  height: auto;
+  align-self: start;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+.scarlett-case-study__configuration-feature-img {
+  display: block;
+  width: auto;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  object-position: top center;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.scarlett-case-study__configuration-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  align-self: stretch;
+  min-height: 0;
+}
+
+.scarlett-case-study__configuration-stats-inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5em, 3vh, 2.35em);
+  align-items: flex-start;
+}
+
+.scarlett-case-study__configuration-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+}
+
+.scarlett-case-study__configuration-body {
+  min-width: 0;
+}
+
+.scarlett-case-study__configuration-copy {
+  width: 100%;
+}
+
+/* Ionized: single-column intro (no spanning feature image) */
+.scarlett-case-study__ionized-intro-layout {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.scarlett-case-study__ionized-intro-layout .scarlett-case-study__babel-intro-content {
+  grid-column: 1;
+}
+
+/* Ionized Configuration: title+text left, image right */
+.scarlett-case-study__ionized-configuration-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(1em, 2.5cqi, 1.5em);
+  align-items: stretch;
+  height: 100%;
+  min-height: 0;
+}
+
+.scarlett-case-study__ionized-config-media {
+  margin: 0;
+  align-self: stretch;
+  height: 100%;
+  overflow: visible;
+  background: transparent;
+}
+
+.scarlett-case-study__ionized-config-img {
+  display: block;
+  width: auto;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  object-position: top center;
+}
+
+/* Ionized Gameplay: Approaching Zero text + image */
+.scarlett-case-study__ionized-approach-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(1em, 2.5cqi, 1.5em);
+  align-items: start;
+  width: 100%;
+}
+
+.scarlett-case-study__ionized-approach-media {
+  margin: 0;
+  overflow: visible;
+  background: transparent;
+}
+
+.scarlett-case-study__ionized-approach-img {
+  display: block;
+  width: auto;
+  height: clamp(180px, 28cqi, 280px);
+  max-width: min(100%, 220px);
+  object-fit: contain;
+  object-position: top center;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Ionized: 3 side-by-side rule modules */
+.scarlett-case-study__ionized-rule-modules {
+  --ionized-rule-gap: clamp(1.25em, 3cqi, 2.5em);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--ionized-rule-gap);
+  width: 100%;
+  align-items: start;
+}
+
+.scarlett-case-study__ionized-rule-module {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(0.75em, 1.8vh, 1.15em);
+  min-width: 0;
+}
+
+.scarlett-case-study__ionized-rule-heading {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.35em;
+  font-family: var(--font-sans);
+  line-height: 1.15;
+  color: var(--text);
+}
+
+.scarlett-case-study__ionized-rule-number {
+  font-size: 2.1em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.scarlett-case-study__ionized-rule-title {
+  font-size: 1.05em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.scarlett-case-study .case-study-media.scarlett-case-study__ionized-rule-media:not(.is-missing) {
+  aspect-ratio: unset;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+.scarlett-case-study .case-study-media.scarlett-case-study__ionized-rule-media:not(.is-missing) .case-study-media__img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 150px);
+  height: auto;
+  object-fit: contain;
+  object-position: top left;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.scarlett-case-study__ionized-rule-body {
+  max-width: 22em;
+}
+
+.scarlett-case-study__configuration-gallery {
+  --configuration-gallery-height: clamp(108px, 10.35cqi, 135px);
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-end;
+  gap: clamp(0.12em, 0.28cqi, 0.28em);
+  margin-top: auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.scarlett-case-study__configuration-gallery-img {
+  display: block;
+  flex: 0 0 auto;
+  width: auto;
+  height: var(--configuration-gallery-height);
+  max-width: none;
+  object-fit: contain;
+  object-position: bottom center;
+}
+
+.scarlett-case-study__configuration-feature {
+  margin: 0;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  box-shadow: none;
+  background: transparent;
+}
+
+.scarlett-case-study__configuration-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.scarlett-case-study__configuration-stat-icon {
+  display: block;
+  width: clamp(64px, 10cqi, 88px);
+  height: auto;
+  margin-inline: auto;
+}
+
+.scarlett-case-study__configuration-stat-label {
+  margin: -10px 0 0;
+  font-family: var(--font-sans);
+  font-size: 0.72em;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: #707070;
+}
+
+.scarlett-case-study__configuration-stat-value {
+  --configuration-stat-number-size: 1.55em;
+  margin: 0.4em 0 0;
+  font-size: var(--configuration-stat-number-size);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--text);
+}
+
+.scarlett-case-study__configuration-stat-number {
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.scarlett-case-study__configuration-stat-unit {
+  font-size: 0.5em;
+  font-weight: 700;
+  color: var(--text);
 }
 
 .scarlett-case-study__game-design-copy {
@@ -6816,6 +7474,19 @@ body.is-project-case-study main {
   object-position: center;
 }
 
+.case-study-media__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  background: #111;
+}
+
+.case-study-media.is-missing .case-study-media__video {
+  opacity: 0;
+}
+
 .case-study-media--contain .case-study-media__img {
   object-fit: contain;
 }
@@ -6843,6 +7514,12 @@ body.is-project-case-study main {
   box-shadow:
     0 2px 4px rgba(0, 0, 0, 0.05),
     0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.scarlett-case-study .case-study-media.scarlett-case-study__transparent-media:not(.is-missing),
+.scarlett-case-study .case-study-media.scarlett-case-study__transparent-media:not(.is-missing) .case-study-media__img {
+  background: transparent;
+  box-shadow: none;
 }
 
 .scarlett-case-study .case-study-media.scarlett-case-study__art-ui:not(.is-missing) {
@@ -6937,7 +7614,7 @@ body.is-project-case-study main {
   .scarlett-case-study .case-study-media.scarlett-case-study__art-photo:not(.is-missing),
   .scarlett-case-study .case-study-media.scarlett-case-study__art-scene:not(.is-missing),
   .scarlett-case-study .case-study-media.scarlett-case-study__reflection-photo:not(.is-missing),
-  .scarlett-case-study__state-gifs .case-study-media:not(.is-missing) {
+  .scarlett-case-study__state-videos .case-study-media:not(.is-missing) {
     aspect-ratio: unset;
     height: 100%;
     min-height: 0;
@@ -6947,12 +7624,21 @@ body.is-project-case-study main {
     box-shadow: none;
   }
 
+  .scarlett-case-study__state-videos .case-study-media:not(.is-missing) .case-study-media__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.05),
+      0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
   .scarlett-case-study .case-study-media.scarlett-case-study__inspiration-media:not(.is-missing) .case-study-media__img,
-  .scarlett-case-study .case-study-media.scarlett-case-study__farewell-media:not(.is-missing) .case-study-media__img,
+  .scarlett-case-study .case-study-media.scarlett-case-study__farewell-media:not(.is-missing) .case-study-media__video,
   .scarlett-case-study .case-study-media.scarlett-case-study__art-photo:not(.is-missing) .case-study-media__img,
   .scarlett-case-study .case-study-media.scarlett-case-study__art-scene:not(.is-missing) .case-study-media__img,
-  .scarlett-case-study .case-study-media.scarlett-case-study__reflection-photo:not(.is-missing) .case-study-media__img,
-  .scarlett-case-study__state-gifs .case-study-media:not(.is-missing) .case-study-media__img {
+  .scarlett-case-study .case-study-media.scarlett-case-study__reflection-photo:not(.is-missing) .case-study-media__img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -6964,13 +7650,168 @@ body.is-project-case-study main {
 }
 
 @container scarlett (max-width: 720px) {
+  .scarlett-case-study__hero-split {
+    grid-template-columns: 1fr;
+  }
+
+  .scarlett-case-study__hero-media {
+    height: auto;
+    width: 100%;
+    max-width: 36%;
+    justify-self: start;
+  }
+
+  .scarlett-case-study__hero-img {
+    height: auto;
+    width: 100%;
+    aspect-ratio: auto;
+    object-fit: contain;
+  }
+
   .scarlett-case-study__inspiration-row {
     grid-template-columns: 1fr;
     align-items: start;
   }
 
+  .scarlett-case-study__inspiration-row--framed {
+    grid-template-columns: 1fr;
+  }
+
+  .scarlett-case-study__inspiration-frame {
+    height: auto;
+    max-width: none;
+    justify-self: start;
+  }
+
+  .scarlett-case-study__inspiration-frame-img {
+    height: auto;
+    max-height: min(42vh, 320px);
+    width: auto;
+    max-width: min(100%, 220px);
+    transform: none;
+  }
+
   .scarlett-case-study__game-design-split {
     grid-template-columns: 1fr;
+  }
+
+  .scarlett-case-study__babel-intro-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .scarlett-case-study__ionized-configuration-main {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .scarlett-case-study__ionized-config-media {
+    height: auto;
+    justify-self: start;
+  }
+
+  .scarlett-case-study__ionized-config-img {
+    height: auto;
+    max-width: min(100%, 320px);
+  }
+
+  .scarlett-case-study__ionized-approach-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .scarlett-case-study__unself-design-split,
+  .scarlett-case-study__unself-design-split--media-end {
+    grid-template-columns: 1fr;
+  }
+
+  .scarlett-case-study__unself-design-split-media {
+    max-width: min(100%, 320px);
+  }
+
+  .scarlett-case-study__unself-gameplay-split {
+    grid-template-columns: 1fr;
+  }
+
+  .scarlett-case-study__unself-gameplay-media {
+    max-width: min(100%, 420px);
+    height: auto;
+  }
+
+  .scarlett-case-study__unself-gameplay-img {
+    height: auto;
+    max-height: min(42vh, 320px);
+    width: auto;
+    max-width: 100%;
+  }
+
+  .scarlett-case-study__ionized-approach-img {
+    height: auto;
+    max-width: min(100%, 220px);
+  }
+
+  .scarlett-case-study__ionized-rule-modules {
+    grid-template-columns: 1fr;
+    gap: clamp(1.5em, 4vh, 2.5em);
+  }
+
+  .scarlett-case-study__babel-intro-lead-label {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .scarlett-case-study__babel-intro-content {
+    grid-column: 1;
+    grid-row: auto;
+    height: auto;
+  }
+
+  .scarlett-case-study__configuration-feature--span {
+    grid-column: 1;
+    grid-row: auto;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    align-self: auto;
+  }
+
+  .scarlett-case-study__configuration-feature--span .scarlett-case-study__configuration-feature-img {
+    width: auto;
+    height: auto;
+    max-width: min(244px, 72vw);
+    max-height: min(420px, 62vw);
+  }
+
+  .scarlett-case-study__configuration-split {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .scarlett-case-study__configuration-stats {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-self: auto;
+  }
+
+  .scarlett-case-study__configuration-stats-inner {
+    flex-direction: row;
+    gap: clamp(1.5em, 6vw, 2.5em);
+  }
+
+  .scarlett-case-study__configuration-main {
+    height: auto;
+  }
+
+  .scarlett-case-study__configuration-gallery {
+    flex-wrap: wrap;
+    margin-top: clamp(1em, 2.5vh, 1.5em);
+    justify-content: flex-start;
+    gap: clamp(0.2em, 1.2vw, 0.45em);
+  }
+
+  .scarlett-case-study__configuration-gallery-img {
+    flex: 0 0 auto;
+    height: clamp(90px, 21.6vw, 126px);
+    width: auto;
   }
 
   .scarlett-case-study__reflection-media {
@@ -6987,12 +7828,70 @@ body.is-project-case-study main {
     max-width: 100%;
   }
 
+  .scarlett-case-study__babel-gameplay-row {
+    grid-template-columns: 1fr;
+    gap: clamp(0.5em, 1.5cqi, 0.85em);
+  }
+
   .scarlett-case-study__state-overview {
     grid-template-columns: 1fr;
     gap: clamp(0.5em, 1.5cqi, 0.85em);
   }
 
-  .scarlett-case-study__state-gifs {
+  .scarlett-case-study__state-overview--babel {
+    grid-template-columns: 1fr;
+  }
+
+  .scarlett-case-study__babel-game-power-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      'img1'
+      'img2'
+      'img3'
+      'copy';
+    gap: clamp(0.5em, 1.5cqi, 0.85em);
+  }
+
+  .scarlett-case-study__babel-game-design-img--1,
+  .scarlett-case-study__babel-game-design-img--2,
+  .scarlett-case-study__babel-game-design-img--3 {
+    align-self: auto;
+  }
+
+  .scarlett-case-study .case-study-media.scarlett-case-study__babel-game-design-img--1:not(.is-missing),
+  .scarlett-case-study .case-study-media.scarlett-case-study__babel-game-design-img--2:not(.is-missing),
+  .scarlett-case-study .case-study-media.scarlett-case-study__babel-game-design-img--3:not(.is-missing) {
+    height: auto;
+  }
+
+  .scarlett-case-study .case-study-media.scarlett-case-study__babel-game-design-img--1:not(.is-missing) .case-study-media__img,
+  .scarlett-case-study .case-study-media.scarlett-case-study__babel-game-design-img--2:not(.is-missing) .case-study-media__img,
+  .scarlett-case-study .case-study-media.scarlett-case-study__babel-game-design-img--3:not(.is-missing) .case-study-media__img {
+    height: auto;
+    width: 100%;
+    max-width: min(100%, 292px);
+    margin-inline: auto;
+    object-position: center;
+  }
+
+  .scarlett-case-study__babel-power-copy {
+    align-self: auto;
+  }
+
+  .scarlett-case-study__state-overview--babel .case-study-media.scarlett-case-study__transparent-media:not(.is-missing) {
+    height: auto;
+    width: 100%;
+  }
+
+  .scarlett-case-study__state-overview--babel .case-study-media.scarlett-case-study__transparent-media:not(.is-missing) .case-study-media__img {
+    height: auto;
+    width: 100%;
+    max-width: min(100%, 292px);
+    margin-inline: auto;
+  }
+
+  .scarlett-case-study__state-videos {
     grid-template-columns: 1fr;
   }
 }

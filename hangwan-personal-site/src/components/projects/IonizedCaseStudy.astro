@@ -1,0 +1,295 @@
+---
+import CaseStudyMedia from './CaseStudyMedia.astro';
+import {
+  ionizedCaseStudyImages,
+  ionizedRuleModules,
+} from '../../data/ionizedCaseStudy';
+import { aboutContactIcons } from '../../data/aboutAssets';
+import { contactEmail, socialLinks } from '../../data/aboutContent';
+
+const images = ionizedCaseStudyImages;
+
+const backToChapterHref = '/?highlight=ionized#chapter-1';
+---
+
+<article class="scarlett-case-study">
+  <header class="scarlett-case-study__hero">
+    <p class="scarlett-case-study__project-name">Ionized</p>
+    <h1 class="scarlett-case-study__hero-title">
+      A fast-paced card game that turns <strong>calculation into confrontation</strong> through hidden information, direct interference, and shifting scores.
+    </h1>
+  </header>
+
+  <div class="scarlett-case-study__babel-intro-layout scarlett-case-study__ionized-intro-layout">
+    <p id="ionized-inspiration" class="scarlett-case-study__section-label scarlett-case-study__babel-intro-lead-label">
+      INSPIRATION
+    </p>
+
+    <div class="scarlett-case-study__babel-intro-content">
+      <div class="scarlett-case-study__babel-intro-inspiration">
+        <h2 class="scarlett-case-study__block-title">
+          Calculation as Confrontation
+        </h2>
+        <p class="scarlett-case-study__body">
+          Ionized began with the idea of making simple calculation socially interactive. Hidden cards create uncertainty, while direct swaps and scoring changes turn every decision into a balance between improving your own grid and interfering with someone else's.
+        </p>
+      </div>
+
+      <section
+        class="scarlett-case-study__section scarlett-case-study__babel-intro-configuration"
+        aria-labelledby="ionized-configuration"
+      >
+        <p id="ionized-configuration" class="scarlett-case-study__section-label">CONFIGURATION</p>
+
+        <div class="scarlett-case-study__configuration-split" data-ionized-config-split>
+          <div class="scarlett-case-study__configuration-stats" aria-label="Game configuration" data-ionized-config-stats>
+            <div class="scarlett-case-study__configuration-stats-inner">
+              <div class="scarlett-case-study__configuration-stat">
+                <img
+                  class="scarlett-case-study__configuration-stat-icon"
+                  src={images.playersIcon}
+                  alt=""
+                  width="88"
+                  height="66"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <p class="scarlett-case-study__configuration-stat-label">Players</p>
+                <p class="scarlett-case-study__configuration-stat-value">
+                  <span class="scarlett-case-study__configuration-stat-number">3–6</span>
+                </p>
+              </div>
+
+              <div class="scarlett-case-study__configuration-stat">
+                <img
+                  class="scarlett-case-study__configuration-stat-icon"
+                  src={images.playtimeIcon}
+                  alt=""
+                  width="88"
+                  height="88"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <p class="scarlett-case-study__configuration-stat-label">Playtime</p>
+                <p class="scarlett-case-study__configuration-stat-value">
+                  <span class="scarlett-case-study__configuration-stat-number">15</span><span
+                    class="scarlett-case-study__configuration-stat-unit">min</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="scarlett-case-study__configuration-main scarlett-case-study__ionized-configuration-main">
+            <div class="scarlett-case-study__text-block scarlett-case-study__configuration-copy">
+              <h2 class="scarlett-case-study__block-title">
+                Individual Grids, Shared Tension
+              </h2>
+              <p class="scarlett-case-study__body">
+                The deck contains number cards from 1 to 12 in three colours: yellow, red, and blue. Six scoring symbols combine + or − with horizontal, vertical, and diagonal directions to determine how each grid is calculated.
+              </p>
+              <p class="scarlett-case-study__body">
+                Each player builds a 3×3 grid using six hidden number cards and three scoring symbols. A shared draw pile and discard pile connect the individual boards, allowing one player's decision to reshape another player's strategy.
+              </p>
+            </div>
+
+            <figure class="scarlett-case-study__ionized-config-media" data-ionized-config-media>
+              <img
+                class="scarlett-case-study__ionized-config-img"
+                src={images.configurationImage}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                data-ionized-config-img
+              />
+            </figure>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section class="scarlett-case-study__section" aria-labelledby="ionized-gameplay">
+    <p id="ionized-gameplay" class="scarlett-case-study__section-label">GAMEPLAY</p>
+
+    <div class="scarlett-case-study__ionized-approach-layout">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Approaching Zero</h2>
+        <p class="scarlett-case-study__body">
+          Players aim to construct a final score as close to zero as possible. On each turn, they draw a card and decide whether to reveal information, exchange cards, or alter how a row or column is scored.
+        </p>
+        <p class="scarlett-case-study__body">
+          When the target is completed collectively, everyone receives a reward. But when one player exceeds the exclusivity threshold, they monopolise the target and gain a greater individual advantage.
+        </p>
+      </div>
+
+      <figure class="scarlett-case-study__ionized-approach-media">
+        <img
+          class="scarlett-case-study__ionized-approach-img"
+          src={images.gameplayImage1}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+    </div>
+
+    <div class="scarlett-case-study__ionized-rule-modules">
+      {
+        ionizedRuleModules.map((module) => (
+          <div class="scarlett-case-study__ionized-rule-module">
+            <p class="scarlett-case-study__ionized-rule-heading">
+              <span class="scarlett-case-study__ionized-rule-number">{module.number}</span>
+              <span class="scarlett-case-study__ionized-rule-title">{module.title}</span>
+            </p>
+            <CaseStudyMedia
+              class="scarlett-case-study__ionized-rule-media scarlett-case-study__transparent-media"
+              src={module.image}
+              alt=""
+              placeholder={`${module.title} card`}
+              aspectRatio={module.aspectRatio}
+              fit="contain"
+            />
+            <p class="scarlett-case-study__body scarlett-case-study__ionized-rule-body">
+              {module.body}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">Hidden Information, Visible Intentions</h2>
+      <p class="scarlett-case-study__body">
+        Because most cards begin face down, players must act with incomplete information and interpret one another through every reveal, swap, and symbol change. The rules remain simple, but each action creates an immediate reaction around the table.
+      </p>
+    </div>
+  </section>
+
+  <footer class="scarlett-case-study__footer">
+    <a class="scarlett-case-study__back" href={backToChapterHref}>← Back to Chapter</a>
+
+    <div class="scarlett-case-study__closing">
+      <p class="scarlett-case-study__thanks">
+        Thank you for exploring my world! If it resonates, I'd love to hear from you.
+      </p>
+      <div class="scarlett-case-study__credit">
+        <span class="scarlett-case-study__name">Hang Wan</span>
+        <span class="scarlett-case-study__credit-dot" aria-hidden="true">·</span>
+        <span class="scarlett-case-study__role">Design Playful Experience</span>
+        <span class="scarlett-case-study__credit-divider" aria-hidden="true"></span>
+        <div class="scarlett-case-study__credit-links">
+          <a
+            class="scarlett-case-study__credit-link"
+            href={`mailto:${contactEmail}`}
+            aria-label="Email Hang Wan"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.gmail}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+          <a
+            class="scarlett-case-study__credit-link"
+            href={socialLinks.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.linkedin}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</article>
+
+<script>
+  function syncIonizedConfigImage() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-ionized-config-split]').forEach((split) => {
+      if (!(split instanceof HTMLElement)) return;
+
+      const stats = split.querySelector('[data-ionized-config-stats]');
+      const media = split.querySelector('[data-ionized-config-media]');
+      const img = split.querySelector('[data-ionized-config-img]');
+
+      if (!(stats instanceof HTMLElement) || !(media instanceof HTMLElement) || !(img instanceof HTMLImageElement)) {
+        return;
+      }
+
+      if (mobileQuery.matches) {
+        media.style.height = '';
+        img.style.height = '';
+        img.style.width = '';
+        return;
+      }
+
+      const statsHeight = stats.getBoundingClientRect().height;
+      if (statsHeight <= 0) return;
+
+      media.style.height = `${statsHeight}px`;
+      img.style.height = `${statsHeight}px`;
+      img.style.width = 'auto';
+    });
+  }
+
+  function bindIonizedConfigSync() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-ionized-config-stats]').forEach((stats) => {
+      if (!(stats instanceof HTMLElement) || stats.dataset.configObserverBound === 'true') return;
+      stats.dataset.configObserverBound = 'true';
+
+      const observer = new ResizeObserver(() => {
+        if (!mobileQuery.matches) syncIonizedConfigImage();
+      });
+      observer.observe(stats);
+    });
+
+    document.querySelectorAll('[data-ionized-config-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.configLoadBound === 'true') return;
+      img.dataset.configLoadBound = 'true';
+      img.addEventListener('load', syncIonizedConfigImage);
+    });
+  }
+
+  function initCaseStudyMedia() {
+    document.querySelectorAll('[data-case-study-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.mediaBound === 'true') return;
+      img.dataset.mediaBound = 'true';
+
+      const markMissing = () => {
+        const figure = img.closest('[data-case-study-media]');
+        figure?.classList.add('is-missing');
+      };
+
+      img.addEventListener('error', markMissing);
+      if (img.complete && img.naturalWidth === 0) markMissing();
+    });
+  }
+
+  initCaseStudyMedia();
+  bindIonizedConfigSync();
+  syncIonizedConfigImage();
+  requestAnimationFrame(() => {
+    requestAnimationFrame(syncIonizedConfigImage);
+  });
+  document.addEventListener('astro:page-load', () => {
+    initCaseStudyMedia();
+    bindIonizedConfigSync();
+    syncIonizedConfigImage();
+  });
+  window.addEventListener('resize', syncIonizedConfigImage);
+</script>

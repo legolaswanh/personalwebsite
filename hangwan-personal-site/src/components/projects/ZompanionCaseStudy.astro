@@ -1,0 +1,292 @@
+---
+import CaseStudyMedia from './CaseStudyMedia.astro';
+import CaseStudyVideo from './CaseStudyVideo.astro';
+import {
+  zompanionCaseStudyImages,
+  zompanionStateMachineVideos,
+  zompanionStateOverviewImages,
+} from '../../data/zompanionCaseStudy';
+import { aboutContactIcons } from '../../data/aboutAssets';
+import { contactEmail, socialLinks } from '../../data/aboutContent';
+
+const images = zompanionCaseStudyImages;
+
+const backToChapterHref = '/?highlight=zompanion#chapter-1';
+---
+
+<article class="scarlett-case-study">
+  <header class="scarlett-case-study__hero">
+    <p class="scarlett-case-study__project-name">Zompanion</p>
+    <h1 class="scarlett-case-study__hero-title">
+      A 2D pixel-art management and exploration game about collecting, restoring, and living with zombie companions through <strong>system design.</strong>
+    </h1>
+  </header>
+
+  <section class="scarlett-case-study__section" aria-labelledby="zompanion-inspiration">
+    <p id="zompanion-inspiration" class="scarlett-case-study__section-label">INSPIRATION</p>
+
+    <div class="scarlett-case-study__inspiration-row">
+      <div class="scarlett-case-study__copy scarlett-case-study__copy--inspiration">
+        <h2 class="scarlett-case-study__block-title">
+          What Shaped This <strong>Experience</strong>
+        </h2>
+        <p class="scarlett-case-study__body">
+          Replace this paragraph with the inspiration behind Zompanion.
+        </p>
+        <p class="scarlett-case-study__body">
+          Replace this paragraph with how the idea developed into a playable project.
+        </p>
+      </div>
+      <CaseStudyMedia
+        class="scarlett-case-study__inspiration-media"
+        src={images.inspirationShapedPrimary}
+        alt=""
+        placeholder="Inspiration image 1"
+        aspectRatio="516 / 362"
+      />
+      <CaseStudyMedia
+        class="scarlett-case-study__inspiration-media"
+        src={images.inspirationShapedSecondary}
+        alt=""
+        placeholder="Inspiration image 2"
+        aspectRatio="393 / 257"
+      />
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="zompanion-game-design">
+    <p id="zompanion-game-design" class="scarlett-case-study__section-label">GAME DESIGN</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">
+          Replace with <span class="scarlett-case-study__title-light">your headline</span>
+        </h2>
+        <p class="scarlett-case-study__body">
+          Replace this paragraph with your core game design approach for Zompanion.
+        </p>
+      </div>
+
+      <div class="scarlett-case-study__game-design-split">
+        <div class="scarlett-case-study__game-design-copy">
+          <div class="scarlett-case-study__text-block">
+            <h2 class="scarlett-case-study__block-title">Replace with subheading 1</h2>
+            <p class="scarlett-case-study__body">
+              Replace this paragraph with a key mechanic or design decision.
+            </p>
+          </div>
+
+          <div class="scarlett-case-study__text-block">
+            <h2 class="scarlett-case-study__block-title">Replace with subheading 2</h2>
+            <p class="scarlett-case-study__body">
+              Replace this paragraph with another design highlight.
+            </p>
+          </div>
+        </div>
+
+        <CaseStudyVideo
+          class="scarlett-case-study__farewell-media"
+          src={images.gameDesignFarewell}
+          placeholder="Gameplay highlight video"
+          aspectRatio="16 / 9"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="zompanion-game-development">
+    <p id="zompanion-game-development" class="scarlett-case-study__section-label">
+      GAME DEVELOPMENT
+    </p>
+
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">
+        Replace with development headline
+      </h2>
+      <p class="scarlett-case-study__body">
+        Replace this paragraph with how you built, prototyped, or implemented Zompanion.
+      </p>
+    </div>
+
+    <div class="scarlett-case-study__state-overview">
+      {
+        zompanionStateOverviewImages.map((overview) => (
+          <CaseStudyMedia
+            class="scarlett-case-study__state-overview-media"
+            src={overview.image}
+            alt=""
+            placeholder={overview.placeholder}
+            aspectRatio={overview.aspectRatio}
+          />
+        ))
+      }
+    </div>
+
+    <div class="scarlett-case-study__state-videos">
+      {
+        zompanionStateMachineVideos.map((video) => (
+          <CaseStudyVideo
+            src={video.src}
+            placeholder={video.placeholder}
+            aspectRatio={video.aspectRatio}
+          />
+        ))
+      }
+    </div>
+
+    <div class="scarlett-case-study__subsection">
+      <p class="scarlett-case-study__subsection-label">ART</p>
+
+      <h2 class="scarlett-case-study__block-title">Visual & Interface Design</h2>
+
+      <div class="scarlett-case-study__art-layout">
+        <CaseStudyMedia
+          class="scarlett-case-study__art-photo"
+          src={images.devScenePhoto}
+          alt=""
+          placeholder="Reference or scene photo"
+          aspectRatio="980 / 624"
+        />
+
+        <div class="scarlett-case-study__art-center">
+          <p class="scarlett-case-study__body">
+            Replace this paragraph with notes on visual direction, art, or interface design.
+          </p>
+
+          <div class="scarlett-case-study__art-ui-row">
+            <CaseStudyMedia
+              class="scarlett-case-study__art-ui"
+              src={images.devUiMain}
+              alt=""
+              placeholder="UI main screen"
+              aspectRatio="822 / 624"
+            />
+            <CaseStudyMedia
+              class="scarlett-case-study__art-ui"
+              src={images.devUiDetail1}
+              alt=""
+              placeholder="UI detail 1"
+              aspectRatio="912 / 546"
+            />
+          </div>
+        </div>
+
+        <CaseStudyMedia
+          class="scarlett-case-study__art-scene"
+          src={images.devSceneGame}
+          alt=""
+          placeholder="In-game scene"
+          aspectRatio="436 / 312"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="zompanion-reflection">
+    <p id="zompanion-reflection" class="scarlett-case-study__section-label">REFLECTION</p>
+
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">Learning From Playtest</h2>
+      <p class="scarlett-case-study__body">
+        Replace this paragraph with playtest insights for Zompanion.
+      </p>
+    </div>
+
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">What I Took Forward</h2>
+      <p class="scarlett-case-study__body">
+        Replace this paragraph with your personal reflection on the project.
+      </p>
+    </div>
+
+    <div class="scarlett-case-study__reflection-media">
+      <CaseStudyMedia
+        class="scarlett-case-study__reflection-photo"
+        src={images.reflectionPhoto}
+        alt=""
+        placeholder="Reflection image"
+        aspectRatio="976 / 724"
+      />
+    </div>
+  </section>
+
+  <footer class="scarlett-case-study__footer">
+    <a class="scarlett-case-study__back" href={backToChapterHref}>← Back to Chapter</a>
+
+    <div class="scarlett-case-study__closing">
+      <p class="scarlett-case-study__thanks">
+        Thank you for exploring my world! If it resonates, I'd love to hear from you.
+      </p>
+      <div class="scarlett-case-study__credit">
+        <span class="scarlett-case-study__name">Hang Wan</span>
+        <span class="scarlett-case-study__credit-dot" aria-hidden="true">·</span>
+        <span class="scarlett-case-study__role">Design Playful Experience</span>
+        <span class="scarlett-case-study__credit-divider" aria-hidden="true"></span>
+        <div class="scarlett-case-study__credit-links">
+          <a
+            class="scarlett-case-study__credit-link"
+            href={`mailto:${contactEmail}`}
+            aria-label="Email Hang Wan"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.gmail}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+          <a
+            class="scarlett-case-study__credit-link"
+            href={socialLinks.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.linkedin}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</article>
+
+<script>
+  function initCaseStudyMedia() {
+    document.querySelectorAll('[data-case-study-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.mediaBound === 'true') return;
+      img.dataset.mediaBound = 'true';
+
+      const markMissing = () => {
+        const figure = img.closest('[data-case-study-media]');
+        figure?.classList.add('is-missing');
+      };
+
+      img.addEventListener('error', markMissing);
+      if (img.complete && img.naturalWidth === 0) markMissing();
+    });
+
+    document.querySelectorAll('[data-case-study-video]').forEach((video) => {
+      if (!(video instanceof HTMLVideoElement) || video.dataset.mediaBound === 'true') return;
+      video.dataset.mediaBound = 'true';
+
+      const markMissing = () => {
+        const figure = video.closest('[data-case-study-media]');
+        figure?.classList.add('is-missing');
+      };
+
+      video.addEventListener('error', markMissing);
+    });
+  }
+
+  initCaseStudyMedia();
+  document.addEventListener('astro:page-load', initCaseStudyMedia);
+</script>

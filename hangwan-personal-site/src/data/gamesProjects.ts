@@ -81,6 +81,7 @@ export const gamesProjects: ChapterProject[] = [
     highlightTags: ['Spatial Puzzle', 'Level Design'],
     tags: ['Environmental Navigation', 'Spatial Reasoning'],
     focusLabel: 'Spatial Puzzle',
+    href: '/projects/obscura',
     images: gamesProjectImages.obscura,
   },
   {
@@ -96,6 +97,7 @@ export const gamesProjects: ChapterProject[] = [
     highlightTags: ['Thematic Design', 'Self-expression'],
     tags: ['Identity Reflection', 'Symbolic Interaction'],
     focusLabel: 'Thematic Design',
+    href: '/projects/unself',
     images: gamesProjectImages.unself,
   },
   {
@@ -112,6 +114,7 @@ export const gamesProjects: ChapterProject[] = [
     highlightTags: ['Recursive Mechanics', 'System Logic'],
     tags: ['Puzzle Design', 'Systemic Play'],
     focusLabel: 'Recursive Mechanics',
+    href: '/projects/uroboros',
     images: gamesProjectImages.uroboros,
   },
   {
@@ -127,6 +130,7 @@ export const gamesProjects: ChapterProject[] = [
     highlightTags: ['Narrative Design', 'Story Structure'],
     tags: ['Perspective Shift', 'Clue Integration'],
     focusLabel: 'Narrative Design',
+    href: '/projects/double-vision',
     images: [
       ...gamesProjectImages['double-vision'],
       { type: 'youtube', videoId: 'h_lnbsFGBpQ', label: 'Double Vision Demo' }
@@ -145,6 +149,7 @@ export const gamesProjects: ChapterProject[] = [
     highlightTags: ['Puzzle Logic', 'Language System'],
     tags: ['Cooperative Strategy', 'Symbol Systems'],
     focusLabel: 'Mechanic-driven',
+    href: '/projects/babel',
     images: gamesProjectImages.babel,
   },
   {
@@ -160,6 +165,7 @@ export const gamesProjects: ChapterProject[] = [
     highlightTags: ['Playful Mechanics'],
     tags: ['Party Play', 'Player Confrontation'],
     focusLabel: 'Calculation Logic',
+    href: '/projects/ionized',
     images: gamesProjectImages.ionized,
   },
   {

@@ -1,9 +1,10 @@
 ---
 import CaseStudyMedia from './CaseStudyMedia.astro';
+import CaseStudyVideo from './CaseStudyVideo.astro';
 import {
   scarlettCaseStudyImages,
   scarlettDemoVideoId,
-  scarlettStateMachineGifs,
+  scarlettStateMachineVideos,
   scarlettStateOverviewImages,
 } from '../../data/scarlettCaseStudy';
 import { aboutContactIcons } from '../../data/aboutAssets';
@@ -88,11 +89,10 @@ const backToChapterHref = '/?highlight=scarlet#chapter-1';
           </div>
         </div>
 
-        <CaseStudyMedia
+        <CaseStudyVideo
           class="scarlett-case-study__farewell-media"
           src={images.gameDesignFarewell}
-          alt=""
-          placeholder="The Farewell gameplay GIF"
+          placeholder="The Farewell gameplay video"
           aspectRatio="16 / 9"
         />
       </div>
@@ -127,14 +127,13 @@ const backToChapterHref = '/?highlight=scarlet#chapter-1';
       }
     </div>
 
-    <div class="scarlett-case-study__state-gifs">
+    <div class="scarlett-case-study__state-videos">
       {
-        scarlettStateMachineGifs.map((gif) => (
-          <CaseStudyMedia
-            src={gif.image}
-            alt=""
-            placeholder={gif.placeholder}
-            aspectRatio="16 / 9"
+        scarlettStateMachineVideos.map((video) => (
+          <CaseStudyVideo
+            src={video.src}
+            placeholder={video.placeholder}
+            aspectRatio={video.aspectRatio}
           />
         ))
       }
@@ -286,6 +285,18 @@ const backToChapterHref = '/?highlight=scarlet#chapter-1';
 
       img.addEventListener('error', markMissing);
       if (img.complete && img.naturalWidth === 0) markMissing();
+    });
+
+    document.querySelectorAll('[data-case-study-video]').forEach((video) => {
+      if (!(video instanceof HTMLVideoElement) || video.dataset.mediaBound === 'true') return;
+      video.dataset.mediaBound = 'true';
+
+      const markMissing = () => {
+        const figure = video.closest('[data-case-study-media]');
+        figure?.classList.add('is-missing');
+      };
+
+      video.addEventListener('error', markMissing);
     });
   }
 

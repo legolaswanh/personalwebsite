@@ -1,0 +1,58 @@
+const base = '/images/games/uroboros/case-study';
+
+export const uroborosCaseStudyImages = {
+  hero: `${base}/hero.jpg`,
+  inspirationShapedPrimary: `${base}/inspiration-shaped-primary.jpg`,
+  inspirationShapedSecondary: `${base}/inspiration-shaped-secondary.jpg`,
+  gameDesignFarewell: `${base}/game-design-farewell.mp4`,
+  devScenePhoto: `${base}/dev-scene-photo.jpg`,
+  devSceneGame: `${base}/dev-scene-game.jpg`,
+  devUiMain: `${base}/dev-ui-main.jpg`,
+  devUiDetail1: `${base}/dev-ui-detail-1.jpg`,
+  reflectionPhoto: `${base}/reflection-photo.jpg`,
+} as const;
+
+export type UroborosStateOverviewImage = {
+  image: string;
+  placeholder: string;
+  aspectRatio: string;
+};
+
+export const uroborosStateOverviewImages: UroborosStateOverviewImage[] = [
+  {
+    image: `${base}/dev-state-overview-1.jpg`,
+    placeholder: 'State overview 1',
+    aspectRatio: '744 / 462',
+  },
+  {
+    image: `${base}/dev-state-overview-2.jpg`,
+    placeholder: 'State overview 2',
+    aspectRatio: '590 / 462',
+  },
+  {
+    image: `${base}/dev-state-overview-3.jpg`,
+    placeholder: 'State overview 3',
+    aspectRatio: '580 / 462',
+  },
+];
+
+export const uroborosDemoVideoId = '';
+
+export type UroborosStateMachineVideo = {
+  src: string;
+  placeholder: string;
+  aspectRatio?: string;
+};
+
+export const uroborosStateMachineVideos: UroborosStateMachineVideo[] = [
+  {
+    src: `${base}/state-machine-1.mp4`,
+    placeholder: 'State machine video 1',
+    aspectRatio: '1914 / 1076',
+  },
+  {
+    src: `${base}/state-machine-2.mp4`,
+    placeholder: 'State machine video 2',
+    aspectRatio: '1914 / 1076',
+  },
+];

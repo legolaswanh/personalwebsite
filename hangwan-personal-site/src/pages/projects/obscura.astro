@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ObscuraCaseStudy from '../../components/projects/ObscuraCaseStudy.astro';
+import { obscuraCaseStudyImages } from '../../data/obscuraCaseStudy';
+---
+
+<BaseLayout
+  title="Obscura — Hang Wan"
+  description="A spatial puzzle game built around level structure, navigation, and environmental reasoning."
+  bodyClass="is-project-case-study"
+  isHome={false}
+>
+  <div class="project-case-study-page">
+    <div class="project-case-study-page__hero-bg" aria-hidden="true">
+      <img
+        class="project-case-study-page__hero-bg-img"
+        src={obscuraCaseStudyImages.hero}
+        alt=""
+        loading="eager"
+        decoding="async"
+        data-hero-backdrop-img
+      />
+      <div class="project-case-study-page__hero-bg-fade"></div>
+    </div>
+
+    <div class="project-case-study-page__inner container">
+      <ObscuraCaseStudy />
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  function initHeroBackdrop() {
+    document.querySelectorAll('[data-hero-backdrop-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.heroBound === 'true') return;
+      img.dataset.heroBound = 'true';
+
+      const markMissing = () => {
+        img.closest('.project-case-study-page__hero-bg')?.classList.add('is-missing');
+      };
+
+      img.addEventListener('error', markMissing);
+      if (img.complete && img.naturalWidth === 0) markMissing();
+    });
+  }
+
+  initHeroBackdrop();
+  document.addEventListener('astro:page-load', initHeroBackdrop);
+</script>

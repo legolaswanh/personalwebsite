@@ -4,7 +4,7 @@ export const scarlettCaseStudyImages = {
   hero: `${base}/hero.jpg`,
   inspirationShapedPrimary: `${base}/inspiration-shaped-primary.jpg`,
   inspirationShapedSecondary: `${base}/inspiration-shaped-secondary.jpg`,
-  gameDesignFarewell: `${base}/game-design-farewell.gif`,
+  gameDesignFarewell: `${base}/game-design-farewell.mp4`,
   devScenePhoto: `${base}/dev-scene-photo.jpg`,
   devSceneGame: `${base}/dev-scene-game.jpg`,
   devUiMain: `${base}/dev-ui-main.jpg`,
@@ -38,18 +38,21 @@ export const scarlettStateOverviewImages: ScarlettStateOverviewImage[] = [
 
 export const scarlettDemoVideoId = 'fx3pUFxNuX8';
 
-export type ScarlettStateMachineGif = {
-  image: string;
+export type ScarlettStateMachineVideo = {
+  src: string;
   placeholder: string;
+  aspectRatio?: string;
 };
 
-export const scarlettStateMachineGifs: ScarlettStateMachineGif[] = [
+export const scarlettStateMachineVideos: ScarlettStateMachineVideo[] = [
   {
-    image: `${base}/state-machine-1.gif`,
-    placeholder: 'State machine GIF 1',
+    src: `${base}/state-machine-1.mp4`,
+    placeholder: 'State machine video 1',
+    aspectRatio: '1914 / 1076',
   },
   {
-    image: `${base}/state-machine-2.gif`,
-    placeholder: 'State machine GIF 2',
+    src: `${base}/state-machine-2.mp4`,
+    placeholder: 'State machine video 2',
+    aspectRatio: '1914 / 1076',
   },
 ];

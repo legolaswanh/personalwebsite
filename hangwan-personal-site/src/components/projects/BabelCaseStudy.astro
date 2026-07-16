@@ -1,0 +1,512 @@
+---
+import CaseStudyMedia from './CaseStudyMedia.astro';
+import {
+  babelCaseStudyImages,
+  babelConfigurationGallery,
+  babelGameDesignImages,
+  babelGameplayImages,
+} from '../../data/babelCaseStudy';
+import { aboutContactIcons } from '../../data/aboutAssets';
+import { contactEmail, socialLinks } from '../../data/aboutContent';
+
+const images = babelCaseStudyImages;
+const [gameDesignImage1, gameDesignImage2, gameDesignImage3] = babelGameDesignImages;
+
+const backToChapterHref = '/?highlight=babel#chapter-1';
+---
+
+<article class="scarlett-case-study">
+  <header class="scarlett-case-study__hero">
+    <p class="scarlett-case-study__project-name">Babel</p>
+    <h1 class="scarlett-case-study__hero-title">
+      A cooperative-strategic tabletop game that turns language systems, interpretation, and player negotiation into the core of play through <strong>mechanic-driven play.</strong>
+    </h1>
+  </header>
+
+  <div class="scarlett-case-study__babel-intro-layout">
+    <p id="babel-inspiration" class="scarlett-case-study__section-label scarlett-case-study__babel-intro-lead-label">
+      INSPIRATION
+    </p>
+
+    <div class="scarlett-case-study__babel-intro-content" data-babel-intro-content>
+      <div class="scarlett-case-study__babel-intro-inspiration">
+        <h2 class="scarlett-case-study__block-title">
+          <strong>Language</strong> as Connection and Conflict
+        </h2>
+        <p class="scarlett-case-study__body">
+          Inspired by the Tower of Babel, the game explores language as both a shared system and a source of division. This tension becomes the foundation of play, where every contribution can support collective understanding or shift control toward an individual.
+        </p>
+      </div>
+
+      <section
+        class="scarlett-case-study__section scarlett-case-study__babel-intro-configuration"
+        aria-labelledby="babel-game-design"
+      >
+        <p id="babel-game-design" class="scarlett-case-study__section-label">CONFIGURATION</p>
+
+        <div class="scarlett-case-study__configuration-split">
+          <div class="scarlett-case-study__configuration-stats" aria-label="Game configuration">
+            <div class="scarlett-case-study__configuration-stats-inner">
+              <div class="scarlett-case-study__configuration-stat">
+                <img
+                  class="scarlett-case-study__configuration-stat-icon"
+                  src={images.playersIcon}
+                  alt=""
+                  width="88"
+                  height="66"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <p class="scarlett-case-study__configuration-stat-label">Players</p>
+                <p class="scarlett-case-study__configuration-stat-value">
+                  <span class="scarlett-case-study__configuration-stat-number">2–6</span>
+                </p>
+              </div>
+
+              <div class="scarlett-case-study__configuration-stat">
+                <img
+                  class="scarlett-case-study__configuration-stat-icon"
+                  src={images.playtimeIcon}
+                  alt=""
+                  width="88"
+                  height="88"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <p class="scarlett-case-study__configuration-stat-label">Playtime</p>
+                <p class="scarlett-case-study__configuration-stat-value">
+                  <span class="scarlett-case-study__configuration-stat-number">45</span><span
+                    class="scarlett-case-study__configuration-stat-unit">min</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="scarlett-case-study__configuration-main">
+            <div class="scarlett-case-study__text-block scarlett-case-study__configuration-copy">
+              <h2 class="scarlett-case-study__block-title">
+                Replace with <span class="scarlett-case-study__title-light">Climbing the Tower</span>
+              </h2>
+              <p class="scarlett-case-study__body">
+                Babel is a strategic board game for 2–6 players, with each session lasting approximately 45 minutes. Players build temporary languages, respond to cultural and historical changes, and earn credits by deciding when to cooperate and when to claim a target alone. The player with the most credits reaches the summit and wins.
+              </p>
+            </div>
+
+            <div class="scarlett-case-study__configuration-gallery">
+              {
+                babelConfigurationGallery.map((src) => (
+                  <img
+                    class="scarlett-case-study__configuration-gallery-img"
+                    src={src}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <figure
+      class="scarlett-case-study__configuration-feature scarlett-case-study__configuration-feature--span"
+      data-babel-feature
+    >
+      <img
+        class="scarlett-case-study__configuration-feature-img"
+        src={images.configurationImage1}
+        alt=""
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  </div>
+
+  <section class="scarlett-case-study__section" aria-labelledby="babel-game-development">
+    <p id="babel-game-development" class="scarlett-case-study__section-label">
+      GAME DESIGN
+    </p>
+
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">
+        Building a Shared Language
+      </h2>
+      <p class="scarlett-case-study__body">
+        Each Language Card represents a word formed from one to three lexical tokens. At the beginning of each round, a Target Card defines how many words must be contributed, which tokens are required, and the threshold at which one player can claim the target alone.
+      </p>
+
+      <ul class="scarlett-case-study__rule-list">
+        <li class="scarlett-case-study__rule-item">
+          <span class="scarlett-case-study__rule-number">01</span>
+          <div class="scarlett-case-study__rule-copy">
+            <p class="scarlett-case-study__rule-title">Language Card</p>
+            <p class="scarlett-case-study__rule-body">Represents a word formed from one to three lexical tokens.</p>
+          </div>
+        </li>
+        <li class="scarlett-case-study__rule-item">
+          <span class="scarlett-case-study__rule-number">02</span>
+          <div class="scarlett-case-study__rule-copy">
+            <p class="scarlett-case-study__rule-title">Shared Target</p>
+            <p class="scarlett-case-study__rule-body">Defines the total number of Language Cards required during the round.</p>
+          </div>
+        </li>
+        <li class="scarlett-case-study__rule-item">
+          <span class="scarlett-case-study__rule-number">03</span>
+          <div class="scarlett-case-study__rule-copy">
+            <p class="scarlett-case-study__rule-title">Exclusivity Threshold</p>
+            <p class="scarlett-case-study__rule-body">Defines how many cards one player must contribute to claim the target alone.</p>
+          </div>
+        </li>
+        <li class="scarlett-case-study__rule-item">
+          <span class="scarlett-case-study__rule-number">04</span>
+          <div class="scarlett-case-study__rule-copy">
+            <p class="scarlett-case-study__rule-title">Lexical Requirement</p>
+            <p class="scarlett-case-study__rule-body">Specifies the tokens that must appear in the contributed cards.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="scarlett-case-study__babel-game-power-layout" data-babel-power-layout>
+      <CaseStudyMedia
+        class="scarlett-case-study__babel-game-design-img scarlett-case-study__babel-game-design-img--1 scarlett-case-study__transparent-media"
+        src={gameDesignImage1.image}
+        alt=""
+        placeholder={gameDesignImage1.placeholder}
+        aspectRatio={gameDesignImage1.aspectRatio}
+        fit="contain"
+      />
+      <CaseStudyMedia
+        class="scarlett-case-study__babel-game-design-img scarlett-case-study__babel-game-design-img--2 scarlett-case-study__transparent-media"
+        src={gameDesignImage2.image}
+        alt=""
+        placeholder={gameDesignImage2.placeholder}
+        aspectRatio={gameDesignImage2.aspectRatio}
+        fit="contain"
+      />
+      <div class="scarlett-case-study__babel-power-copy">
+        <h2 class="scarlett-case-study__block-title">
+          Language Shaped by Power
+        </h2>
+        <p class="scarlett-case-study__body" data-babel-power-body>
+          Culture, Great Figure, and Event Cards alter how contributions are valued, rewarded, or restricted. These shifting rules show that language is shaped not only by shared meaning, but also by history, power, and unexpected change.
+        </p>
+      </div>
+      <CaseStudyMedia
+        class="scarlett-case-study__babel-game-design-img scarlett-case-study__babel-game-design-img--3 scarlett-case-study__transparent-media"
+        src={gameDesignImage3.image}
+        alt=""
+        placeholder={gameDesignImage3.placeholder}
+        aspectRatio={gameDesignImage3.aspectRatio}
+        fit="contain"
+      />
+    </div>
+
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="babel-reflection">
+    <p id="babel-reflection" class="scarlett-case-study__section-label">GAMEPLAY</p>
+
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">Building Meaning Together</h2>
+      <p class="scarlett-case-study__body">
+        Each round begins with a target that defines the required cards and lexical tokens. Players contribute toward this shared goal while anticipating how much others are willing to offer.
+      </p>
+      <p class="scarlett-case-study__body">
+        When the target is completed collectively, everyone receives a reward. But when one player exceeds the exclusivity threshold, they monopolise the target and gain a greater individual advantage.
+      </p>
+    </div>
+
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">Cooperation as Negotiation</h2>
+      <p class="scarlett-case-study__body">
+        Every contribution creates a strategic choice: support the group, hold back, or push beyond the threshold before another player takes control. Cooperation in Babel is therefore never fully secure—it is constantly negotiated through trust, timing, and self-interest.
+      </p>
+    </div>
+
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">Adapting to Change</h2>
+      <p class="scarlett-case-study__body">
+        The Wishbringer sets the target and introduces an Event each round, while Culture and Great Figure Cards modify rewards, penalties, and card effects. These changing conditions prevent fixed strategies and force players to renegotiate cooperation throughout the game.
+      </p>
+    </div>
+
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">Knowing When to Take Control</h2>
+      <p class="scarlett-case-study__body">
+        Victory belongs to the player who earns the most credits by navigating between collective progress and individual advantage. Success depends not on contributing the most, but on recognising when to align with others—and when to take control.
+      </p>
+    </div>
+
+    <div class="scarlett-case-study__babel-gameplay-row">
+      {
+        babelGameplayImages.map((item) => (
+          <CaseStudyMedia
+            class="scarlett-case-study__babel-gameplay-media"
+            src={item.image}
+            alt=""
+            placeholder={item.placeholder}
+            aspectRatio={item.aspectRatio}
+            fit="cover"
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <footer class="scarlett-case-study__footer">
+    <a class="scarlett-case-study__back" href={backToChapterHref}>← Back to Chapter</a>
+
+    <div class="scarlett-case-study__closing">
+      <p class="scarlett-case-study__thanks">
+        Thank you for exploring my world! If it resonates, I'd love to hear from you.
+      </p>
+      <div class="scarlett-case-study__credit">
+        <span class="scarlett-case-study__name">Hang Wan</span>
+        <span class="scarlett-case-study__credit-dot" aria-hidden="true">·</span>
+        <span class="scarlett-case-study__role">Design Playful Experience</span>
+        <span class="scarlett-case-study__credit-divider" aria-hidden="true"></span>
+        <div class="scarlett-case-study__credit-links">
+          <a
+            class="scarlett-case-study__credit-link"
+            href={`mailto:${contactEmail}`}
+            aria-label="Email Hang Wan"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.gmail}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+          <a
+            class="scarlett-case-study__credit-link"
+            href={socialLinks.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.linkedin}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</article>
+
+<script>
+  function syncBabelGamePowerLayout() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-babel-power-layout]').forEach((layout) => {
+      if (!(layout instanceof HTMLElement)) return;
+
+      const img1Figure = layout.querySelector('.scarlett-case-study__babel-game-design-img--1');
+      const img1 = img1Figure?.querySelector('.case-study-media__img');
+      const img2Figure = layout.querySelector('.scarlett-case-study__babel-game-design-img--2');
+      const img2 = img2Figure?.querySelector('.case-study-media__img');
+      const img3Figure = layout.querySelector('.scarlett-case-study__babel-game-design-img--3');
+      const img3 = img3Figure?.querySelector('.case-study-media__img');
+      const body = layout.querySelector('[data-babel-power-body]');
+
+      if (
+        !(img1Figure instanceof HTMLElement) ||
+        !(img1 instanceof HTMLImageElement) ||
+        !(img2Figure instanceof HTMLElement) ||
+        !(img2 instanceof HTMLImageElement) ||
+        !(img3Figure instanceof HTMLElement) ||
+        !(img3 instanceof HTMLImageElement) ||
+        !(body instanceof HTMLElement)
+      ) {
+        return;
+      }
+
+      if (mobileQuery.matches) {
+        img2Figure.style.height = '';
+        img2Figure.style.marginLeft = '';
+        img2.style.height = '';
+        img2.style.width = '';
+        img3Figure.style.height = '';
+        img3.style.height = '';
+        img3.style.width = '';
+        return;
+      }
+
+      img2Figure.style.height = '';
+      img2Figure.style.marginLeft = '';
+      img2.style.height = '';
+      img2.style.width = '';
+      img3Figure.style.height = '';
+      img3.style.height = '';
+      img3.style.width = '';
+
+      if (!img1.complete || img1.naturalWidth === 0) return;
+
+      const img1Height = img1.getBoundingClientRect().height;
+      if (img1Height > 0) {
+        img2Figure.style.height = `${img1Height}px`;
+        img2.style.height = `${img1Height}px`;
+        img2.style.width = 'auto';
+      }
+
+      const top = img1Figure.getBoundingClientRect().top;
+      const bodyBottom = body.getBoundingClientRect().bottom;
+      const targetHeight = Math.max(0, bodyBottom - top);
+
+      img3Figure.style.height = `${targetHeight}px`;
+      img3.style.height = `${targetHeight}px`;
+      img3.style.width = 'auto';
+
+      const img1Rect = img1.getBoundingClientRect();
+      const img2Rect = img2.getBoundingClientRect();
+      const img3Rect = img3.getBoundingClientRect();
+      const span = img3Rect.left - img1Rect.right;
+      const targetLeft = img1Rect.right + (span - img2Rect.width) / 2;
+      const marginLeft = targetLeft - img2Rect.left;
+
+      if (Number.isFinite(marginLeft)) {
+        img2Figure.style.marginLeft = `${Math.max(0, marginLeft)}px`;
+      }
+    });
+  }
+
+  function bindBabelGamePowerSync() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-babel-power-layout]').forEach((layout) => {
+      if (!(layout instanceof HTMLElement) || layout.dataset.powerObserverBound === 'true') return;
+      layout.dataset.powerObserverBound = 'true';
+
+      const observer = new ResizeObserver(() => {
+        if (!mobileQuery.matches) syncBabelGamePowerLayout();
+      });
+      observer.observe(layout);
+
+      const body = layout.querySelector('[data-babel-power-body]');
+      if (body instanceof HTMLElement) observer.observe(body);
+
+      layout.querySelectorAll('.case-study-media__img').forEach((img) => {
+        if (!(img instanceof HTMLImageElement) || img.dataset.powerLoadBound === 'true') return;
+        img.dataset.powerLoadBound = 'true';
+        img.addEventListener('load', syncBabelGamePowerLayout);
+      });
+    });
+  }
+
+  function syncBabelFeatureImage() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('.scarlett-case-study__babel-intro-layout').forEach((layout) => {
+      if (!(layout instanceof HTMLElement)) return;
+
+      const content = layout.querySelector('[data-babel-intro-content]');
+      const feature = layout.querySelector('[data-babel-feature]');
+      const img = feature?.querySelector('.scarlett-case-study__configuration-feature-img');
+
+      if (!(content instanceof HTMLElement) || !(feature instanceof HTMLElement) || !(img instanceof HTMLImageElement)) {
+        return;
+      }
+
+      if (mobileQuery.matches) {
+        feature.style.height = '';
+        img.style.height = '';
+        img.style.width = '';
+        return;
+      }
+
+      // Match the right image height to the combined Inspiration + Configuration block.
+      const contentHeight = content.getBoundingClientRect().height;
+
+      feature.style.height = `${contentHeight}px`;
+      img.style.height = `${contentHeight}px`;
+      img.style.width = 'auto';
+    });
+  }
+
+  function bindBabelFeatureSync() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-babel-intro-content]').forEach((content) => {
+      if (!(content instanceof HTMLElement) || content.dataset.featureObserverBound === 'true') return;
+      content.dataset.featureObserverBound = 'true';
+
+      const observer = new ResizeObserver(() => {
+        if (!mobileQuery.matches) syncBabelFeatureImage();
+      });
+      observer.observe(content);
+    });
+
+    document.querySelectorAll('.scarlett-case-study__configuration-gallery-img').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.featureSyncBound === 'true') return;
+      img.dataset.featureSyncBound = 'true';
+      img.addEventListener('load', syncBabelFeatureImage);
+    });
+
+    document.querySelectorAll('.scarlett-case-study__configuration-feature-img').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.featureLoadBound === 'true') return;
+      img.dataset.featureLoadBound = 'true';
+      img.addEventListener('load', syncBabelFeatureImage);
+    });
+  }
+
+  function initCaseStudyMedia() {
+    document.querySelectorAll('[data-case-study-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.mediaBound === 'true') return;
+      img.dataset.mediaBound = 'true';
+
+      const markMissing = () => {
+        const figure = img.closest('[data-case-study-media]');
+        figure?.classList.add('is-missing');
+      };
+
+      img.addEventListener('error', markMissing);
+      if (img.complete && img.naturalWidth === 0) markMissing();
+    });
+
+    document.querySelectorAll('[data-case-study-video]').forEach((video) => {
+      if (!(video instanceof HTMLVideoElement) || video.dataset.mediaBound === 'true') return;
+      video.dataset.mediaBound = 'true';
+
+      const markMissing = () => {
+        const figure = video.closest('[data-case-study-media]');
+        figure?.classList.add('is-missing');
+      };
+
+      video.addEventListener('error', markMissing);
+    });
+  }
+
+  initCaseStudyMedia();
+  bindBabelFeatureSync();
+  bindBabelGamePowerSync();
+  syncBabelFeatureImage();
+  syncBabelGamePowerLayout();
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      syncBabelFeatureImage();
+      syncBabelGamePowerLayout();
+    });
+  });
+  document.addEventListener('astro:page-load', () => {
+    initCaseStudyMedia();
+    bindBabelFeatureSync();
+    bindBabelGamePowerSync();
+    syncBabelFeatureImage();
+    syncBabelGamePowerLayout();
+  });
+  window.addEventListener('resize', () => {
+    syncBabelFeatureImage();
+    syncBabelGamePowerLayout();
+  });
+</script>

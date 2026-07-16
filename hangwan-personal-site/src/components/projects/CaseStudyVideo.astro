@@ -1,0 +1,31 @@
+---
+interface Props {
+  src: string;
+  placeholder: string;
+  aspectRatio?: string;
+  class?: string;
+}
+
+const { src, placeholder, aspectRatio, class: className } = Astro.props;
+---
+
+<figure
+  class:list={['case-study-media', 'case-study-media--video', className]}
+  style={aspectRatio ? `--media-ratio: ${aspectRatio}` : undefined}
+  data-case-study-media
+>
+  <video
+    class="case-study-media__video"
+    src={src}
+    autoplay
+    loop
+    muted
+    playsinline
+    preload="metadata"
+    data-case-study-video
+    data-placeholder={placeholder}
+    aria-label={placeholder}></video>
+  <figcaption class="case-study-media__placeholder" aria-hidden="true">
+    <span>{placeholder}</span>
+  </figcaption>
+</figure>

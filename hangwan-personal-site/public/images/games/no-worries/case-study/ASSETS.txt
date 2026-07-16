@@ -1,0 +1,16 @@
+﻿Place case-study media files in this folder:
+
+hero.jpg
+inspiration-shaped-primary.jpg
+inspiration-shaped-secondary.jpg
+game-design-farewell.mp4
+dev-scene-photo.jpg
+dev-scene-game.jpg
+dev-ui-main.jpg
+dev-ui-detail-1.jpg
+dev-state-overview-1.jpg
+dev-state-overview-2.jpg
+dev-state-overview-3.jpg
+state-machine-1.mp4
+state-machine-2.mp4
+reflection-photo.jpg

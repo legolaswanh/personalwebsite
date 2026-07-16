@@ -1,0 +1,452 @@
+---
+import {
+  unselfCaseStudyImages,
+} from '../../data/unselfCaseStudy';
+import { aboutContactIcons } from '../../data/aboutAssets';
+import { contactEmail, socialLinks } from '../../data/aboutContent';
+
+const images = unselfCaseStudyImages;
+
+const backToChapterHref = '/?highlight=unself#chapter-1';
+---
+
+<article class="scarlett-case-study">
+  <header class="scarlett-case-study__hero">
+    <p class="scarlett-case-study__project-name">Unself</p>
+    <h1 class="scarlett-case-study__hero-title">
+      A psychological horror game about distorted <strong>self-perception</strong> and the gradual erasure of <strong>identity.</strong>
+    </h1>
+    <div class="scarlett-case-study__hero-split" data-unself-hero-split>
+      <div class="scarlett-case-study__hero-copy" data-unself-hero-copy>
+        <p class="scarlett-case-study__body">
+          Each day, a creature awakens to a different reflection and reshapes its body to match what it believes should be seen. Through repeated acts of observation, trimming, and correction, it slowly loses sight of what it originally was.
+        </p>
+        <p class="scarlett-case-study__body">
+          Unself was created by a five-person team in 48 hours for Spooky Game Jam 2025 under the theme Cosmic Horror. I was responsible for game design and level design.
+        </p>
+      </div>
+      <figure class="scarlett-case-study__hero-media" data-unself-hero-media>
+        <img
+          class="scarlett-case-study__hero-img"
+          src={images.hero}
+          alt=""
+          loading="eager"
+          decoding="async"
+          data-unself-hero-img
+        />
+      </figure>
+    </div>
+  </header>
+
+  <section class="scarlett-case-study__section" aria-labelledby="unself-inspiration">
+    <p id="unself-inspiration" class="scarlett-case-study__section-label">INSPIRATION</p>
+
+    <div
+      class="scarlett-case-study__inspiration-row scarlett-case-study__inspiration-row--framed"
+      data-unself-inspiration-row
+    >
+      <figure class="scarlett-case-study__inspiration-frame" data-unself-inspiration-media>
+        <img
+          class="scarlett-case-study__inspiration-frame-img"
+          src={images.inspirationShapedPrimary}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          data-unself-inspiration-img
+        />
+      </figure>
+
+      <div
+        class="scarlett-case-study__copy scarlett-case-study__copy--inspiration"
+        data-unself-inspiration-copy
+      >
+        <h2 class="scarlett-case-study__block-title">
+          <strong>Horror</strong> in the Reflection
+        </h2>
+        <p class="scarlett-case-study__body">
+          Rather than approaching cosmic horror through distant worlds or unknowable creatures, we explored the instability of self-perception. The horror emerges when identity can no longer be trusted—and the reflection in the mirror begins to feel more convincing than the body itself.
+        </p>
+        <p class="scarlett-case-study__body">
+          Replace this paragraph with how the idea developed into a playable project.
+        </p>
+      </div>
+
+      <figure class="scarlett-case-study__inspiration-frame" data-unself-inspiration-media>
+        <img
+          class="scarlett-case-study__inspiration-frame-img"
+          src={images.inspirationShapedSecondary}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          data-unself-inspiration-img
+        />
+      </figure>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="unself-game-design">
+    <p id="unself-game-design" class="scarlett-case-study__section-label">GAME DESIGN</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">
+          What Shapes the <strong>Self</strong>
+        </h2>
+        <p class="scarlett-case-study__body">
+          We reshape ourselves according to what we believe should be seen—removing what feels wrong, hiding what stands out, and repeating the process until the corrected image begins to replace the original self.
+        </p>
+
+        <figure class="scarlett-case-study__unself-design-flow">
+          <img
+            class="scarlett-case-study__unself-design-flow-img"
+            src={images.gameDesignImage}
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+
+        <p class="scarlett-case-study__body">
+          Unself turns this process into bodily horror: every attempt to become “normal” brings the creature closer to losing itself entirely.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="unself-game-development">
+    <p id="unself-game-development" class="scarlett-case-study__section-label">
+      GAME DESIGN
+    </p>
+
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">
+        Correction as the Core Mechanic
+      </h2>
+      <p class="scarlett-case-study__body">
+        Each day, players compare the creature with its reflection, identify what appears abnormal, and remove the corresponding body part.
+      </p>
+      <p class="scarlett-case-study__body">
+        What first appears to be an act of correction gradually becomes an act of self-erasure.
+      </p>
+    </div>
+
+    <div class="scarlett-case-study__unself-design-split">
+      <figure class="scarlett-case-study__unself-design-split-media">
+        <img
+          class="scarlett-case-study__unself-design-split-img"
+          src={images.gameSceneImage}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+      <div class="scarlett-case-study__unself-design-split-copy">
+        <h2 class="scarlett-case-study__block-title">
+          Identity Revealed Through Progression
+        </h2>
+        <p class="scarlett-case-study__body">
+          Every removed body part reveals another fragment of the creature’s identity. As the distortions grow, the central question shifts from how to restore its original form to whether anything original remains.
+        </p>
+      </div>
+    </div>
+
+    <div class="scarlett-case-study__unself-design-split scarlett-case-study__unself-design-split--media-end">
+      <div class="scarlett-case-study__unself-design-split-copy">
+        <h2 class="scarlett-case-study__block-title">
+          Familiar Spaces, Increasing Distortion
+        </h2>
+        <p class="scarlett-case-study__body">
+          The game follows a repeating daily structure, with environmental clues guiding players toward each new act of removal. Familiar spaces become progressively more distorted, building tension toward the creature’s final transformation.
+        </p>
+      </div>
+      <figure class="scarlett-case-study__unself-design-split-media">
+        <img
+          class="scarlett-case-study__unself-design-split-img"
+          src={images.gameItemImage}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+    </div>
+
+    <div class="scarlett-case-study__subsection">
+      <p class="scarlett-case-study__subsection-label">GAMEPLAY</p>
+
+      <div
+        class="scarlett-case-study__unself-gameplay-split"
+        data-unself-gameplay-split
+      >
+        <div class="scarlett-case-study__unself-gameplay-main">
+          <h2 class="scarlett-case-study__block-title">Observe, Explore, and Trim</h2>
+          <div
+            class="scarlett-case-study__unself-gameplay-copy"
+            data-unself-gameplay-copy
+          >
+            <p class="scarlett-case-study__body">
+              Players examine the mirror, explore the environment, and solve simple puzzles to identify the anomaly of each day. Once the corresponding body part is found, it must be removed to continue the cycle.
+            </p>
+            <p class="scarlett-case-study__body">
+              The simple interaction loop keeps attention on uncertainty, bodily discomfort, and the consequences of each decision.
+            </p>
+          </div>
+        </div>
+
+        <figure
+          class="scarlett-case-study__unself-gameplay-media"
+          data-unself-gameplay-media
+        >
+          <img
+            class="scarlett-case-study__unself-gameplay-img"
+            src={images.gameplayImage}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            data-unself-gameplay-img
+          />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <footer class="scarlett-case-study__footer">
+    <a class="scarlett-case-study__back" href={backToChapterHref}>← Back to Chapter</a>
+
+    <div class="scarlett-case-study__closing">
+      <p class="scarlett-case-study__thanks">
+        Thank you for exploring my world! If it resonates, I'd love to hear from you.
+      </p>
+      <div class="scarlett-case-study__credit">
+        <span class="scarlett-case-study__name">Hang Wan</span>
+        <span class="scarlett-case-study__credit-dot" aria-hidden="true">·</span>
+        <span class="scarlett-case-study__role">Design Playful Experience</span>
+        <span class="scarlett-case-study__credit-divider" aria-hidden="true"></span>
+        <div class="scarlett-case-study__credit-links">
+          <a
+            class="scarlett-case-study__credit-link"
+            href={`mailto:${contactEmail}`}
+            aria-label="Email Hang Wan"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.gmail}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+          <a
+            class="scarlett-case-study__credit-link"
+            href={socialLinks.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.linkedin}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</article>
+
+<script>
+  function syncUnselfHeroImage() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-unself-hero-split]').forEach((split) => {
+      if (!(split instanceof HTMLElement)) return;
+
+      const copy = split.querySelector('[data-unself-hero-copy]');
+      const media = split.querySelector('[data-unself-hero-media]');
+      const img = split.querySelector('[data-unself-hero-img]');
+
+      if (!(copy instanceof HTMLElement) || !(media instanceof HTMLElement) || !(img instanceof HTMLImageElement)) {
+        return;
+      }
+
+      if (mobileQuery.matches) {
+        media.style.height = '';
+        img.style.height = '';
+        img.style.width = '';
+        return;
+      }
+
+      const copyHeight = copy.getBoundingClientRect().height;
+      if (copyHeight <= 0) return;
+
+      media.style.height = `${copyHeight}px`;
+      img.style.height = `${copyHeight}px`;
+      img.style.width = '100%';
+    });
+  }
+
+  function syncUnselfInspirationImages() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-unself-inspiration-row]').forEach((row) => {
+      if (!(row instanceof HTMLElement)) return;
+
+      const copy = row.querySelector('[data-unself-inspiration-copy]');
+      const mediaItems = row.querySelectorAll('[data-unself-inspiration-media]');
+      const imgs = Array.from(row.querySelectorAll('[data-unself-inspiration-img]')).filter(
+        (img) => img instanceof HTMLImageElement,
+      );
+
+      if (!(copy instanceof HTMLElement) || mediaItems.length === 0) return;
+
+      if (mobileQuery.matches) {
+        mediaItems.forEach((media) => {
+          if (media instanceof HTMLElement) media.style.height = '';
+        });
+        imgs.forEach((img) => {
+          img.style.height = '';
+          img.style.width = '';
+          img.style.maxHeight = '';
+          img.style.maxWidth = '';
+        });
+        return;
+      }
+
+      // Measure text height first, then size side images to 1.1× that height.
+      // Middle column (1fr) automatically takes whatever width remains.
+      const copyHeight = Math.round(copy.getBoundingClientRect().height);
+      if (copyHeight <= 0) return;
+
+      const imageHeight = Math.round(copyHeight * 1.1);
+      const rowWidth = row.getBoundingClientRect().width;
+      const gap = Number.parseFloat(getComputedStyle(row).columnGap) || 0;
+      const minTextWidth = Math.min(rowWidth * 0.28, 14 * 16);
+      const maxImageWidth = Math.max(64, (rowWidth - gap * 2 - minTextWidth) / 2);
+
+      mediaItems.forEach((media) => {
+        if (media instanceof HTMLElement) {
+          media.style.height = `${imageHeight}px`;
+          media.style.maxWidth = `${maxImageWidth}px`;
+        }
+      });
+
+      imgs.forEach((img) => {
+        let height = imageHeight;
+        let width = 'auto';
+
+        if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+          const naturalWidth = height * (img.naturalWidth / img.naturalHeight);
+          if (naturalWidth > maxImageWidth) {
+            height = Math.round(maxImageWidth * (img.naturalHeight / img.naturalWidth));
+            width = `${Math.round(maxImageWidth)}px`;
+          }
+        }
+
+        img.style.height = `${height}px`;
+        img.style.maxHeight = `${height}px`;
+        img.style.width = width;
+        img.style.maxWidth = `${maxImageWidth}px`;
+      });
+    });
+  }
+
+  function syncUnselfGameplayImage() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-unself-gameplay-split]').forEach((split) => {
+      if (!(split instanceof HTMLElement)) return;
+
+      const copy = split.querySelector('[data-unself-gameplay-copy]');
+      const media = split.querySelector('[data-unself-gameplay-media]');
+      const img = split.querySelector('[data-unself-gameplay-img]');
+
+      if (!(copy instanceof HTMLElement) || !(media instanceof HTMLElement) || !(img instanceof HTMLImageElement)) {
+        return;
+      }
+
+      if (mobileQuery.matches) {
+        media.style.height = '';
+        media.style.width = '';
+        img.style.height = '';
+        img.style.width = '';
+        img.style.maxHeight = '';
+        img.style.maxWidth = '';
+        return;
+      }
+
+      const copyHeight = Math.round(copy.getBoundingClientRect().height);
+      if (copyHeight <= 0) return;
+
+      const imageHeight = copyHeight * 2;
+
+      media.style.height = `${imageHeight}px`;
+      media.style.width = 'auto';
+      img.style.height = `${imageHeight}px`;
+      img.style.maxHeight = `${imageHeight}px`;
+      img.style.width = 'auto';
+      img.style.maxWidth = 'none';
+    });
+  }
+
+  function syncUnselfLayouts() {
+    syncUnselfHeroImage();
+    syncUnselfInspirationImages();
+    syncUnselfGameplayImage();
+  }
+
+  function bindUnselfHeroSync() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-unself-hero-copy]').forEach((copy) => {
+      if (!(copy instanceof HTMLElement) || copy.dataset.heroObserverBound === 'true') return;
+      copy.dataset.heroObserverBound = 'true';
+
+      const observer = new ResizeObserver(() => {
+        if (!mobileQuery.matches) syncUnselfHeroImage();
+      });
+      observer.observe(copy);
+    });
+
+    document.querySelectorAll('[data-unself-hero-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.heroLoadBound === 'true') return;
+      img.dataset.heroLoadBound = 'true';
+      img.addEventListener('load', syncUnselfHeroImage);
+    });
+  }
+
+  function bindUnselfInspirationSync() {
+    document.querySelectorAll('[data-unself-inspiration-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.inspirationLoadBound === 'true') return;
+      img.dataset.inspirationLoadBound = 'true';
+      img.addEventListener('load', syncUnselfInspirationImages);
+    });
+  }
+
+  function bindUnselfGameplaySync() {
+    document.querySelectorAll('[data-unself-gameplay-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.gameplayLoadBound === 'true') return;
+      img.dataset.gameplayLoadBound = 'true';
+      img.addEventListener('load', syncUnselfGameplayImage);
+    });
+  }
+
+  bindUnselfHeroSync();
+  bindUnselfInspirationSync();
+  bindUnselfGameplaySync();
+  syncUnselfLayouts();
+  requestAnimationFrame(() => {
+    requestAnimationFrame(syncUnselfLayouts);
+  });
+  document.addEventListener('astro:page-load', () => {
+    bindUnselfHeroSync();
+    bindUnselfInspirationSync();
+    bindUnselfGameplaySync();
+    syncUnselfLayouts();
+  });
+  window.addEventListener('resize', syncUnselfLayouts);
+</script>
