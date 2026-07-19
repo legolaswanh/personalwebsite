@@ -1,11 +1,6 @@
 ---
 import CaseStudyMedia from './CaseStudyMedia.astro';
-import CaseStudyVideo from './CaseStudyVideo.astro';
-import {
-  uroborosCaseStudyImages,
-  uroborosStateMachineVideos,
-  uroborosStateOverviewImages,
-} from '../../data/uroborosCaseStudy';
+import { uroborosCaseStudyImages } from '../../data/uroborosCaseStudy';
 import { aboutContactIcons } from '../../data/aboutAssets';
 import { contactEmail, socialLinks } from '../../data/aboutContent';
 
@@ -14,43 +9,51 @@ const images = uroborosCaseStudyImages;
 const backToChapterHref = '/?highlight=uroboros#chapter-1';
 ---
 
-<article class="scarlett-case-study">
+<article class="scarlett-case-study uroboros-case-study">
   <header class="scarlett-case-study__hero">
     <p class="scarlett-case-study__project-name">Uroboros</p>
     <h1 class="scarlett-case-study__hero-title">
-      A mechanic-focused game built around recursive rules and self-referential gameplay structures through <strong>recursive mechanics.</strong>
+      A puzzle-platformer about turning a finite set of instructions into <strong>recursive chains</strong> of movement, combat, and choice.
     </h1>
+    <div class="scarlett-case-study__hero-split" data-uroboros-hero-split>
+      <div class="scarlett-case-study__hero-copy" data-uroboros-hero-copy>
+        <p class="scarlett-case-study__body">
+          Players assemble commands to guide an explorer through compact cosmic levels. By combining basic actions, directional modifiers, loops, and grouped execution, a small instruction set produces increasingly complex outcomes.
+        </p>
+        <p class="scarlett-case-study__body">
+          Uroboros was created by a seven-person team in 48 hours for CiGA Game Jam 2024 under the theme Limited and Limitless. I was responsible for game design and level design.
+        </p>
+      </div>
+      <figure class="scarlett-case-study__hero-media" data-uroboros-hero-media>
+        <img
+          class="scarlett-case-study__hero-img"
+          src={images.hero}
+          alt=""
+          loading="eager"
+          decoding="async"
+          data-uroboros-hero-img
+        />
+      </figure>
+    </div>
   </header>
 
   <section class="scarlett-case-study__section" aria-labelledby="uroboros-inspiration">
     <p id="uroboros-inspiration" class="scarlett-case-study__section-label">INSPIRATION</p>
 
-    <div class="scarlett-case-study__inspiration-row">
-      <div class="scarlett-case-study__copy scarlett-case-study__copy--inspiration">
-        <h2 class="scarlett-case-study__block-title">
-          What Shaped This <strong>Experience</strong>
-        </h2>
-        <p class="scarlett-case-study__body">
-          Replace this paragraph with the inspiration behind Uroboros.
-        </p>
-        <p class="scarlett-case-study__body">
-          Replace this paragraph with how the idea developed into a playable project.
-        </p>
-      </div>
+    <h2 class="scarlett-case-study__block-title">
+      Finite Rules, Expanding Possibilities
+    </h2>
+
+    <div class="scarlett-case-study__uroboros-inspiration-split">
       <CaseStudyMedia
-        class="scarlett-case-study__inspiration-media"
+        class="scarlett-case-study__uroboros-inspiration-media scarlett-case-study__transparent-media"
         src={images.inspirationShapedPrimary}
         alt=""
-        placeholder="Inspiration image 1"
-        aspectRatio="516 / 362"
+        placeholder="Inspiration image"
       />
-      <CaseStudyMedia
-        class="scarlett-case-study__inspiration-media"
-        src={images.inspirationShapedSecondary}
-        alt=""
-        placeholder="Inspiration image 2"
-        aspectRatio="393 / 257"
-      />
+      <p class="scarlett-case-study__body scarlett-case-study__uroboros-inspiration-copy">
+        The theme <em>Limited and Limitless</em> led us to explore how a small set of rules could generate a wide range of outcomes. Inspired by neural signalling, we designed simple commands that could be connected, modified, and repeated to produce complex behaviour.
+      </p>
     </div>
   </section>
 
@@ -60,153 +63,109 @@ const backToChapterHref = '/?highlight=uroboros#chapter-1';
     <div class="scarlett-case-study__stack">
       <div class="scarlett-case-study__text-block">
         <h2 class="scarlett-case-study__block-title">
-          Replace with <span class="scarlett-case-study__title-light">your headline</span>
+          Programming Movement
         </h2>
         <p class="scarlett-case-study__body">
-          Replace this paragraph with your core game design approach for Uroboros.
+          Players construct an instruction sequence before putting it into action. Basic commands control movement and attacks, while modifiers, loops, and grouped execution transform short sequences into more complex behaviours.
         </p>
       </div>
 
-      <div class="scarlett-case-study__game-design-split">
-        <div class="scarlett-case-study__game-design-copy">
-          <div class="scarlett-case-study__text-block">
-            <h2 class="scarlett-case-study__block-title">Replace with subheading 1</h2>
-            <p class="scarlett-case-study__body">
-              Replace this paragraph with a key mechanic or design decision.
-            </p>
+      <ul class="scarlett-case-study__rule-list">
+        <li class="scarlett-case-study__rule-item">
+          <span class="scarlett-case-study__rule-number">01</span>
+          <div class="scarlett-case-study__rule-copy">
+            <p class="scarlett-case-study__rule-body"><strong>Basic Actions</strong>Independent commands control movement, jumping, and attacks, with each action applying a fixed force in a defined direction.</p>
+            <CaseStudyMedia
+              class="scarlett-case-study__uroboros-rule-media scarlett-case-study__transparent-media"
+              src={images.gameDesignImage1}
+              alt=""
+              placeholder="Basic Actions"
+              fit="contain"
+            />
           </div>
-
-          <div class="scarlett-case-study__text-block">
-            <h2 class="scarlett-case-study__block-title">Replace with subheading 2</h2>
-            <p class="scarlett-case-study__body">
-              Replace this paragraph with another design highlight.
-            </p>
+        </li>
+        <li class="scarlett-case-study__rule-item">
+          <span class="scarlett-case-study__rule-number">02</span>
+          <div class="scarlett-case-study__rule-copy">
+            <p class="scarlett-case-study__rule-body"><strong>Directional Modifiers</strong>Modifiers redirect a movement or attack command, but cannot be executed independently.</p>
+            <CaseStudyMedia
+              class="scarlett-case-study__uroboros-rule-media scarlett-case-study__transparent-media"
+              src={images.gameDesignImage2}
+              alt=""
+              placeholder="Directional Modifiers"
+              fit="contain"
+            />
           </div>
-        </div>
-
-        <CaseStudyVideo
-          class="scarlett-case-study__farewell-media"
-          src={images.gameDesignFarewell}
-          placeholder="Gameplay highlight video"
-          aspectRatio="16 / 9"
-        />
-      </div>
+        </li>
+        <li class="scarlett-case-study__rule-item">
+          <span class="scarlett-case-study__rule-number">03</span>
+          <div class="scarlett-case-study__rule-copy">
+            <p class="scarlett-case-study__rule-body"><strong>Loop</strong>The Loop repeats every instruction to its left, including itself, allowing short sequences to expand recursively.</p>
+            <CaseStudyMedia
+              class="scarlett-case-study__uroboros-rule-media scarlett-case-study__transparent-media"
+              src={images.gameDesignImage3}
+              alt=""
+              placeholder="Loop"
+              fit="contain"
+            />
+          </div>
+        </li>
+        <li class="scarlett-case-study__rule-item">
+          <span class="scarlett-case-study__rule-number">04</span>
+          <div class="scarlett-case-study__rule-copy">
+            <p class="scarlett-case-study__rule-body"><strong>Combine</strong>The Combine command groups a set number of following instructions and executes them as a stronger combined action.</p>
+            <CaseStudyMedia
+              class="scarlett-case-study__uroboros-rule-media scarlett-case-study__transparent-media"
+              src={images.gameDesignImage4}
+              alt=""
+              placeholder="Combine"
+              fit="contain"
+            />
+          </div>
+        </li>
+      </ul>
     </div>
   </section>
 
   <section class="scarlett-case-study__section" aria-labelledby="uroboros-game-development">
     <p id="uroboros-game-development" class="scarlett-case-study__section-label">
-      GAME DEVELOPMENT
+      LEVEL DESIGN
     </p>
 
     <div class="scarlett-case-study__text-block">
       <h2 class="scarlett-case-study__block-title">
-        Replace with development headline
+        Multiple Routes, Different Risks
       </h2>
       <p class="scarlett-case-study__body">
-        Replace this paragraph with how you built, prototyped, or implemented Uroboros.
+        Deceleration zones, vertical jumps, enemies, and alternate routes require players to balance speed against precision. A faster path may demand tighter timing, while a safer route may require a longer and more carefully constructed sequence.
       </p>
-    </div>
-
-    <div class="scarlett-case-study__state-overview">
-      {
-        uroborosStateOverviewImages.map((overview) => (
-          <CaseStudyMedia
-            class="scarlett-case-study__state-overview-media"
-            src={overview.image}
-            alt=""
-            placeholder={overview.placeholder}
-            aspectRatio={overview.aspectRatio}
-          />
-        ))
-      }
-    </div>
-
-    <div class="scarlett-case-study__state-videos">
-      {
-        uroborosStateMachineVideos.map((video) => (
-          <CaseStudyVideo
-            src={video.src}
-            placeholder={video.placeholder}
-            aspectRatio={video.aspectRatio}
-          />
-        ))
-      }
-    </div>
-
-    <div class="scarlett-case-study__subsection">
-      <p class="scarlett-case-study__subsection-label">ART</p>
-
-      <h2 class="scarlett-case-study__block-title">Visual & Interface Design</h2>
-
-      <div class="scarlett-case-study__art-layout">
+      <div class="scarlett-case-study__uroboros-level-row">
         <CaseStudyMedia
-          class="scarlett-case-study__art-photo"
-          src={images.devScenePhoto}
+          class="scarlett-case-study__uroboros-level-media scarlett-case-study__uroboros-level-media--1 scarlett-case-study__transparent-media"
+          src={images.levelDesignImage1}
           alt=""
-          placeholder="Reference or scene photo"
-          aspectRatio="980 / 624"
+          placeholder="Level design image 1"
+          aspectRatio="858 / 224"
+          fit="contain"
         />
-
-        <div class="scarlett-case-study__art-center">
-          <p class="scarlett-case-study__body">
-            Replace this paragraph with notes on visual direction, art, or interface design.
-          </p>
-
-          <div class="scarlett-case-study__art-ui-row">
-            <CaseStudyMedia
-              class="scarlett-case-study__art-ui"
-              src={images.devUiMain}
-              alt=""
-              placeholder="UI main screen"
-              aspectRatio="822 / 624"
-            />
-            <CaseStudyMedia
-              class="scarlett-case-study__art-ui"
-              src={images.devUiDetail1}
-              alt=""
-              placeholder="UI detail 1"
-              aspectRatio="912 / 546"
-            />
-          </div>
-        </div>
-
         <CaseStudyMedia
-          class="scarlett-case-study__art-scene"
-          src={images.devSceneGame}
+          class="scarlett-case-study__uroboros-level-media scarlett-case-study__uroboros-level-media--2 scarlett-case-study__transparent-media"
+          src={images.levelDesignImage2}
           alt=""
-          placeholder="In-game scene"
-          aspectRatio="436 / 312"
+          placeholder="Level design image 2"
+          aspectRatio="467 / 259"
+          fit="contain"
         />
       </div>
     </div>
-  </section>
-
-  <section class="scarlett-case-study__section" aria-labelledby="uroboros-reflection">
-    <p id="uroboros-reflection" class="scarlett-case-study__section-label">REFLECTION</p>
 
     <div class="scarlett-case-study__text-block">
-      <h2 class="scarlett-case-study__block-title">Learning From Playtest</h2>
+      <h2 class="scarlett-case-study__block-title">
+        Finite Spaces, Expanding Solutions
+      </h2>
       <p class="scarlett-case-study__body">
-        Replace this paragraph with playtest insights for Uroboros.
+        Each level is compact, but the instruction system creates multiple ways through it. By combining actions, modifiers, and loops, players transform a fixed layout into a space of branching solutions.
       </p>
-    </div>
-
-    <div class="scarlett-case-study__text-block">
-      <h2 class="scarlett-case-study__block-title">What I Took Forward</h2>
-      <p class="scarlett-case-study__body">
-        Replace this paragraph with your personal reflection on the project.
-      </p>
-    </div>
-
-    <div class="scarlett-case-study__reflection-media">
-      <CaseStudyMedia
-        class="scarlett-case-study__reflection-photo"
-        src={images.reflectionPhoto}
-        alt=""
-        placeholder="Reflection image"
-        aspectRatio="976 / 724"
-      />
     </div>
   </section>
 
@@ -272,18 +231,6 @@ const backToChapterHref = '/?highlight=uroboros#chapter-1';
 
       img.addEventListener('error', markMissing);
       if (img.complete && img.naturalWidth === 0) markMissing();
-    });
-
-    document.querySelectorAll('[data-case-study-video]').forEach((video) => {
-      if (!(video instanceof HTMLVideoElement) || video.dataset.mediaBound === 'true') return;
-      video.dataset.mediaBound = 'true';
-
-      const markMissing = () => {
-        const figure = video.closest('[data-case-study-media]');
-        figure?.classList.add('is-missing');
-      };
-
-      video.addEventListener('error', markMissing);
     });
   }
 

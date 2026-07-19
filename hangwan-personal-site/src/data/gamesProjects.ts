@@ -30,24 +30,6 @@ export const gamesChapterConfig: ChapterConfig = {
 
 export const gamesProjects: ChapterProject[] = [
   {
-    id: 'zompanion',
-    title: 'Zompanion',
-    roleLabel: 'Group project | My Role:',
-    label: 'Featured Game',
-    category: 'Digital game / Management & Exploration',
-    role: 'Game Designer / System Designer / Unity Developer',
-    focus:
-      'Core loop design · exploration risk · resource economy · companion progression',
-    summary:
-      'A 2D pixel-art management and exploration game about collecting, restoring, and living with zombie companions.',
-    highlightTags: ['System Design', 'Management Loop'],
-    tags: ['Companion System', 'Resource Management'],
-    focusLabel: 'System Design',
-    href: '/projects/zompanion',
-    images: zompanionGallery(),
-    featured: true,
-  },
-  {
     id: 'scarlet',
     title: 'Scarlet',
     roleLabel: 'Personal project | My Work:',
@@ -66,6 +48,24 @@ export const gamesProjects: ChapterProject[] = [
       ...gamesProjectImages.scarlett,
       { type: 'youtube', videoId: 'fx3pUFxNuX8', label: 'Gameplay Demo' },
     ],
+  },
+  {
+    id: 'zompanion',
+    title: 'Zompanion',
+    roleLabel: 'Group project | My Role:',
+    label: 'Featured Game',
+    category: 'Digital game / Management & Exploration',
+    role: 'Game Designer / System Designer / Unity Developer',
+    focus:
+      'Core loop design · exploration risk · resource economy · companion progression',
+    summary:
+      'A 2D pixel-art management and exploration game about collecting, restoring, and living with zombie companions.',
+    highlightTags: ['System Design', 'Management Loop'],
+    tags: ['Companion System', 'Resource Management'],
+    focusLabel: 'System Design',
+    href: '/projects/zompanion',
+    images: zompanionGallery(),
+    featured: true,
   },
   {
     id: 'obscura',

@@ -10,6 +10,7 @@ export const noWorriesCaseStudyImages = {
   devUiMain: `${base}/dev-ui-main.jpg`,
   devUiDetail1: `${base}/dev-ui-detail-1.jpg`,
   reflectionPhoto: `${base}/reflection-photo.jpg`,
+  designPoster: `${base}/design-poster.png`,
 } as const;
 
 export type NoWorriesStateOverviewImage = {

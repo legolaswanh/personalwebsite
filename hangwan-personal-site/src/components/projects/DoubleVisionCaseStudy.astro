@@ -15,43 +15,141 @@ const embedUrl = `https://www.youtube-nocookie.com/embed/${doubleVisionDemoVideo
 const backToChapterHref = '/?highlight=double-vision#chapter-1';
 ---
 
-<article class="scarlett-case-study">
+<article class="scarlett-case-study double-vision-case-study">
   <header class="scarlett-case-study__hero">
     <p class="scarlett-case-study__project-name">Double Vision</p>
     <h1 class="scarlett-case-study__hero-title">
-      A narrative-driven game about shifting perspectives, hidden meanings, and fragmented perception through <strong>narrative design.</strong>
+      A <strong>narrative mystery</strong> about perception, evidence, and the distance between what can be recorded and what can only be sensed.
     </h1>
+    <p class="scarlett-case-study__body">
+      Playing as a medium detective, players investigate a present-day disappearance linked to a death that was closed two years earlier. Cameras, documents, and supernatural traces reveal different fragments of the same truth.
+    </p>
   </header>
 
   <section class="scarlett-case-study__section" aria-labelledby="double-vision-inspiration">
     <p id="double-vision-inspiration" class="scarlett-case-study__section-label">INSPIRATION</p>
 
-    <div class="scarlett-case-study__inspiration-row">
-      <div class="scarlett-case-study__copy scarlett-case-study__copy--inspiration">
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
         <h2 class="scarlett-case-study__block-title">
-          What Shaped This <strong>Experience</strong>
+          Between Two Ways of Seeing
         </h2>
         <p class="scarlett-case-study__body">
-          Replace this paragraph with the inspiration behind Double Vision.
-        </p>
-        <p class="scarlett-case-study__body">
-          Replace this paragraph with how the idea developed into a playable project.
+          Drawing on the Chinese folklore of “Yin–Yang Eyes,” Double Vision contrasts supernatural perception with modern surveillance technology. Neither perspective is complete: players must move between recorded evidence and invisible traces to reconstruct what happened.
         </p>
       </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="double-vision-inspiration">
+    <p id="double-vision-inspiration" class="scarlett-case-study__section-label">NARRATIVE DESIGN</p>
+
+    <div class="double-vision-case-study__narrative-layout">
+      <h2 class="scarlett-case-study__block-title double-vision-case-study__narrative-title">Storytelling Arc</h2>
+      <p class="scarlett-case-study__body double-vision-case-study__narrative-intro">
+        Double Vision follows a three-act structure built around two intertwined cases: Zhuang's disappearance and Lin Anan's death. Exploration, contradiction, and revelation steadily raise the stakes, while the player's interpretation of evidence determines how much of the truth is ultimately uncovered.
+      </p>
+
+      <div class="double-vision-case-study__narrative-arc-side double-vision-case-study__narrative-arc-side--act-1">
+        <p class="double-vision-case-study__narrative-arc-act-label">Act 1</p>
+        <div class="double-vision-case-study__narrative-arc-beats">
+          <div class="scarlett-case-study__rule-copy">
+            <p class="scarlett-case-study__rule-title">01  The Hook</p>
+            <p class="scarlett-case-study__rule-title">The missing case</p>
+            <p class="scarlett-case-study__rule-body">A question that draws players into the game story.</p>
+          </div>
+          <div class="scarlett-case-study__rule-copy">
+            <p class="scarlett-case-study__rule-title">02  Inciting Event</p>
+            <p class="scarlett-case-study__rule-title">Inciting Event</p>
+            <p class="scarlett-case-study__rule-body">An event that sets the narrative in motion.</p>
+          </div>
+          <div class="scarlett-case-study__rule-copy">
+            <p class="scarlett-case-study__rule-title">03  1st Plot Point</p>
+            <p class="scarlett-case-study__rule-title">Relating two cases</p>
+            <p class="scarlett-case-study__rule-body">A point of no return.</p>
+          </div>
+        </div>
+      </div>
+
       <CaseStudyMedia
-        class="scarlett-case-study__inspiration-media"
-        src={images.inspirationShapedPrimary}
+        class="double-vision-case-study__narrative-arc-media scarlett-case-study__transparent-media"
+        src={images.narrativeDesign}
         alt=""
-        placeholder="Inspiration image 1"
-        aspectRatio="516 / 362"
+        placeholder="Storytelling arc diagram"
+        fit="contain"
       />
-      <CaseStudyMedia
-        class="scarlett-case-study__inspiration-media"
-        src={images.inspirationShapedSecondary}
-        alt=""
-        placeholder="Inspiration image 2"
-        aspectRatio="393 / 257"
-      />
+
+      <div class="double-vision-case-study__narrative-arc-bottom">
+        <div class="double-vision-case-study__narrative-arc-act-block">
+          <p class="double-vision-case-study__narrative-arc-act-label">Act 2</p>
+          <div class="double-vision-case-study__narrative-arc-beats double-vision-case-study__narrative-arc-beats--horizontal">
+            <div class="scarlett-case-study__rule-copy">
+              <p class="scarlett-case-study__rule-title">04  1st Pinch Point</p>
+              <p class="scarlett-case-study__rule-title">Sensing the villain</p>
+              <p class="scarlett-case-study__rule-body">A subtle moment that shows the antagonistic force.</p>
+            </div>
+            <div class="scarlett-case-study__rule-copy">
+              <p class="scarlett-case-study__rule-title">05  MidPoint</p>
+              <p class="scarlett-case-study__rule-title">Revealing relationship</p>
+              <p class="scarlett-case-study__rule-body">A big moment of plot conflict.</p>
+            </div>
+            <div class="scarlett-case-study__rule-copy">
+              <p class="scarlett-case-study__rule-title">06  2nd Pinch Point</p>
+              <p class="scarlett-case-study__rule-title">Clues of shady dealings</p>
+              <p class="scarlett-case-study__rule-body">A tension moment that stakes are higher then eve.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="double-vision-case-study__narrative-arc-act-block">
+          <p class="double-vision-case-study__narrative-arc-act-label">Act 3</p>
+          <div class="double-vision-case-study__narrative-arc-beats double-vision-case-study__narrative-arc-beats--horizontal">
+            <div class="scarlett-case-study__rule-copy">
+              <p class="scarlett-case-study__rule-title">07  3rd Plot Point</p>
+              <p class="scarlett-case-study__rule-title">The truth about Death</p>
+              <p class="scarlett-case-study__rule-body">A "false" victory leads the story into its final act.</p>
+            </div>
+            <div class="scarlett-case-study__rule-copy">
+              <p class="scarlett-case-study__rule-title">08  Climax</p>
+              <p class="scarlett-case-study__rule-title">Revealing the truth</p>
+              <p class="scarlett-case-study__rule-body">A final turning point.</p>
+            </div>
+            <div class="scarlett-case-study__rule-copy">
+              <p class="scarlett-case-study__rule-title">09  Denouement</p>
+              <p class="scarlett-case-study__rule-title">Multiple endings</p>
+              <p class="scarlett-case-study__rule-body">An outcome of decisions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="double-vision-case-study__outcomes">
+        <h2 class="scarlett-case-study__block-title double-vision-case-study__outcomes-title">
+          The Ultimate Outcomes
+        </h2>
+        <div class="double-vision-case-study__outcomes-row">
+          <div class="double-vision-case-study__outcomes-media">
+            <CaseStudyMedia
+              class="double-vision-case-study__outcomes-image scarlett-case-study__transparent-media"
+              src={images.narrativeDesignOutcome1}
+              alt=""
+              placeholder="Outcome diagram 1"
+              fit="contain"
+            />
+            <CaseStudyMedia
+              class="double-vision-case-study__outcomes-image scarlett-case-study__transparent-media"
+              src={images.narrativeDesignOutcome2}
+              alt=""
+              placeholder="Outcome diagram 2"
+              fit="contain"
+            />
+          </div>
+          <p class="scarlett-case-study__body double-vision-case-study__outcomes-copy">
+            Each ending reflects both what the player uncovers and how they choose to pursue justice. Complete reasoning reveals the full connection between the two cases, while missing or misinterpreting key evidence leads to partial, distorted, or morally compromised outcomes.
+          </p>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -59,163 +157,62 @@ const backToChapterHref = '/?highlight=double-vision#chapter-1';
     <p id="double-vision-game-design" class="scarlett-case-study__section-label">GAME DESIGN</p>
 
     <div class="scarlett-case-study__stack">
-      <div class="scarlett-case-study__text-block">
-        <h2 class="scarlett-case-study__block-title">
-          Replace with <span class="scarlett-case-study__title-light">your headline</span>
+      <div class="double-vision-case-study__evidence">
+        <h2 class="scarlett-case-study__block-title double-vision-case-study__evidence-title">
+          Investigating Through Two Forms of Evidence
         </h2>
+        <div class="double-vision-case-study__evidence-row">
+          <p class="scarlett-case-study__body double-vision-case-study__evidence-copy">
+            One mode examines cameras, documents, and physical evidence; the other reveals supernatural traces left by past events. Switching between them exposes contradictions and hidden connections that neither perspective can reveal alone.
+          </p>
+          <CaseStudyMedia
+            class="double-vision-case-study__evidence-image scarlett-case-study__transparent-media"
+            src={images.gameDesignImage1}
+            alt=""
+            placeholder="Two forms of evidence"
+            fit="contain"
+          />
+        </div>
+      </div>
+
+      <div class="double-vision-case-study__reasoning">
+        <div class="scarlett-case-study__text-block">
+          <h2 class="scarlett-case-study__block-title">Reasoning Through Contradiction</h2>
+          <p class="scarlett-case-study__body">
+            Players collect clues, assess their reliability, and connect them into chains of causality. New evidence can challenge earlier hypotheses, requiring players to revise their interpretation before reaching a conclusion.
+          </p>
+        </div>
+        <div class="double-vision-case-study__reasoning-gallery">
+          <CaseStudyMedia
+            class="double-vision-case-study__reasoning-image double-vision-case-study__reasoning-image--2 scarlett-case-study__transparent-media"
+            src={images.gameDesignImage2}
+            alt=""
+            placeholder="Reasoning diagram 1"
+            fit="contain"
+          />
+          <CaseStudyMedia
+            class="double-vision-case-study__reasoning-image double-vision-case-study__reasoning-image--3 scarlett-case-study__transparent-media"
+            src={images.gameDesignImage3}
+            alt=""
+            placeholder="Reasoning diagram 2"
+            fit="contain"
+          />
+          <CaseStudyMedia
+            class="double-vision-case-study__reasoning-image double-vision-case-study__reasoning-image--4 scarlett-case-study__transparent-media"
+            src={images.gameDesignImage4}
+            alt=""
+            placeholder="Reasoning diagram 3"
+            fit="contain"
+          />
+        </div>
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Spaces of Gradual Revelation</h2>
         <p class="scarlett-case-study__body">
-          Replace this paragraph with your core game design approach for Double Vision.
+          Each location functions as a compact investigation space, layering environmental evidence, supernatural traces, and new contradictions. The sequence of spaces controls the rhythm of discovery, moving players from uncertainty toward recognition.
         </p>
       </div>
-
-      <div class="scarlett-case-study__game-design-split">
-        <div class="scarlett-case-study__game-design-copy">
-          <div class="scarlett-case-study__text-block">
-            <h2 class="scarlett-case-study__block-title">Replace with subheading 1</h2>
-            <p class="scarlett-case-study__body">
-              Replace this paragraph with a key mechanic or design decision.
-            </p>
-          </div>
-
-          <div class="scarlett-case-study__text-block">
-            <h2 class="scarlett-case-study__block-title">Replace with subheading 2</h2>
-            <p class="scarlett-case-study__body">
-              Replace this paragraph with another design highlight.
-            </p>
-          </div>
-        </div>
-
-        <CaseStudyVideo
-          class="scarlett-case-study__farewell-media"
-          src={images.gameDesignFarewell}
-          placeholder="Gameplay highlight video"
-          aspectRatio="16 / 9"
-        />
-      </div>
-    </div>
-  </section>
-
-  <section class="scarlett-case-study__section" aria-labelledby="double-vision-game-development">
-    <p id="double-vision-game-development" class="scarlett-case-study__section-label">
-      GAME DEVELOPMENT
-    </p>
-
-    <div class="scarlett-case-study__text-block">
-      <h2 class="scarlett-case-study__block-title">
-        Replace with development headline
-      </h2>
-      <p class="scarlett-case-study__body">
-        Replace this paragraph with how you built, prototyped, or implemented Double Vision.
-      </p>
-    </div>
-
-    <div class="scarlett-case-study__state-overview">
-      {
-        doubleVisionStateOverviewImages.map((overview) => (
-          <CaseStudyMedia
-            class="scarlett-case-study__state-overview-media"
-            src={overview.image}
-            alt=""
-            placeholder={overview.placeholder}
-            aspectRatio={overview.aspectRatio}
-          />
-        ))
-      }
-    </div>
-
-    <div class="scarlett-case-study__state-videos">
-      {
-        doubleVisionStateMachineVideos.map((video) => (
-          <CaseStudyVideo
-            src={video.src}
-            placeholder={video.placeholder}
-            aspectRatio={video.aspectRatio}
-          />
-        ))
-      }
-    </div>
-
-    <div class="scarlett-case-study__subsection">
-      <p class="scarlett-case-study__subsection-label">ART</p>
-
-      <h2 class="scarlett-case-study__block-title">Visual & Interface Design</h2>
-
-      <div class="scarlett-case-study__art-layout">
-        <CaseStudyMedia
-          class="scarlett-case-study__art-photo"
-          src={images.devScenePhoto}
-          alt=""
-          placeholder="Reference or scene photo"
-          aspectRatio="980 / 624"
-        />
-
-        <div class="scarlett-case-study__art-center">
-          <p class="scarlett-case-study__body">
-            Replace this paragraph with notes on visual direction, art, or interface design.
-          </p>
-
-          <div class="scarlett-case-study__art-ui-row">
-            <CaseStudyMedia
-              class="scarlett-case-study__art-ui"
-              src={images.devUiMain}
-              alt=""
-              placeholder="UI main screen"
-              aspectRatio="822 / 624"
-            />
-            <CaseStudyMedia
-              class="scarlett-case-study__art-ui"
-              src={images.devUiDetail1}
-              alt=""
-              placeholder="UI detail 1"
-              aspectRatio="912 / 546"
-            />
-          </div>
-        </div>
-
-        <CaseStudyMedia
-          class="scarlett-case-study__art-scene"
-          src={images.devSceneGame}
-          alt=""
-          placeholder="In-game scene"
-          aspectRatio="436 / 312"
-        />
-      </div>
-    </div>
-  </section>
-
-  <section class="scarlett-case-study__section" aria-labelledby="double-vision-reflection">
-    <p id="double-vision-reflection" class="scarlett-case-study__section-label">REFLECTION</p>
-
-    <div class="scarlett-case-study__text-block">
-      <h2 class="scarlett-case-study__block-title">Learning From Playtest</h2>
-      <p class="scarlett-case-study__body">
-        Replace this paragraph with playtest insights for Double Vision.
-      </p>
-    </div>
-
-    <div class="scarlett-case-study__text-block">
-      <h2 class="scarlett-case-study__block-title">What I Took Forward</h2>
-      <p class="scarlett-case-study__body">
-        Replace this paragraph with your personal reflection on the project.
-      </p>
-    </div>
-
-    <div class="scarlett-case-study__reflection-media">
-      <div class="scarlett-case-study__video">
-        <iframe
-          src={embedUrl}
-          title="Double Vision gameplay demo"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
-      </div>
-      <CaseStudyMedia
-        class="scarlett-case-study__reflection-photo"
-        src={images.reflectionPhoto}
-        alt=""
-        placeholder="Reflection image"
-        aspectRatio="976 / 724"
-      />
     </div>
   </section>
 

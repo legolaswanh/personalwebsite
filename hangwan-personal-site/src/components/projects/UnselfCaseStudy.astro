@@ -372,6 +372,7 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
       if (mobileQuery.matches) {
         media.style.height = '';
         media.style.width = '';
+        media.style.maxWidth = '';
         img.style.height = '';
         img.style.width = '';
         img.style.maxHeight = '';
@@ -379,17 +380,38 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
         return;
       }
 
+      // Cap width first so a wide intrinsic image cannot collapse the text column
+      // (which would inflate copyHeight and create a feedback loop).
+      const splitWidth = split.getBoundingClientRect().width;
+      const gap = Number.parseFloat(getComputedStyle(split).columnGap) || 0;
+      const minTextWidth = Math.min(splitWidth * 0.4, 18 * 16);
+      const maxImageWidth = Math.max(120, splitWidth - gap - minTextWidth);
+
+      media.style.maxWidth = `${maxImageWidth}px`;
+      img.style.maxWidth = `${maxImageWidth}px`;
+      img.style.width = 'auto';
+      img.style.height = 'auto';
+      img.style.maxHeight = '';
+      media.style.height = '';
+      media.style.width = '';
+
       const copyHeight = Math.round(copy.getBoundingClientRect().height);
       if (copyHeight <= 0) return;
 
-      const imageHeight = copyHeight * 2;
+      let imageHeight = copyHeight * 2;
+
+      if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+        const naturalWidth = imageHeight * (img.naturalWidth / img.naturalHeight);
+        if (naturalWidth > maxImageWidth) {
+          imageHeight = Math.round(maxImageWidth * (img.naturalHeight / img.naturalWidth));
+        }
+      }
 
       media.style.height = `${imageHeight}px`;
       media.style.width = 'auto';
       img.style.height = `${imageHeight}px`;
       img.style.maxHeight = `${imageHeight}px`;
       img.style.width = 'auto';
-      img.style.maxWidth = 'none';
     });
   }
 

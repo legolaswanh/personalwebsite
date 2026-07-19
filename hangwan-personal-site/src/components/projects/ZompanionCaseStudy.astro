@@ -1,10 +1,8 @@
 ---
-import CaseStudyMedia from './CaseStudyMedia.astro';
-import CaseStudyVideo from './CaseStudyVideo.astro';
 import {
   zompanionCaseStudyImages,
-  zompanionStateMachineVideos,
-  zompanionStateOverviewImages,
+  zompanionConceptImages,
+  zompanionGameDevelopmentImages,
 } from '../../data/zompanionCaseStudy';
 import { aboutContactIcons } from '../../data/aboutAssets';
 import { contactEmail, socialLinks } from '../../data/aboutContent';
@@ -14,83 +12,114 @@ const images = zompanionCaseStudyImages;
 const backToChapterHref = '/?highlight=zompanion#chapter-1';
 ---
 
-<article class="scarlett-case-study">
+<article class="scarlett-case-study zompanion-case-study">
   <header class="scarlett-case-study__hero">
     <p class="scarlett-case-study__project-name">Zompanion</p>
     <h1 class="scarlett-case-study__hero-title">
-      A 2D pixel-art management and exploration game about collecting, restoring, and living with zombie companions through <strong>system design.</strong>
+      A playful supernatural adventure about companionship, forgotten souls, and <strong>finding warmth in the strange.</strong>
     </h1>
+    <div class="scarlett-case-study__hero-split" data-zompanion-hero-split>
+      <figure class="scarlett-case-study__hero-media" data-zompanion-hero-media>
+        <img
+          class="scarlett-case-study__hero-img"
+          src={images.hero}
+          alt=""
+          loading="eager"
+          decoding="async"
+          data-zompanion-hero-img
+        />
+      </figure>
+      <div class="scarlett-case-study__hero-copy" data-zompanion-hero-copy>
+        <p class="scarlett-case-study__body">
+          Inspired by traditional Chinese ghost stories and jiangshi (zombie) culture, players explore a supernatural world, uncover buried objects and remains, and combine them into different zombie companions
+        </p>
+        <p class="scarlett-case-study__body">
+          Zompanion was developed as a four-person course project. I was responsible for concept and gameplay design, game development (scene management, exploration and digging, dialogue, inventory), and parts of the interface design.
+        </p>
+      </div>
+      <figure class="scarlett-case-study__hero-media scarlett-case-study__hero-media--gif" data-zompanion-hero-gif-media>
+        <img
+          class="scarlett-case-study__hero-gif"
+          src={images.heroGif}
+          alt=""
+          loading="eager"
+          decoding="async"
+          data-zompanion-hero-gif
+        />
+      </figure>
+    </div>
   </header>
 
   <section class="scarlett-case-study__section" aria-labelledby="zompanion-inspiration">
-    <p id="zompanion-inspiration" class="scarlett-case-study__section-label">INSPIRATION</p>
+    <p id="zompanion-inspiration" class="scarlett-case-study__section-label">CONCEPT</p>
 
-    <div class="scarlett-case-study__inspiration-row">
-      <div class="scarlett-case-study__copy scarlett-case-study__copy--inspiration">
-        <h2 class="scarlett-case-study__block-title">
-          What Shaped This <strong>Experience</strong>
-        </h2>
+    <div class="zompanion-concept-row" data-zompanion-concept-row>
+      <h2 class="scarlett-case-study__block-title zompanion-concept-row__title">
+        Turning Monsters into <strong>Companions</strong>
+      </h2>
+      <div class="zompanion-concept-row__body" data-zompanion-concept-copy>
         <p class="scarlett-case-study__body">
-          Replace this paragraph with the inspiration behind Zompanion.
+          Rather than treating zombies as enemies, Zompanion reimagines them as companions created and cared for by the player.
         </p>
         <p class="scarlett-case-study__body">
-          Replace this paragraph with how the idea developed into a playable project.
+          The project combines a playful tone with traditional supernatural imagery, presenting corpse collection and zombie assembly as strange but affectionate acts of companionship.
         </p>
       </div>
-      <CaseStudyMedia
-        class="scarlett-case-study__inspiration-media"
-        src={images.inspirationShapedPrimary}
-        alt=""
-        placeholder="Inspiration image 1"
-        aspectRatio="516 / 362"
-      />
-      <CaseStudyMedia
-        class="scarlett-case-study__inspiration-media"
-        src={images.inspirationShapedSecondary}
-        alt=""
-        placeholder="Inspiration image 2"
-        aspectRatio="393 / 257"
-      />
+      <div class="zompanion-concept-images" data-zompanion-concept-images>
+        {
+          zompanionConceptImages.map((image) => (
+            <figure class="zompanion-concept-images__item">
+              <img
+                class="zompanion-concept-images__img"
+                src={image.src}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                data-zompanion-concept-img
+                data-placeholder={image.placeholder}
+              />
+            </figure>
+          ))
+        }
+      </div>
     </div>
   </section>
 
   <section class="scarlett-case-study__section" aria-labelledby="zompanion-game-design">
     <p id="zompanion-game-design" class="scarlett-case-study__section-label">GAME DESIGN</p>
 
-    <div class="scarlett-case-study__stack">
-      <div class="scarlett-case-study__text-block">
-        <h2 class="scarlett-case-study__block-title">
-          Replace with <span class="scarlett-case-study__title-light">your headline</span>
-        </h2>
-        <p class="scarlett-case-study__body">
-          Replace this paragraph with your core game design approach for Zompanion.
-        </p>
-      </div>
-
-      <div class="scarlett-case-study__game-design-split">
-        <div class="scarlett-case-study__game-design-copy">
-          <div class="scarlett-case-study__text-block">
-            <h2 class="scarlett-case-study__block-title">Replace with subheading 1</h2>
-            <p class="scarlett-case-study__body">
-              Replace this paragraph with a key mechanic or design decision.
-            </p>
-          </div>
-
-          <div class="scarlett-case-study__text-block">
-            <h2 class="scarlett-case-study__block-title">Replace with subheading 2</h2>
-            <p class="scarlett-case-study__body">
-              Replace this paragraph with another design highlight.
-            </p>
-          </div>
+    <div class="zompanion-game-design-row" data-zompanion-game-design-row>
+      <div class="zompanion-game-design-copy" data-zompanion-game-design-copy>
+        <div class="scarlett-case-study__text-block">
+          <h2 class="scarlett-case-study__block-title">
+            Explore, Dig, and Assemble
+          </h2>
+          <p class="scarlett-case-study__body">
+            Players explore different areas, uncover hidden body parts and ritual objects, and use their discoveries to assemble new zombie companions. Digging transforms ordinary environments into spaces of discovery, connecting exploration, collection, and character creation.
+          </p>
+          <p class="scarlett-case-study__body">
+            Once created, the zombie could follow the player and support later exploration, connecting collection with companion progression.
+          </p>
         </div>
 
-        <CaseStudyVideo
-          class="scarlett-case-study__farewell-media"
-          src={images.gameDesignFarewell}
-          placeholder="Gameplay highlight video"
-          aspectRatio="16 / 9"
-        />
+        <div class="scarlett-case-study__text-block">
+          <h2 class="scarlett-case-study__block-title">Companions with Purpose</h2>
+          <p class="scarlett-case-study__body">
+            Each assembled zombie was designed to follow the player and provide a different function during later exploration. This gave collected items a larger purpose, although some companion abilities were not yet fully integrated into the prototype’s core loop.
+          </p>
+        </div>
       </div>
+
+      <figure class="zompanion-game-design-media" data-zompanion-game-design-media>
+        <img
+          class="zompanion-game-design-media__img"
+          src={images.gameDesignImage}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          data-zompanion-game-design-img
+        />
+      </figure>
     </div>
   </section>
 
@@ -101,114 +130,53 @@ const backToChapterHref = '/?highlight=zompanion#chapter-1';
 
     <div class="scarlett-case-study__text-block">
       <h2 class="scarlett-case-study__block-title">
-        Replace with development headline
+        Building the Core Gameplay Systems
       </h2>
       <p class="scarlett-case-study__body">
-        Replace this paragraph with how you built, prototyped, or implemented Zompanion.
+        I developed the scene-management, exploration, digging, dialogue, and inventory systems. Together, they supported movement between areas, environmental interaction, item collection, and progression toward zombie assembly.
       </p>
     </div>
 
-    <div class="scarlett-case-study__state-overview">
-      {
-        zompanionStateOverviewImages.map((overview) => (
-          <CaseStudyMedia
-            class="scarlett-case-study__state-overview-media"
-            src={overview.image}
-            alt=""
-            placeholder={overview.placeholder}
-            aspectRatio={overview.aspectRatio}
-          />
-        ))
-      }
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">
+        Managing Interaction and Game States
+      </h2>
+      <p class="scarlett-case-study__body">
+        I implemented interaction feedback and state handling for digging locations, collected items, and companion behaviour. This included preventing repeated actions, maintaining progress between scenes, and keeping the interface consistent with the game’s pixel-art style.
+      </p>
     </div>
 
-    <div class="scarlett-case-study__state-videos">
+    <div class="zompanion-game-development-images" data-zompanion-game-development-images>
       {
-        zompanionStateMachineVideos.map((video) => (
-          <CaseStudyVideo
-            src={video.src}
-            placeholder={video.placeholder}
-            aspectRatio={video.aspectRatio}
-          />
+        zompanionGameDevelopmentImages.map((image) => (
+          <figure class="zompanion-game-development-images__item">
+            <img
+              class="zompanion-game-development-images__img"
+              src={image.src}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              data-zompanion-game-development-img
+              data-placeholder={image.placeholder}
+            />
+          </figure>
         ))
       }
     </div>
 
     <div class="scarlett-case-study__subsection">
-      <p class="scarlett-case-study__subsection-label">ART</p>
+      <p class="scarlett-case-study__subsection-label">PLAYTESTING</p>
 
-      <h2 class="scarlett-case-study__block-title">Visual & Interface Design</h2>
-
-      <div class="scarlett-case-study__art-layout">
-        <CaseStudyMedia
-          class="scarlett-case-study__art-photo"
-          src={images.devScenePhoto}
-          alt=""
-          placeholder="Reference or scene photo"
-          aspectRatio="980 / 624"
-        />
-
-        <div class="scarlett-case-study__art-center">
-          <p class="scarlett-case-study__body">
-            Replace this paragraph with notes on visual direction, art, or interface design.
-          </p>
-
-          <div class="scarlett-case-study__art-ui-row">
-            <CaseStudyMedia
-              class="scarlett-case-study__art-ui"
-              src={images.devUiMain}
-              alt=""
-              placeholder="UI main screen"
-              aspectRatio="822 / 624"
-            />
-            <CaseStudyMedia
-              class="scarlett-case-study__art-ui"
-              src={images.devUiDetail1}
-              alt=""
-              placeholder="UI detail 1"
-              aspectRatio="912 / 546"
-            />
-          </div>
-        </div>
-
-        <CaseStudyMedia
-          class="scarlett-case-study__art-scene"
-          src={images.devSceneGame}
-          alt=""
-          placeholder="In-game scene"
-          aspectRatio="436 / 312"
-        />
-      </div>
+      <h2 class="scarlett-case-study__block-title">Clarifying the Core Loop</h2>
+        <p class="scarlett-case-study__body">
+              Playtesting showed that the world and visual direction were appealing, but the relationship between exploration, collected items, and zombie functions was not yet clear.
+        </p>
+        <p class="scarlett-case-study__body">
+              Players spent too much time walking between locations, some items lacked an obvious purpose, and the companion system felt separated from the main flow. These findings later became the foundation for rethinking the project’s core loop.
+        </p>
     </div>
   </section>
 
-  <section class="scarlett-case-study__section" aria-labelledby="zompanion-reflection">
-    <p id="zompanion-reflection" class="scarlett-case-study__section-label">REFLECTION</p>
-
-    <div class="scarlett-case-study__text-block">
-      <h2 class="scarlett-case-study__block-title">Learning From Playtest</h2>
-      <p class="scarlett-case-study__body">
-        Replace this paragraph with playtest insights for Zompanion.
-      </p>
-    </div>
-
-    <div class="scarlett-case-study__text-block">
-      <h2 class="scarlett-case-study__block-title">What I Took Forward</h2>
-      <p class="scarlett-case-study__body">
-        Replace this paragraph with your personal reflection on the project.
-      </p>
-    </div>
-
-    <div class="scarlett-case-study__reflection-media">
-      <CaseStudyMedia
-        class="scarlett-case-study__reflection-photo"
-        src={images.reflectionPhoto}
-        alt=""
-        placeholder="Reflection image"
-        aspectRatio="976 / 724"
-      />
-    </div>
-  </section>
 
   <footer class="scarlett-case-study__footer">
     <a class="scarlett-case-study__back" href={backToChapterHref}>← Back to Chapter</a>
@@ -260,33 +228,275 @@ const backToChapterHref = '/?highlight=zompanion#chapter-1';
 </article>
 
 <script>
-  function initCaseStudyMedia() {
-    document.querySelectorAll('[data-case-study-img]').forEach((img) => {
-      if (!(img instanceof HTMLImageElement) || img.dataset.mediaBound === 'true') return;
-      img.dataset.mediaBound = 'true';
+  function syncZompanionHeroImage() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
 
-      const markMissing = () => {
-        const figure = img.closest('[data-case-study-media]');
-        figure?.classList.add('is-missing');
-      };
+    document.querySelectorAll('[data-zompanion-hero-split]').forEach((split) => {
+      if (!(split instanceof HTMLElement)) return;
 
-      img.addEventListener('error', markMissing);
-      if (img.complete && img.naturalWidth === 0) markMissing();
-    });
+      const copy = split.querySelector('[data-zompanion-hero-copy]');
+      const media = split.querySelector('[data-zompanion-hero-media]');
+      const img = split.querySelector('[data-zompanion-hero-img]');
+      const gifMedia = split.querySelector('[data-zompanion-hero-gif-media]');
+      const gif = split.querySelector('[data-zompanion-hero-gif]');
 
-    document.querySelectorAll('[data-case-study-video]').forEach((video) => {
-      if (!(video instanceof HTMLVideoElement) || video.dataset.mediaBound === 'true') return;
-      video.dataset.mediaBound = 'true';
+      if (!(copy instanceof HTMLElement) || !(media instanceof HTMLElement) || !(img instanceof HTMLImageElement)) {
+        return;
+      }
 
-      const markMissing = () => {
-        const figure = video.closest('[data-case-study-media]');
-        figure?.classList.add('is-missing');
-      };
+      if (mobileQuery.matches) {
+        media.style.height = '';
+        media.style.width = '';
+        img.style.height = '';
+        img.style.width = '';
+        if (gifMedia instanceof HTMLElement) {
+          gifMedia.style.height = '';
+          gifMedia.style.width = '';
+        }
+        if (gif instanceof HTMLImageElement) {
+          gif.style.height = '';
+          gif.style.width = '';
+        }
+        return;
+      }
 
-      video.addEventListener('error', markMissing);
+      const copyHeight = Math.round(copy.getBoundingClientRect().height);
+      if (copyHeight <= 0) return;
+
+      media.style.height = `${copyHeight}px`;
+      media.style.width = 'auto';
+      img.style.height = `${copyHeight}px`;
+      img.style.width = 'auto';
+
+      const imageHeight = Math.round(img.getBoundingClientRect().height) || copyHeight;
+
+      if (gifMedia instanceof HTMLElement && gif instanceof HTMLImageElement) {
+        gifMedia.style.height = `${imageHeight}px`;
+        gifMedia.style.width = 'auto';
+        gif.style.height = `${imageHeight}px`;
+        gif.style.width = 'auto';
+      }
     });
   }
 
-  initCaseStudyMedia();
-  document.addEventListener('astro:page-load', initCaseStudyMedia);
+  function syncZompanionConceptImages() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-zompanion-concept-row]').forEach((row) => {
+      if (!(row instanceof HTMLElement)) return;
+
+      const copy = row.querySelector('[data-zompanion-concept-copy]');
+      const imgs = Array.from(row.querySelectorAll('[data-zompanion-concept-img]')).filter(
+        (img) => img instanceof HTMLImageElement,
+      );
+
+      if (!(copy instanceof HTMLElement) || imgs.length === 0) return;
+
+      if (mobileQuery.matches) {
+        imgs.forEach((img) => {
+          img.style.height = '';
+          img.style.width = '';
+        });
+        return;
+      }
+
+      const copyHeight = Math.round(copy.getBoundingClientRect().height);
+      if (copyHeight <= 0) return;
+
+      imgs.forEach((img) => {
+        img.style.height = `${copyHeight}px`;
+        img.style.width = 'auto';
+      });
+    });
+  }
+
+  function syncZompanionGameDesignImage() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-zompanion-game-design-row]').forEach((row) => {
+      if (!(row instanceof HTMLElement)) return;
+
+      const copy = row.querySelector('[data-zompanion-game-design-copy]');
+      const media = row.querySelector('[data-zompanion-game-design-media]');
+      const img = row.querySelector('[data-zompanion-game-design-img]');
+
+      if (!(copy instanceof HTMLElement) || !(media instanceof HTMLElement) || !(img instanceof HTMLImageElement)) {
+        return;
+      }
+
+      if (mobileQuery.matches) {
+        media.style.height = '';
+        media.style.width = '';
+        img.style.height = '';
+        img.style.width = '';
+        return;
+      }
+
+      const copyHeight = Math.round(copy.getBoundingClientRect().height);
+      if (copyHeight <= 0) return;
+
+      media.style.height = `${copyHeight}px`;
+      media.style.width = 'auto';
+      img.style.height = `${copyHeight}px`;
+      img.style.width = 'auto';
+    });
+  }
+
+  function syncZompanionGameDevelopmentImages() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-zompanion-game-development-images]').forEach((row) => {
+      if (!(row instanceof HTMLElement)) return;
+
+      const items = Array.from(row.querySelectorAll('.zompanion-game-development-images__item')).filter(
+        (item) => item instanceof HTMLElement,
+      );
+      const imgs = Array.from(row.querySelectorAll('[data-zompanion-game-development-img]')).filter(
+        (img) => img instanceof HTMLImageElement,
+      );
+
+      if (items.length === 0 || imgs.length === 0 || items.length !== imgs.length) return;
+
+      if (mobileQuery.matches) {
+        items.forEach((item) => {
+          item.style.width = '';
+          item.style.height = '';
+        });
+        imgs.forEach((img) => {
+          img.style.width = '';
+          img.style.height = '';
+        });
+        return;
+      }
+
+      const ratios = imgs.map((img) => {
+        if (img.naturalWidth <= 0 || img.naturalHeight <= 0) return null;
+        return img.naturalWidth / img.naturalHeight;
+      });
+
+      if (ratios.some((ratio) => ratio === null)) return;
+
+      const gap = Number.parseFloat(getComputedStyle(row).columnGap || getComputedStyle(row).gap) || 0;
+      const availableWidth = row.getBoundingClientRect().width - gap * Math.max(0, imgs.length - 1);
+      if (availableWidth <= 0) return;
+
+      const ratioSum = ratios.reduce((sum, ratio) => sum + (ratio ?? 0), 0);
+      if (ratioSum <= 0) return;
+
+      const sharedHeight = Math.round(availableWidth / ratioSum);
+
+      imgs.forEach((img, index) => {
+        const ratio = ratios[index];
+        if (ratio === null) return;
+        const width = Math.round(sharedHeight * ratio);
+        img.style.height = `${sharedHeight}px`;
+        img.style.width = `${width}px`;
+        items[index].style.height = `${sharedHeight}px`;
+        items[index].style.width = `${width}px`;
+      });
+    });
+  }
+
+  function bindZompanionHeroSync() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-zompanion-hero-copy]').forEach((copy) => {
+      if (!(copy instanceof HTMLElement) || copy.dataset.heroObserverBound === 'true') return;
+      copy.dataset.heroObserverBound = 'true';
+
+      const observer = new ResizeObserver(() => {
+        if (!mobileQuery.matches) syncZompanionHeroImage();
+      });
+      observer.observe(copy);
+    });
+
+    document.querySelectorAll('[data-zompanion-hero-img], [data-zompanion-hero-gif]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.heroLoadBound === 'true') return;
+      img.dataset.heroLoadBound = 'true';
+      img.addEventListener('load', syncZompanionHeroImage);
+      if (img.complete && img.naturalWidth > 0) syncZompanionHeroImage();
+    });
+  }
+
+  function bindZompanionConceptSync() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-zompanion-concept-copy]').forEach((copy) => {
+      if (!(copy instanceof HTMLElement) || copy.dataset.conceptObserverBound === 'true') return;
+      copy.dataset.conceptObserverBound = 'true';
+
+      const observer = new ResizeObserver(() => {
+        if (!mobileQuery.matches) syncZompanionConceptImages();
+      });
+      observer.observe(copy);
+    });
+
+    document.querySelectorAll('[data-zompanion-concept-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.conceptLoadBound === 'true') return;
+      img.dataset.conceptLoadBound = 'true';
+      img.addEventListener('load', syncZompanionConceptImages);
+      if (img.complete && img.naturalWidth > 0) syncZompanionConceptImages();
+    });
+  }
+
+  function bindZompanionGameDesignSync() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-zompanion-game-design-copy]').forEach((copy) => {
+      if (!(copy instanceof HTMLElement) || copy.dataset.gameDesignObserverBound === 'true') return;
+      copy.dataset.gameDesignObserverBound = 'true';
+
+      const observer = new ResizeObserver(() => {
+        if (!mobileQuery.matches) syncZompanionGameDesignImage();
+      });
+      observer.observe(copy);
+    });
+
+    document.querySelectorAll('[data-zompanion-game-design-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.gameDesignLoadBound === 'true') return;
+      img.dataset.gameDesignLoadBound = 'true';
+      img.addEventListener('load', syncZompanionGameDesignImage);
+      if (img.complete && img.naturalWidth > 0) syncZompanionGameDesignImage();
+    });
+  }
+
+  function bindZompanionGameDevelopmentSync() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-zompanion-game-development-images]').forEach((row) => {
+      if (!(row instanceof HTMLElement) || row.dataset.gameDevelopmentObserverBound === 'true') return;
+      row.dataset.gameDevelopmentObserverBound = 'true';
+
+      const observer = new ResizeObserver(() => {
+        if (!mobileQuery.matches) syncZompanionGameDevelopmentImages();
+      });
+      observer.observe(row);
+    });
+
+    document.querySelectorAll('[data-zompanion-game-development-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.gameDevelopmentLoadBound === 'true') return;
+      img.dataset.gameDevelopmentLoadBound = 'true';
+      img.addEventListener('load', syncZompanionGameDevelopmentImages);
+      if (img.complete && img.naturalWidth > 0) syncZompanionGameDevelopmentImages();
+    });
+  }
+
+  function syncZompanionLayouts() {
+    syncZompanionHeroImage();
+    syncZompanionConceptImages();
+    syncZompanionGameDesignImage();
+    syncZompanionGameDevelopmentImages();
+  }
+
+  function initZompanionCaseStudy() {
+    bindZompanionHeroSync();
+    bindZompanionConceptSync();
+    bindZompanionGameDesignSync();
+    bindZompanionGameDevelopmentSync();
+    syncZompanionLayouts();
+  }
+
+  initZompanionCaseStudy();
+  document.addEventListener('astro:page-load', initZompanionCaseStudy);
+  window.addEventListener('resize', syncZompanionLayouts);
 </script>

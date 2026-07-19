@@ -3,8 +3,7 @@ import CaseStudyMedia from './CaseStudyMedia.astro';
 import CaseStudyVideo from './CaseStudyVideo.astro';
 import {
   obscuraCaseStudyImages,
-  obscuraStateMachineVideos,
-  obscuraStateOverviewImages,
+  obscuraNarrativeDesignImages,
 } from '../../data/obscuraCaseStudy';
 import { aboutContactIcons } from '../../data/aboutAssets';
 import { contactEmail, socialLinks } from '../../data/aboutContent';
@@ -14,43 +13,47 @@ const images = obscuraCaseStudyImages;
 const backToChapterHref = '/?highlight=obscura#chapter-1';
 ---
 
-<article class="scarlett-case-study">
+<article class="scarlett-case-study obscura-case-study">
   <header class="scarlett-case-study__hero">
     <p class="scarlett-case-study__project-name">Obscura</p>
     <h1 class="scarlett-case-study__hero-title">
       A spatial puzzle game built around level structure, navigation, and environmental reasoning through <strong>spatial puzzle.</strong>
     </h1>
+    <div class="scarlett-case-study__hero-split" data-unself-hero-split>
+      <div class="scarlett-case-study__hero-copy" data-unself-hero-copy>
+        <p class="scarlett-case-study__body">
+          Players switch between masked and unmasked states to reshape the environment. Platforms, barriers, and routes appear or disappear, turning identity into the key to both navigation and progression.
+        </p>
+        <p class="scarlett-case-study__body">
+          Obscura was created by a five-person team in 48 hours for Global Game Jam Gothenburg 2026 under the theme Mask. I contributed to ideation, level design, and development, with a focus on camera control.
+        </p>
+      </div>
+      <figure class="scarlett-case-study__hero-media" data-unself-hero-media>
+        <video
+          class="scarlett-case-study__hero-video"
+          src={images.hero}
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="metadata"
+          aria-label="Obscura gameplay"
+          data-unself-hero-img
+        ></video>
+      </figure>
+    </div>
   </header>
 
   <section class="scarlett-case-study__section" aria-labelledby="obscura-inspiration">
     <p id="obscura-inspiration" class="scarlett-case-study__section-label">INSPIRATION</p>
 
-    <div class="scarlett-case-study__inspiration-row">
-      <div class="scarlett-case-study__copy scarlett-case-study__copy--inspiration">
-        <h2 class="scarlett-case-study__block-title">
-          What Shaped This <strong>Experience</strong>
-        </h2>
-        <p class="scarlett-case-study__body">
-          Replace this paragraph with the inspiration behind Obscura.
-        </p>
-        <p class="scarlett-case-study__body">
-          Replace this paragraph with how the idea developed into a playable project.
-        </p>
-      </div>
-      <CaseStudyMedia
-        class="scarlett-case-study__inspiration-media"
-        src={images.inspirationShapedPrimary}
-        alt=""
-        placeholder="Inspiration image 1"
-        aspectRatio="516 / 362"
-      />
-      <CaseStudyMedia
-        class="scarlett-case-study__inspiration-media"
-        src={images.inspirationShapedSecondary}
-        alt=""
-        placeholder="Inspiration image 2"
-        aspectRatio="393 / 257"
-      />
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">
+        The Mask as Access
+      </h2>
+      <p class="scarlett-case-study__body">
+        We treated the mask not only as a disguise, but as a condition for belonging. Wearing it allows the player to pass through the world, while gradually blurring the boundary between adaptation and identity.
+      </p>
     </div>
   </section>
 
@@ -58,157 +61,100 @@ const backToChapterHref = '/?highlight=obscura#chapter-1';
     <p id="obscura-game-design" class="scarlett-case-study__section-label">GAME DESIGN</p>
 
     <div class="scarlett-case-study__stack">
-      <div class="scarlett-case-study__text-block">
-        <h2 class="scarlett-case-study__block-title">
-          Replace with <span class="scarlett-case-study__title-light">your headline</span>
-        </h2>
-        <p class="scarlett-case-study__body">
-          Replace this paragraph with your core game design approach for Obscura.
-        </p>
-      </div>
+      <div class="obscura-game-design__lead" data-obscura-lead>
+        <CaseStudyVideo
+          class="obscura-game-design__lead-video"
+          src={images.gameDesignImage1}
+          placeholder="Game design video 1"
+        />
 
-      <div class="scarlett-case-study__game-design-split">
-        <div class="scarlett-case-study__game-design-copy">
+        <div class="obscura-game-design__lead-copy" data-obscura-lead-copy>
           <div class="scarlett-case-study__text-block">
-            <h2 class="scarlett-case-study__block-title">Replace with subheading 1</h2>
+            <h2 class="scarlett-case-study__block-title">
+              Shifting Space Through Masks
+            </h2>
             <p class="scarlett-case-study__body">
-              Replace this paragraph with a key mechanic or design decision.
+              Switching masks reconfigures platforms, obstacles, and routes within the same environment. Players compare different versions of the space and use their differences to construct a path forward.
             </p>
           </div>
 
           <div class="scarlett-case-study__text-block">
-            <h2 class="scarlett-case-study__block-title">Replace with subheading 2</h2>
+            <h2 class="scarlett-case-study__block-title">Learning Through Space</h2>
             <p class="scarlett-case-study__body">
-              Replace this paragraph with another design highlight.
+              Each puzzle introduces a clearer relationship between masks and the environment. Through observation and experimentation, players gradually learn how each state changes the space and how those changes can be combined.
             </p>
           </div>
         </div>
+      </div>
 
-        <CaseStudyVideo
-          class="scarlett-case-study__farewell-media"
-          src={images.gameDesignFarewell}
-          placeholder="Gameplay highlight video"
-          aspectRatio="16 / 9"
-        />
+      <div class="obscura-game-design__block">
+        <div class="scarlett-case-study__text-block">
+          <h2 class="scarlett-case-study__block-title">Progress and Identity</h2>
+          <p class="scarlett-case-study__body">
+            Each mask creates a way forward, but also changes how the player sees and is seen. Spatial progression therefore reflects the game’s central tension between adapting to the world and preserving a sense of self.
+          </p>
+        </div>
+
+        <div class="obscura-game-design__pair" data-obscura-pair>
+          <CaseStudyVideo
+            class="obscura-game-design__pair-video"
+            src={images.gameDesignImage2}
+            placeholder="Game design video 2"
+          />
+          <CaseStudyVideo
+            class="obscura-game-design__pair-video"
+            src={images.gameDesignImage3}
+            placeholder="Game design video 3"
+          />
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="scarlett-case-study__section" aria-labelledby="obscura-game-development">
-    <p id="obscura-game-development" class="scarlett-case-study__section-label">
-      GAME DEVELOPMENT
+  <section class="scarlett-case-study__section" aria-labelledby="obscura-narrative-design">
+    <p id="obscura-narrative-design" class="scarlett-case-study__section-label">
+      NARRATIVE DESIGN
     </p>
 
     <div class="scarlett-case-study__text-block">
       <h2 class="scarlett-case-study__block-title">
-        Replace with development headline
+        Finding the Self Behind the Mask
       </h2>
       <p class="scarlett-case-study__body">
-        Replace this paragraph with how you built, prototyped, or implemented Obscura.
+        Each mask offers a different way through the world, but also distances the player from their original identity. As the environment shifts, the journey gradually becomes less about finding an exit and more about discovering what remains beneath the masks.
       </p>
     </div>
 
-    <div class="scarlett-case-study__state-overview">
+    <div class="obscura-narrative-design__gallery">
       {
-        obscuraStateOverviewImages.map((overview) => (
+        obscuraNarrativeDesignImages.map((image, index) => (
           <CaseStudyMedia
-            class="scarlett-case-study__state-overview-media"
-            src={overview.image}
+            class={`obscura-narrative-design__image obscura-narrative-design__image--${index + 1}`}
+            src={image.src}
             alt=""
-            placeholder={overview.placeholder}
-            aspectRatio={overview.aspectRatio}
+            placeholder={image.placeholder}
+            aspectRatio="16 / 9"
           />
         ))
       }
     </div>
+  </section>
 
-    <div class="scarlett-case-study__state-videos">
-      {
-        obscuraStateMachineVideos.map((video) => (
-          <CaseStudyVideo
-            src={video.src}
-            placeholder={video.placeholder}
-            aspectRatio={video.aspectRatio}
-          />
-        ))
-      }
-    </div>
+  <section class="scarlett-case-study__section" aria-labelledby="obscura-gameplay">
+    <p id="obscura-gameplay" class="scarlett-case-study__section-label">
+      GAMEPLAY
+    </p>
 
-    <div class="scarlett-case-study__subsection">
-      <p class="scarlett-case-study__subsection-label">ART</p>
-
-      <h2 class="scarlett-case-study__block-title">Visual & Interface Design</h2>
-
-      <div class="scarlett-case-study__art-layout">
-        <CaseStudyMedia
-          class="scarlett-case-study__art-photo"
-          src={images.devScenePhoto}
-          alt=""
-          placeholder="Reference or scene photo"
-          aspectRatio="980 / 624"
-        />
-
-        <div class="scarlett-case-study__art-center">
-          <p class="scarlett-case-study__body">
-            Replace this paragraph with notes on visual direction, art, or interface design.
-          </p>
-
-          <div class="scarlett-case-study__art-ui-row">
-            <CaseStudyMedia
-              class="scarlett-case-study__art-ui"
-              src={images.devUiMain}
-              alt=""
-              placeholder="UI main screen"
-              aspectRatio="822 / 624"
-            />
-            <CaseStudyMedia
-              class="scarlett-case-study__art-ui"
-              src={images.devUiDetail1}
-              alt=""
-              placeholder="UI detail 1"
-              aspectRatio="912 / 546"
-            />
-          </div>
-        </div>
-
-        <CaseStudyMedia
-          class="scarlett-case-study__art-scene"
-          src={images.devSceneGame}
-          alt=""
-          placeholder="In-game scene"
-          aspectRatio="436 / 312"
-        />
-      </div>
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">
+        Observe, Switch, and Navigate
+      </h2>
+      <p class="scarlett-case-study__body">
+        Players explore compact 3D environments, switch masks, and solve puzzles by reading how the surrounding space changes. A route blocked in one state may become accessible in another, making each level a puzzle of perception and position.
+      </p>
     </div>
   </section>
 
-  <section class="scarlett-case-study__section" aria-labelledby="obscura-reflection">
-    <p id="obscura-reflection" class="scarlett-case-study__section-label">REFLECTION</p>
-
-    <div class="scarlett-case-study__text-block">
-      <h2 class="scarlett-case-study__block-title">Learning From Playtest</h2>
-      <p class="scarlett-case-study__body">
-        Replace this paragraph with playtest insights for Obscura.
-      </p>
-    </div>
-
-    <div class="scarlett-case-study__text-block">
-      <h2 class="scarlett-case-study__block-title">What I Took Forward</h2>
-      <p class="scarlett-case-study__body">
-        Replace this paragraph with your personal reflection on the project.
-      </p>
-    </div>
-
-    <div class="scarlett-case-study__reflection-media">
-      <CaseStudyMedia
-        class="scarlett-case-study__reflection-photo"
-        src={images.reflectionPhoto}
-        alt=""
-        placeholder="Reflection image"
-        aspectRatio="976 / 724"
-      />
-    </div>
-  </section>
 
   <footer class="scarlett-case-study__footer">
     <a class="scarlett-case-study__back" href={backToChapterHref}>← Back to Chapter</a>
@@ -289,4 +235,109 @@ const backToChapterHref = '/?highlight=obscura#chapter-1';
 
   initCaseStudyMedia();
   document.addEventListener('astro:page-load', initCaseStudyMedia);
+
+  function syncObscuraGameDesignLayouts() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-obscura-lead]').forEach((lead) => {
+      if (!(lead instanceof HTMLElement)) return;
+
+      const copy = lead.querySelector('[data-obscura-lead-copy]');
+      const media = lead.querySelector('.obscura-game-design__lead-video');
+      const video = lead.querySelector('.obscura-game-design__lead-video video');
+
+      if (!(copy instanceof HTMLElement) || !(media instanceof HTMLElement) || !(video instanceof HTMLVideoElement)) {
+        return;
+      }
+
+      if (mobileQuery.matches) {
+        media.style.height = '';
+        media.style.width = '';
+        media.style.maxWidth = '';
+        video.style.height = '';
+        video.style.width = '';
+        video.style.maxWidth = '';
+        return;
+      }
+
+      // Reset first so text can reclaim its column width before measuring height.
+      media.style.maxWidth = '';
+      media.style.width = '100%';
+      media.style.height = '';
+      video.style.maxWidth = '';
+      video.style.width = '100%';
+      video.style.height = 'auto';
+
+      const copyHeight = Math.round(copy.getBoundingClientRect().height);
+      if (copyHeight <= 0) return;
+
+      media.style.height = `${copyHeight}px`;
+      video.style.height = `${copyHeight}px`;
+      video.style.width = '100%';
+      video.style.objectFit = 'contain';
+    });
+
+    document.querySelectorAll('[data-obscura-pair]').forEach((pair) => {
+      if (!(pair instanceof HTMLElement)) return;
+
+      const mediaItems = Array.from(pair.querySelectorAll('.obscura-game-design__pair-video')).filter(
+        (el) => el instanceof HTMLElement,
+      );
+      const videos = Array.from(pair.querySelectorAll('.obscura-game-design__pair-video video')).filter(
+        (el) => el instanceof HTMLVideoElement,
+      );
+
+      if (mediaItems.length === 0 || videos.length === 0) return;
+
+      if (mobileQuery.matches) {
+        mediaItems.forEach((media) => {
+          media.style.height = '';
+        });
+        videos.forEach((video) => {
+          video.style.height = '';
+          video.style.width = '';
+        });
+        return;
+      }
+
+      mediaItems.forEach((media) => {
+        media.style.height = '';
+      });
+      videos.forEach((video) => {
+        video.style.height = '';
+        video.style.width = '100%';
+      });
+
+      const heights = videos
+        .map((video) => Math.round(video.getBoundingClientRect().height))
+        .filter((height) => height > 0);
+      if (heights.length === 0) return;
+
+      const targetHeight = Math.max(...heights);
+      mediaItems.forEach((media) => {
+        media.style.height = `${targetHeight}px`;
+      });
+      videos.forEach((video) => {
+        video.style.height = `${targetHeight}px`;
+        video.style.width = '100%';
+      });
+    });
+  }
+
+  function initObscuraGameDesignLayouts() {
+    syncObscuraGameDesignLayouts();
+
+    document.querySelectorAll('.obscura-game-design__lead-video video, .obscura-game-design__pair-video video').forEach((video) => {
+      if (!(video instanceof HTMLVideoElement) || video.dataset.obscuraLayoutBound === 'true') return;
+      video.dataset.obscuraLayoutBound = 'true';
+      video.addEventListener('loadedmetadata', syncObscuraGameDesignLayouts);
+    });
+  }
+
+  initObscuraGameDesignLayouts();
+  window.addEventListener('resize', syncObscuraGameDesignLayouts);
+  document.addEventListener('astro:page-load', () => {
+    initObscuraGameDesignLayouts();
+    requestAnimationFrame(syncObscuraGameDesignLayouts);
+  });
 </script>

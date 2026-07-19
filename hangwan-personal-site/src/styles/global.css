@@ -6463,11 +6463,519 @@ body.is-project-case-study main {
   width: 100%;
 }
 
+.uroboros-case-study .scarlett-case-study__hero-split {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 30%);
+}
+
+.obscura-case-study .scarlett-case-study__hero-split {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 30%);
+}
+
+.obscura-game-design__lead {
+  display: grid;
+  grid-template-columns: minmax(0, 40%) minmax(0, 1fr);
+  gap: clamp(1em, 2.5cqi, 1.5em);
+  align-items: start;
+  width: 100%;
+}
+
+.obscura-game-design__lead-copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5em, 3vh, 2.5em);
+  min-width: 0;
+}
+
+.obscura-game-design__block {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.85em, 2vh, 1.25em);
+  width: 100%;
+}
+
+.obscura-case-study .case-study-media.obscura-game-design__lead-video:not(.is-missing) {
+  aspect-ratio: unset;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  align-self: start;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: none;
+}
+
+.obscura-case-study .case-study-media.obscura-game-design__lead-video:not(.is-missing) .case-study-media__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+  background: transparent;
+}
+
+.obscura-game-design__pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75em, 2cqi, 1.25em);
+  align-items: stretch;
+  width: 100%;
+}
+
+.obscura-case-study .case-study-media.obscura-game-design__pair-video:not(.is-missing) {
+  aspect-ratio: unset;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: none;
+}
+
+.obscura-case-study .case-study-media.obscura-game-design__pair-video:not(.is-missing) .case-study-media__video {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  background: transparent;
+}
+
+.obscura-narrative-design__gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.75em, 2cqi, 1.25em);
+  align-items: stretch;
+  width: 100%;
+}
+
+.obscura-case-study .case-study-media.obscura-narrative-design__image:not(.is-missing) {
+  aspect-ratio: 16 / 9;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: none;
+}
+
+.obscura-case-study .case-study-media.obscura-narrative-design__image:not(.is-missing) .case-study-media__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: none;
+}
+
+.uroboros-case-study .scarlett-case-study__uroboros-inspiration-split {
+  display: grid;
+  grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+  gap: clamp(1em, 2.5cqi, 1.75em);
+  align-items: center;
+  width: 100%;
+}
+
+.uroboros-case-study .scarlett-case-study__uroboros-inspiration-media {
+  width: 100%;
+  max-width: 100%;
+}
+
+.uroboros-case-study .scarlett-case-study__uroboros-inspiration-copy {
+  margin: 0;
+  min-width: 0;
+}
+
+.uroboros-case-study .scarlett-case-study__rule-copy {
+  gap: 0;
+}
+
+.uroboros-case-study .scarlett-case-study__rule-body strong {
+  font-weight: 800;
+  margin-right: 0.85em;
+}
+
+.uroboros-case-study .scarlett-case-study__rule-body {
+  margin-bottom: clamp(0.1em, 0.35vh, 0.2em);
+}
+
+.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-rule-media:not(.is-missing) {
+  aspect-ratio: unset;
+  width: fit-content;
+  max-width: 100%;
+  height: auto;
+  margin-top: 0;
+  display: block;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+  zoom: 0.5;
+}
+
+.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-rule-media:not(.is-missing) .case-study-media__img {
+  display: block;
+  width: auto;
+  max-width: none;
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+  box-shadow: none;
+}
+
+.uroboros-case-study .scarlett-case-study__uroboros-level-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  column-gap: 5%;
+  width: 100%;
+  margin-top: clamp(0.35em, 1vh, 0.65em);
+}
+
+.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media {
+  margin-top: 0;
+  display: block;
+  overflow: hidden;
+  background: transparent;
+  box-shadow: none;
+  min-width: 0;
+  width: auto;
+  max-width: none;
+  height: auto;
+}
+
+/* flex-grow ∝ aspect ratio → same height while filling the row */
+.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--1,
+.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--1:not(.is-missing) {
+  flex: 3.83036 1 0%;
+  aspect-ratio: 858 / 224;
+  height: auto;
+}
+
+.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--2,
+.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--2:not(.is-missing) {
+  flex: 1.80309 1 0%;
+  aspect-ratio: 467 / 259;
+  height: auto;
+}
+
+.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media:not(.is-missing) .case-study-media__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  box-shadow: none;
+}
+
+.double-vision-case-study__narrative-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
+  gap: clamp(1em, 2.5cqi, 1.75em);
+  width: 100%;
+}
+
+.double-vision-case-study__narrative-title {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  margin: 0;
+}
+
+.double-vision-case-study__narrative-intro {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  width: 60%;
+  max-width: 60%;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  align-self: start;
+}
+
+.double-vision-case-study__narrative-arc-side--act-1 {
+  grid-column: 1;
+  grid-row: 3;
+  align-self: start;
+}
+
+.double-vision-case-study__narrative-arc-media {
+  grid-column: 2;
+  grid-row: 2 / 4;
+  align-self: stretch;
+  justify-self: end;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin-left: clamp(-2em, -8cqi, -0.5em);
+  z-index: 0;
+}
+
+.double-vision-case-study__narrative-arc-side {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.75em, 1.5vh, 1.1em);
+  min-width: 0;
+}
+
+.double-vision-case-study__narrative-arc-act-label {
+  margin: 0;
+  font-size: 2.1em;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.double-vision-case-study__narrative-arc-beats {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.85em, 1.8vh, 1.25em);
+}
+
+.double-vision-case-study__narrative-arc-beats--horizontal {
+  flex-direction: row;
+  gap: clamp(1em, 2.5cqi, 1.75em);
+}
+
+.double-vision-case-study__narrative-arc-beats--horizontal .scarlett-case-study__rule-copy {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.double-vision-case-study .case-study-media.double-vision-case-study__narrative-arc-media:not(.is-missing) {
+  aspect-ratio: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.double-vision-case-study .case-study-media.double-vision-case-study__narrative-arc-media:not(.is-missing) .case-study-media__img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  box-shadow: none;
+}
+
+.double-vision-case-study__narrative-arc-bottom {
+  grid-column: 1 / -1;
+  grid-row: 4;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: clamp(2.5em, 6cqi, 4em);
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+  margin-top: clamp(0.5em, 1.5vh, 1em);
+}
+
+.double-vision-case-study__narrative-arc-act-block {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  gap: clamp(0.75em, 1.5vh, 1.1em);
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.double-vision-case-study__narrative-arc-act-block .double-vision-case-study__narrative-arc-beats--horizontal {
+  width: 100%;
+  gap: clamp(0.55em, 1.2cqi, 0.9em);
+}
+
+.double-vision-case-study__narrative-layout .scarlett-case-study__rule-copy .scarlett-case-study__rule-title + .scarlett-case-study__rule-title {
+  font-size: 0.95em;
+  color: var(--muted);
+}
+
+.double-vision-case-study__narrative-layout .scarlett-case-study__rule-body {
+  font-size: 0.95em;
+}
+
+.double-vision-case-study__outcomes {
+  grid-column: 1 / -1;
+  grid-row: 5;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65em, 1.5vh, 1em);
+  width: 100%;
+  margin-top: clamp(1.25em, 2.5vh, 2em);
+}
+
+.double-vision-case-study__outcomes-title {
+  margin: 0;
+}
+
+.double-vision-case-study__outcomes-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(1em, 2.5cqi, 1.75em);
+  align-items: stretch;
+  width: 100%;
+}
+
+.double-vision-case-study__outcomes-media {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: clamp(0.5em, 1.25cqi, 0.85em);
+  min-width: 0;
+  min-height: 0;
+}
+
+.double-vision-case-study__outcomes-image {
+  flex: 0 0 auto;
+  align-self: stretch;
+  height: 100%;
+  min-height: 0;
+}
+
+.double-vision-case-study .case-study-media.double-vision-case-study__outcomes-image:not(.is-missing) {
+  aspect-ratio: unset;
+  display: block;
+  width: auto;
+  height: 100%;
+  min-height: 0;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+.double-vision-case-study .case-study-media.double-vision-case-study__outcomes-image:not(.is-missing) .case-study-media__img {
+  display: block;
+  width: auto;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: left center;
+  box-shadow: none;
+}
+
+.double-vision-case-study__outcomes-copy {
+  margin: 0;
+  min-width: 0;
+  align-self: stretch;
+}
+
+.double-vision-case-study__evidence {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65em, 1.5vh, 1em);
+  width: 100%;
+}
+
+.double-vision-case-study__evidence-title {
+  margin: 0;
+}
+
+.double-vision-case-study__evidence-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(1em, 2.5cqi, 1.75em);
+  align-items: stretch;
+  width: 100%;
+}
+
+.double-vision-case-study__evidence-copy {
+  margin: 0;
+  min-width: 0;
+}
+
+.double-vision-case-study__evidence-image {
+  align-self: stretch;
+  min-width: 0;
+  min-height: 0;
+}
+
+.double-vision-case-study .case-study-media.double-vision-case-study__evidence-image:not(.is-missing) {
+  aspect-ratio: unset;
+  display: block;
+  width: auto;
+  height: 0;
+  min-height: 100%;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+.double-vision-case-study .case-study-media.double-vision-case-study__evidence-image:not(.is-missing) .case-study-media__img {
+  display: block;
+  width: auto;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: right center;
+  box-shadow: none;
+}
+
+.double-vision-case-study__reasoning {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.85em, 2vh, 1.25em);
+  width: 100%;
+}
+
+.double-vision-case-study__reasoning-gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 4%;
+  width: 100%;
+}
+
+.double-vision-case-study__reasoning-image {
+  min-width: 0;
+}
+
+.double-vision-case-study__reasoning-image--2 {
+  flex: 1.592 1 0;
+}
+
+.double-vision-case-study__reasoning-image--3 {
+  flex: 1.606 1 0;
+}
+
+.double-vision-case-study__reasoning-image--4 {
+  flex: 1.962 1 0;
+}
+
+.double-vision-case-study .case-study-media.double-vision-case-study__reasoning-image:not(.is-missing) {
+  aspect-ratio: unset;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+.double-vision-case-study .case-study-media.double-vision-case-study__reasoning-image:not(.is-missing) .case-study-media__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  box-shadow: none;
+}
+
 .scarlett-case-study__hero-copy {
   display: flex;
   flex-direction: column;
   gap: clamp(0.85em, 2vh, 1.25em);
   min-width: 0;
+}
+
+.zompanion-case-study .scarlett-case-study__hero-split {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
 }
 
 .scarlett-case-study__hero-media {
@@ -6479,11 +6987,146 @@ body.is-project-case-study main {
   line-height: 0;
 }
 
+.zompanion-case-study .scarlett-case-study__hero-media {
+  width: auto;
+  height: auto;
+}
+
 .scarlett-case-study__hero-img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+}
+
+.zompanion-case-study .scarlett-case-study__hero-img {
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.scarlett-case-study__hero-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  background: transparent;
+}
+
+.zompanion-case-study .scarlett-case-study__hero-gif {
+  display: block;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.zompanion-concept-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "title ."
+    "body images";
+  column-gap: clamp(1em, 2.5cqi, 1.5em);
+  row-gap: clamp(0.65em, 1.5vh, 1em);
+  align-items: start;
+  width: 100%;
+}
+
+.zompanion-concept-row__title {
+  grid-area: title;
+}
+
+.zompanion-concept-row__body {
+  grid-area: body;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65em, 1.5vh, 1em);
+  min-width: 0;
+}
+
+.zompanion-concept-images {
+  grid-area: images;
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  align-items: stretch;
+  align-self: start;
+  line-height: 0;
+}
+
+.zompanion-concept-images__item {
+  margin: 0;
+  flex: 0 0 auto;
+  overflow: hidden;
+  background: transparent;
+}
+
+.zompanion-concept-images__img {
+  display: block;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.zompanion-game-design-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(1em, 2.5cqi, 1.5em);
+  align-items: start;
+  width: 100%;
+}
+
+.zompanion-game-design-copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5em, 3vh, 2.5em);
+  min-width: 0;
+}
+
+.zompanion-game-design-media {
+  margin: 0;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  background: transparent;
+  line-height: 0;
+}
+
+.zompanion-game-design-media__img {
+  display: block;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.zompanion-game-development-images {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: clamp(0.75em, 1.8cqi, 1.25em);
+  width: 100%;
+}
+
+.zompanion-game-development-images__item {
+  margin: 0;
+  flex: 0 0 auto;
+  width: auto;
+  overflow: hidden;
+  background: transparent;
+  line-height: 0;
+}
+
+.zompanion-game-development-images__img {
+  display: block;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   object-position: center;
 }
 
@@ -6577,6 +7220,179 @@ body.is-project-case-study main {
   min-width: 0;
 }
 
+.scarlett-case-study__inspiration-row--tension {
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr);
+  gap: clamp(1.25em, 3cqi, 2.25em);
+  align-items: center;
+  width: 100%;
+}
+
+.no-worries-case-study__inquiry {
+  width: 100%;
+}
+
+.no-worries-case-study__inquiry-lead {
+  white-space: nowrap;
+  width: max-content;
+  max-width: 100%;
+}
+
+.no-worries-case-study__inquiry-follow {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65em, 1.5vh, 1em);
+  min-width: 0;
+}
+
+.no-worries-case-study__tension {
+  --no-worries-tension-blue: #6b8fb8;
+  --no-worries-tension-bg: #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: clamp(0.65em, 1.6cqi, 1.15em);
+  min-width: 0;
+  width: 100%;
+}
+
+.no-worries-case-study__tension-panel {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65em;
+  min-width: 0;
+  padding: clamp(0.85em, 2cqi, 1.25em) clamp(0.75em, 1.8cqi, 1.1em);
+  background: var(--no-worries-tension-bg);
+  border: 1.5px solid var(--no-worries-tension-blue);
+  border-radius: 0.55em;
+}
+
+.no-worries-case-study__tension-title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.95em;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--text);
+}
+
+.no-worries-case-study__tension-list {
+  margin: 0;
+  padding: 0 0 0 1.1em;
+  list-style: disc;
+  font-family: var(--font-sans);
+  font-size: 0.82em;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--text);
+}
+
+.no-worries-case-study__tension-list li + li {
+  margin-top: 0.2em;
+}
+
+.no-worries-case-study__tension-center {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45em;
+  max-width: 5.5em;
+  text-align: center;
+}
+
+.no-worries-case-study__tension-icon {
+  display: block;
+  width: clamp(2.25em, 5cqi, 3em);
+  height: auto;
+  color: var(--no-worries-tension-blue);
+}
+
+.no-worries-case-study__tension-caption {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.78em;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+.no-worries-case-study__framing-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.5em, 3.5cqi, 2.5em);
+  align-items: end;
+  width: 100%;
+}
+
+.no-worries-case-study__framing-copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.75em, 3.5vh, 2.5em);
+  min-width: 0;
+  width: 100%;
+}
+
+.no-worries-case-study__framing-points {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1em, 2.2vh, 1.5em);
+}
+
+.no-worries-case-study__framing-table-wrap {
+  min-width: 0;
+  width: 100%;
+}
+
+.no-worries-case-study__mapping-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 0.92em;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.no-worries-case-study__mapping-table th,
+.no-worries-case-study__mapping-table td {
+  padding: 0.7em 0.85em;
+  border: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.no-worries-case-study__mapping-table th {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  background: #f5f5f5;
+}
+
+.no-worries-case-study__mapping-table td {
+  font-weight: 400;
+}
+
+.no-worries-case-study__mapping-table tbody tr:nth-child(even) td {
+  background: #fafafa;
+}
+
+.no-worries-case-study__poster {
+  margin: clamp(0.75em, 1.5vh, 1.1em) 0 0;
+  width: 100%;
+  line-height: 0;
+  background: transparent;
+}
+
+.no-worries-case-study__poster-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 .scarlett-case-study__unself-design-flow {
   margin: clamp(1em, 2.5vh, 1.5em) 0 0;
   width: min(100%, 52rem);
@@ -6629,7 +7445,7 @@ body.is-project-case-study main {
 
 .scarlett-case-study__unself-gameplay-split {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 58%);
   gap: clamp(1em, 2.5cqi, 1.5em);
   align-items: start;
   width: 100%;
@@ -6652,15 +7468,16 @@ body.is-project-case-study main {
 .scarlett-case-study__unself-gameplay-media {
   margin: 0;
   line-height: 0;
-  overflow: visible;
+  overflow: hidden;
   background: transparent;
+  max-width: min(100%, 58%);
 }
 
 .scarlett-case-study__unself-gameplay-img {
   display: block;
   width: auto;
   height: auto;
-  max-width: none;
+  max-width: 100%;
   object-fit: contain;
   object-position: center;
 }
@@ -7582,6 +8399,10 @@ body.is-project-case-study main {
     align-items: stretch;
   }
 
+  .scarlett-case-study__inspiration-row--tension {
+    align-items: center;
+  }
+
   .scarlett-case-study__copy--inspiration {
     justify-content: center;
   }
@@ -7661,7 +8482,213 @@ body.is-project-case-study main {
     justify-self: start;
   }
 
-  .scarlett-case-study__hero-img {
+  .zompanion-case-study .scarlett-case-study__hero-media {
+    width: auto;
+    max-width: 36%;
+    height: auto;
+  }
+
+  .zompanion-case-study .scarlett-case-study__hero-media--gif {
+    max-width: 56%;
+  }
+
+  .zompanion-case-study .scarlett-case-study__hero-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .zompanion-case-study .scarlett-case-study__hero-gif {
+    width: 100%;
+    height: auto;
+  }
+
+  .zompanion-concept-row {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "body"
+      "images";
+    align-items: start;
+  }
+
+  .zompanion-concept-images {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .zompanion-concept-images__item {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .zompanion-concept-images__img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+  }
+
+  .zompanion-game-design-row {
+    grid-template-columns: 1fr;
+  }
+
+  .zompanion-game-design-media {
+    width: auto;
+    max-width: 56%;
+  }
+
+  .zompanion-game-design-media__img {
+    width: 100%;
+    height: auto;
+  }
+
+  .zompanion-game-development-images {
+    flex-direction: column;
+  }
+
+  .zompanion-game-development-images__item {
+    width: 100%;
+  }
+
+  .zompanion-game-development-images__img {
+    width: 100%;
+    height: auto;
+  }
+
+  .uroboros-case-study .scarlett-case-study__hero-media {
+    max-width: 30%;
+  }
+
+  .obscura-case-study .scarlett-case-study__hero-media {
+    max-width: 30%;
+  }
+
+  .obscura-game-design__lead {
+    grid-template-columns: 1fr;
+  }
+
+  .obscura-case-study .case-study-media.obscura-game-design__lead-video:not(.is-missing) {
+    width: 100%;
+    height: auto;
+  }
+
+  .obscura-case-study .case-study-media.obscura-game-design__lead-video:not(.is-missing) .case-study-media__video {
+    width: 100%;
+    height: auto;
+  }
+
+  .obscura-game-design__pair {
+    grid-template-columns: 1fr;
+  }
+
+  .obscura-narrative-design__gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .uroboros-case-study .scarlett-case-study__uroboros-inspiration-split {
+    grid-template-columns: 1fr;
+  }
+
+  .uroboros-case-study .scarlett-case-study__uroboros-level-row {
+    flex-direction: column;
+    row-gap: clamp(0.75em, 2vh, 1.25em);
+  }
+
+  .uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--1,
+  .uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--1:not(.is-missing),
+  .uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--2,
+  .uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--2:not(.is-missing) {
+    flex: none;
+    width: 100%;
+  }
+
+  .double-vision-case-study__narrative-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .double-vision-case-study__narrative-intro {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .double-vision-case-study__narrative-title,
+  .double-vision-case-study__narrative-intro,
+  .double-vision-case-study__narrative-arc-side--act-1,
+  .double-vision-case-study__narrative-arc-media,
+  .double-vision-case-study__narrative-arc-bottom,
+  .double-vision-case-study__outcomes {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .double-vision-case-study__narrative-arc-media {
+    margin-left: 0;
+  }
+
+  .double-vision-case-study__outcomes-row {
+    grid-template-columns: 1fr;
+  }
+
+  .double-vision-case-study__outcomes-media {
+    width: 100%;
+  }
+
+  .double-vision-case-study .case-study-media.double-vision-case-study__outcomes-image:not(.is-missing) {
+    height: auto;
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .double-vision-case-study .case-study-media.double-vision-case-study__outcomes-image:not(.is-missing) .case-study-media__img {
+    width: 100%;
+    height: auto;
+  }
+
+  .double-vision-case-study__evidence-row {
+    grid-template-columns: 1fr;
+  }
+
+  .double-vision-case-study .case-study-media.double-vision-case-study__evidence-image:not(.is-missing) {
+    height: auto;
+    width: 100%;
+  }
+
+  .double-vision-case-study .case-study-media.double-vision-case-study__evidence-image:not(.is-missing) .case-study-media__img {
+    width: 100%;
+    height: auto;
+  }
+
+  .double-vision-case-study__reasoning-gallery {
+    flex-direction: column;
+    gap: clamp(0.75em, 2vh, 1.25em);
+  }
+
+  .double-vision-case-study__reasoning-image--2,
+  .double-vision-case-study__reasoning-image--3,
+  .double-vision-case-study__reasoning-image--4 {
+    flex: none;
+    width: 100%;
+  }
+
+  .double-vision-case-study .case-study-media.double-vision-case-study__narrative-arc-media:not(.is-missing) {
+    height: auto;
+  }
+
+  .double-vision-case-study .case-study-media.double-vision-case-study__narrative-arc-media:not(.is-missing) .case-study-media__img {
+    width: 100%;
+    height: auto;
+  }
+
+  .double-vision-case-study__narrative-arc-bottom {
+    flex-direction: column;
+  }
+
+  .double-vision-case-study__narrative-arc-beats--horizontal {
+    flex-direction: column;
+  }
+
+  .scarlett-case-study__hero-img,
+  .scarlett-case-study__hero-video {
     height: auto;
     width: 100%;
     aspect-ratio: auto;
@@ -7674,6 +8701,23 @@ body.is-project-case-study main {
   }
 
   .scarlett-case-study__inspiration-row--framed {
+    grid-template-columns: 1fr;
+  }
+
+  .scarlett-case-study__inspiration-row--tension {
+    grid-template-columns: 1fr;
+  }
+
+  .no-worries-case-study__inquiry-lead {
+    white-space: normal;
+    width: auto;
+  }
+
+  .no-worries-case-study__tension {
+    width: 100%;
+  }
+
+  .no-worries-case-study__framing-split {
     grid-template-columns: 1fr;
   }
 

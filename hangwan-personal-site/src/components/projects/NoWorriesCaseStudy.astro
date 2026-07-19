@@ -1,11 +1,5 @@
 ---
-import CaseStudyMedia from './CaseStudyMedia.astro';
-import CaseStudyVideo from './CaseStudyVideo.astro';
-import {
-  noWorriesCaseStudyImages,
-  noWorriesStateMachineVideos,
-  noWorriesStateOverviewImages,
-} from '../../data/noWorriesCaseStudy';
+import { noWorriesCaseStudyImages } from '../../data/noWorriesCaseStudy';
 import { aboutContactIcons } from '../../data/aboutAssets';
 import { contactEmail, socialLinks } from '../../data/aboutContent';
 
@@ -18,167 +12,196 @@ const backToChapterHref = '/?highlight=no-worries#chapter-1';
   <header class="scarlett-case-study__hero">
     <p class="scarlett-case-study__project-name">No Worries</p>
     <h1 class="scarlett-case-study__hero-title">
-      A concept-driven game experiment using playful systems to reflect on social dynamics and human interaction through <strong>concept-driven design.</strong>
+      A concept-driven board game that makes the hidden costs of everyday <strong>social expression</strong> visible and playable.
     </h1>
   </header>
 
   <section class="scarlett-case-study__section" aria-labelledby="no-worries-inspiration">
-    <p id="no-worries-inspiration" class="scarlett-case-study__section-label">INSPIRATION</p>
+    <p id="no-worries-inspiration" class="scarlett-case-study__section-label">DESIGN INQUIRY</p>
 
-    <div class="scarlett-case-study__inspiration-row">
-      <div class="scarlett-case-study__copy scarlett-case-study__copy--inspiration">
-        <h2 class="scarlett-case-study__block-title">
-          What Shaped This <strong>Experience</strong>
-        </h2>
-        <p class="scarlett-case-study__body">
-          Replace this paragraph with the inspiration behind No Worries.
-        </p>
-        <p class="scarlett-case-study__body">
-          Replace this paragraph with how the idea developed into a playable project.
-        </p>
+    <div class="scarlett-case-study__copy scarlett-case-study__copy--inspiration no-worries-case-study__inquiry">
+      <h2 class="scarlett-case-study__block-title">
+        Between Harmony and Self
+      </h2>
+      <p class="scarlett-case-study__body no-worries-case-study__inquiry-lead">
+        The project began with my own difficulty in expressing personal needs while trying to remain polite, considerate, and socially acceptable.
+      </p>
+
+      <div class="scarlett-case-study__inspiration-row scarlett-case-study__inspiration-row--tension">
+        <div class="no-worries-case-study__inquiry-follow">
+          <p class="scarlett-case-study__body">
+            This tension became the central design inquiry:
+          </p>
+          <p class="scarlett-case-study__body">
+            <strong>How might the hidden personal and relational costs of everyday expression become visible, discussable, and playable?</strong>
+          </p>
+        </div>
+
+        <div
+          class="no-worries-case-study__tension"
+          role="group"
+          aria-label="Caught between maintaining harmony and protecting the self"
+        >
+          <div class="no-worries-case-study__tension-panel">
+            <p class="no-worries-case-study__tension-title">Maintain Harmony</p>
+            <ul class="no-worries-case-study__tension-list">
+              <li>Avoid conflict or discomfort</li>
+              <li>Suppress personal needs</li>
+              <li>Quieter voices overlooked</li>
+            </ul>
+          </div>
+
+          <div class="no-worries-case-study__tension-center">
+            <svg
+              class="no-worries-case-study__tension-icon"
+              viewBox="0 0 48 48"
+              width="48"
+              height="48"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <circle cx="24" cy="12" r="7.5" fill="none" stroke="currentColor" stroke-width="2.25" />
+              <path
+                d="M9 41.5c0-9.5 6.7-15.5 15-15.5s15 6 15 15.5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.25"
+                stroke-linecap="round"
+              />
+            </svg>
+            <p class="no-worries-case-study__tension-caption">Caught between both</p>
+          </div>
+
+          <div class="no-worries-case-study__tension-panel">
+            <p class="no-worries-case-study__tension-title">Protect Self</p>
+            <ul class="no-worries-case-study__tension-list">
+              <li>Direct expression</li>
+              <li>Protect own needs</li>
+              <li>May create pressure</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <CaseStudyMedia
-        class="scarlett-case-study__inspiration-media"
-        src={images.inspirationShapedPrimary}
-        alt=""
-        placeholder="Inspiration image 1"
-        aspectRatio="516 / 362"
-      />
-      <CaseStudyMedia
-        class="scarlett-case-study__inspiration-media"
-        src={images.inspirationShapedSecondary}
-        alt=""
-        placeholder="Inspiration image 2"
-        aspectRatio="393 / 257"
-      />
     </div>
   </section>
 
   <section class="scarlett-case-study__section" aria-labelledby="no-worries-game-design">
-    <p id="no-worries-game-design" class="scarlett-case-study__section-label">GAME DESIGN</p>
+    <p id="no-worries-game-design" class="scarlett-case-study__section-label">RESEARCH FRAMING</p>
 
     <div class="scarlett-case-study__stack">
       <div class="scarlett-case-study__text-block">
         <h2 class="scarlett-case-study__block-title">
-          Replace with <span class="scarlett-case-study__title-light">your headline</span>
+          Expression as a Contextual Trade-off
         </h2>
         <p class="scarlett-case-study__body">
-          Replace this paragraph with your core game design approach for No Worries.
+          The research reframed expression as neither simply direct nor indirect, but as a contextual balance between personal needs, emotional effort, social comfort, and relationships.
         </p>
       </div>
 
-      <div class="scarlett-case-study__game-design-split">
-        <div class="scarlett-case-study__game-design-copy">
-          <div class="scarlett-case-study__text-block">
-            <h2 class="scarlett-case-study__block-title">Replace with subheading 1</h2>
-            <p class="scarlett-case-study__body">
-              Replace this paragraph with a key mechanic or design decision.
-            </p>
+      <div class="no-worries-case-study__framing-split">
+        <div class="no-worries-case-study__framing-copy">
+          <div class="no-worries-case-study__framing-points">
+            <div class="scarlett-case-study__rule-copy">
+              <p class="scarlett-case-study__rule-title">Maintaining harmony has a cost</p>
+              <p class="scarlett-case-study__rule-body">Adapting to others may protect short-term comfort while gradually reducing Self or Energy.</p>
+            </div>
+            <div class="scarlett-case-study__rule-copy">
+              <p class="scarlett-case-study__rule-title">Directness is not always the answer</p>
+              <p class="scarlett-case-study__rule-body">Both soft and direct expression can support or damage relationships depending on context.</p>
+            </div>
+            <div class="scarlett-case-study__rule-copy">
+              <p class="scarlett-case-study__rule-title">Personality shapes social pressure</p>
+              <p class="scarlett-case-study__rule-body">The same expression may require different levels of effort from different people.</p>
+            </div>
           </div>
 
-          <div class="scarlett-case-study__text-block">
-            <h2 class="scarlett-case-study__block-title">Replace with subheading 2</h2>
+          <div class="scarlett-case-study__copy scarlett-case-study__copy--inspiration">
+            <h2 class="scarlett-case-study__block-title">
+              Translating experience into a system
+            </h2>
             <p class="scarlett-case-study__body">
-              Replace this paragraph with another design highlight.
+              Rather than representing communication through dialogue alone, I translated invisible social pressure into cards, tokens, costs, and group-level changes.
             </p>
           </div>
         </div>
 
-        <CaseStudyVideo
-          class="scarlett-case-study__farewell-media"
-          src={images.gameDesignFarewell}
-          placeholder="Gameplay highlight video"
-          aspectRatio="16 / 9"
-        />
+        <div class="no-worries-case-study__framing-table-wrap">
+          <table class="no-worries-case-study__mapping-table">
+            <thead>
+              <tr>
+                <th scope="col">Experience</th>
+                <th scope="col">Game Mechanism</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Difficulty saying no</td>
+                <td>Expression Cards</td>
+              </tr>
+              <tr>
+                <td>Social pressure</td>
+                <td>Scene Cards</td>
+              </tr>
+              <tr>
+                <td>Emotional effort</td>
+                <td>Energy</td>
+              </tr>
+              <tr>
+                <td>Suppressed needs</td>
+                <td>Self</td>
+              </tr>
+              <tr>
+                <td>Maintaining harmony</td>
+                <td>Face</td>
+              </tr>
+              <tr>
+                <td>Shared responsibility</td>
+                <td>Cooperation and Task Progress</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="scarlett-case-study__section" aria-labelledby="no-worries-game-development">
     <p id="no-worries-game-development" class="scarlett-case-study__section-label">
-      GAME DEVELOPMENT
+      SYSTEM DESIGN
     </p>
 
     <div class="scarlett-case-study__text-block">
       <h2 class="scarlett-case-study__block-title">
-        Replace with development headline
+        Social Expression as Negotiation
+      </h2>
+      <div class="double-vision-case-study__narrative-arc-act-block">
+          <p class="scarlett-case-study__rule-title">Personality</p>
+          <p class="scarlett-case-study__rule-body">Defines each player’s social tendency, strengths, and pressures.</p>
+      </div>
+      <div class="double-vision-case-study__narrative-arc-act-block">
+          <p class="scarlett-case-study__rule-title">Expression</p>
+          <p class="scarlett-case-study__rule-body">Players choose how to support, refuse, soften, delay, confront, or repair.</p>
+      </div>
+      <div class="double-vision-case-study__narrative-arc-act-block">
+          <p class="scarlett-case-study__rule-title">Personal State</p>
+          <p class="scarlett-case-study__rule-body">Each expression affects Self, Face, and Energy.</p>
+      </div>
+      <div class="double-vision-case-study__narrative-arc-act-block">
+          <p class="scarlett-case-study__rule-title">Social Space</p>
+          <p class="scarlett-case-study__rule-body">Individual choices reshape group tension, task progress, and relationships.</p>
+      </div>
+    </div>
+
+    <div class="scarlett-case-study__text-block">
+      <h2 class="scarlett-case-study__block-title">
+        Context Changes Meaning
       </h2>
       <p class="scarlett-case-study__body">
-        Replace this paragraph with how you built, prototyped, or implemented No Worries.
+        The Context Translator represents the distance between what someone intends to express and how others interpret it.
       </p>
-    </div>
-
-    <div class="scarlett-case-study__state-overview">
-      {
-        noWorriesStateOverviewImages.map((overview) => (
-          <CaseStudyMedia
-            class="scarlett-case-study__state-overview-media"
-            src={overview.image}
-            alt=""
-            placeholder={overview.placeholder}
-            aspectRatio={overview.aspectRatio}
-          />
-        ))
-      }
-    </div>
-
-    <div class="scarlett-case-study__state-videos">
-      {
-        noWorriesStateMachineVideos.map((video) => (
-          <CaseStudyVideo
-            src={video.src}
-            placeholder={video.placeholder}
-            aspectRatio={video.aspectRatio}
-          />
-        ))
-      }
-    </div>
-
-    <div class="scarlett-case-study__subsection">
-      <p class="scarlett-case-study__subsection-label">ART</p>
-
-      <h2 class="scarlett-case-study__block-title">Visual & Interface Design</h2>
-
-      <div class="scarlett-case-study__art-layout">
-        <CaseStudyMedia
-          class="scarlett-case-study__art-photo"
-          src={images.devScenePhoto}
-          alt=""
-          placeholder="Reference or scene photo"
-          aspectRatio="980 / 624"
-        />
-
-        <div class="scarlett-case-study__art-center">
-          <p class="scarlett-case-study__body">
-            Replace this paragraph with notes on visual direction, art, or interface design.
-          </p>
-
-          <div class="scarlett-case-study__art-ui-row">
-            <CaseStudyMedia
-              class="scarlett-case-study__art-ui"
-              src={images.devUiMain}
-              alt=""
-              placeholder="UI main screen"
-              aspectRatio="822 / 624"
-            />
-            <CaseStudyMedia
-              class="scarlett-case-study__art-ui"
-              src={images.devUiDetail1}
-              alt=""
-              placeholder="UI detail 1"
-              aspectRatio="912 / 546"
-            />
-          </div>
-        </div>
-
-        <CaseStudyMedia
-          class="scarlett-case-study__art-scene"
-          src={images.devSceneGame}
-          alt=""
-          placeholder="In-game scene"
-          aspectRatio="436 / 312"
-        />
-      </div>
+      <p class="scarlett-case-study__body">
+        It combines the current situation, personality, expression, and social state to reveal possible outcomes such as support, misunderstanding, over-commitment, or hidden tension.
+      </p>
     </div>
   </section>
 
@@ -186,29 +209,33 @@ const backToChapterHref = '/?highlight=no-worries#chapter-1';
     <p id="no-worries-reflection" class="scarlett-case-study__section-label">REFLECTION</p>
 
     <div class="scarlett-case-study__text-block">
-      <h2 class="scarlett-case-study__block-title">Learning From Playtest</h2>
+      <h2 class="scarlett-case-study__block-title">A Model for Reflection, Not Diagnosis</h2>
       <p class="scarlett-case-study__body">
-        Replace this paragraph with playtest insights for No Worries.
+        No Worries succeeds in making pressure, compromise, and self-suppression tangible, but it remains a simplified model of complex human behaviour.
+      </p>
+      <p class="scarlett-case-study__body">
+        The project is not intended to identify personality types or teach a correct communication style. Its purpose is to create a space where different forms of expression and their consequences can be experienced and discussed.
       </p>
     </div>
 
-    <div class="scarlett-case-study__text-block">
-      <h2 class="scarlett-case-study__block-title">What I Took Forward</h2>
+    <div class="scarlett-case-study__subsection">
+      <p class="scarlett-case-study__subsection-label">FINAL POSTER</p>
       <p class="scarlett-case-study__body">
-        Replace this paragraph with your personal reflection on the project.
+        The final poster summarises the concept, system, components, and design process in one visual overview.
       </p>
-    </div>
 
-    <div class="scarlett-case-study__reflection-media">
-      <CaseStudyMedia
-        class="scarlett-case-study__reflection-photo"
-        src={images.reflectionPhoto}
-        alt=""
-        placeholder="Reflection image"
-        aspectRatio="976 / 724"
-      />
+      <figure class="no-worries-case-study__poster">
+        <img
+          class="no-worries-case-study__poster-img"
+          src={images.designPoster}
+          alt="No Worries final design poster"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
     </div>
   </section>
+
 
   <footer class="scarlett-case-study__footer">
     <a class="scarlett-case-study__back" href={backToChapterHref}>← Back to Chapter</a>
