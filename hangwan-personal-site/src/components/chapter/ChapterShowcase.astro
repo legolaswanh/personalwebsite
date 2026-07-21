@@ -10,6 +10,9 @@ interface Props {
 
 const { project, ctaLabel = CHAPTER_DEFAULT_CTA_LABEL } = Astro.props;
 
+const effectiveCtaLabel = project.ctaLabel ?? ctaLabel;
+const isExternalCta = Boolean(project.href?.startsWith('http'));
+
 const galleryImages = project.images;
 const initialItem = galleryImages[0];
 const initialPoster = initialItem ? galleryItemPoster(initialItem) : '';
@@ -120,8 +123,10 @@ const initialLabel = initialItem
         data-info-cta
         aria-disabled={project.href ? undefined : 'true'}
         tabindex={project.href ? undefined : -1}
+        target={isExternalCta ? '_blank' : undefined}
+        rel={isExternalCta ? 'noopener noreferrer' : undefined}
       >
-        {ctaLabel}
+        <span data-info-cta-label>{effectiveCtaLabel}</span>
         <span class="chapter-info__cta-arrow" aria-hidden="true">→</span>
       </a>
     </div>

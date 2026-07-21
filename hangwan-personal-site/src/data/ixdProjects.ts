@@ -18,7 +18,10 @@ export const ixdChapterConfig: ChapterConfig = {
   ],
 };
 
-export const ixdProjects: ChapterProject[] = [
+/** Set to false to show Portfolio Redesign on the IXD chapter page again */
+const SHOW_PORTFOLIO_REDESIGN = false;
+
+const ixdProjectsAll: ChapterProject[] = [
   {
     id: 'public-editor',
     title: 'Public Editor',
@@ -33,6 +36,7 @@ export const ixdProjects: ChapterProject[] = [
     highlightTags: ['Public Interaction', 'Participatory Installation'],
     tags: ['Physical-digital Interaction', '3D Printing', 'Journalism'],
     focusLabel: 'Participatory Installation',
+    href: '/projects/public-editor',
     images: ixdProjectImages['public-editor'],
     featured: true,
   },
@@ -50,6 +54,7 @@ export const ixdProjects: ChapterProject[] = [
     highlightTags: ['Participatory Design'],
     tags: ['Collective Creation', 'Shared Experience', 'Social Interaction'],
     focusLabel: 'Public Installation',
+    href: '/projects/opalis',
     images: [
       ...ixdProjectImages.opalis,
       { type: 'youtube', videoId: 'fHX7dZmgLFE', label: 'Opalis Demo' }
@@ -69,6 +74,7 @@ export const ixdProjects: ChapterProject[] = [
     highlightTags: ['Mobile App'],
     tags: ['Social Support', 'Fitness', 'Beginner-friendly'],
     focusLabel: 'Fitness app',
+    href: '/projects/muscle-mate',
     images: ixdProjectImages['muscle-mate'],
   },
   {
@@ -85,6 +91,7 @@ export const ixdProjects: ChapterProject[] = [
     highlightTags: ['Human-animal Interaction', 'Research-based'],
     tags: ['Emotional Care', 'Wearable Design'],
     focusLabel: 'Human-animal Interaction',
+    href: '/projects/calmpanion',
     images: [
       ...ixdProjectImages.calmpanion,
       { type: 'youtube', videoId: 'IOh7x6-VL0U', label: 'Calmpanion Demo' }
@@ -107,6 +114,10 @@ export const ixdProjects: ChapterProject[] = [
     images: ixdProjectImages['portfolio-redesign'],
   },
 ];
+
+export const ixdProjects = SHOW_PORTFOLIO_REDESIGN
+  ? ixdProjectsAll
+  : ixdProjectsAll.filter((project) => project.id !== 'portfolio');
 
 export const ixdDefaultProject =
   ixdProjects.find((p) => p.featured) ?? ixdProjects[0];

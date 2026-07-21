@@ -7,6 +7,7 @@ import {
   ixdProjects,
   ixdDefaultProject,
 } from '../../data/ixdProjects';
+import { CHAPTER_DEFAULT_CTA_LABEL } from '../../types/chapterProject';
 ---
 
 <section
@@ -14,6 +15,7 @@ import {
   class="page-section chapter-page ixd-section"
   data-chapter-page
   data-default-project={ixdDefaultProject.id}
+  data-default-cta-label={ixdChapterConfig.ctaLabel ?? CHAPTER_DEFAULT_CTA_LABEL}
 >
   <div class="section-inner chapter-page-section-inner">
     <div class="chapter-page__frame container">

@@ -48,6 +48,7 @@ export const gamesProjects: ChapterProject[] = [
       ...gamesProjectImages.scarlett,
       { type: 'youtube', videoId: 'fx3pUFxNuX8', label: 'Gameplay Demo' },
     ],
+    featured: true,
   },
   {
     id: 'zompanion',
@@ -65,7 +66,6 @@ export const gamesProjects: ChapterProject[] = [
     focusLabel: 'System Design',
     href: '/projects/zompanion',
     images: zompanionGallery(),
-    featured: true,
   },
   {
     id: 'obscura',
@@ -182,6 +182,7 @@ export const gamesProjects: ChapterProject[] = [
     tags: ['Playful Reflection', 'Design Experiment'],
     focusLabel: 'Concept-driven',
     href: '/projects/no-worries',
+    ctaLabel: 'Case Study',
     images: gamesProjectImages['no-worries'],
   },
 ];

@@ -1,0 +1,233 @@
+---
+import CaseStudyMedia from './CaseStudyMedia.astro';
+import CaseStudyVideo from './CaseStudyVideo.astro';
+import {
+  opalisCaseStudyImages,
+  opalisDesignMethods,
+} from '../../data/opalisCaseStudy';
+import { aboutContactIcons } from '../../data/aboutAssets';
+import { contactEmail, socialLinks } from '../../data/aboutContent';
+
+const images = opalisCaseStudyImages;
+const backToChapterHref = '/?highlight=opalis#chapter-2';
+---
+
+<article class="scarlett-case-study opalis-case-study">
+  <header class="scarlett-case-study__hero">
+    <p class="scarlett-case-study__project-name">Opalis</p>
+    <h1 class="scarlett-case-study__hero-title">
+      An interactive installation exploring <strong>creative expression</strong>, shared authorship, and collaborative public space.
+    </h1>
+    <p class="scarlett-case-study__body">
+      Opalis is an interactive graffiti dome with rotating digital walls. Every minute, the walls shift, allowing visitors to draw, respond to, and build upon one another's work.
+    </p>
+    <p class="scarlett-case-study__body">
+      This was a two-month team project involving five designers. My contributions included concept development, prototyping, and user research.
+    </p>
+  </header>
+
+  <section class="scarlett-case-study__section" aria-labelledby="opalis-problem">
+    <p id="opalis-problem" class="scarlett-case-study__section-label">DEFINE PROBLEM</p>
+
+    <div class="scarlett-case-study__unself-design-split opalis-case-study__problem-split">
+      <div class="scarlett-case-study__unself-design-split-copy">
+        <h2 class="scarlett-case-study__block-title">
+          What is <strong>The Problem</strong>
+        </h2>
+        <p class="scarlett-case-study__body">
+          <strong>How can we reimagine an existing area to attract greater social engagement for users of all ages?</strong>
+        </p>
+        <p class="scarlett-case-study__body">
+          Despite its recent redevelopment and central location, Opalparken at Opaltorget remains underused. Our observations revealed a need for safer, more engaging, and inclusive activities that encourage people to spend time together.
+        </p>
+      </div>
+      <CaseStudyMedia
+        class="scarlett-case-study__unself-design-split-media scarlett-case-study__transparent-media"
+        src={images.problemImage}
+        alt=""
+        placeholder="Problem context image"
+        fit="contain"
+      />
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="opalis-design-process">
+    <p id="opalis-design-process" class="scarlett-case-study__section-label">DESIGN PROCESS</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">User Research</h2>
+          <p class="scarlett-case-study__body">
+            Quantitative data was used to validate and expand our initial observations. Although media coverage became more positive after the park’s redevelopment, visitor frequency remained low. Respondents identified safety concerns and a lack of activities or shops as key barriers.
+          </p>
+          <p class="scarlett-case-study__body">
+            Combining this data with on-site observations gave us a more complete understanding of the area and its users.
+          </p>
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Design Methods</h2>
+        <ul class="scarlett-case-study__rule-list">
+          {
+            opalisDesignMethods.map((method) => (
+              <li class="scarlett-case-study__rule-item">
+                <span class="scarlett-case-study__rule-number">{method.number}</span>
+                <div class="scarlett-case-study__rule-copy">
+                  <p class="scarlett-case-study__rule-title">{method.title}</p>
+                  <p class="scarlett-case-study__rule-body">{method.body}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Design Solution</h2>
+        <p class="scarlett-case-study__body">
+          Opalis reimagines the park as a shared creative space where people of different ages can contribute, respond, and create together.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="opalis-prototyping">
+    <p id="opalis-prototyping" class="scarlett-case-study__section-label">PROTOTYPING</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Rapid Development</h2>
+        <p class="scarlett-case-study__body">
+          We began with user scenarios and paper prototypes, supporting a fast and collaborative workflow. Peer feedback highlighted potential improvements related to lighting, misuse prevention, and weather resistance.
+        </p>
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Evaluation With Quantitative Method</h2>
+        <p class="scarlett-case-study__body">
+          We evaluated the prototype with 15 participants using a modified UES-SF. Participants responded positively to the social interaction, but felt the experience lasted too long and lacked a clear sense of closure.
+        </p>
+        <p class="scarlett-case-study__body">
+          Based on these findings, we refined the timing structure and introduced options for individual participation.
+        </p>
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">High-Fidelity Prototype</h2>
+        <p class="scarlett-case-study__body">
+          After validating the core interaction, we created a flexible 2D prototype in Photoshop before moving into 3D.
+        </p>
+        <p class="scarlett-case-study__body">
+          Blender GIS and Sketchfab assets helped us model the site accurately, while simulated agents supported analysis of movement and safety. Signage was added to test wayfinding, and a final video render communicated the overall spatial experience.
+        </p>
+      </div>
+
+      <CaseStudyVideo
+        class="opalis-case-study__prototype-video"
+        src={images.prototypingVideo}
+        placeholder="High-fidelity prototype video"
+        aspectRatio="16 / 9"
+      />
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="opalis-reflection">
+    <p id="opalis-reflection" class="scarlett-case-study__section-label">REFLECTION</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Effective Teamwork</h2>
+        <p class="scarlett-case-study__body">
+          Our team established a strong collaborative process from the beginning. Clear roles and an open working atmosphere allowed each member to contribute effectively throughout research, ideation, and prototyping.
+        </p>
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Applying Design Methodology</h2>
+        <p class="scarlett-case-study__body">
+          Using multiple research and ideation methods helped us move from a broad public-space challenge to a focused co-creation concept. The project strengthened my ability to connect research findings with spatial and interactive design decisions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="scarlett-case-study__footer">
+    <a class="scarlett-case-study__back" href={backToChapterHref}>← Back to Chapter</a>
+
+    <div class="scarlett-case-study__closing">
+      <p class="scarlett-case-study__thanks">
+        Thank you for exploring my world! If it resonates, I'd love to hear from you.
+      </p>
+      <div class="scarlett-case-study__credit">
+        <span class="scarlett-case-study__name">Hang Wan</span>
+        <span class="scarlett-case-study__credit-dot" aria-hidden="true">·</span>
+        <span class="scarlett-case-study__role">Design Connector</span>
+        <span class="scarlett-case-study__credit-divider" aria-hidden="true"></span>
+        <div class="scarlett-case-study__credit-links">
+          <a
+            class="scarlett-case-study__credit-link"
+            href={`mailto:${contactEmail}`}
+            aria-label="Email Hang Wan"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.gmail}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+          <a
+            class="scarlett-case-study__credit-link"
+            href={socialLinks.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.linkedin}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</article>
+
+<script>
+  function initCaseStudyMedia() {
+    document.querySelectorAll('[data-case-study-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.mediaBound === 'true') return;
+      img.dataset.mediaBound = 'true';
+
+      const markMissing = () => {
+        const figure = img.closest('[data-case-study-media]');
+        if (figure instanceof HTMLElement) figure.classList.add('is-missing');
+      };
+
+      img.addEventListener('error', markMissing);
+      if (img.complete && img.naturalWidth === 0) markMissing();
+    });
+
+    document.querySelectorAll('[data-case-study-video]').forEach((video) => {
+      if (!(video instanceof HTMLVideoElement) || video.dataset.mediaBound === 'true') return;
+      video.dataset.mediaBound = 'true';
+
+      const markMissing = () => {
+        const figure = video.closest('[data-case-study-media]');
+        if (figure instanceof HTMLElement) figure.classList.add('is-missing');
+      };
+
+      video.addEventListener('error', markMissing);
+    });
+  }
+
+  initCaseStudyMedia();
+  document.addEventListener('astro:page-load', initCaseStudyMedia);
+</script>

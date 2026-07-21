@@ -22,6 +22,8 @@ export interface ChapterProject {
   /** Rail placeholder: shows label but cannot be selected or switched to */
   railDisabled?: boolean;
   href?: string;
+  /** Override the chapter default CTA button label for this project */
+  ctaLabel?: string;
   images: ChapterGalleryItem[];
   featured?: boolean;
 }

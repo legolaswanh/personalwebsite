@@ -35,6 +35,10 @@ export function youtubePosterUrl(videoId: string): string {
   return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 }
 
+export function youtubeWatchUrl(videoId: string): string {
+  return `https://www.youtube.com/watch?v=${videoId}`;
+}
+
 export function youtubeEmbedUrl(videoId: string, autoplay = false): string {
   const params = new URLSearchParams({
     rel: '0',

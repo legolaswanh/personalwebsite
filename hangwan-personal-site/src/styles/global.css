@@ -7519,6 +7519,224 @@ body.is-project-case-study main {
   min-width: 0;
 }
 
+.opalis-case-study__problem-split {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 30%);
+}
+
+.opalis-case-study .opalis-case-study__prototype-video {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+.opalis-case-study .opalis-case-study__prototype-video:not(.is-missing) {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  overflow: hidden;
+  background: #111;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.opalis-case-study .opalis-case-study__prototype-video:not(.is-missing) .case-study-media__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.muscle-mate-case-study__hero-split {
+  grid-template-columns: minmax(0, 10%) minmax(0, 1fr) minmax(0, 30%);
+  align-items: start;
+}
+
+.muscle-mate-case-study__hero-icon {
+  margin: 0;
+  width: 100%;
+  line-height: 0;
+}
+
+.muscle-mate-case-study__hero-icon-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: left top;
+}
+
+.muscle-mate-case-study__hero-copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65em, 1.5vh, 1em);
+  min-width: 0;
+}
+
+.muscle-mate-case-study .scarlett-case-study__hero-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center top;
+}
+
+.muscle-mate-case-study__persona-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 184fr) minmax(0, 254fr) minmax(0, 516fr);
+  gap: clamp(0.5em, 1.5cqi, 1em);
+  align-items: end;
+  width: 100%;
+}
+
+.muscle-mate-case-study__persona-media,
+.muscle-mate-case-study__design-solution-media,
+.muscle-mate-case-study__design-image-media {
+  width: 100%;
+  margin: 0;
+}
+
+.muscle-mate-case-study__prototype-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.5em, 1.5cqi, 1em);
+  width: 100%;
+}
+
+.muscle-mate-case-study__prototype-screen {
+  width: 100%;
+}
+
+.calmpanion-case-study__prototype-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.5em, 1.5cqi, 1em);
+  align-items: end;
+  width: 100%;
+}
+
+.calmpanion-case-study__prototype-grid--refined {
+  grid-template-columns: minmax(0, 779fr) minmax(0, 2005fr) minmax(0, 1000fr);
+}
+
+.calmpanion-case-study__prototype-media {
+  width: 100%;
+}
+
+.calmpanion-case-study__hero-stack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65em, 1.5vh, 1em);
+  width: 100%;
+}
+
+.calmpanion-case-study__hero-media {
+  margin: 0;
+  width: 100%;
+  line-height: 0;
+}
+
+.calmpanion-case-study__hero-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.telemedicine-mirror-case-study__design-methods-media,
+.telemedicine-mirror-case-study__persona-media,
+.telemedicine-mirror-case-study__evaluation-media {
+  width: 100%;
+  margin: 0;
+}
+
+.scarlett-case-study__bullet-list {
+  list-style: disc;
+  margin: 0;
+  padding-left: 1.25em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+}
+
+.scarlett-case-study__bullet-list .scarlett-case-study__body {
+  margin: 0;
+}
+
+.public-editor-case-study__site-research {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65em, 1.5vh, 1em);
+  width: 100%;
+}
+
+.public-editor-case-study__site-research-title {
+  margin: 0;
+}
+
+.public-editor-case-study__site-research-row {
+  display: grid;
+  grid-template-columns: minmax(0, 20%) minmax(0, 1fr) minmax(0, 20%);
+  gap: clamp(1em, 2.5cqi, 1.5em);
+  align-items: start;
+  width: 100%;
+}
+
+.public-editor-case-study__site-research-media {
+  width: 100%;
+  margin: 0;
+}
+
+.public-editor-case-study__site-research-copy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.65em, 1.5vh, 1em);
+  min-width: 0;
+}
+
+.scarlett-case-study__unself-design-split.public-editor-case-study__physical-digital-split {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 25%);
+}
+
+.scarlett-case-study__unself-design-split.public-editor-case-study__system-split,
+.scarlett-case-study__unself-design-split.public-editor-case-study__installation-split.scarlett-case-study__unself-design-split--media-end {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 45%);
+}
+
+.scarlett-case-study__unself-design-split.public-editor-case-study__installation-split:not(.scarlett-case-study__unself-design-split--media-end) {
+  grid-template-columns: minmax(0, 45%) minmax(0, 1fr);
+}
+
+.public-editor-case-study__prototype-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: clamp(0.5em, 1.5cqi, 1em);
+  width: 100%;
+}
+
+.public-editor-case-study__prototype-item {
+  margin: 0;
+  flex: 0 0 auto;
+  width: auto;
+  overflow: hidden;
+  background: transparent;
+  line-height: 0;
+}
+
+.public-editor-case-study__prototype-img {
+  display: block;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.public-editor-case-study__poster {
+  width: 100%;
+  margin: 0;
+}
+
 .scarlett-case-study__unself-gameplay-split {
   display: grid;
   grid-template-columns: minmax(0, 38%) minmax(0, 60%);
@@ -8877,6 +9095,56 @@ body.is-project-case-study main {
   .scarlett-case-study__unself-design-split,
   .scarlett-case-study__unself-design-split--media-end {
     grid-template-columns: 1fr;
+  }
+
+  .opalis-case-study__problem-split {
+    grid-template-columns: 1fr;
+  }
+
+  .muscle-mate-case-study__hero-split {
+    grid-template-columns: 1fr;
+  }
+
+  .muscle-mate-case-study__hero-icon {
+    width: min(100%, 5rem);
+  }
+
+  .muscle-mate-case-study .scarlett-case-study__hero-media {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .muscle-mate-case-study__persona-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .muscle-mate-case-study__prototype-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .calmpanion-case-study__prototype-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .public-editor-case-study__site-research-row {
+    grid-template-columns: 1fr;
+  }
+
+  .public-editor-case-study__site-research-media {
+    max-width: min(100%, 320px);
+  }
+
+  .public-editor-case-study__prototype-row {
+    flex-direction: column;
+  }
+
+  .public-editor-case-study__prototype-item {
+    width: 100%;
+  }
+
+  .public-editor-case-study__prototype-img {
+    width: 100%;
+    height: auto;
   }
 
   .scarlett-case-study__unself-design-split-media {

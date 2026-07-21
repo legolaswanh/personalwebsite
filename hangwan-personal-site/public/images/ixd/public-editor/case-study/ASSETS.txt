@@ -1,0 +1,15 @@
+# Public Editor case study assets
+
+hero.jpg
+site-research-1.jpg
+site-research-2.jpg
+system-overview.jpg
+news-camera.jpg
+interview-recorder.jpg
+editors-typewriter.jpg
+central-screen.jpg
+prototype-0.jpg
+prototype-1.jpg
+prototype-2.jpg
+prototype-3.jpg
+poster.png

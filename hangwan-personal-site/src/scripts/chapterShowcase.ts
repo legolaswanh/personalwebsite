@@ -1,5 +1,8 @@
 import type { ChapterProject } from '../types/chapterProject';
-import { CHAPTER_DEFAULT_ROLE_LABEL } from '../types/chapterProject';
+import {
+  CHAPTER_DEFAULT_CTA_LABEL,
+  CHAPTER_DEFAULT_ROLE_LABEL,
+} from '../types/chapterProject';
 import type {
   ChapterGalleryImageItem,
   ChapterGalleryYoutubeItem,
@@ -231,6 +234,13 @@ function updateShowcase(section: HTMLElement, project: ChapterProject) {
   const tags = section.querySelector<HTMLElement>('[data-info-tags]');
   if (tags) renderTags(tags, project.highlightTags, project.tags);
 
+  const defaultCtaLabel =
+    section.dataset.defaultCtaLabel ?? CHAPTER_DEFAULT_CTA_LABEL;
+  const ctaLabelNode = section.querySelector<HTMLElement>('[data-info-cta-label]');
+  if (ctaLabelNode) {
+    ctaLabelNode.textContent = project.ctaLabel ?? defaultCtaLabel;
+  }
+
   const cta = section.querySelector<HTMLAnchorElement>('[data-info-cta]');
   if (cta) {
     if (project.href) {
@@ -238,11 +248,21 @@ function updateShowcase(section: HTMLElement, project: ChapterProject) {
       cta.classList.remove('chapter-info__cta--disabled');
       cta.removeAttribute('aria-disabled');
       cta.tabIndex = 0;
+
+      if (/^https?:\/\//.test(project.href)) {
+        cta.target = '_blank';
+        cta.rel = 'noopener noreferrer';
+      } else {
+        cta.removeAttribute('target');
+        cta.removeAttribute('rel');
+      }
     } else {
       cta.removeAttribute('href');
       cta.classList.add('chapter-info__cta--disabled');
       cta.setAttribute('aria-disabled', 'true');
       cta.tabIndex = -1;
+      cta.removeAttribute('target');
+      cta.removeAttribute('rel');
     }
   }
 

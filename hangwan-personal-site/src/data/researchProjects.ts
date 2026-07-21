@@ -1,5 +1,8 @@
 import { researchProjectImages } from './researchAssets';
 import type { ChapterConfig, ChapterProject } from '../types/chapterProject';
+import { youtubeWatchUrl } from '../utils/parseYoutubeId';
+
+const GAMEPLAY_STYLE_VIDEO_ID = 'KItHz61ma5c';
 
 export const researchChapterConfig: ChapterConfig = {
   number: 3,
@@ -23,7 +26,9 @@ export const researchProjects: ChapterProject[] = [
     highlightTags: ['System Disassembly', 'Design Guidelines'],
     tags: ['Gameplay Systems', 'Game Study'],
     focusLabel: 'Design analysis',
-    images: [{ type: 'youtube', videoId: 'KItHz61ma5c', label: 'Gameplay Demo' }],
+    href: youtubeWatchUrl(GAMEPLAY_STYLE_VIDEO_ID),
+    ctaLabel: 'View on YouTube',
+    images: [{ type: 'youtube', videoId: GAMEPLAY_STYLE_VIDEO_ID, label: 'Gameplay Demo' }],
     featured: true,
   },
   {
@@ -40,6 +45,7 @@ export const researchProjects: ChapterProject[] = [
     highlightTags: ['Research-based', 'Trust Design'],
     tags: ['User Scenario', 'Home Exam'],
     focusLabel: 'Healthcare Research',
+    href: '/projects/telemedicine-mirror',
     images: researchProjectImages['telemedicine-mirror'],
   },
   {

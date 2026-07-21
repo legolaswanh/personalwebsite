@@ -1,0 +1,462 @@
+---
+import CaseStudyMedia from './CaseStudyMedia.astro';
+import {
+  publicEditorCaseStudyImages,
+  publicEditorDesignCriteria,
+} from '../../data/publicEditorCaseStudy';
+import { aboutContactIcons } from '../../data/aboutAssets';
+import { contactEmail, socialLinks } from '../../data/aboutContent';
+
+const images = publicEditorCaseStudyImages;
+const backToChapterHref = '/?highlight=public-editor#chapter-2';
+---
+
+<article class="scarlett-case-study public-editor-case-study">
+  <header class="scarlett-case-study__hero">
+    <p class="scarlett-case-study__project-name">Public Editor</p>
+    <h1 class="scarlett-case-study__hero-title">
+      A distributed public installation that transforms a forgotten urban square into a <strong>shared newsroom</strong>.
+    </h1>
+    <p class="scarlett-case-study__body">
+      The Public Editor is a set of three interactive street installations that invite passersby to photograph, interview, and edit local stories. Their contributions are collected in real time on a central screen, gradually forming a public newspaper front page throughout the day.
+    </p>
+    <p class="scarlett-case-study__body">
+      This was a team project involving three designers. My contributions included concept development, system and interaction design, physical prototyping, and user research.
+    </p>
+  </header>
+
+  <section class="scarlett-case-study__section" aria-labelledby="public-editor-problem">
+    <p id="public-editor-problem" class="scarlett-case-study__section-label">DEFINE PROBLEM</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">
+          What is <strong>The Problem</strong>
+        </h2>
+        <p class="scarlett-case-study__body">
+          <strong>How might we reconnect a busy public square with its forgotten history through accessible public participation?</strong>
+        </p>
+        <p class="scarlett-case-study__body">
+          Harry Hjörnes Plats is named after Harry Hjörne, an influential editor for <em>Göteborgs-Posten</em> who shaped Gothenburg's public conversation. Yet people passing through the square are largely unaware of who he was or why the square carries his name.
+        </p>
+        <p class="scarlett-case-study__body">
+          Existing stone memorials and conventional solutions such as information panels or guided tours are easily overlooked in a busy urban environment. Our goal was to move beyond simply presenting historical information and instead explore how the square's journalistic identity can be experienced through active participation.
+        </p>
+      </div>
+
+      <div class="public-editor-case-study__site-research">
+        <h2 class="scarlett-case-study__block-title public-editor-case-study__site-research-title">
+          Site Research
+        </h2>
+        <div class="public-editor-case-study__site-research-row">
+          <CaseStudyMedia
+            class="public-editor-case-study__site-research-media scarlett-case-study__transparent-media"
+            src={images.siteResearch[0]}
+            alt=""
+            placeholder="Site research image 1"
+            fit="contain"
+          />
+          <div class="public-editor-case-study__site-research-copy">
+            <p class="scarlett-case-study__body">
+              The central square has heavy pedestrian traffic, with few people stopping for more than a few seconds. Surrounding street entrances are less congested and offer more natural opportunities for brief interactions.
+            </p>
+            <p class="scarlett-case-study__body">
+              Based on this research, we decided to distribute interactive stations around the square while keeping the central area as a shared display point.
+            </p>
+          </div>
+          <CaseStudyMedia
+            class="public-editor-case-study__site-research-media scarlett-case-study__transparent-media"
+            src={images.siteResearch[1]}
+            alt=""
+            placeholder="Site research image 2"
+            fit="contain"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="public-editor-design-process">
+    <p id="public-editor-design-process" class="scarlett-case-study__section-label">DESIGN PROCESS</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Background Research</h2>
+        <p class="scarlett-case-study__body">
+          Our research focused on three pillars: public participation, place identity, and tangible interaction. Public interactions should be brief, visible, and easy to understand. Physical objects foster a stronger connection between people and a place compared to screen-based experiences on personal phones.
+        </p>
+        <p class="scarlett-case-study__body">
+          Based on these findings, each interaction was designed to:
+        </p>
+        <ul class="scarlett-case-study__bullet-list">
+          {
+            publicEditorDesignCriteria.map((criterion) => (
+              <li class="scarlett-case-study__body">{criterion};</li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Design Solution</h2>
+        <p class="scarlett-case-study__body">
+          Public Editor converts newspaper production into three distinct public interactions: taking photographs, conducting interviews, and writing editorials. Each activity is a physical installation designed with inspiration from historical journalistic equipment.
+        </p>
+        <p class="scarlett-case-study__body">
+          All contributions are transmitted in real time to a central newspaper screen. The digital front page begins empty every morning, fills up throughout the day with public contributions, and resets at midnight.
+        </p>
+      </div>
+
+      <div class="scarlett-case-study__unself-design-split scarlett-case-study__unself-design-split--media-end public-editor-case-study__system-split">
+        <div class="scarlett-case-study__unself-design-split-copy">
+          <h2 class="scarlett-case-study__block-title">System Overview</h2>
+          <p class="scarlett-case-study__body">
+            The three physical installations are located at various street entrances around Harry Hjörnes Plats. The system is non-linear; visitors can interact with any station in any order without following a fixed sequence.
+          </p>
+          <p class="scarlett-case-study__body">
+            The central screen serves as the connecting element, showing how individual, separate actions come together to form a shared public newspaper.
+          </p>
+        </div>
+        <CaseStudyMedia
+          class="scarlett-case-study__unself-design-split-media scarlett-case-study__transparent-media"
+          src={images.systemOverview}
+          alt=""
+          placeholder="System overview image"
+          fit="contain"
+        />
+      </div>
+
+      <div class="scarlett-case-study__unself-design-split public-editor-case-study__installation-split">
+        <CaseStudyMedia
+          class="scarlett-case-study__unself-design-split-media scarlett-case-study__transparent-media"
+          src={images.newsCamera}
+          alt=""
+          placeholder="The News Camera"
+          fit="contain"
+        />
+        <div class="scarlett-case-study__unself-design-split-copy">
+          <h2 class="scarlett-case-study__block-title">The News Camera</h2>
+          <p class="scarlett-case-study__body">
+            The News Camera resembles a mid-century press camera. Visitors select one of the day's news topics and see its headline overlaid on the live camera view. After stepping into the marked photo area, they press the physical shutter button to capture their response.
+          </p>
+          <p class="scarlett-case-study__body">
+            The photograph appears in the <strong>Citizen Lens</strong> section of the central screen, where other visitors can vote for the image they feel best represents the day's news.
+          </p>
+        </div>
+      </div>
+
+      <div class="scarlett-case-study__unself-design-split scarlett-case-study__unself-design-split--media-end public-editor-case-study__installation-split">
+        <div class="scarlett-case-study__unself-design-split-copy">
+          <h2 class="scarlett-case-study__block-title">The Interview Recorder</h2>
+          <p class="scarlett-case-study__body">
+            The Interview Recorder takes the form of a vintage television camera with a VR viewfinder. Looking through it transports visitors to historical Gothenburg. By focusing their gaze on a historical figure, they trigger a short interview about that person's relationship with the city.
+          </p>
+          <p class="scarlett-case-study__body">
+            Completing an interview unlocks the figure's profile in the <strong>Today's Legendary Visitors</strong> section of the central newspaper. To protect the privacy of nearby pedestrians, the installation is placed inside a frosted-glass enclosure and oriented away from the street.
+          </p>
+        </div>
+        <CaseStudyMedia
+          class="scarlett-case-study__unself-design-split-media scarlett-case-study__transparent-media"
+          src={images.interviewRecorder}
+          alt=""
+          placeholder="The Interview Recorder"
+          fit="contain"
+        />
+      </div>
+
+      <div class="scarlett-case-study__unself-design-split public-editor-case-study__installation-split">
+        <CaseStudyMedia
+          class="scarlett-case-study__unself-design-split-media scarlett-case-study__transparent-media"
+          src={images.editorsTypewriter}
+          alt=""
+          placeholder="The Editor's Typewriter"
+          fit="contain"
+        />
+        <div class="scarlett-case-study__unself-design-split-copy">
+          <h2 class="scarlett-case-study__block-title">The Editor's Typewriter</h2>
+          <p class="scarlett-case-study__body">
+            The Editor's Typewriter recreates a vintage editor's desk. Visitors choose from fragments of local news, write a short response, and press a large physical <strong>Publish</strong> button.
+          </p>
+          <p class="scarlett-case-study__body">
+            Their contribution is then formatted as an editorial and added to the <strong>Everyone Edits</strong> section of the central screen. The interaction connects to Harry Hjörne's tradition of turning small observations from everyday life into part of Gothenburg's public record.
+          </p>
+        </div>
+      </div>
+
+      <div class="scarlett-case-study__unself-design-split scarlett-case-study__unself-design-split--media-end public-editor-case-study__installation-split">
+        <div class="scarlett-case-study__unself-design-split-copy">
+          <h2 class="scarlett-case-study__block-title">The Central Newspaper Screen</h2>
+          <p class="scarlett-case-study__body">
+            The central screen acts as both the final output and the shared feedback point of the system. It combines photographs, editorials, unlocked historical figures, and an absurd daily poll about life in Gothenburg.
+          </p>
+          <p class="scarlett-case-study__body">
+            Together, these elements prevent the newspaper from feeling overly formal while giving visitors different ways to participate. The screen changes continuously throughout the day, making the collective authorship of the newspaper visible in real time.
+          </p>
+        </div>
+        <CaseStudyMedia
+          class="scarlett-case-study__unself-design-split-media scarlett-case-study__transparent-media"
+          src={images.centralScreen}
+          alt=""
+          placeholder="The Central Newspaper Screen"
+          fit="contain"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="public-editor-prototyping">
+    <p id="public-editor-prototyping" class="scarlett-case-study__section-label">PROTOTYPING</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__unself-design-split public-editor-case-study__physical-digital-split">
+        <div class="scarlett-case-study__unself-design-split-copy">
+          <h2 class="scarlett-case-study__block-title">Physical–Digital Prototype</h2>
+          <p class="scarlett-case-study__body">
+            We developed three working prototypes for the installations using a mix of physical controls, screens, sound effects, and interactive digital interfaces.
+          </p>
+          <p class="scarlett-case-study__body">
+            Physical actions such as pressing a camera shutter or a large Publish button were reinforced with specific audio feedback—camera clicks and typewriter sounds—making the digital submission feel more deliberate and meaningful than a standard touchscreen interaction.
+          </p>
+        </div>
+        <CaseStudyMedia
+          class="scarlett-case-study__unself-design-split-media scarlett-case-study__transparent-media"
+          src={images.prototype0}
+          alt=""
+          placeholder="Physical–Digital prototype image"
+          fit="contain"
+        />
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Exhibition Prototype</h2>
+        <p class="scarlett-case-study__body">
+          At the FUSE exhibition, three installations were placed at separate locations, with a central newspaper screen positioned in the middle of the venue.
+        </p>
+        <p class="scarlett-case-study__body">
+          This layout recreated the distributed structure of the final concept, where visitors could encounter different stations in any sequence before seeing their collective contributions appear on a shared front page.
+        </p>
+      </div>
+
+      <div class="public-editor-case-study__prototype-row" data-public-editor-prototype-row>
+        {
+          images.prototypes.map((src, index) => (
+            <figure class="public-editor-case-study__prototype-item">
+              <img
+                class="public-editor-case-study__prototype-img"
+                src={src}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                data-public-editor-prototype-img
+                data-case-study-img
+              />
+            </figure>
+          ))
+        }
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Evaluation With Qualitative Methods</h2>
+        <p class="scarlett-case-study__body">
+          We evaluated the prototype through visitor observation, informal interviews, and feedback gathered during the exhibition.
+        </p>
+        <p class="scarlett-case-study__body">
+          Visitors enjoyed the physical controls and the immediate audiovisual feedback. The central screen was identified as a key element for helping users understand that the separate installations were part of one connected system.
+        </p>
+        <p class="scarlett-case-study__body">
+          The evaluation also revealed concerns regarding privacy, content credibility, and long-term engagement. These insights led to specific changes, such as adding a frosted enclosure around the Interview Recorder and identifying the need for more varied news topics and evolving historical content.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="public-editor-reflection">
+    <p id="public-editor-reflection" class="scarlett-case-study__section-label">REFLECTION</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Collective Authorship and Editorial Control</h2>
+        <p class="scarlett-case-study__body">
+          The project grants the public an editorial role, but with certain restrictions. Visitors contribute through photographs, reactions, and written input, while the system controls the available topics and the method of presentation.
+        </p>
+        <p class="scarlett-case-study__body">
+          This setup explores the tension between authentic public authorship and maintaining a coherent, safe public display—examining how active participation and editorial curation can work together.
+        </p>
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Conclusion &amp; Future Development</h2>
+        <p class="scarlett-case-study__body">
+          Public Editor demonstrates how combining physical interaction with shared digital feedback can reconnect an urban space with its history. Centered around Harry Hjörne, the project invites visitors to take on active roles as photographer, interviewer, and editor—transforming a public square into an active public newsroom rather than a static memorial.
+        </p>
+        <p class="scarlett-case-study__body">
+          Future development could focus on improving outdoor durability, developing richer daily content, creating deeper historical narratives, and exploring potential collaboration with <em>Göteborgs-Posten</em>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="public-editor-reflection">
+    <p id="public-editor-reflection" class="scarlett-case-study__section-label">EXHIBITION POSTER</p>
+
+    <div class="scarlett-case-study__stack">
+
+      <CaseStudyMedia
+        class="public-editor-case-study__poster scarlett-case-study__transparent-media"
+        src={images.poster}
+        alt=""
+        placeholder="Project poster"
+        fit="contain"
+      />
+    </div>
+  </section>
+
+  <footer class="scarlett-case-study__footer">
+    <a class="scarlett-case-study__back" href={backToChapterHref}>← Back to Chapter</a>
+
+    <div class="scarlett-case-study__closing">
+      <p class="scarlett-case-study__thanks">
+        Thank you for exploring my world! If it resonates, I'd love to hear from you.
+      </p>
+      <div class="scarlett-case-study__credit">
+        <span class="scarlett-case-study__name">Hang Wan</span>
+        <span class="scarlett-case-study__credit-dot" aria-hidden="true">·</span>
+        <span class="scarlett-case-study__role">Design Connector</span>
+        <span class="scarlett-case-study__credit-divider" aria-hidden="true"></span>
+        <div class="scarlett-case-study__credit-links">
+          <a
+            class="scarlett-case-study__credit-link"
+            href={`mailto:${contactEmail}`}
+            aria-label="Email Hang Wan"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.gmail}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+          <a
+            class="scarlett-case-study__credit-link"
+            href={socialLinks.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.linkedin}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</article>
+
+<script>
+  function syncPublicEditorPrototypeImages() {
+    const mobileQuery = window.matchMedia('(max-width: 720px)');
+
+    document.querySelectorAll('[data-public-editor-prototype-row]').forEach((row) => {
+      if (!(row instanceof HTMLElement)) return;
+
+      const items = Array.from(row.querySelectorAll('.public-editor-case-study__prototype-item')).filter(
+        (item) => item instanceof HTMLElement,
+      );
+      const imgs = Array.from(row.querySelectorAll('[data-public-editor-prototype-img]')).filter(
+        (img) => img instanceof HTMLImageElement,
+      );
+
+      if (items.length === 0 || imgs.length === 0 || items.length !== imgs.length) return;
+
+      if (mobileQuery.matches) {
+        items.forEach((item) => {
+          item.style.width = '';
+          item.style.height = '';
+        });
+        imgs.forEach((img) => {
+          img.style.width = '';
+          img.style.height = '';
+        });
+        return;
+      }
+
+      const ratios = imgs.map((img) => {
+        if (img.naturalWidth <= 0 || img.naturalHeight <= 0) return null;
+        return img.naturalWidth / img.naturalHeight;
+      });
+
+      if (ratios.some((ratio) => ratio === null)) return;
+
+      const gap = Number.parseFloat(getComputedStyle(row).columnGap || getComputedStyle(row).gap) || 0;
+      const availableWidth = row.getBoundingClientRect().width - gap * Math.max(0, imgs.length - 1);
+      if (availableWidth <= 0) return;
+
+      const ratioSum = ratios.reduce((sum, ratio) => sum + (ratio ?? 0), 0);
+      if (ratioSum <= 0) return;
+
+      const sharedHeight = Math.round(availableWidth / ratioSum);
+
+      imgs.forEach((img, index) => {
+        const ratio = ratios[index];
+        if (ratio === null) return;
+        const width = Math.round(sharedHeight * ratio);
+        img.style.height = `${sharedHeight}px`;
+        img.style.width = `${width}px`;
+        items[index].style.height = `${sharedHeight}px`;
+        items[index].style.width = `${width}px`;
+      });
+    });
+  }
+
+  function bindPublicEditorPrototypeSync() {
+    document.querySelectorAll('[data-public-editor-prototype-row]').forEach((row) => {
+      if (!(row instanceof HTMLElement) || row.dataset.prototypeObserverBound === 'true') return;
+      row.dataset.prototypeObserverBound = 'true';
+
+      const observer = new ResizeObserver(() => {
+        syncPublicEditorPrototypeImages();
+      });
+      observer.observe(row);
+    });
+
+    document.querySelectorAll('[data-public-editor-prototype-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.prototypeLoadBound === 'true') return;
+      img.dataset.prototypeLoadBound = 'true';
+      img.addEventListener('load', syncPublicEditorPrototypeImages);
+      if (img.complete && img.naturalWidth > 0) syncPublicEditorPrototypeImages();
+    });
+  }
+
+  function initCaseStudyMedia() {
+    document.querySelectorAll('[data-case-study-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.mediaBound === 'true') return;
+      img.dataset.mediaBound = 'true';
+
+      const markMissing = () => {
+        const figure = img.closest('[data-case-study-media]');
+        if (figure instanceof HTMLElement) figure.classList.add('is-missing');
+      };
+
+      img.addEventListener('error', markMissing);
+      if (img.complete && img.naturalWidth === 0) markMissing();
+    });
+  }
+
+  initCaseStudyMedia();
+  bindPublicEditorPrototypeSync();
+  syncPublicEditorPrototypeImages();
+  document.addEventListener('astro:page-load', () => {
+    initCaseStudyMedia();
+    bindPublicEditorPrototypeSync();
+    syncPublicEditorPrototypeImages();
+  });
+  window.addEventListener('resize', syncPublicEditorPrototypeImages);
+</script>

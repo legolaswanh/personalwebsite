@@ -1,0 +1,224 @@
+---
+import CaseStudyMedia from './CaseStudyMedia.astro';
+import {
+  telemedicineMirrorCaseStudyImages,
+  telemedicineMirrorDesignMethods,
+} from '../../data/telemedicineMirrorCaseStudy';
+import { aboutContactIcons } from '../../data/aboutAssets';
+import { contactEmail, socialLinks } from '../../data/aboutContent';
+
+const images = telemedicineMirrorCaseStudyImages;
+const backToChapterHref = '/?highlight=telemedicine-mirror#chapter-3';
+---
+
+<article class="scarlett-case-study telemedicine-mirror-case-study">
+  <header class="scarlett-case-study__hero">
+    <p class="scarlett-case-study__project-name">Telemedicine Mirror</p>
+    <h1 class="scarlett-case-study__hero-title">
+      An interactive system designed to rebuild trust in <strong>human–machine collaboration</strong>.
+    </h1>
+    <p class="scarlett-case-study__body">
+      Through transparent diagnosis, institutional medical endorsement, and patient-controlled data, the device supports people in making safer, more confident healthcare decisions at home.
+    </p>
+    <p class="scarlett-case-study__body">
+      This is a three-day personal project for Interaction Design Methodology exam.
+    </p>
+  </header>
+
+  <section class="scarlett-case-study__section" aria-labelledby="telemedicine-mirror-problem">
+    <p id="telemedicine-mirror-problem" class="scarlett-case-study__section-label">DEFINE PROBLEM</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">
+          What is <strong>The Problem</strong>
+        </h2>
+        <p class="scarlett-case-study__body">
+          <strong>The uneven medical care level in different online medical platforms through the internet and difficulties of diagnosis reduce the trust of people facing online healthcare.</strong>
+        </p>
+        <p class="scarlett-case-study__body">
+          Telemedicine has become an increasingly common way to access healthcare, yet trust remains a central challenge in home-based diagnosis. Patients often rely on remote systems without being able to verify how results are produced, where medical data comes from, or how reliable the advice really is.
+        </p>
+        <p class="scarlett-case-study__body">
+          Concerns around accuracy, transparency, and privacy make even minor health decisions feel uncertain. This project addresses these issues by exploring how an intelligent, hospital-connected mirror can support safer and more trustworthy medical self-assessment at home.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="telemedicine-mirror-design-process">
+    <p id="telemedicine-mirror-design-process" class="scarlett-case-study__section-label">DESIGN PROCESS</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Background Research</h2>
+        <p class="scarlett-case-study__body">
+          Studies highlight that patients are more willing to accept remote diagnosis when systems clearly communicate data sources, accuracy, and institutional endorsement, while concerns around privacy and misdiagnosis remain key barriers.
+        </p>
+        <p class="scarlett-case-study__body">
+          These insights frame telemedicine as a human–machine collaboration problem, where both technological credibility and clinical authority shape whether people feel safe relying on digital healthcare.
+        </p>
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Design Methods</h2>
+        <ul class="scarlett-case-study__rule-list">
+          {
+            telemedicineMirrorDesignMethods.map((method) => (
+              <li class="scarlett-case-study__rule-item">
+                <span class="scarlett-case-study__rule-number">{method.number}</span>
+                <div class="scarlett-case-study__rule-copy">
+                  <p class="scarlett-case-study__rule-title">{method.title}</p>
+                  <p class="scarlett-case-study__rule-body">{method.body}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <CaseStudyMedia
+        class="telemedicine-mirror-case-study__design-methods-media scarlett-case-study__transparent-media"
+        src={images.designMethods}
+        alt=""
+        placeholder="Design methods image"
+        fit="contain"
+      />
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Design Solution</h2>
+        <p class="scarlett-case-study__body">
+          An online terminal that could provide patients/people with medical needs accurate diagnosis and medical advice, which is qualified and safely connected to the healthcare system.
+        </p>
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Persona &amp; User Journey Map</h2>
+        <p class="scarlett-case-study__body">
+          A persona and user journey map were created to visualise how a patient moves from noticing symptoms to receiving diagnosis and deciding on next steps through the telemedicine mirror. This helped identify key moments where uncertainty and trust matter most in the home-based healthcare experience.
+        </p>
+      </div>
+
+      <CaseStudyMedia
+        class="telemedicine-mirror-case-study__persona-media scarlett-case-study__transparent-media"
+        src={images.personaJourney}
+        alt=""
+        placeholder="Persona and user journey map"
+        fit="contain"
+      />
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="telemedicine-mirror-prototyping">
+    <p id="telemedicine-mirror-prototyping" class="scarlett-case-study__section-label">PROTOTYPING</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">2D Prototype</h2>
+        <p class="scarlett-case-study__body">
+          Prototyping moved from low-fidelity sketches to a structured 2D interface to explore how the telemedicine mirror would function as a diagnostic tool. Early sketches were used to test different device layouts and sensing interactions, which were then consolidated into a clearer screen-based prototype that visualised how users collect data, receive diagnoses, and connect with doctors through the system.
+        </p>
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Evaluation With Qualitative Method</h2>
+        <p class="scarlett-case-study__body">
+          A user survey was used to evaluate how the telemedicine mirror was perceived in terms of transparency, usability, and trust. Likert-scale and multiple-choice questions captured how clearly users understood the system, how comfortable they felt relying on its diagnosis, and what factors most influenced their confidence in the device, helping position it as a supportive rather than fully autonomous medical tool.
+        </p>
+      </div>
+
+      <CaseStudyMedia
+        class="telemedicine-mirror-case-study__evaluation-media scarlett-case-study__transparent-media"
+        src={images.evaluation}
+        alt=""
+        placeholder="Evaluation survey image"
+        fit="contain"
+      />
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="telemedicine-mirror-reflection">
+    <p id="telemedicine-mirror-reflection" class="scarlett-case-study__section-label">REFLECTION</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Conclusion &amp; Reflection</h2>
+        <p class="scarlett-case-study__body">
+          The project positions the telemedicine mirror as a supportive bridge between patients and the medical system rather than a replacement for professional care.
+        </p>
+        <p class="scarlett-case-study__body">
+          The evaluation highlights that transparency, institutional backing, and data trust are as important as technical capability, pointing toward future work on secure, networked healthcare infrastructures that can scale this kind of human–machine collaboration more responsibly.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="scarlett-case-study__footer">
+    <a class="scarlett-case-study__back" href={backToChapterHref}>← Back to Chapter</a>
+
+    <div class="scarlett-case-study__closing">
+      <p class="scarlett-case-study__thanks">
+        Thank you for exploring my world! If it resonates, I'd love to hear from you.
+      </p>
+      <div class="scarlett-case-study__credit">
+        <span class="scarlett-case-study__name">Hang Wan</span>
+        <span class="scarlett-case-study__credit-dot" aria-hidden="true">·</span>
+        <span class="scarlett-case-study__role">Design Connector</span>
+        <span class="scarlett-case-study__credit-divider" aria-hidden="true"></span>
+        <div class="scarlett-case-study__credit-links">
+          <a
+            class="scarlett-case-study__credit-link"
+            href={`mailto:${contactEmail}`}
+            aria-label="Email Hang Wan"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.gmail}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+          <a
+            class="scarlett-case-study__credit-link"
+            href={socialLinks.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.linkedin}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</article>
+
+<script>
+  function initCaseStudyMedia() {
+    document.querySelectorAll('[data-case-study-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.mediaBound === 'true') return;
+      img.dataset.mediaBound = 'true';
+
+      const markMissing = () => {
+        const figure = img.closest('[data-case-study-media]');
+        if (figure instanceof HTMLElement) figure.classList.add('is-missing');
+        if (!figure) img.classList.add('is-missing');
+      };
+
+      img.addEventListener('error', markMissing);
+      if (img.complete && img.naturalWidth === 0) markMissing();
+    });
+  }
+
+  initCaseStudyMedia();
+  document.addEventListener('astro:page-load', initCaseStudyMedia);
+</script>

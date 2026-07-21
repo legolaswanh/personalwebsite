@@ -1,0 +1,233 @@
+---
+import CaseStudyMedia from './CaseStudyMedia.astro';
+import { muscleMateCaseStudyImages } from '../../data/muscleMateCaseStudy';
+import { aboutContactIcons } from '../../data/aboutAssets';
+import { contactEmail, socialLinks } from '../../data/aboutContent';
+
+const images = muscleMateCaseStudyImages;
+const backToChapterHref = '/?highlight=muscle-mate#chapter-2';
+---
+
+<article class="scarlett-case-study muscle-mate-case-study">
+  <header class="scarlett-case-study__hero">
+    <p class="scarlett-case-study__project-name">MuscleMate</p>
+    <h1 class="scarlett-case-study__hero-title">
+      A digital space that transforms physical training into a <strong>social, connected ritual.</strong>
+    </h1>
+    <div class="scarlett-case-study__hero-split muscle-mate-case-study__hero-split">
+      <figure class="muscle-mate-case-study__hero-icon">
+        <img
+          class="muscle-mate-case-study__hero-icon-img"
+          src={images.heroIcon}
+          alt=""
+          loading="eager"
+          decoding="async"
+          data-case-study-img
+        />
+      </figure>
+      <div class="muscle-mate-case-study__hero-copy">
+        <p class="scarlett-case-study__body">
+          A fitness companion app that turns everyday exercise into a playful and shared journey, helping users build motivation through guidance, encouragement, and social connection.
+        </p>
+        <p class="scarlett-case-study__body">
+          This was a one-week team project involving five designers. My contributions included feature design, prototyping, and interaction integration.
+        </p>
+      </div>
+      <figure class="scarlett-case-study__hero-media">
+        <img
+          class="scarlett-case-study__hero-img"
+          src={images.hero}
+          alt=""
+          loading="eager"
+          decoding="async"
+          data-case-study-img
+        />
+      </figure>
+    </div>
+  </header>
+
+  <section class="scarlett-case-study__section" aria-labelledby="muscle-mate-problem">
+    <p id="muscle-mate-problem" class="scarlett-case-study__section-label">DEFINE PROBLEM</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">
+          What is <strong>The Problem</strong>
+        </h2>
+        <p class="scarlett-case-study__body">
+          <strong>For beginners, working out can often feel lonely, overwhelming, and difficult to sustain.</strong>
+        </p>
+        <p class="scarlett-case-study__body">
+          Many fitness apps are designed for experienced users, focusing on performance metrics, complex routines, and optimization. For beginners, this creates a high entry barrier: interfaces feel overwhelming, goals feel intimidating, and it is difficult to build a habit without immediate encouragement.
+        </p>
+        <p class="scarlett-case-study__body">
+          Our challenge was to rethink exercise not as a performance-driven task, but as a supported and motivating journey. We aimed to help first-time users begin exercising and stay motivated through companionship, encouragement, and shared progress.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="muscle-mate-design-process">
+    <p id="muscle-mate-design-process" class="scarlett-case-study__section-label">DESIGN PROCESS</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Design Solution</h2>
+        <p class="scarlett-case-study__body">
+          A social fitness app that supports beginners through guided workouts, playful characters, and shared goals, making exercise easier to start and more motivating to continue.
+        </p>
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Persona</h2>
+        <p class="scarlett-case-study__body">
+          The persona represents beginners who feel overwhelmed by complex fitness apps and unmotivated when exercising alone.
+        </p>
+        <p class="scarlett-case-study__body">
+          Their main pain points include confusion, low confidence, and a lack of social support. MuscleMate addresses these challenges through a simple interface, guided experiences, companionship, and shared goals.
+        </p>
+      </div>
+
+      <div class="muscle-mate-case-study__persona-grid">
+        <CaseStudyMedia
+          class="muscle-mate-case-study__persona-media scarlett-case-study__transparent-media"
+          src={images.persona}
+          alt=""
+          placeholder="Persona image"
+          fit="contain"
+        />
+
+        <CaseStudyMedia
+          class="muscle-mate-case-study__design-solution-media scarlett-case-study__transparent-media"
+          src={images.designSolution}
+          alt=""
+          placeholder="Design solution image"
+          fit="contain"
+        />
+
+        <CaseStudyMedia
+          class="muscle-mate-case-study__design-image-media scarlett-case-study__transparent-media"
+          src={images.designImage}
+          alt=""
+          placeholder="Design image"
+          fit="contain"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="muscle-mate-prototyping">
+    <p id="muscle-mate-prototyping" class="scarlett-case-study__section-label">PROTOTYPING</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Interface &amp; Interaction</h2>
+        <p class="scarlett-case-study__body">
+          The prototype was developed in Figma by connecting the interface screens into a complete interactive flow.
+        </p>
+        <p class="scarlett-case-study__body">
+          The clickable prototype allowed us to simulate key features and user journeys, making it possible to evaluate navigation, interaction logic, and the overall app experience.
+        </p>
+      </div>
+
+      <div class="muscle-mate-case-study__prototype-grid">
+        {
+          images.prototypes.map((src, index) => (
+            <CaseStudyMedia
+              class="muscle-mate-case-study__prototype-screen scarlett-case-study__transparent-media"
+              src={src}
+              alt=""
+              placeholder={`Prototype screen ${index + 1}`}
+              fit="contain"
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="muscle-mate-reflection">
+    <p id="muscle-mate-reflection" class="scarlett-case-study__section-label">REFLECTION</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Conclusion &amp; Reflection</h2>
+        <p class="scarlett-case-study__body">
+          This project demonstrated that motivation depends not only on functionality, but also on emotional support and social connection.
+        </p>
+        <p class="scarlett-case-study__body">
+          By turning exercise into a guided and shared experience, MuscleMate shows how simple interactions can help beginners build confidence and consistency. Rather than focusing only on workout performance, the design encourages users to begin—and remain active—together.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="scarlett-case-study__footer">
+    <a class="scarlett-case-study__back" href={backToChapterHref}>← Back to Chapter</a>
+
+    <div class="scarlett-case-study__closing">
+      <p class="scarlett-case-study__thanks">
+        Thank you for exploring my world! If it resonates, I'd love to hear from you.
+      </p>
+      <div class="scarlett-case-study__credit">
+        <span class="scarlett-case-study__name">Hang Wan</span>
+        <span class="scarlett-case-study__credit-dot" aria-hidden="true">·</span>
+        <span class="scarlett-case-study__role">Design Connector</span>
+        <span class="scarlett-case-study__credit-divider" aria-hidden="true"></span>
+        <div class="scarlett-case-study__credit-links">
+          <a
+            class="scarlett-case-study__credit-link"
+            href={`mailto:${contactEmail}`}
+            aria-label="Email Hang Wan"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.gmail}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+          <a
+            class="scarlett-case-study__credit-link"
+            href={socialLinks.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.linkedin}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</article>
+
+<script>
+  function initCaseStudyMedia() {
+    document.querySelectorAll('[data-case-study-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.mediaBound === 'true') return;
+      img.dataset.mediaBound = 'true';
+
+      const markMissing = () => {
+        const figure = img.closest('[data-case-study-media]');
+        if (figure instanceof HTMLElement) figure.classList.add('is-missing');
+        if (!figure) img.classList.add('is-missing');
+      };
+
+      img.addEventListener('error', markMissing);
+      if (img.complete && img.naturalWidth === 0) markMissing();
+    });
+  }
+
+  initCaseStudyMedia();
+  document.addEventListener('astro:page-load', initCaseStudyMedia);
+</script>

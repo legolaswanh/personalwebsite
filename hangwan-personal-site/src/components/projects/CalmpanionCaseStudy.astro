@@ -1,0 +1,252 @@
+---
+import CaseStudyMedia from './CaseStudyMedia.astro';
+import { calmpanionCaseStudyImages, calmpanionDemoVideoId } from '../../data/calmpanionCaseStudy';
+import { aboutContactIcons } from '../../data/aboutAssets';
+import { contactEmail, socialLinks } from '../../data/aboutContent';
+
+const images = calmpanionCaseStudyImages;
+const embedUrl = `https://www.youtube-nocookie.com/embed/${calmpanionDemoVideoId}?rel=0&modestbranding=1&playsinline=1`;
+const backToChapterHref = '/?highlight=calmpanion#chapter-2';
+---
+
+<article class="scarlett-case-study calmpanion-case-study">
+  <header class="scarlett-case-study__hero">
+    <p class="scarlett-case-study__project-name">Calmpanion</p>
+    <h1 class="scarlett-case-study__hero-title">
+      An interactive system exploring <strong>care, emotional reassurance</strong>, and connection when owners and pets cannot be physically present together.
+    </h1>
+    <div class="calmpanion-case-study__hero-stack">
+      <p class="scarlett-case-study__body">
+        Calmpanion addresses separation anxiety in dogs through a responsive collar-and-toy system designed to detect emotional changes and provide appropriate forms of support.
+      </p>
+      <figure class="calmpanion-case-study__hero-media">
+        <img
+          class="calmpanion-case-study__hero-img"
+          src={images.hero}
+          alt=""
+          loading="eager"
+          decoding="async"
+          data-case-study-img
+        />
+      </figure>
+      <p class="scarlett-case-study__body">
+        This was a two-month team project involving four designers. My contributions included concept development, prototyping, and user research.
+      </p>
+    </div>
+  </header>
+
+  <section class="scarlett-case-study__section" aria-labelledby="calmpanion-problem">
+    <p id="calmpanion-problem" class="scarlett-case-study__section-label">DEFINE PROBLEM</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">
+          What is <strong>The Problem</strong>
+        </h2>
+        <p class="scarlett-case-study__body">
+          <strong>How might we reduce separation anxiety in dogs when they are separated from their owners?</strong>
+        </p>
+        <p class="scarlett-case-study__body">
+          Separation Anxiety Disorder (SAD) is a common and distressing condition affecting dogs left alone for extended periods. It can result in barking, destructive behaviour, and emotional withdrawal—signs of distress rather than misbehaviour.
+        </p>
+        <p class="scarlett-case-study__body">
+          Most existing solutions depend on fixed routines or direct owner involvement, leaving dogs without responsive support when they need it most. Our project explored how technology could detect and respond to changes in a dog’s emotional state in real time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="calmpanion-design-process">
+    <p id="calmpanion-design-process" class="scarlett-case-study__section-label">DESIGN PROCESS</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Background Research</h2>
+        <p class="scarlett-case-study__body">
+          Our research indicated that separation-related behaviours can be reduced through desensitisation, positive reinforcement, and enrichment activities such as toys and music.
+        </p>
+        <p class="scarlett-case-study__body">
+          Classical music, physical play, and food-based rewards may help calm anxious dogs. However, these approaches are usually applied in a fixed way rather than responding to the dog’s condition in the moment.
+        </p>
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Design Solution</h2>
+        <p class="scarlett-case-study__body">
+          Calmpanion combines a smart collar that detects changes in the dog’s emotional state with an interactive toy that responds through calming music, ball launching, and treat dispensing.
+        </p>
+        <p class="scarlett-case-study__body">
+          Different functions are activated according to the dog’s detected needs, creating a more responsive form of support while the owner is away.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="calmpanion-prototyping">
+    <p id="calmpanion-prototyping" class="scarlett-case-study__section-label">PROTOTYPING</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Initial Prototype</h2>
+        <p class="scarlett-case-study__body">
+          The first prototypes were created using simple materials. The interactive toy was made from craft paper, pebbles, and paper balls to represent its key functions, including a ball launcher and treat dispenser.
+        </p>
+        <p class="scarlett-case-study__body">
+          An existing collar and pen caps were used to illustrate the placement of sensors. These early models helped us quickly communicate and evaluate the system’s main features and interactions.
+        </p>
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Rapid Prototype</h2>
+        <p class="scarlett-case-study__body">
+          After validating the concept with paper prototypes, we developed a more robust version using 3D printing.
+        </p>
+        <p class="scarlett-case-study__body">
+          The design included a top opening for launching balls, internal space for an Arduino, and a rounded, weighted base to improve stability. Although the prototype was initially printed in black, our research suggested that yellow and blue are more visible to dogs, so the final version was painted yellow.
+        </p>
+      </div>
+
+      <div class="calmpanion-case-study__prototype-grid">
+        {
+          images.prototypes.map((src, index) => (
+            <CaseStudyMedia
+              class="calmpanion-case-study__prototype-media scarlett-case-study__transparent-media"
+              src={src}
+              alt=""
+              placeholder={`Prototype ${index + 1}`}
+              fit="contain"
+            />
+          ))
+        }
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Evaluation With Qualitative Method</h2>
+        <p class="scarlett-case-study__body">
+          We evaluated the prototype through semi-structured interviews with dog owners to understand how well its core functions reflected real-life needs.
+        </p>
+        <p class="scarlett-case-study__body">
+          Participants responded positively to emotional-state detection and treat dispensing, while opinions on calming music were more mixed. The evaluation also revealed concerns regarding safety, privacy, and how each function should be triggered in everyday situations.
+        </p>
+      </div>
+
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Refined Prototype</h2>
+        <p class="scarlett-case-study__body">
+          The refined system combined a smart collar for emotional-state detection with a 3D-printed interactive toy capable of dispensing treats, launching a ball, and playing music.
+        </p>
+        <p class="scarlett-case-study__body">
+          The form and internal structure were iterated to improve stability, safety, and space for electronic components. Although not all functions could operate simultaneously, the prototype successfully demonstrated the intended interaction flow and system behaviour.
+        </p>
+      </div>
+
+      <div class="calmpanion-case-study__prototype-grid calmpanion-case-study__prototype-grid--refined">
+        {
+          images.refinedPrototypes.map((src, index) => (
+            <CaseStudyMedia
+              class="calmpanion-case-study__prototype-media scarlett-case-study__transparent-media"
+              src={src}
+              alt=""
+              placeholder={`Refined prototype ${index + 1}`}
+              fit="contain"
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="scarlett-case-study__section" aria-labelledby="calmpanion-reflection">
+    <p id="calmpanion-reflection" class="scarlett-case-study__section-label">REFLECTION</p>
+
+    <div class="scarlett-case-study__stack">
+      <div class="scarlett-case-study__text-block">
+        <h2 class="scarlett-case-study__block-title">Conclusion</h2>
+        <p class="scarlett-case-study__body">
+          Calmpanion demonstrates how a responsive collar-and-toy system could support dogs experiencing separation anxiety when left alone.
+        </p>
+        <p class="scarlett-case-study__body">
+          By connecting emotional-state detection with adaptive responses such as music, play, and rewards, the project presents a possible direction for more emotionally responsive pet-care technologies. It also demonstrates how sensing and interaction design can work together to address separation-related behaviours in everyday contexts.
+        </p>
+      </div>
+
+      <div class="scarlett-case-study__video">
+        <iframe
+          src={embedUrl}
+          title="Calmpanion demo"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer class="scarlett-case-study__footer">
+    <a class="scarlett-case-study__back" href={backToChapterHref}>← Back to Chapter</a>
+
+    <div class="scarlett-case-study__closing">
+      <p class="scarlett-case-study__thanks">
+        Thank you for exploring my world! If it resonates, I'd love to hear from you.
+      </p>
+      <div class="scarlett-case-study__credit">
+        <span class="scarlett-case-study__name">Hang Wan</span>
+        <span class="scarlett-case-study__credit-dot" aria-hidden="true">·</span>
+        <span class="scarlett-case-study__role">Design Connector</span>
+        <span class="scarlett-case-study__credit-divider" aria-hidden="true"></span>
+        <div class="scarlett-case-study__credit-links">
+          <a
+            class="scarlett-case-study__credit-link"
+            href={`mailto:${contactEmail}`}
+            aria-label="Email Hang Wan"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.gmail}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+          <a
+            class="scarlett-case-study__credit-link"
+            href={socialLinks.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <img
+              class="scarlett-case-study__credit-icon"
+              src={aboutContactIcons.linkedin}
+              alt=""
+              width="44"
+              height="44"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</article>
+
+<script>
+  function initCaseStudyMedia() {
+    document.querySelectorAll('[data-case-study-img]').forEach((img) => {
+      if (!(img instanceof HTMLImageElement) || img.dataset.mediaBound === 'true') return;
+      img.dataset.mediaBound = 'true';
+
+      const markMissing = () => {
+        const figure = img.closest('[data-case-study-media]');
+        if (figure instanceof HTMLElement) figure.classList.add('is-missing');
+        if (!figure) img.classList.add('is-missing');
+      };
+
+      img.addEventListener('error', markMissing);
+      if (img.complete && img.naturalWidth === 0) markMissing();
+    });
+  }
+
+  initCaseStudyMedia();
+  document.addEventListener('astro:page-load', initCaseStudyMedia);
+</script>

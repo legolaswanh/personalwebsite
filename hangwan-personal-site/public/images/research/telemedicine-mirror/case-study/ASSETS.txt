@@ -1,0 +1,5 @@
+# Telemedicine Mirror case study assets
+
+design-methods.png
+persona-journey.png
+evaluation.png
