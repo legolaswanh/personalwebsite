@@ -7,5 +7,5 @@ export const unselfCaseStudyImages = {
   gameDesignImage: `${base}/game-design-image.png`,
   gameSceneImage: `${base}/game-scene-image.png`,
   gameItemImage: `${base}/game-item-image.png`,
-  gameplayImage: `${base}/gameplay-image.png`,
+  gameplayImage: `${base}/gameplay-image.mp4`,
 } as const;

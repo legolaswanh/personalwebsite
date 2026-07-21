@@ -6622,48 +6622,45 @@ body.is-project-case-study main {
   box-shadow: none;
 }
 
-.uroboros-case-study .scarlett-case-study__uroboros-level-row {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  column-gap: 5%;
+.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--full,
+.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--full:not(.is-missing) {
   width: 100%;
+  max-width: 100%;
+  aspect-ratio: 858 / 224;
+  margin-top: clamp(0.35em, 1vh, 0.65em);
+  display: block;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+.uroboros-case-study
+  .case-study-media.scarlett-case-study__uroboros-level-media--full:not(.is-missing)
+  .case-study-media__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
+  box-shadow: none;
+}
+
+.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--feature,
+.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--feature:not(.is-missing) {
+  width: 50%;
+  max-width: 50%;
+  aspect-ratio: 467 / 259;
   margin-top: clamp(0.35em, 1vh, 0.65em);
 }
 
-.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media {
-  margin-top: 0;
-  display: block;
-  overflow: hidden;
-  background: transparent;
-  box-shadow: none;
-  min-width: 0;
-  width: auto;
-  max-width: none;
-  height: auto;
-}
-
-/* flex-grow ∝ aspect ratio → same height while filling the row */
-.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--1,
-.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--1:not(.is-missing) {
-  flex: 3.83036 1 0%;
-  aspect-ratio: 858 / 224;
-  height: auto;
-}
-
-.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--2,
-.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--2:not(.is-missing) {
-  flex: 1.80309 1 0%;
-  aspect-ratio: 467 / 259;
-  height: auto;
-}
-
-.uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media:not(.is-missing) .case-study-media__img {
+.uroboros-case-study
+  .case-study-media.scarlett-case-study__uroboros-level-media--feature:not(.is-missing)
+  .case-study-media__img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: center;
+  object-position: left center;
   box-shadow: none;
 }
 
@@ -6864,6 +6861,69 @@ body.is-project-case-study main {
   align-self: stretch;
 }
 
+.double-vision-case-study__inspiration-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(1em, 2.5cqi, 1.75em);
+  align-items: stretch;
+  width: 100%;
+}
+
+.double-vision-case-study__hero-banner {
+  width: 100%;
+  margin: 0;
+}
+
+.double-vision-case-study .case-study-media.double-vision-case-study__hero-banner:not(.is-missing) {
+  aspect-ratio: unset;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+.double-vision-case-study .case-study-media.double-vision-case-study__hero-banner:not(.is-missing) .case-study-media__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  box-shadow: none;
+}
+
+.double-vision-case-study__inspiration-copy {
+  min-width: 0;
+}
+
+.double-vision-case-study__inspiration-image {
+  align-self: stretch;
+  min-width: 0;
+  min-height: 0;
+}
+
+.double-vision-case-study .case-study-media.double-vision-case-study__inspiration-image:not(.is-missing) {
+  aspect-ratio: unset;
+  display: block;
+  width: auto;
+  height: 0;
+  min-height: 100%;
+  overflow: visible;
+  background: transparent;
+  box-shadow: none;
+}
+
+.double-vision-case-study .case-study-media.double-vision-case-study__inspiration-image:not(.is-missing) .case-study-media__img {
+  display: block;
+  width: auto;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: left center;
+  box-shadow: none;
+}
+
 .double-vision-case-study__evidence {
   display: flex;
   flex-direction: column;
@@ -6990,6 +7050,22 @@ body.is-project-case-study main {
 .zompanion-case-study .scarlett-case-study__hero-media {
   width: auto;
   height: auto;
+}
+
+.zompanion-hero-title-media {
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
+  line-height: 0;
+}
+
+.zompanion-hero-title-media__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
 }
 
 .scarlett-case-study__hero-img {
@@ -7395,7 +7471,7 @@ body.is-project-case-study main {
 
 .scarlett-case-study__unself-design-flow {
   margin: clamp(1em, 2.5vh, 1.5em) 0 0;
-  width: min(100%, 52rem);
+  width: 65%;
   max-width: 100%;
   line-height: 0;
   background: transparent;
@@ -7445,8 +7521,8 @@ body.is-project-case-study main {
 
 .scarlett-case-study__unself-gameplay-split {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 58%);
-  gap: clamp(1em, 2.5cqi, 1.5em);
+  grid-template-columns: minmax(0, 38%) minmax(0, 60%);
+  gap: 2%;
   align-items: start;
   width: 100%;
 }
@@ -7467,19 +7543,29 @@ body.is-project-case-study main {
 
 .scarlett-case-study__unself-gameplay-media {
   margin: 0;
+  width: 100%;
   line-height: 0;
   overflow: hidden;
   background: transparent;
-  max-width: min(100%, 58%);
 }
 
-.scarlett-case-study__unself-gameplay-img {
+.scarlett-case-study__unself-gameplay-video {
   display: block;
-  width: auto;
+  width: 100%;
   height: auto;
-  max-width: 100%;
   object-fit: contain;
   object-position: center;
+}
+
+.scarlett-case-study__body a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.scarlett-case-study__body a:hover,
+.scarlett-case-study__body a:focus-visible {
+  color: var(--text);
+  opacity: 0.72;
 }
 
 .scarlett-case-study__copy--inspiration {
@@ -7877,28 +7963,44 @@ body.is-project-case-study main {
   grid-column: 1;
 }
 
-/* Ionized Configuration: title+text left, image right */
-.scarlett-case-study__ionized-configuration-main {
+/* Ionized Configuration: fixed stats | flexible copy | image matched to stats height */
+.scarlett-case-study__ionized-configuration-split {
+  --configuration-gap: clamp(1em, 2.5cqi, 1.5em);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(1em, 2.5cqi, 1.5em);
-  align-items: stretch;
-  height: 100%;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--configuration-gap);
+  align-items: start;
+  flex: 1;
   min-height: 0;
+}
+
+.scarlett-case-study__ionized-configuration-split .scarlett-case-study__configuration-stats {
+  justify-content: flex-start;
+  align-self: start;
+  flex-shrink: 0;
+}
+
+.scarlett-case-study__ionized-configuration-split .scarlett-case-study__configuration-copy {
+  align-self: start;
+  min-width: 0;
 }
 
 .scarlett-case-study__ionized-config-media {
   margin: 0;
-  align-self: stretch;
-  height: 100%;
-  overflow: visible;
+  align-self: start;
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  height: var(--ionized-config-height, auto);
+  overflow: hidden;
   background: transparent;
 }
 
 .scarlett-case-study__ionized-config-img {
   display: block;
   width: auto;
-  height: 100%;
+  height: var(--ionized-config-height, auto);
+  max-height: var(--ionized-config-height, none);
   max-width: none;
   object-fit: contain;
   object-position: top center;
@@ -8589,17 +8691,10 @@ body.is-project-case-study main {
     grid-template-columns: 1fr;
   }
 
-  .uroboros-case-study .scarlett-case-study__uroboros-level-row {
-    flex-direction: column;
-    row-gap: clamp(0.75em, 2vh, 1.25em);
-  }
-
-  .uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--1,
-  .uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--1:not(.is-missing),
-  .uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--2,
-  .uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--2:not(.is-missing) {
-    flex: none;
+  .uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--feature,
+  .uroboros-case-study .case-study-media.scarlett-case-study__uroboros-level-media--feature:not(.is-missing) {
     width: 100%;
+    max-width: 100%;
   }
 
   .double-vision-case-study__narrative-layout {
@@ -8640,6 +8735,20 @@ body.is-project-case-study main {
   }
 
   .double-vision-case-study .case-study-media.double-vision-case-study__outcomes-image:not(.is-missing) .case-study-media__img {
+    width: 100%;
+    height: auto;
+  }
+
+  .double-vision-case-study__inspiration-row {
+    grid-template-columns: 1fr;
+  }
+
+  .double-vision-case-study .case-study-media.double-vision-case-study__inspiration-image:not(.is-missing) {
+    height: auto;
+    width: 100%;
+  }
+
+  .double-vision-case-study .case-study-media.double-vision-case-study__inspiration-image:not(.is-missing) .case-study-media__img {
     width: 100%;
     height: auto;
   }
@@ -8744,18 +8853,20 @@ body.is-project-case-study main {
     grid-template-rows: auto;
   }
 
-  .scarlett-case-study__ionized-configuration-main {
+  .scarlett-case-study__ionized-configuration-split {
     grid-template-columns: 1fr;
-    height: auto;
+    align-items: start;
   }
 
   .scarlett-case-study__ionized-config-media {
     height: auto;
+    overflow: visible;
     justify-self: start;
   }
 
   .scarlett-case-study__ionized-config-img {
     height: auto;
+    max-height: none;
     max-width: min(100%, 320px);
   }
 
@@ -8774,17 +8885,18 @@ body.is-project-case-study main {
 
   .scarlett-case-study__unself-gameplay-split {
     grid-template-columns: 1fr;
+    gap: clamp(1em, 2.5vh, 1.5em);
   }
 
   .scarlett-case-study__unself-gameplay-media {
-    max-width: min(100%, 420px);
+    max-width: 100%;
     height: auto;
   }
 
-  .scarlett-case-study__unself-gameplay-img {
+  .scarlett-case-study__unself-gameplay-video {
     height: auto;
     max-height: min(42vh, 320px);
-    width: auto;
+    width: 100%;
     max-width: 100%;
   }
 

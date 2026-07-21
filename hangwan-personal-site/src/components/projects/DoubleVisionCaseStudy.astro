@@ -21,6 +21,13 @@ const backToChapterHref = '/?highlight=double-vision#chapter-1';
     <h1 class="scarlett-case-study__hero-title">
       A <strong>narrative mystery</strong> about perception, evidence, and the distance between what can be recorded and what can only be sensed.
     </h1>
+    <CaseStudyMedia
+      class="double-vision-case-study__hero-banner scarlett-case-study__transparent-media"
+      src={images.hero}
+      alt=""
+      placeholder="Double Vision hero"
+      fit="contain"
+    />
     <p class="scarlett-case-study__body">
       Playing as a medium detective, players investigate a present-day disappearance linked to a death that was closed two years earlier. Cameras, documents, and supernatural traces reveal different fragments of the same truth.
     </p>
@@ -29,13 +36,18 @@ const backToChapterHref = '/?highlight=double-vision#chapter-1';
   <section class="scarlett-case-study__section" aria-labelledby="double-vision-inspiration">
     <p id="double-vision-inspiration" class="scarlett-case-study__section-label">INSPIRATION</p>
 
-    <div class="scarlett-case-study__stack">
-      <div class="scarlett-case-study__text-block">
-        <h2 class="scarlett-case-study__block-title">
-          Between Two Ways of Seeing
-        </h2>
+    <div class="double-vision-case-study__inspiration-row">
+      <CaseStudyMedia
+        class="double-vision-case-study__inspiration-image scarlett-case-study__transparent-media"
+        src={images.inspirationImage}
+        alt=""
+        placeholder="Inspiration image"
+        fit="contain"
+      />
+      <div class="scarlett-case-study__text-block double-vision-case-study__inspiration-copy">
+        <h2 class="scarlett-case-study__block-title">Between Two Ways of Seeing</h2>
         <p class="scarlett-case-study__body">
-          Drawing on the Chinese folklore of “Yin–Yang Eyes,” Double Vision contrasts supernatural perception with modern surveillance technology. Neither perspective is complete: players must move between recorded evidence and invisible traces to reconstruct what happened.
+          Drawing on the Chinese folklore of "Yin–Yang Eyes," Double Vision contrasts supernatural perception with modern surveillance technology. Neither perspective is complete: players must move between recorded evidence and invisible traces to reconstruct what happened.
         </p>
       </div>
     </div>

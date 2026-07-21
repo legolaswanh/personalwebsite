@@ -41,7 +41,7 @@ const backToChapterHref = '/?highlight=ionized#chapter-1';
       >
         <p id="ionized-configuration" class="scarlett-case-study__section-label">CONFIGURATION</p>
 
-        <div class="scarlett-case-study__configuration-split" data-ionized-config-split>
+        <div class="scarlett-case-study__ionized-configuration-split" data-ionized-config-split>
           <div class="scarlett-case-study__configuration-stats" aria-label="Game configuration" data-ionized-config-stats>
             <div class="scarlett-case-study__configuration-stats-inner">
               <div class="scarlett-case-study__configuration-stat">
@@ -79,30 +79,31 @@ const backToChapterHref = '/?highlight=ionized#chapter-1';
             </div>
           </div>
 
-          <div class="scarlett-case-study__configuration-main scarlett-case-study__ionized-configuration-main">
-            <div class="scarlett-case-study__text-block scarlett-case-study__configuration-copy">
-              <h2 class="scarlett-case-study__block-title">
-                Individual Grids, Shared Tension
-              </h2>
-              <p class="scarlett-case-study__body">
-                The deck contains number cards from 1 to 12 in three colours: yellow, red, and blue. Six scoring symbols combine + or − with horizontal, vertical, and diagonal directions to determine how each grid is calculated.
-              </p>
-              <p class="scarlett-case-study__body">
-                Each player builds a 3×3 grid using six hidden number cards and three scoring symbols. A shared draw pile and discard pile connect the individual boards, allowing one player's decision to reshape another player's strategy.
-              </p>
-            </div>
-
-            <figure class="scarlett-case-study__ionized-config-media" data-ionized-config-media>
-              <img
-                class="scarlett-case-study__ionized-config-img"
-                src={images.configurationImage}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                data-ionized-config-img
-              />
-            </figure>
+          <div
+            class="scarlett-case-study__text-block scarlett-case-study__configuration-copy"
+            data-ionized-config-text
+          >
+            <h2 class="scarlett-case-study__block-title">
+              Individual Grids, Shared Tension
+            </h2>
+            <p class="scarlett-case-study__body">
+              The deck contains number cards from 1 to 12 in three colours: yellow, red, and blue. Six scoring symbols combine + or − with horizontal, vertical, and diagonal directions to determine how each grid is calculated.
+            </p>
+            <p class="scarlett-case-study__body">
+              Each player builds a 3×3 grid using six hidden number cards and three scoring symbols. A shared draw pile and discard pile connect the individual boards, allowing one player's decision to reshape another player's strategy.
+            </p>
           </div>
+
+          <figure class="scarlett-case-study__ionized-config-media" data-ionized-config-media>
+            <img
+              class="scarlett-case-study__ionized-config-img"
+              src={images.configurationImage}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              data-ionized-config-img
+            />
+          </figure>
         </div>
       </section>
     </div>
@@ -215,7 +216,7 @@ const backToChapterHref = '/?highlight=ionized#chapter-1';
 </article>
 
 <script>
-  function syncIonizedConfigImage() {
+  function syncIonizedConfigLayout() {
     const mobileQuery = window.matchMedia('(max-width: 720px)');
 
     document.querySelectorAll('[data-ionized-config-split]').forEach((split) => {
@@ -225,20 +226,32 @@ const backToChapterHref = '/?highlight=ionized#chapter-1';
       const media = split.querySelector('[data-ionized-config-media]');
       const img = split.querySelector('[data-ionized-config-img]');
 
-      if (!(stats instanceof HTMLElement) || !(media instanceof HTMLElement) || !(img instanceof HTMLImageElement)) {
+      if (
+        !(stats instanceof HTMLElement) ||
+        !(media instanceof HTMLElement) ||
+        !(img instanceof HTMLImageElement)
+      ) {
         return;
       }
 
       if (mobileQuery.matches) {
+        split.style.removeProperty('--ionized-config-height');
         media.style.height = '';
         img.style.height = '';
         img.style.width = '';
         return;
       }
 
-      const statsHeight = stats.getBoundingClientRect().height;
+      stats.style.minHeight = '';
+
+      const statsInner = stats.querySelector('.scarlett-case-study__configuration-stats-inner');
+      const statsHeight = statsInner instanceof HTMLElement
+        ? statsInner.getBoundingClientRect().height
+        : stats.getBoundingClientRect().height;
+
       if (statsHeight <= 0) return;
 
+      split.style.setProperty('--ionized-config-height', `${statsHeight}px`);
       media.style.height = `${statsHeight}px`;
       img.style.height = `${statsHeight}px`;
       img.style.width = 'auto';
@@ -248,20 +261,22 @@ const backToChapterHref = '/?highlight=ionized#chapter-1';
   function bindIonizedConfigSync() {
     const mobileQuery = window.matchMedia('(max-width: 720px)');
 
-    document.querySelectorAll('[data-ionized-config-stats]').forEach((stats) => {
-      if (!(stats instanceof HTMLElement) || stats.dataset.configObserverBound === 'true') return;
-      stats.dataset.configObserverBound = 'true';
+    document.querySelectorAll('[data-ionized-config-split]').forEach((split) => {
+      if (!(split instanceof HTMLElement) || split.dataset.configObserverBound === 'true') return;
+      split.dataset.configObserverBound = 'true';
 
       const observer = new ResizeObserver(() => {
-        if (!mobileQuery.matches) syncIonizedConfigImage();
+        if (!mobileQuery.matches) syncIonizedConfigLayout();
       });
-      observer.observe(stats);
-    });
 
-    document.querySelectorAll('[data-ionized-config-img]').forEach((img) => {
-      if (!(img instanceof HTMLImageElement) || img.dataset.configLoadBound === 'true') return;
-      img.dataset.configLoadBound = 'true';
-      img.addEventListener('load', syncIonizedConfigImage);
+      const stats = split.querySelector('[data-ionized-config-stats]');
+      if (stats instanceof HTMLElement) observer.observe(stats);
+
+      split.querySelectorAll('[data-ionized-config-img]').forEach((img) => {
+        if (!(img instanceof HTMLImageElement) || img.dataset.configLoadBound === 'true') return;
+        img.dataset.configLoadBound = 'true';
+        img.addEventListener('load', syncIonizedConfigLayout);
+      });
     });
   }
 
@@ -282,14 +297,14 @@ const backToChapterHref = '/?highlight=ionized#chapter-1';
 
   initCaseStudyMedia();
   bindIonizedConfigSync();
-  syncIonizedConfigImage();
+  syncIonizedConfigLayout();
   requestAnimationFrame(() => {
-    requestAnimationFrame(syncIonizedConfigImage);
+    requestAnimationFrame(syncIonizedConfigLayout);
   });
   document.addEventListener('astro:page-load', () => {
     initCaseStudyMedia();
     bindIonizedConfigSync();
-    syncIonizedConfigImage();
+    syncIonizedConfigLayout();
   });
-  window.addEventListener('resize', syncIonizedConfigImage);
+  window.addEventListener('resize', syncIonizedConfigLayout);
 </script>

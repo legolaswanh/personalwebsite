@@ -3,8 +3,9 @@ const base = '/images/games/zompanion/case-study';
 export const zompanionCaseStudyImages = {
   hero: `${base}/hero.png`,
   heroGif: `${base}/hero-gif.gif`,
+  heroTitle: `${base}/hero-title.png`,
   gameDesignImage: `${base}/game-design-image.png`,
-  gameDevelopmentImage1: `${base}/game-development-image-1.png`,
+  gameDevelopmentImage1: `${base}/game-development-image-1.jpg`,
   gameDevelopmentImage2: `${base}/game-development-image-2.jpg`,
 } as const;
 
@@ -25,7 +26,7 @@ export const zompanionConceptImages = [
 
 export const zompanionGameDevelopmentImages = [
   {
-    src: `${base}/game-development-image-1.png`,
+    src: `${base}/game-development-image-1.jpg`,
     placeholder: 'Game development image 1',
   },
   {

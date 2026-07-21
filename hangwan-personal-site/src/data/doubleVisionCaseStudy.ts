@@ -1,7 +1,7 @@
 const base = '/images/games/double-vision/case-study';
 
 export const doubleVisionCaseStudyImages = {
-  hero: `${base}/hero.jpg`,
+  hero: `${base}/hero.png`,
   narrativeDesign: `${base}/narrative-design-image.png`,
   narrativeDesignOutcome1: `${base}/narrative-design-outcome-image-1.jpg`,
   narrativeDesignOutcome2: `${base}/narrative-design-outcome-image-2.jpg`,
@@ -9,6 +9,7 @@ export const doubleVisionCaseStudyImages = {
   gameDesignImage2: `${base}/game-design-image-2.jpg`,
   gameDesignImage3: `${base}/game-design-image-3.jpg`,
   gameDesignImage4: `${base}/game-design-image-4.jpg`,
+  inspirationImage: `${base}/inspiration-image.png`,
   inspirationShapedPrimary: `${base}/inspiration-shaped-primary.jpg`,
   inspirationShapedSecondary: `${base}/inspiration-shaped-secondary.jpg`,
   gameDesignFarewell: `${base}/game-design-farewell.mp4`,

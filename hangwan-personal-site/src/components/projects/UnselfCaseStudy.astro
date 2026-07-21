@@ -22,7 +22,7 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
           Each day, a creature awakens to a different reflection and reshapes its body to match what it believes should be seen. Through repeated acts of observation, trimming, and correction, it slowly loses sight of what it originally was.
         </p>
         <p class="scarlett-case-study__body">
-          Unself was created by a five-person team in 48 hours for Spooky Game Jam 2025 under the theme Cosmic Horror. I was responsible for game design and level design.
+          Unself was created by a five-person team in 48 hours for Spooky Game Jam 2025 under the theme <strong>Cosmic Horror</strong>. I was responsible for game design and level design.
         </p>
       </div>
       <figure class="scarlett-case-study__hero-media" data-unself-hero-media>
@@ -61,13 +61,13 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
         data-unself-inspiration-copy
       >
         <h2 class="scarlett-case-study__block-title">
-          <strong>Horror</strong> in the Reflection
+          Horror in the <strong>Reflection</strong>
         </h2>
         <p class="scarlett-case-study__body">
           Rather than approaching cosmic horror through distant worlds or unknowable creatures, we explored the instability of self-perception. The horror emerges when identity can no longer be trusted—and the reflection in the mirror begins to feel more convincing than the body itself.
         </p>
         <p class="scarlett-case-study__body">
-          Replace this paragraph with how the idea developed into a playable project.
+          This led to the central question of the game: <strong>What if the face you see in the mirror is not really you?</strong>
         </p>
       </div>
 
@@ -85,7 +85,7 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
   </section>
 
   <section class="scarlett-case-study__section" aria-labelledby="unself-game-design">
-    <p id="unself-game-design" class="scarlett-case-study__section-label">GAME DESIGN</p>
+    <p id="unself-game-design" class="scarlett-case-study__section-label">CONCEPTION</p>
 
     <div class="scarlett-case-study__stack">
       <div class="scarlett-case-study__text-block">
@@ -121,7 +121,7 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
 
     <div class="scarlett-case-study__text-block">
       <h2 class="scarlett-case-study__block-title">
-        Correction as the Core Mechanic
+        <strong>Correction</strong> as the Core Mechanic
       </h2>
       <p class="scarlett-case-study__body">
         Each day, players compare the creature with its reflection, identify what appears abnormal, and remove the corresponding body part.
@@ -143,7 +143,7 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
       </figure>
       <div class="scarlett-case-study__unself-design-split-copy">
         <h2 class="scarlett-case-study__block-title">
-          Identity Revealed Through Progression
+          <strong>Identity</strong> Revealed Through Progression
         </h2>
         <p class="scarlett-case-study__body">
           Every removed body part reveals another fragment of the creature’s identity. As the distortions grow, the central question shifts from how to restore its original form to whether anything original remains.
@@ -154,7 +154,7 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
     <div class="scarlett-case-study__unself-design-split scarlett-case-study__unself-design-split--media-end">
       <div class="scarlett-case-study__unself-design-split-copy">
         <h2 class="scarlett-case-study__block-title">
-          Familiar Spaces, Increasing Distortion
+          Familiar Spaces, Increasing <strong>Distortion</strong>
         </h2>
         <p class="scarlett-case-study__body">
           The game follows a repeating daily structure, with environmental clues guiding players toward each new act of removal. Familiar spaces become progressively more distorted, building tension toward the creature’s final transformation.
@@ -190,6 +190,16 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
             <p class="scarlett-case-study__body">
               The simple interaction loop keeps attention on uncertainty, bodily discomfort, and the consequences of each decision.
             </p>
+            <p class="scarlett-case-study__body">
+              Link:{' '}
+              <a
+                href="https://legolaswan.itch.io/unself"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                https://legolaswan.itch.io/unself
+              </a>
+            </p>
           </div>
         </div>
 
@@ -197,14 +207,17 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
           class="scarlett-case-study__unself-gameplay-media"
           data-unself-gameplay-media
         >
-          <img
-            class="scarlett-case-study__unself-gameplay-img"
+          <video
+            class="scarlett-case-study__unself-gameplay-video"
             src={images.gameplayImage}
-            alt=""
-            loading="lazy"
-            decoding="async"
-            data-unself-gameplay-img
-          />
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="metadata"
+            data-unself-gameplay-video
+            aria-label="Gameplay video"
+          ></video>
         </figure>
       </div>
     </div>
@@ -355,70 +368,9 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
     });
   }
 
-  function syncUnselfGameplayImage() {
-    const mobileQuery = window.matchMedia('(max-width: 720px)');
-
-    document.querySelectorAll('[data-unself-gameplay-split]').forEach((split) => {
-      if (!(split instanceof HTMLElement)) return;
-
-      const copy = split.querySelector('[data-unself-gameplay-copy]');
-      const media = split.querySelector('[data-unself-gameplay-media]');
-      const img = split.querySelector('[data-unself-gameplay-img]');
-
-      if (!(copy instanceof HTMLElement) || !(media instanceof HTMLElement) || !(img instanceof HTMLImageElement)) {
-        return;
-      }
-
-      if (mobileQuery.matches) {
-        media.style.height = '';
-        media.style.width = '';
-        media.style.maxWidth = '';
-        img.style.height = '';
-        img.style.width = '';
-        img.style.maxHeight = '';
-        img.style.maxWidth = '';
-        return;
-      }
-
-      // Cap width first so a wide intrinsic image cannot collapse the text column
-      // (which would inflate copyHeight and create a feedback loop).
-      const splitWidth = split.getBoundingClientRect().width;
-      const gap = Number.parseFloat(getComputedStyle(split).columnGap) || 0;
-      const minTextWidth = Math.min(splitWidth * 0.4, 18 * 16);
-      const maxImageWidth = Math.max(120, splitWidth - gap - minTextWidth);
-
-      media.style.maxWidth = `${maxImageWidth}px`;
-      img.style.maxWidth = `${maxImageWidth}px`;
-      img.style.width = 'auto';
-      img.style.height = 'auto';
-      img.style.maxHeight = '';
-      media.style.height = '';
-      media.style.width = '';
-
-      const copyHeight = Math.round(copy.getBoundingClientRect().height);
-      if (copyHeight <= 0) return;
-
-      let imageHeight = copyHeight * 2;
-
-      if (img.naturalWidth > 0 && img.naturalHeight > 0) {
-        const naturalWidth = imageHeight * (img.naturalWidth / img.naturalHeight);
-        if (naturalWidth > maxImageWidth) {
-          imageHeight = Math.round(maxImageWidth * (img.naturalHeight / img.naturalWidth));
-        }
-      }
-
-      media.style.height = `${imageHeight}px`;
-      media.style.width = 'auto';
-      img.style.height = `${imageHeight}px`;
-      img.style.maxHeight = `${imageHeight}px`;
-      img.style.width = 'auto';
-    });
-  }
-
   function syncUnselfLayouts() {
     syncUnselfHeroImage();
     syncUnselfInspirationImages();
-    syncUnselfGameplayImage();
   }
 
   function bindUnselfHeroSync() {
@@ -449,17 +401,8 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
     });
   }
 
-  function bindUnselfGameplaySync() {
-    document.querySelectorAll('[data-unself-gameplay-img]').forEach((img) => {
-      if (!(img instanceof HTMLImageElement) || img.dataset.gameplayLoadBound === 'true') return;
-      img.dataset.gameplayLoadBound = 'true';
-      img.addEventListener('load', syncUnselfGameplayImage);
-    });
-  }
-
   bindUnselfHeroSync();
   bindUnselfInspirationSync();
-  bindUnselfGameplaySync();
   syncUnselfLayouts();
   requestAnimationFrame(() => {
     requestAnimationFrame(syncUnselfLayouts);
@@ -467,7 +410,6 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
   document.addEventListener('astro:page-load', () => {
     bindUnselfHeroSync();
     bindUnselfInspirationSync();
-    bindUnselfGameplaySync();
     syncUnselfLayouts();
   });
   window.addEventListener('resize', syncUnselfLayouts);
