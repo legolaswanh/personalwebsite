@@ -45,21 +45,21 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
       class="scarlett-case-study__inspiration-row scarlett-case-study__inspiration-row--framed"
       data-unself-inspiration-row
     >
-      <figure class="scarlett-case-study__inspiration-frame" data-unself-inspiration-media>
+      <figure
+        class="scarlett-case-study__inspiration-frame scarlett-case-study__inspiration-frame--primary"
+        data-unself-inspiration-primary
+      >
         <img
           class="scarlett-case-study__inspiration-frame-img"
           src={images.inspirationShapedPrimary}
           alt=""
           loading="lazy"
           decoding="async"
-          data-unself-inspiration-img
+          data-unself-inspiration-primary-img
         />
       </figure>
 
-      <div
-        class="scarlett-case-study__copy scarlett-case-study__copy--inspiration"
-        data-unself-inspiration-copy
-      >
+      <div class="scarlett-case-study__copy scarlett-case-study__copy--inspiration">
         <h2 class="scarlett-case-study__block-title">
           Horror in the <strong>Reflection</strong>
         </h2>
@@ -71,14 +71,17 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
         </p>
       </div>
 
-      <figure class="scarlett-case-study__inspiration-frame" data-unself-inspiration-media>
+      <figure
+        class="scarlett-case-study__inspiration-frame scarlett-case-study__inspiration-frame--secondary"
+        data-unself-inspiration-secondary
+      >
         <img
           class="scarlett-case-study__inspiration-frame-img"
           src={images.inspirationShapedSecondary}
           alt=""
           loading="lazy"
           decoding="async"
-          data-unself-inspiration-img
+          data-unself-inspiration-secondary-img
         />
       </figure>
     </div>
@@ -304,67 +307,30 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
   }
 
   function syncUnselfInspirationImages() {
-    const mobileQuery = window.matchMedia('(max-width: 720px)');
-
     document.querySelectorAll('[data-unself-inspiration-row]').forEach((row) => {
       if (!(row instanceof HTMLElement)) return;
 
-      const copy = row.querySelector('[data-unself-inspiration-copy]');
-      const mediaItems = row.querySelectorAll('[data-unself-inspiration-media]');
-      const imgs = Array.from(row.querySelectorAll('[data-unself-inspiration-img]')).filter(
-        (img) => img instanceof HTMLImageElement,
-      );
+      const primary = row.querySelector('[data-unself-inspiration-primary]');
+      const primaryImg = row.querySelector('[data-unself-inspiration-primary-img]');
+      const secondary = row.querySelector('[data-unself-inspiration-secondary]');
+      const secondaryImg = row.querySelector('[data-unself-inspiration-secondary-img]');
 
-      if (!(copy instanceof HTMLElement) || mediaItems.length === 0) return;
-
-      if (mobileQuery.matches) {
-        mediaItems.forEach((media) => {
-          if (media instanceof HTMLElement) media.style.height = '';
-        });
-        imgs.forEach((img) => {
-          img.style.height = '';
-          img.style.width = '';
-          img.style.maxHeight = '';
-          img.style.maxWidth = '';
-        });
+      if (
+        !(primary instanceof HTMLElement) ||
+        !(primaryImg instanceof HTMLImageElement) ||
+        !(secondary instanceof HTMLElement) ||
+        !(secondaryImg instanceof HTMLImageElement)
+      ) {
         return;
       }
 
-      // Measure text height first, then size side images to 1.1× that height.
-      // Middle column (1fr) automatically takes whatever width remains.
-      const copyHeight = Math.round(copy.getBoundingClientRect().height);
-      if (copyHeight <= 0) return;
+      const primaryHeight = Math.round(primaryImg.getBoundingClientRect().height);
+      if (primaryHeight <= 0) return;
 
-      const imageHeight = Math.round(copyHeight * 1.1);
-      const rowWidth = row.getBoundingClientRect().width;
-      const gap = Number.parseFloat(getComputedStyle(row).columnGap) || 0;
-      const minTextWidth = Math.min(rowWidth * 0.28, 14 * 16);
-      const maxImageWidth = Math.max(64, (rowWidth - gap * 2 - minTextWidth) / 2);
-
-      mediaItems.forEach((media) => {
-        if (media instanceof HTMLElement) {
-          media.style.height = `${imageHeight}px`;
-          media.style.maxWidth = `${maxImageWidth}px`;
-        }
-      });
-
-      imgs.forEach((img) => {
-        let height = imageHeight;
-        let width = 'auto';
-
-        if (img.naturalWidth > 0 && img.naturalHeight > 0) {
-          const naturalWidth = height * (img.naturalWidth / img.naturalHeight);
-          if (naturalWidth > maxImageWidth) {
-            height = Math.round(maxImageWidth * (img.naturalHeight / img.naturalWidth));
-            width = `${Math.round(maxImageWidth)}px`;
-          }
-        }
-
-        img.style.height = `${height}px`;
-        img.style.maxHeight = `${height}px`;
-        img.style.width = width;
-        img.style.maxWidth = `${maxImageWidth}px`;
-      });
+      secondary.style.height = `${primaryHeight}px`;
+      secondaryImg.style.height = `${primaryHeight}px`;
+      secondaryImg.style.width = 'auto';
+      secondaryImg.style.maxWidth = 'none';
     });
   }
 
@@ -394,7 +360,17 @@ const backToChapterHref = '/?highlight=unself#chapter-1';
   }
 
   function bindUnselfInspirationSync() {
-    document.querySelectorAll('[data-unself-inspiration-img]').forEach((img) => {
+    document.querySelectorAll('[data-unself-inspiration-primary]').forEach((primary) => {
+      if (!(primary instanceof HTMLElement) || primary.dataset.inspirationObserverBound === 'true') return;
+      primary.dataset.inspirationObserverBound = 'true';
+
+      const observer = new ResizeObserver(() => {
+        syncUnselfInspirationImages();
+      });
+      observer.observe(primary);
+    });
+
+    document.querySelectorAll('[data-unself-inspiration-primary-img], [data-unself-inspiration-secondary-img]').forEach((img) => {
       if (!(img instanceof HTMLImageElement) || img.dataset.inspirationLoadBound === 'true') return;
       img.dataset.inspirationLoadBound = 'true';
       img.addEventListener('load', syncUnselfInspirationImages);

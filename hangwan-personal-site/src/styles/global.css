@@ -6812,34 +6812,19 @@ body.is-project-case-study main {
 
 .double-vision-case-study__outcomes-row {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: clamp(1em, 2.5cqi, 1.75em);
-  align-items: stretch;
+  grid-template-columns: repeat(3, 32%);
+  justify-content: space-between;
+  align-items: start;
   width: 100%;
-}
-
-.double-vision-case-study__outcomes-media {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  gap: clamp(0.5em, 1.25cqi, 0.85em);
-  min-width: 0;
-  min-height: 0;
-}
-
-.double-vision-case-study__outcomes-image {
-  flex: 0 0 auto;
-  align-self: stretch;
-  height: 100%;
-  min-height: 0;
+  column-gap: 2%;
 }
 
 .double-vision-case-study .case-study-media.double-vision-case-study__outcomes-image:not(.is-missing) {
   aspect-ratio: unset;
   display: block;
-  width: auto;
-  height: 100%;
-  min-height: 0;
+  width: 100%;
+  height: auto;
+  min-width: 0;
   overflow: visible;
   background: transparent;
   box-shadow: none;
@@ -6847,18 +6832,16 @@ body.is-project-case-study main {
 
 .double-vision-case-study .case-study-media.double-vision-case-study__outcomes-image:not(.is-missing) .case-study-media__img {
   display: block;
-  width: auto;
-  height: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: auto;
   object-fit: contain;
-  object-position: left center;
+  object-position: center;
   box-shadow: none;
 }
 
 .double-vision-case-study__outcomes-copy {
   margin: 0;
   min-width: 0;
-  align-self: stretch;
 }
 
 .double-vision-case-study__inspiration-row {
@@ -7034,7 +7017,7 @@ body.is-project-case-study main {
 }
 
 .zompanion-case-study .scarlett-case-study__hero-split {
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 18%) minmax(0, 1fr) minmax(0, 18%);
   align-items: start;
 }
 
@@ -7048,7 +7031,8 @@ body.is-project-case-study main {
 }
 
 .zompanion-case-study .scarlett-case-study__hero-media {
-  width: auto;
+  width: 100%;
+  max-width: 100%;
   height: auto;
 }
 
@@ -7077,7 +7061,7 @@ body.is-project-case-study main {
 }
 
 .zompanion-case-study .scarlett-case-study__hero-img {
-  width: auto;
+  width: 100%;
   height: auto;
   object-fit: contain;
   object-position: center;
@@ -7094,7 +7078,7 @@ body.is-project-case-study main {
 
 .zompanion-case-study .scarlett-case-study__hero-gif {
   display: block;
-  width: auto;
+  width: 100%;
   height: auto;
   object-fit: contain;
   object-position: center;
@@ -7151,7 +7135,7 @@ body.is-project-case-study main {
 
 .zompanion-game-design-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 30%);
   gap: clamp(1em, 2.5cqi, 1.5em);
   align-items: start;
   width: 100%;
@@ -7166,7 +7150,8 @@ body.is-project-case-study main {
 
 .zompanion-game-design-media {
   margin: 0;
-  width: auto;
+  width: 100%;
+  max-width: 100%;
   height: auto;
   overflow: hidden;
   background: transparent;
@@ -7175,7 +7160,7 @@ body.is-project-case-study main {
 
 .zompanion-game-design-media__img {
   display: block;
-  width: auto;
+  width: 100%;
   height: auto;
   object-fit: contain;
   object-position: center;
@@ -7268,7 +7253,7 @@ body.is-project-case-study main {
 
 .scarlett-case-study__inspiration-row--framed {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 40%) minmax(0, 1fr) auto;
   align-items: center;
   width: 100%;
   gap: clamp(1em, 2.5cqi, 1.5em);
@@ -7277,17 +7262,32 @@ body.is-project-case-study main {
 .scarlett-case-study__inspiration-frame {
   margin: 0;
   line-height: 0;
-  overflow: hidden;
+  overflow: visible;
   background: transparent;
-  max-width: 32%;
 }
 
-.scarlett-case-study__inspiration-frame-img {
+.scarlett-case-study__inspiration-frame--primary {
+  width: 100%;
+}
+
+.scarlett-case-study__inspiration-frame--secondary {
+  width: auto;
+  justify-self: end;
+}
+
+.scarlett-case-study__inspiration-frame--primary .scarlett-case-study__inspiration-frame-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.scarlett-case-study__inspiration-frame--secondary .scarlett-case-study__inspiration-frame-img {
   display: block;
   width: auto;
   height: auto;
-  max-width: 100%;
-  max-height: 14em;
+  max-width: none;
   object-fit: contain;
   object-position: center;
 }
@@ -8804,12 +8804,12 @@ body.is-project-case-study main {
 
   .zompanion-case-study .scarlett-case-study__hero-media {
     width: auto;
-    max-width: 36%;
+    max-width: 20%;
     height: auto;
   }
 
   .zompanion-case-study .scarlett-case-study__hero-media--gif {
-    max-width: 56%;
+    max-width: 20%;
   }
 
   .zompanion-case-study .scarlett-case-study__hero-img {
@@ -8853,8 +8853,8 @@ body.is-project-case-study main {
   }
 
   .zompanion-game-design-media {
-    width: auto;
-    max-width: 56%;
+    width: 30%;
+    max-width: 30%;
   }
 
   .zompanion-game-design-media__img {
@@ -8939,17 +8939,14 @@ body.is-project-case-study main {
   }
 
   .double-vision-case-study__outcomes-row {
-    grid-template-columns: 1fr;
-  }
-
-  .double-vision-case-study__outcomes-media {
-    width: 100%;
+    grid-template-columns: repeat(3, 32%);
+    justify-content: space-between;
+    column-gap: 2%;
   }
 
   .double-vision-case-study .case-study-media.double-vision-case-study__outcomes-image:not(.is-missing) {
+    width: 100%;
     height: auto;
-    flex: 1 1 0;
-    min-width: 0;
   }
 
   .double-vision-case-study .case-study-media.double-vision-case-study__outcomes-image:not(.is-missing) .case-study-media__img {
@@ -9029,6 +9026,18 @@ body.is-project-case-study main {
 
   .scarlett-case-study__inspiration-row--framed {
     grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .scarlett-case-study__inspiration-row--framed .scarlett-case-study__inspiration-frame--primary {
+    width: 40%;
+    max-width: 40%;
+  }
+
+  .scarlett-case-study__inspiration-row--framed .scarlett-case-study__inspiration-frame--secondary {
+    width: auto;
+    max-width: none;
+    justify-self: start;
   }
 
   .scarlett-case-study__inspiration-row--tension {
@@ -9050,16 +9059,17 @@ body.is-project-case-study main {
 
   .scarlett-case-study__inspiration-frame {
     height: auto;
-    max-width: none;
-    justify-self: start;
   }
 
-  .scarlett-case-study__inspiration-frame-img {
-    height: auto;
-    max-height: min(42vh, 320px);
+  .scarlett-case-study__inspiration-frame--primary .scarlett-case-study__inspiration-frame-img,
+  .scarlett-case-study__inspiration-frame--secondary .scarlett-case-study__inspiration-frame-img {
     width: auto;
-    max-width: min(100%, 220px);
-    transform: none;
+    height: auto;
+    max-height: none;
+  }
+
+  .scarlett-case-study__inspiration-frame--primary .scarlett-case-study__inspiration-frame-img {
+    width: 100%;
   }
 
   .scarlett-case-study__game-design-split {

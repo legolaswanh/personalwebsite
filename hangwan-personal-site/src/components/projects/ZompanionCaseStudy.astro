@@ -280,21 +280,33 @@ const backToChapterHref = '/?highlight=zompanion#chapter-1';
         return;
       }
 
+      const columnWidth = Math.round(media.getBoundingClientRect().width);
+      if (columnWidth <= 0) return;
+
       const copyHeight = Math.round(copy.getBoundingClientRect().height);
       if (copyHeight <= 0) return;
 
-      media.style.height = `${copyHeight}px`;
-      media.style.width = 'auto';
-      img.style.height = `${copyHeight}px`;
-      img.style.width = 'auto';
+      const heightFor = (naturalWidth, naturalHeight) => {
+        if (naturalWidth <= 0 || naturalHeight <= 0) return copyHeight;
+        const heightAtColumnWidth = Math.round(columnWidth * (naturalHeight / naturalWidth));
+        return Math.min(copyHeight, heightAtColumnWidth);
+      };
 
-      const imageHeight = Math.round(img.getBoundingClientRect().height) || copyHeight;
+      let sharedHeight = heightFor(img.naturalWidth, img.naturalHeight);
+      if (gif instanceof HTMLImageElement) {
+        sharedHeight = Math.min(sharedHeight, heightFor(gif.naturalWidth, gif.naturalHeight));
+      }
+
+      media.style.width = '100%';
+      media.style.height = `${sharedHeight}px`;
+      img.style.width = '100%';
+      img.style.height = `${sharedHeight}px`;
 
       if (gifMedia instanceof HTMLElement && gif instanceof HTMLImageElement) {
-        gifMedia.style.height = `${imageHeight}px`;
-        gifMedia.style.width = 'auto';
-        gif.style.height = `${imageHeight}px`;
-        gif.style.width = 'auto';
+        gifMedia.style.width = '100%';
+        gifMedia.style.height = `${sharedHeight}px`;
+        gif.style.width = '100%';
+        gif.style.height = `${sharedHeight}px`;
       }
     });
   }
@@ -352,13 +364,22 @@ const backToChapterHref = '/?highlight=zompanion#chapter-1';
         return;
       }
 
+      const columnWidth = Math.round(media.getBoundingClientRect().width);
+      if (columnWidth <= 0) return;
+
       const copyHeight = Math.round(copy.getBoundingClientRect().height);
       if (copyHeight <= 0) return;
 
-      media.style.height = `${copyHeight}px`;
-      media.style.width = 'auto';
-      img.style.height = `${copyHeight}px`;
-      img.style.width = 'auto';
+      let sharedHeight = copyHeight;
+      if (img.naturalWidth > 0 && img.naturalHeight > 0) {
+        const heightAtColumnWidth = Math.round(columnWidth * (img.naturalHeight / img.naturalWidth));
+        sharedHeight = Math.min(copyHeight, heightAtColumnWidth);
+      }
+
+      media.style.width = '100%';
+      media.style.height = `${sharedHeight}px`;
+      img.style.width = '100%';
+      img.style.height = `${sharedHeight}px`;
     });
   }
 
